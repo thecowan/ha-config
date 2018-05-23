@@ -1,0 +1,34 @@
+upstairs:
+  name: Kids
+  icon: mdi:account-multiple
+  view: yes
+  entities:
+    - media_player.lucys_room
+    - media_player.hamishs_bedroom
+
+outside:
+  name: Outside
+  icon: mdi:pine-tree
+  view: yes
+  entities:
+   - media_player.deck
+   - sensor.moon
+   - sensor.season
+   - sensor.bom_viewbank_air_temp_c
+   - sensor.bom_viewbank_delta_temp_c
+   - sensor.bom_viewbank_feels_like_c
+   - sensor.bom_viewbank_pressure_mb
+   - sensor.bom_viewbank_rain_today
+   - sensor.bom_viewbank_relative_humidity
+   - sensor.bom_viewbank_wind_direction
+   - sensor.bom_viewbank_wind_gust_kmh
+   - sensor.bom_viewbank_wind_speed_kmh
+   - sensor.yr_cloudiness
+   - sensor.yr_humidity
+   - sensor.yr_precipitation
+   - sensor.yr_symbol
+   - sensor.yr_temperature
+   - sensor.yr_wind_direction
+   - sensor.yr_wind_speed
+   - sun.sun
+

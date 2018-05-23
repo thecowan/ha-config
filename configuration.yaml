@@ -1,0 +1,188 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Dairy
+  # Location required to calculate the time the sun rises and sets
+  latitude: !secret latitude
+  longitude: !secret longitude
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: !secret elevation
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Australia/Melbourne
+  # Customization file
+  customize: !include customize.yaml
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+http:
+  api_password: !secret http_password
+  cors_allowed_origins: !secret cors_allowed_origins
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: !secret base_url
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+# Enables a map showing the location of tracked devices
+map:
+
+# Track the sun
+sun:
+
+# Weather prediction
+sensor:
+  - platform: yr
+    monitored_conditions:
+    - symbol
+    - temperature
+    - humidity
+    - precipitation
+    - windSpeed
+    - windDirection
+    - cloudiness
+  - platform: alpha_vantage
+    api_key: !secret alpha_vantage_api_key
+    symbols:
+    - symbol: GOOG
+      name: Google C
+    - symbol: GOOGL
+      name: Google A
+    foreign_exchange:
+    - name: AUD_USD
+      from: AUD
+      to: USD
+  - platform: lastfm
+    api_key: !secret lastfm_api_key
+    users: !secret lastfm_users
+  - platform: season
+    type: astronomical
+  - platform: moon
+    sensor:
+  - platform: bom
+    station: !secret bom_station_id
+    name: !secret bom_station_name
+    monitored_conditions:
+      - apparent_t
+      #- cloud
+      #- cloud_base_m
+      #- cloud_oktas
+      #- cloud_type_id
+      #- cloud_type
+      - delta_t
+      - gust_kmh
+      #- gust_kt
+      - air_temp
+      #- dewpt
+      - press
+      #- press_qnh
+      #- press_msl
+      #- press_tend
+      - rain_trace
+      - rel_hum
+      #- sea_state
+      #- swell_dir_worded
+      #- swell_height
+      #- swell_period
+      #- vis_km
+      #- weather
+      - wind_dir
+      - wind_spd_kmh
+      #- wind_spd_kt
+
+binary_sensor:
+  - platform: linode
+    nodes: !secret linode_nodes
+
+# Text to speech
+tts:
+  - platform: google
+
+# Cloud
+cloud:
+
+panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://hassio.local:3218
+  controlpanel:
+    title: Control Panel
+    icon: mdi:tablet-ipad
+    url: http://hassio.local:7080
+
+zone:
+  - name: !secret zone_work_name
+    latitude: !secret zone_work_latitude
+    longitude: !secret zone_work_longitude
+    radius: 250
+    icon: mdi:worker
+
+xiaomi_aqara:
+  discovery_retry: 5
+  gateways:
+    - key: !secret xiaomi_aqara_key
+
+device_tracker:
+  - platform: google_maps
+    username: !secret google_maps_username
+    password: !secret google_maps_password
+    consider_home: 180
+
+prometheus:
+
+media_player:
+  - platform: onkyo
+    host: 10.2.2.29
+    name: receiver
+    sources:
+      Video1: 'VCR'
+      Video2: 'Sonos'
+      Video3: 'Dock'
+      Video4: 'Video 4'
+      Video6: 'PC'
+      bd: 'Media Center'
+      cd: 'TV'
+      Aux1: 'Aux'
+
+
+notify:
+  - platform: pushbullet
+    api_key: !secret pushbullet_api_key
+
+remote:
+  - platform: harmony
+    name: harmonyhub
+    host: 10.2.2.25
+
+linode:
+  access_token: !secret linode_access_token
+
+mqtt:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
