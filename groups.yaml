@@ -1,10 +1,37 @@
+living:
+  name: Living Room
+  icon: mdi:sofa
+  view: yes
+  entities:
+    - media_player.library
+    - media_player.kitchen
+    - media_player.lounge
+    - media_player.lounge_room
+    - media_player.mibox3
+    - media_player.receiver
+    - remote.harmony_hub
+
+bedroom:
+  name: Master Bedroom
+  icon: mdi:bed-empty
+  view: yes
+  entities:
+    - sun.sun
+    - media_player.master_bedroom
+    - media_player.master_ensuite
+    - light.gateway_light_7811dc64e128
+    - media_player.master_bedroom_speaker
+    - sensor.illumination_7811dc64e128
+
 upstairs:
   name: Kids
   icon: mdi:account-multiple
   view: yes
   entities:
+    - media_player.alices_room
     - media_player.lucys_room
-    - media_player.hamishs_bedroom
+    - media_player.hamishs_room
+    - media_player.kids_bathroom
 
 outside:
   name: Outside
@@ -14,6 +41,13 @@ outside:
    - media_player.deck
    - sensor.moon
    - sensor.season
+   - group.weather
+
+weather:
+  name: Weather
+  icon: mdi:weather-partlycloudy
+  view: no
+  entities:
    - sensor.bom_viewbank_air_temp_c
    - sensor.bom_viewbank_delta_temp_c
    - sensor.bom_viewbank_feels_like_c
