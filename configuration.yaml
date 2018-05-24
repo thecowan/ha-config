@@ -137,8 +137,23 @@ zone:
   - name: !secret zone_work_name
     latitude: !secret zone_work_latitude
     longitude: !secret zone_work_longitude
+    radius: 500
+    icon: mdi:office-building
+  - name: !secret zone_tc_name
+    latitude: !secret zone_tc_latitude
+    longitude: !secret zone_tc_longitude
+    radius: 500
+    icon: mdi:bus-school
+  - name: !secret zone_gps_name
+    latitude: !secret zone_gps_latitude
+    longitude: !secret zone_gps_longitude
     radius: 250
-    icon: mdi:worker
+    icon: mdi:chair-school
+  - name: !secret zone_uni_name
+    latitude: !secret zone_uni_latitude
+    longitude: !secret zone_uni_longitude
+    radius: 500
+    icon: mdi:school
 
 xiaomi_aqara:
   discovery_retry: 5
