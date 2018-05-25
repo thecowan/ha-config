@@ -1,2 +1,8 @@
 group.all_devices:
   hidden: false
+
+script.shower_paul:
+  icon: mdi:shower-head
+
+script.shower_lara:
+  icon: mdi:shower-head

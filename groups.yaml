@@ -23,6 +23,16 @@ bedroom:
     - media_player.master_bedroom_speaker
     - sensor.illumination_7811dc64e128
 
+bathrooms:
+  name: Bathrooms
+  icon: mdi:shower
+  view: yes
+  entities:
+    - script.shower_paul
+    - script.shower_lara
+    - media_player.master_ensuite
+    - media_player.kids_bathroom
+
 upstairs:
   name: Kids
   icon: mdi:account-multiple

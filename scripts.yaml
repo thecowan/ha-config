@@ -1,36 +1,51 @@
 sonos_say:
-  alias: "Sonos TTS script"
+  alias: Sonos TTS script
   sequence:
-   - service: media_player.sonos_snapshot
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-   - service: media_player.sonos_unjoin
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-   - service: media_player.volume_set
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-       volume_level: "{{ volume }}"
-   - service: tts.google_say
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-       message: "{{ message }}"
-   - delay: "{{ delay }}"
-   - service: media_player.sonos_restore
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-
+  - service: media_player.sonos_snapshot
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+  - service: media_player.sonos_unjoin
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+  - service: media_player.volume_set
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+      volume_level: '{{ volume }}'
+  - service: tts.google_say
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+      message: '{{ message }}'
+  - delay: '{{ delay }}'
+  - service: media_player.sonos_restore
+    data_template:
+      entity_id: '{{ sonos_entity }}'
 sonos_ungroup_and_play:
-  alias: "Sonos Ungroup & Play"
+  alias: Sonos Ungroup & Play
   sequence:
-   - service: media_player.sonos_unjoin
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-   - service: media_player.volume_set
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-       volume_level: "{{ volume }}"
-   - service: media_player.select_source
-     data_template:
-       entity_id: "{{ sonos_entity }}"
-       source: "{{ source_name }}"
+  - service: media_player.sonos_unjoin
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+  - service: media_player.volume_set
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+      volume_level: '{{ volume }}'
+  - service: media_player.select_source
+    data_template:
+      entity_id: '{{ sonos_entity }}'
+      source: '{{ source_name }}'
+shower_paul:
+  alias: 'Shower: Paul'
+  sequence:
+  - data:
+      sonos_entity: media_player.master_ensuite
+      source_name: I'm feeling lucky (Paul)
+      volume: 0.5
+    service: script.sonos_ungroup_and_play
+shower_lara:
+  alias: 'Shower: Lara'
+  sequence:
+  - data:
+      sonos_entity: media_player.master_ensuite
+      source_name: I'm feeling lucky (Lara)
+      volume: 0.5
+    service: script.sonos_ungroup_and_play
