@@ -142,17 +142,17 @@ zone:
   - name: !secret zone_tc_name
     latitude: !secret zone_tc_latitude
     longitude: !secret zone_tc_longitude
-    radius: 500
+    radius: 750
     icon: mdi:bus-school
   - name: !secret zone_gps_name
     latitude: !secret zone_gps_latitude
     longitude: !secret zone_gps_longitude
-    radius: 250
+    radius: 350
     icon: mdi:chair-school
   - name: !secret zone_uni_name
     latitude: !secret zone_uni_latitude
     longitude: !secret zone_uni_longitude
-    radius: 500
+    radius: 750
     icon: mdi:school
 
 xiaomi_aqara:
