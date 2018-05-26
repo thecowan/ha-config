@@ -1,0 +1,30 @@
+title: Bathroom
+widget_dimensions: [120, 120]
+widget_margins: [5, 5]
+columns: 8
+
+shower_paul:
+    widget_type: script
+    entity: script.shower_paul
+    title: Shower (Paul)
+    # icon_off: mdi-shower-head
+    icon_off: mdi-music
+
+shower_lara:
+    widget_type: script
+    entity: script.shower_lara
+    title: Shower (Lara)
+    icon_off: mdi-music
+    # use_hass_icon: 1
+
+clock:
+    widget_type: clock    
+    date_format_country: au
+
+sonos:
+    widget_type: media_player
+    entity: media_player.master_ensuite 
+
+layout:
+    - shower_paul, clock (2x1), shower_lara
+    - sonos (4x2)
