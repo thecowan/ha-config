@@ -196,6 +196,11 @@ linode:
   access_token: !secret linode_access_token
 
 mqtt:
+  broker: !secret mqtt_broker
+  username: !secret mqtt_username
+  password: !secret mqtt_password
+  certificate: /etc/ssl/certs/ca-certificates.crt
+  port: 8883
 
 group: !include groups.yaml
 automation: !include automations.yaml
