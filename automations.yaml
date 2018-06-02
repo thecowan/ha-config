@@ -20,3 +20,16 @@
   condition: []
   action:
   - service: script.shower_lara
+- id: '1527925880014'
+  alias: Play/Pause Ensuite
+  trigger:
+  - event_data:
+      click_type: both
+      entity_id: binary_sensor.wall_switch_both_158d0001e11638
+    event_type: click
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.master_ensuite
+    service: media_player.media_play_pause
