@@ -9,7 +9,7 @@ living:
     - media_player.lounge_room
     - media_player.mibox3
     - media_player.receiver
-    - remote.harmony_hub
+    - remote.harmonyhub
 
 bedroom:
   name: Master Bedroom
@@ -28,10 +28,16 @@ bathrooms:
   icon: mdi:shower
   view: yes
   entities:
-    - script.shower_paul
-    - script.shower_lara
+    - group.shower_time
     - media_player.master_ensuite
     - media_player.kids_bathroom
+
+shower_time:
+  name: Shower Time
+  icon: mdi:shower
+  entities:
+    - script.shower_paul
+    - script.shower_lara
 
 upstairs:
   name: Kids
@@ -76,3 +82,12 @@ weather:
    - sensor.yr_wind_speed
    - sun.sun
 
+unassigned:
+  entities:
+   - sensor.lastfm_cowanfamily
+   - sensor.lastfm_mino
+   - script.sonos_say
+   - binary_sensor.cube_158d00010e2275
+   - device_tracker.google_maps_107519494119268402848
+   - sensor.google_a
+   - sensor.google_c
