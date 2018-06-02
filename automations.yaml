@@ -1,1 +1,22 @@
-[]
+- id: '1527922079178'
+  alias: Paul Button
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.wall_switch_left_158d0001e11638
+    event_type: click
+    platform: event
+  condition: []
+  action:
+  - service: script.shower_paul
+- id: '1527922153686'
+  alias: Lara Button
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.wall_switch_right_158d0001e11638
+    event_type: click
+    platform: event
+  condition: []
+  action:
+  - service: script.shower_lara
