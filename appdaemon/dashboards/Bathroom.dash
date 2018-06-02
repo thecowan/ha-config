@@ -19,12 +19,29 @@ shower_lara:
 
 clock:
     widget_type: clock    
-    date_format_country: au
+    date_format_country: "au"
+    date_format_options:
+      weekday: "long"
+      day: "numeric"
+      month: "long"
 
 sonos:
     widget_type: media_player
     entity: media_player.master_ensuite 
+    step: 5
+
+paul_presence:
+    widget_type: device_tracker
+    title: Paul
+    device: google_maps_107519494119268402848
+
+lucky:
+    widget_type: script
+    entity: script.shower_paul
+    title: I'm Feeling Lucky
+    icon_off: mdi-dice-5
 
 layout:
-    - shower_paul, clock (2x1), shower_lara
-    - sonos (4x2)
+    - shower_paul, clock (3x1), shower_lara
+    - sonos (4x2),              lucky
+    -                           paul_presence
