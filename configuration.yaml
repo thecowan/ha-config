@@ -168,6 +168,11 @@ device_tracker:
     username: !secret google_maps_username
     password: !secret google_maps_password
     consider_home: 180
+  - platform: luci
+    host: !secret openwrt_ip
+    username: !secret openwrt_username
+    password: !secret openwrt_password
+    track_new_devices: true
 
 prometheus:
 
