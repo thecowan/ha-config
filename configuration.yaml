@@ -206,3 +206,11 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
+mqtt_eventstream:
+  publish_topic: homeassistant/events/master
+
+mqtt_statestream:
+  base_topic: homeassistant
+  publish_timestamps: true
+  publish_attributes: true
+
