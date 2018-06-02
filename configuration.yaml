@@ -173,6 +173,12 @@ device_tracker:
     username: !secret openwrt_username
     password: !secret openwrt_password
     track_new_devices: true
+  - platform: owntracks
+    max_gps_accuracy: 300
+    waypoints: True
+    waypoint_whitelist:
+      - paul
+
 
 prometheus:
 
