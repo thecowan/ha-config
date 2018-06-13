@@ -164,7 +164,7 @@ device_tracker:
     host: !secret openwrt_ip
     username: !secret openwrt_username
     password: !secret openwrt_password
-    track_new_devices: true
+    track_new_devices: false
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
@@ -179,14 +179,22 @@ media_player:
     host: 10.2.2.29
     name: receiver
     sources:
+      # video1_vcr_dvr_stb_dvr
       Video1: 'VCR'
+      # video2_cbl_sat
       Video2: 'Sonos'
+      # video3_game/tv_game_game1
       Video3: 'Dock'
       Video4: 'Video 4'
+      # "video6_pc"
       Video6: 'PC'
       bd: 'Media Center'
       cd: 'TV'
+      # video4_aux1
       Aux1: 'Aux'
+      # fm unchanged
+      # am unchanged
+      "universal-port": 'Port'
 
 
 notify:
@@ -212,11 +220,22 @@ group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
 
-mqtt_eventstream:
-  publish_topic: homeassistant/events/master
+# mqtt_eventstream:
+#  publish_topic: homeassistant/events/master
 
 mqtt_statestream:
   base_topic: homeassistant
   publish_timestamps: true
   publish_attributes: true
 
+
+variable:
+  receiver_last_state:
+    value: off
+    restore: true
+  receiver_last_volume:
+    value: 0
+    restore: true
+  receiver_last_source:
+    value: none
+    restore: true

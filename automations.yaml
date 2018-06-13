@@ -33,3 +33,78 @@
   - data:
       entity_id: media_player.master_ensuite
     service: media_player.media_play_pause
+- id: '1528768127918'
+  alias: 'Sonos: Switch Loungeroom amp when active'
+  trigger:
+  - entity_id: media_player.lounge
+    from: paused
+    platform: state
+    to: playing
+  condition: []
+  action:
+  - data:
+      entity_id: automation.receiver_update_last_state
+    service: automation.turn_off
+  - data:
+      entity_id: media_player.receiver
+    service: media_player.turn_on
+  - timeout: 00:00:10
+    wait_template: '{{ is_state(''media_player.receiver'', ''on'') }}'
+  - data:
+      entity_id: media_player.receiver
+      source: Video2
+    service: media_player.select_source
+  - data:
+      entity_id: media_player.receiver
+      volume_level: 0.825
+    service: media_player.volume_set
+- id: '1528777053684'
+  alias: 'Receiver: update last state'
+  trigger:
+  - entity_id: media_player.receiver
+    platform: state
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.attributes.source not in ["Sonos", "video2_cbl_sat"]  }}'
+  action:
+  - data:
+      value_template: '{{ states("media_player.receiver") }}'
+      variable: receiver_last_state
+    service: variable.set_variable
+  - data:
+      value_template: '{% if is_state("media_player.receiver", "on") -%}{{ state_attr("media_player.receiver",
+        "source") | regex_replace("_.*", "") | regex_replace("^video", "Video") }}{%- else -%}{{ states("variable.receiver_last_source") }}{%- endif
+        %}'
+      variable: receiver_last_source
+    service: variable.set_variable
+  - data:
+      value_template: '{% if is_state("media_player.receiver", "on") -%}{{ state_attr("media_player.receiver",
+        "volume_level") }}{%- else -%}{{ states("variable.receiver_last_volume") }}{%-
+        endif %}'
+      variable: receiver_last_volume
+    service: variable.set_variable
+- id: '1528780901218'
+  alias: 'Sonos: Switch loungeroom back after finished'
+  trigger:
+  - entity_id: media_player.lounge
+    from: playing
+    platform: state
+    to: paused
+  condition: []
+  action:
+  - data_template:
+      entity_id: media_player.receiver
+      volume_level: '{{ states("variable.receiver_last_volume") }}'
+    service: media_player.volume_set
+  - data_template:
+      entity_id: media_player.receiver
+      source: '{{ states("variable.receiver_last_source") }}'
+    service: media_player.select_source
+  - data_template:
+      entity_id: '{% if is_state("variable.receiver_last_state", "off") -%}media_player.receiver{%- else -%}dummy.dummy{%- endif -%}'
+    service: media_player.turn_off
+  - delay:
+      seconds: 20
+  - data:
+      entity_id: automation.receiver_update_last_state
+    service: automation.turn_on
