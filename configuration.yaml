@@ -134,21 +134,6 @@ zone:
     longitude: !secret zone_work_longitude
     radius: 500
     icon: mdi:office-building
-  - name: !secret zone_tc_name
-    latitude: !secret zone_tc_latitude
-    longitude: !secret zone_tc_longitude
-    radius: 750
-    icon: mdi:bus-school
-  - name: !secret zone_gps_name
-    latitude: !secret zone_gps_latitude
-    longitude: !secret zone_gps_longitude
-    radius: 350
-    icon: mdi:chair-school
-  - name: !secret zone_uni_name
-    latitude: !secret zone_uni_latitude
-    longitude: !secret zone_uni_longitude
-    radius: 750
-    icon: mdi:school
 
 xiaomi_aqara:
   discovery_retry: 5
@@ -200,11 +185,6 @@ media_player:
 notify:
   - platform: pushbullet
     api_key: !secret pushbullet_api_key
-
-remote:
-  - platform: harmony
-    name: harmonyhub
-    host: 10.2.2.25
 
 linode:
   access_token: !secret linode_access_token
