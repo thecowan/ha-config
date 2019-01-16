@@ -13,11 +13,6 @@ script.shower_paul:
   custom_ui_state_card: state-card-custom-ui
   action_name: Shower!
 
-script.shower_lara:
-  icon: mdi:shower-head
-  custom_ui_state_card: state-card-custom-ui
-  action_name: Shower!
-
 light.gateway_light_7811dc64e128:
   custom_ui_state_card: state-card-custom-ui
 
