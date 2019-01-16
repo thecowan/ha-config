@@ -114,6 +114,32 @@ sensor:
       - wind_dir
       - wind_spd_kmh
       #- wind_spd_kt
+  - platform: template
+    sensors:
+      bedroom_right_power:
+        friendly_name: 'Bedroom Right Power'
+        unit_of_measurement: 'W'
+        value_template: '{{ states.switch.plug_bedroom_right.attributes.load_power|int }}'
+      bedroom_left_power:
+        friendly_name: 'Bedroom Left Power'
+        unit_of_measurement: 'W'
+        value_template: '{{ states.switch.plug_bedroom_left.attributes.load_power|int }}'
+      beerfridge_power:
+        friendly_name: 'Beer Fridge Power'
+        unit_of_measurement: 'W'
+        value_template: '{{ states.switch.plug_beerfridge.attributes.load_power|int }}'
+      bedroom_right_power_consumed:
+        friendly_name: 'Bedroom Right Power Consumed'
+        unit_of_measurement: 'Wh'
+        value_template: '{{ states.switch.plug_bedroom_right.attributes.power_consumed|int }}'
+      bedroom_left_power_consumed:
+        friendly_name: 'Bedroom Left Power Consumed'
+        unit_of_measurement: 'Wh'
+        value_template: '{{ states.switch.plug_bedroom_left.attributes.power_consumed|int }}'
+      beerfridge_power_consumed:
+        friendly_name: 'Beer Fridge Power Consumed'
+        unit_of_measurement: 'Wh'
+        value_template: '{{ states.switch.plug_beerfridge.attributes.power_consumed|int }}'
 
 binary_sensor:
   - platform: linode
