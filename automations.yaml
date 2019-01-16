@@ -3,35 +3,24 @@
   trigger:
   - event_data:
       click_type: single
-      entity_id: binary_sensor.wall_switch_left_158d0001e11638
-    event_type: click
+      entity_id: binary_sensor.wall_switch_left_bathroom
+    event_type: xiaomi_aqara.click
     platform: event
   condition: []
   action:
   - service: script.shower_paul
-- id: '1527922153686'
-  alias: Lara Button
-  trigger:
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.wall_switch_right_158d0001e11638
-    event_type: click
-    platform: event
-  condition: []
-  action:
-  - service: script.shower_lara
 - id: '1527925880014'
   alias: Play/Pause Ensuite
   trigger:
   - event_data:
       click_type: both
       entity_id: binary_sensor.wall_switch_both_158d0001e11638
-    event_type: click
+    event_type: xiaomi_aqara.click
     platform: event
   condition: []
   action:
   - data:
-      entity_id: media_player.master_ensuite
+      entity_id: media_player.bathroom
     service: media_player.media_play_pause
 - id: '1528768127918'
   alias: 'Sonos: Switch Loungeroom amp when active'
@@ -73,8 +62,8 @@
     service: variable.set_variable
   - data:
       value_template: '{% if is_state("media_player.receiver", "on") -%}{{ state_attr("media_player.receiver",
-        "source") | regex_replace("_.*", "") | regex_replace("^video", "Video") }}{%- else -%}{{ states("variable.receiver_last_source") }}{%- endif
-        %}'
+        "source") | regex_replace("_.*", "") | regex_replace("^video", "Video") }}{%-
+        else -%}{{ states("variable.receiver_last_source") }}{%- endif %}'
       variable: receiver_last_source
     service: variable.set_variable
   - data:
@@ -101,10 +90,65 @@
       source: '{{ states("variable.receiver_last_source") }}'
     service: media_player.select_source
   - data_template:
-      entity_id: '{% if is_state("variable.receiver_last_state", "off") -%}media_player.receiver{%- else -%}dummy.dummy{%- endif -%}'
+      entity_id: '{% if is_state("variable.receiver_last_state", "off") -%}media_player.receiver{%-
+        else -%}dummy.dummy{%- endif -%}'
     service: media_player.turn_off
   - delay:
       seconds: 20
   - data:
       entity_id: automation.receiver_update_last_state
     service: automation.turn_on
+- id: '1546759967727'
+  alias: Bedside Button
+  trigger:
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.switch_bedside
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id:
+      - light.bedside_lamp_left
+      - light.bedside_lamp_right
+    service: light.toggle
+- id: '1546762544388'
+  alias: Bedside Button Double Click
+  trigger:
+  - event_data:
+      click_type: double
+      entity_id: binary_sensor.switch_bedside
+    event_type: xiaomi_aqara.click
+    platform: event
+  condition: []
+  action:
+  - service: light.turn_off
+  - service: script.sonos_sleep
+- id: '1546980843431'
+  alias: Paul Arrive Home
+  trigger:
+  - entity_id: device_tracker.paul_crosshatch
+    from: not_home
+    platform: state
+    to: home
+  condition:
+  - condition: state
+    entity_id: group.kids_presence
+    state: not_home
+  action:
+  - service: light.turn_on
+  - service: script.sonos_get_home
+- id: '1546984412841'
+  alias: Paul Leave Home
+  trigger:
+  - entity_id: device_tracker.paul_crosshatch
+    platform: state
+    from: home
+    to: not_home
+    for:
+      minutes: 10
+  condition: []
+  action:
+  - service: media_player.media_pause
+  - service: light.turn_off

@@ -19,6 +19,69 @@ sonos_say:
   - service: media_player.sonos_restore
     data_template:
       entity_id: '{{ sonos_entity }}'
+sonos_get_home:
+  alias: Sonos Get Home
+  sequence:
+  - service: script.sonos_join_all
+  - service: script.sonos_play_matching
+    data_template:
+      entity_id: media_player.living_room
+      match: \U0001F3E0
+sonos_romance:
+  alias: Sonos Romantic Music
+  sequence:
+  - service: script.sonos_join_all
+  - service: script.sonos_play_matching
+    data_template:
+      entity_id: media_player.living_room
+      match: \U0001F49C
+sonos_sleep:
+  alias: Sonos Sleep Music
+  sequence:
+  - service: media_player.media_pause
+  - service: media_player.sonos_unjoin
+    data_template:
+      entity_id: media_player.master_bedroom_2
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.master_bedroom_2
+      volume_level: '0.05'
+  - service: media_player.shuffle_set
+    data:
+      entity_id: media_player.master_bedroom_2
+      shuffle: true
+  - service: script.sonos_play_matching
+    data_template:
+      entity_id: media_player.master_bedroom_2
+      match: \U0001F4A4
+sonos_play_non_matching:
+  alias: Sonos Play Non-Matching
+  sequence:
+  - service: media_player.select_source
+    data_template:
+      entity_id: '{{ entity_id }}'
+      source: '{{ state_attr(entity_id, "source_list") | map("regex_replace", ".*"
+        + match + ".*", "") | reject("eq", "") | reject("eq", "Line-in") | list |
+        random }}'
+sonos_play_matching:
+  alias: Sonos Play Matching
+  sequence:
+  - service: media_player.select_source
+    data_template:
+      entity_id: '{{ entity_id }}'
+      source: '{{ state_attr(entity_id, "source_list") | map("regex_replace", "^(?!.*"
+        + match + ").*$", "") | reject("eq", "") | reject("eq", "Line-in") | list
+        | random }}'
+sonos_join_all:
+  alias: Sonos Join All
+  sequence:
+  - service: media_player.sonos_join
+    data_template:
+      master: media_player.living_room
+      entity_id:
+      - media_player.kitchen_2
+      - media_player.master_bedroom_2
+      - media_player.bathroom
 sonos_ungroup_and_play:
   alias: Sonos Ungroup & Play
   sequence:
@@ -37,15 +100,7 @@ shower_paul:
   alias: 'Shower: Paul'
   sequence:
   - data:
-      sonos_entity: media_player.master_ensuite
-      source_name: I'm feeling lucky (Paul)
-      volume: 0.5
-    service: script.sonos_ungroup_and_play
-shower_lara:
-  alias: 'Shower: Lara'
-  sequence:
-  - data:
-      sonos_entity: media_player.master_ensuite
-      source_name: I'm feeling lucky (Lara)
+      sonos_entity: media_player.bathroom
+      source_name: "I'm feeling lucky (Paul) \U0001F3E0\U0001F6BF"
       volume: 0.5
     service: script.sonos_ungroup_and_play
