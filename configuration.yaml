@@ -222,3 +222,11 @@ variable:
   receiver_last_source:
     value: none
     restore: true
+
+light:
+  - platform: switch
+    name: Bedside Lamp Left
+    entity_id: switch.plug_bedroom_left
+  - platform: switch
+    name: Bedside Lamp Right
+    entity_id: switch.plug_bedroom_right
