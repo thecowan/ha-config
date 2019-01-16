@@ -3,76 +3,79 @@ living:
   icon: mdi:sofa
   view: yes
   entities:
-    - media_player.library
-    - media_player.kitchen
-    - media_player.lounge
-    - media_player.lounge_room
-    - media_player.mibox3
-    - media_player.receiver
+    - media_player.kitchen_2
+    - media_player.kitchen_display
+    - media_player.living_room
+    - media_player.living_room_tv
     - remote.harmonyhub
+    - binary_sensor.front_door
 
 bedroom:
-  name: Master Bedroom
+  name: Bedroom
   icon: mdi:bed-empty
   view: yes
   entities:
     - sun.sun
-    - media_player.master_bedroom
-    - media_player.master_ensuite
-    - light.gateway_light_7811dc64e128
+    - media_player.master_bedroom_2
+    - light.gateway_light
     - media_player.master_bedroom_speaker
-    - sensor.illumination_7811dc64e128
+    - sensor.illumination_gateway
+    - sensor.bedroom_left_power
+    - sensor.bedroom_right_power
+    - sensor.bedroom_left_power_consumed
+    - sensor.bedroom_right_power_consumed
+    - light.bedside_lamp_left
+    - light.bedside_lamp_right
+    - binary_sensor.motion_sensor_bedroom
 
-bathrooms:
-  name: Bathrooms
+bathroom:
+  name: Bathroom
   icon: mdi:shower
   view: yes
   entities:
     - group.shower_time
-    - media_player.master_ensuite
-    - media_player.kids_bathroom
+    - media_player.bathroom
 
 shower_time:
   name: Shower Time
   icon: mdi:shower
   entities:
     - script.shower_paul
-    - script.shower_lara
 
-upstairs:
+kids:
   name: Kids
   icon: mdi:account-multiple
   view: yes
   entities:
-    - media_player.alices_room
-    - media_player.lucys_room
-    - media_player.hamishs_room
-    - media_player.kids_bathroom
+    - media_player.kids_bedroom
 
-outside:
-  name: Outside
+balcony:
+  name: Balcony
   icon: mdi:pine-tree
   view: yes
   entities:
-   - media_player.deck
+   - sun.sun
    - sensor.moon
    - sensor.season
    - group.weather
+   - sensor.temperature_beerfridge
+   - sensor.humidity_beerfridge
+   - sensor.pressure_beerfridge
 
 weather:
   name: Weather
   icon: mdi:weather-partlycloudy
   view: no
   entities:
-   - sensor.bom_viewbank_air_temp_c
-   - sensor.bom_viewbank_delta_temp_c
-   - sensor.bom_viewbank_feels_like_c
-   - sensor.bom_viewbank_pressure_mb
-   - sensor.bom_viewbank_rain_today
-   - sensor.bom_viewbank_relative_humidity
-   - sensor.bom_viewbank_wind_direction
-   - sensor.bom_viewbank_wind_gust_kmh
-   - sensor.bom_viewbank_wind_speed_kmh
+   - sensor.bom_sydney_air_temp_c
+   - sensor.bom_sydney_delta_temp_c
+   - sensor.bom_sydney_feels_like_c
+   - sensor.bom_sydney_pressure_mb
+   - sensor.bom_sydney_rain_today
+   - sensor.bom_sydney_relative_humidity
+   - sensor.bom_sydney_wind_direction
+   - sensor.bom_sydney_wind_gust_kmh
+   - sensor.bom_sydney_wind_speed_kmh
    - sensor.yr_cloudiness
    - sensor.yr_humidity
    - sensor.yr_precipitation
@@ -81,6 +84,13 @@ weather:
    - sensor.yr_wind_direction
    - sensor.yr_wind_speed
    - sun.sun
+
+kids_presence:
+  name: Kids
+  entities:
+   - device_tracker.oppof1s
+   - device_tracker.galaxys7a
+   - device_tracker.pixel
 
 unassigned:
   entities:
