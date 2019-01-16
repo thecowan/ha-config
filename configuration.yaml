@@ -141,15 +141,18 @@ xiaomi_aqara:
     - key: !secret xiaomi_aqara_key
 
 device_tracker:
-  - platform: google_maps
-    username: !secret google_maps_username
-    password: !secret google_maps_password
-    consider_home: 180
   - platform: luci
     host: !secret openwrt_ip
     username: !secret openwrt_username
     password: !secret openwrt_password
     track_new_devices: false
+    new_device_defaults:
+      track_new_devices: false
+      hide_if_away: false
+  - platform: google_maps
+    username: !secret google_maps_username
+    password: !secret google_maps_password
+    consider_home: 180
   - platform: owntracks
     max_gps_accuracy: 300
     waypoints: True
