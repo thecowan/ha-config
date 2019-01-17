@@ -22,7 +22,62 @@ views:
       - type: entities
         entities:
           - input_boolean.guest_mode
-
+  - title: Living Room
+    icon: mdi:sofa
+    path: living
+    cards:
+      - type: media-control
+        entity: media_player.kitchen_2
+      - type: media-control
+        entity: media_player.kitchen_display
+      - type: media-control
+        entity: media_player.living_room
+      - type: media-control
+        entity: media_player.living_room_tv
+      - type: entities
+        entities:
+          - binary_sensor.front_door
+  - title: Bedroom
+    icon: mdi:bed-empty
+    path: bedroom
+    cards:
+      - type: media-control
+        entity: media_player.master_bedroom_2
+      - type: media-control
+        entity: media_player.master_bedroom_speaker
+      - type: entities
+        entities:
+          - sun.sun
+          - light.gateway_light
+          - light.bedside_lamp_left
+          - light.bedside_lamp_right
+          - sensor.illumination_gateway
+          - sensor.bedroom_left_power
+          - sensor.bedroom_right_power
+          - sensor.bedroom_left_power_consumed
+          - sensor.bedroom_right_power_consumed
+          - binary_sensor.motion_sensor_bedroom
+  - title: Balcony
+    icon: mdi:pine-tree
+    path: balcony
+    cards:
+      - type: entities
+        entities:
+          - sun.sun
+          - sensor.moon
+          - sensor.season
+          - group.weather
+          - sensor.temperature_beerfridge
+          - sensor.humidity_beerfridge
+          - sensor.pressure_beerfridge
+  - title: Bathroom
+    icon: mdi:shower
+    path: bathroom
+    cards:
+      - type: media-control
+        entity: media_player.bathroom
+      - type: entity-button
+        entity: script.shower_paul
   - icon: mdi:account-multiple
     title: Kids room
     path: kids
