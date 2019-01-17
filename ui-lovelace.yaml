@@ -3,6 +3,10 @@ title: The Dairy
 background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
+  - binary_sensor.switch_bedside
+  - binary_sensor.wall_switch_both_bathroom
+  - binary_sensor.wall_switch_left_bathroom
+  - binary_sensor.wall_switch_right_bathroom
   - group.all_automations
   - group.all_devices
   - group.all_lights
@@ -89,16 +93,21 @@ views:
           cards:
           - type: sensor
             entity: sensor.temperature_beerfridge
+            detail: 2
             graph: line
           - type: sensor
             entity: sensor.beerfridge_power
             graph: line
+            detail: 2
             icon: mdi:flash
         - type: glance
           entities:
-            - sensor.pressure_beerfridge
-            - sensor.humidity_beerfridge
+            - entity: sensor.pressure_beerfridge
+              name: 
+            - entity: sensor.humidity_beerfridge
+              name: 
             - entity: sensor.beerfridge_power_consumed
+              name: 
               icon: mdi:flash
   - title: Bathroom
     icon: mdi:shower

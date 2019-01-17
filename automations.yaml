@@ -14,7 +14,7 @@
   trigger:
   - event_data:
       click_type: both
-      entity_id: binary_sensor.wall_switch_both_158d0001e11638
+      entity_id: binary_sensor.wall_switch_both_bathroom
     event_type: xiaomi_aqara.click
     platform: event
   condition: []
