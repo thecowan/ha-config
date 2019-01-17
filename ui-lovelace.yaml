@@ -3,10 +3,20 @@ title: The Dairy
 background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
+  - group.all_automations
+  - group.all_devices
+  - group.all_lights
+  - group.all_scripts
+  - group.all_switches
+  - group.unassigned
+  - script.sonos_play_non_matching
   - script.sonos_play_matching
+  - script.sonos_ungroup_and_play
+  - sensor.battery_paul
   - sensor.lastfm_cowanfamily
   - switch.plug_bedroom_left
   - switch.plug_bedroom_right
+  - switch.plug_beerfridge
 views:
   - title: Overview
     path: overview
@@ -23,6 +33,9 @@ views:
       - type: entities
         entities:
           - input_boolean.guest_mode
+      - type: gauge
+        entity:
+          - sensor.battery_paul
   - title: Living Room
     icon: mdi:sofa
     path: living
@@ -63,12 +76,13 @@ views:
     icon: mdi:pine-tree
     path: balcony
     cards:
-      - type: entities
+      - type: glance
         entities:
           - sun.sun
           - sensor.moon
           - sensor.season
-          - group.weather
+      - type: entities
+        entities:
           - sensor.temperature_beerfridge
           - sensor.humidity_beerfridge
           - sensor.pressure_beerfridge
@@ -95,3 +109,17 @@ views:
         entities:
           - light.bedside_lamp_left
           - light.bedside_lamp_right
+      - type: glance
+        title: Automation Triggers
+        entities:
+          - automation.bedside_button
+          - automation.bedside_button_double_click
+      - type: glance
+        title: Device Trackers
+        entities:
+          - device_tracker.paul_crosshatch
+          - device_tracker.paul_pixel3xl
+          - device_tracker.google_maps_107519494119268402848
+          - device_tracker.oppof1s
+          - device_tracker.galaxys7a
+          - device_tracker.pixel
