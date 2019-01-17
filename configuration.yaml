@@ -140,6 +140,10 @@ sensor:
         friendly_name: 'Beer Fridge Power Consumed'
         unit_of_measurement: 'Wh'
         value_template: '{{ states.switch.plug_beerfridge.attributes.power_consumed|int }}'
+  - platform: untappd
+    username: funkwit
+    id: 59C5BFB42E4C92B07435F894D5E637F7235F9669
+    secret: 9EEDE8A5F3DE15F4F12453178FB7BFB3DC5FAB8C
 
 binary_sensor:
   - platform: linode
