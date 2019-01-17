@@ -266,6 +266,11 @@ light:
   - platform: switch
     name: Bedside Lamp Right
     entity_id: switch.plug_bedroom_right
+  - platform: group
+    name: Bedside Lamps
+    entities:
+      - light.bedside_lamp_left
+      - light.bedside_lamp_right
 
 google_assistant:
   project_id: !secret google_assistant_project_id

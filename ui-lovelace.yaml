@@ -3,9 +3,12 @@ title: The Dairy
 background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
+  - light.bedside_lamp_left
+  - light.bedside_lamp_right
   - script.sonos_play_matching
   - sensor.lastfm_cowanfamily
-  - group.unassigned 
+  - switch.plug_bedroom_left
+  - switch.plug_bedroom_right
 views:
   - title: Overview
     path: overview
@@ -45,12 +48,13 @@ views:
         entity: media_player.master_bedroom_2
       - type: media-control
         entity: media_player.master_bedroom_speaker
+      - type: light
+        entity: light.gateway_light
+      - type: light
+        entity: light.bedside_lamps
       - type: entities
         entities:
           - sun.sun
-          - light.gateway_light
-          - light.bedside_lamp_left
-          - light.bedside_lamp_right
           - sensor.illumination_gateway
           - sensor.bedroom_left_power
           - sensor.bedroom_right_power
