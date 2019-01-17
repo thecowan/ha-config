@@ -59,10 +59,12 @@ views:
         entity: media_player.master_bedroom_2
       - type: media-control
         entity: media_player.master_bedroom_speaker
-      - type: light
-        entity: light.gateway_light
-      - type: light
-        entity: light.bedside_lamps
+      - type: horizontal-stack
+        cards:
+        - type: light
+          entity: light.gateway_light
+        - type: light
+          entity: light.bedside_lamps
       - type: entities
         entities:
           - sun.sun
@@ -81,11 +83,23 @@ views:
           - sun.sun
           - sensor.moon
           - sensor.season
-      - type: entities
-        entities:
-          - sensor.temperature_beerfridge
-          - sensor.humidity_beerfridge
-          - sensor.pressure_beerfridge
+      - type: vertical-stack
+        cards:
+        - type: horizontal-stack
+          cards:
+          - type: sensor
+            entity: sensor.temperature_beerfridge
+            graph: line
+          - type: sensor
+            entity: sensor.beerfridge_power
+            graph: line
+            icon: mdi:flash
+        - type: glance
+          entities:
+            - sensor.pressure_beerfridge
+            - sensor.humidity_beerfridge
+            - entity: sensor.beerfridge_power_consumed
+              icon: mdi:flash
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
