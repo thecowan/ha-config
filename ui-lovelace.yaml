@@ -3,8 +3,6 @@ title: The Dairy
 background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
-  - light.bedside_lamp_left
-  - light.bedside_lamp_right
   - script.sonos_play_matching
   - sensor.lastfm_cowanfamily
   - switch.plug_bedroom_left
@@ -82,9 +80,18 @@ views:
         entity: media_player.bathroom
       - type: entity-button
         entity: script.shower_paul
-  - icon: mdi:account-multiple
-    title: Kids room
+  - title: Kids room
+    icon: mdi:account-multiple
     path: kids
     cards:
       - type: media-control
         entity: media_player.kids_bedroom
+  - title: Configuration
+    icon: mdi:settings
+    path: settings
+    cards:
+      - type: entities
+        title: Individual Lights
+        entities:
+          - light.bedside_lamp_left
+          - light.bedside_lamp_right
