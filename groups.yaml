@@ -92,6 +92,12 @@ kids_presence:
    - device_tracker.galaxys7a
    - device_tracker.pixel
 
+paul_presence:
+  name: Paul
+  entities:
+   - device_tracker.paul_crosshatch
+   - device_tracker.paul_pixel3xl
+
 unassigned:
   entities:
    - sensor.lastfm_cowanfamily
