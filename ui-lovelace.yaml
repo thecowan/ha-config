@@ -1,4 +1,4 @@
-title: My Awesome Home
+title: The Dairy
 
 background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
@@ -19,6 +19,9 @@ views:
         card:
           type: glance
           title: Currently home
+      - type: entities
+        entities:
+          - input_boolean.guest_mode
 
   - icon: mdi:account-multiple
     title: Kids room

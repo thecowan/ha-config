@@ -278,3 +278,8 @@ google_assistant:
 
 lovelace:
   mode: yaml
+
+input_boolean:
+  guest_mode:
+    name: Guest Mode
+    icon: mdi:account-multiple-plus
