@@ -13,12 +13,6 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
-frontend:
-  extra_html_url:
-    - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui.html
-  extra_html_url_es5:
-    - https://raw.githubusercontent.com/andrey-git/home-assistant-custom-ui/master/state-card-custom-ui-es5.html
-
 # Enables configuration UI
 config:
 
@@ -71,8 +65,6 @@ sensor:
     symbols:
     - symbol: GOOG
       name: Google C
-    - symbol: GOOGL
-      name: Google A
     foreign_exchange:
     - name: AUD_USD
       from: AUD
