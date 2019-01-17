@@ -73,10 +73,6 @@ views:
         entities:
           - sun.sun
           - sensor.illumination_gateway
-          - sensor.bedroom_left_power
-          - sensor.bedroom_right_power
-          - sensor.bedroom_left_power_consumed
-          - sensor.bedroom_right_power_consumed
           - binary_sensor.motion_sensor_bedroom
   - title: Balcony
     icon: mdi:pine-tree
@@ -146,3 +142,13 @@ views:
           - device_tracker.oppof1s
           - device_tracker.galaxys7a
           - device_tracker.pixel
+      - type: glance
+        title: Power
+        icon: mdi:flash
+        entities:
+          - sensor.bedroom_left_power
+          - sensor.bedroom_left_power_consumed
+          - sensor.bedroom_right_power
+          - sensor.bedroom_right_power_consumed
+          - sensor.beerfridge_power
+          - sensor.beerfridge_power_consumed
