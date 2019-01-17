@@ -275,3 +275,6 @@ google_assistant:
     - light
     - group
     - media_player
+
+lovelace:
+  mode: yaml

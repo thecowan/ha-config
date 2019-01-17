@@ -1,0 +1,28 @@
+title: My Awesome Home
+
+background: radial-gradient(navy, skyblue)
+# Exclude entities from "Unused entities" view
+excluded_entities:
+  - script.sonos_play_matching
+  - sensor.lastfm_cowanfamily
+  - group.unassigned 
+views:
+  - title: Overview
+    path: overview
+    cards:
+      - type: entity-filter
+        entities:
+          - group.paul_presence
+          - group.kids_presence
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: Currently home
+
+  - icon: mdi:account-multiple
+    title: Kids room
+    path: kids
+    cards:
+      - type: media-control
+        entity: media_player.kids_bedroom
