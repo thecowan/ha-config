@@ -106,6 +106,11 @@
       entity_id: binary_sensor.switch_bedside
     event_type: xiaomi_aqara.click
     platform: event
+  - event_data:
+      click_type: single
+      entity_id: binary_sensor.switch_bedside_right
+    event_type: xiaomi_aqara.click
+    platform: event
   condition: []
   action:
   - data:
@@ -119,6 +124,11 @@
   - event_data:
       click_type: double
       entity_id: binary_sensor.switch_bedside
+    event_type: xiaomi_aqara.click
+    platform: event
+  - event_data:
+      click_type: double
+      entity_id: binary_sensor.switch_bedside_right
     event_type: xiaomi_aqara.click
     platform: event
   condition: []
