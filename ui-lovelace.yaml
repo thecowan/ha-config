@@ -40,6 +40,10 @@ views:
       - type: gauge
         entity:
           - sensor.battery_paul
+      - type: sensor
+        entity: sensor.temperature_livingroom
+        detail: 2
+        graph: line
   - title: Living Room
     icon: mdi:sofa
     path: living
