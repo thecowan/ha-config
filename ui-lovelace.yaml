@@ -4,6 +4,7 @@ background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
   - binary_sensor.switch_bedside
+  - binary_sensor.switch_bedside_right
   - binary_sensor.wall_switch_both_bathroom
   - binary_sensor.wall_switch_left_bathroom
   - binary_sensor.wall_switch_right_bathroom
@@ -44,6 +45,10 @@ views:
         entity: sensor.temperature_livingroom
         detail: 2
         graph: line
+      - type: sensor
+        entity: sensor.humidity_livingroom
+        detail: 2
+        graph: line
   - title: Living Room
     icon: mdi:sofa
     path: living
@@ -56,6 +61,10 @@ views:
         entity: media_player.living_room
       - type: media-control
         entity: media_player.living_room_tv
+      - type: media-control
+        entity: media_player.sonos_living_room
+      - type: media-control
+        entity: media_player.receiver
       - type: entities
         entities:
           - binary_sensor.front_door
