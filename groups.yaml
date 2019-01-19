@@ -1,26 +1,3 @@
-weather:
-  name: Weather
-  icon: mdi:weather-partlycloudy
-  view: no
-  entities:
-   - sensor.bom_sydney_air_temp_c
-   - sensor.bom_sydney_delta_temp_c
-   - sensor.bom_sydney_feels_like_c
-   - sensor.bom_sydney_pressure_mb
-   - sensor.bom_sydney_rain_today
-   - sensor.bom_sydney_relative_humidity
-   - sensor.bom_sydney_wind_direction
-   - sensor.bom_sydney_wind_gust_kmh
-   - sensor.bom_sydney_wind_speed_kmh
-   - sensor.yr_cloudiness
-   - sensor.yr_humidity
-   - sensor.yr_precipitation
-   - sensor.yr_symbol
-   - sensor.yr_temperature
-   - sensor.yr_wind_direction
-   - sensor.yr_wind_speed
-   - sun.sun
-
 kids_presence:
   name: Kids
   entities:
@@ -33,13 +10,3 @@ paul_presence:
   entities:
    - device_tracker.paul_crosshatch
    - device_tracker.paul_pixel3xl
-
-unassigned:
-  entities:
-   - sensor.lastfm_cowanfamily
-   - sensor.lastfm_mino
-   - script.sonos_say
-   - binary_sensor.cube_158d00010e2275
-   - device_tracker.google_maps_107519494119268402848
-   - sensor.google_a
-   - sensor.google_c

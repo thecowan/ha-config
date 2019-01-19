@@ -51,15 +51,6 @@ sun:
 
 # Weather prediction
 sensor:
-  - platform: yr
-    monitored_conditions:
-    - symbol
-    - temperature
-    - humidity
-    - precipitation
-    - windSpeed
-    - windDirection
-    - cloudiness
   - platform: alpha_vantage
     api_key: !secret alpha_vantage_api_key
     symbols:
