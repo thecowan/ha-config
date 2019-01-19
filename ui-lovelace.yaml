@@ -49,6 +49,8 @@ views:
         entity: sensor.humidity_livingroom
         detail: 2
         graph: line
+      - type: weather-forecast
+        entity: weather.dark_sky
   - title: Living Room
     icon: mdi:sofa
     path: living
