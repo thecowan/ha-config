@@ -275,3 +275,16 @@ input_boolean:
 weather:
   - platform: darksky
     api_key: !secret darksky_api_key
+
+climate:
+  - platform: generic_thermostat
+    name: Beer Fridge
+    heater: switch.plug_beerfridge
+    target_sensor: sensor.temperature_beerfridge
+    min_temp: 5
+    max_temp: 20
+    ac_mode: true
+    target_temp: 9
+    min_cycle_duration:
+      seconds: 60
+    initial_operation_mode: "off"

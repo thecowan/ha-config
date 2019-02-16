@@ -120,6 +120,8 @@ views:
             - entity: sensor.beerfridge_power_consumed
               name: 
               icon: mdi:flash
+      - type: thermostat
+        entity: climate.beer_fridge
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
