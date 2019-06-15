@@ -207,6 +207,10 @@ media_player:
 notify:
   - platform: pushbullet
     api_key: !secret pushbullet_api_key
+  - name: pushover
+    platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
 
 linode:
   access_token: !secret linode_access_token
@@ -288,3 +292,9 @@ climate:
     min_cycle_duration:
       seconds: 60
     initial_operation_mode: "off"
+
+tuya:
+  username: !secret tuya_username
+  password: !secret tuya_password
+  country_code: "61"
+  platform: smart_life
