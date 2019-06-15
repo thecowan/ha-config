@@ -12,12 +12,13 @@ homeassistant:
   time_zone: Australia/Melbourne
   # Customization file
   customize: !include customize.yaml
+  auth_providers:
+    - type: homeassistant
 
 # Enables configuration UI
 config:
 
 http:
-  api_password: !secret http_password
   cors_allowed_origins: !secret cors_allowed_origins
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: !secret base_url
