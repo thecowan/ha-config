@@ -173,11 +173,6 @@ device_tracker:
     username: !secret google_maps_username
     password: !secret google_maps_password
     consider_home: 180
-  - platform: owntracks
-    max_gps_accuracy: 300
-    waypoints: True
-    waypoint_whitelist:
-      - paul
 
 
 prometheus:
@@ -308,3 +303,8 @@ ssdp:
 
 zeroconf:
 
+owntracks:
+  max_gps_accuracy: 300
+  waypoints: True
+  waypoint_whitelist:
+    - paul
