@@ -1,10 +1,10 @@
 sonos_say:
   alias: Sonos TTS script
   sequence:
-  - service: media_player.sonos_snapshot
+  - service: sonos.snapshot
     data_template:
       entity_id: '{{ sonos_entity }}'
-  - service: media_player.sonos_unjoin
+  - service: sonos.unjoin
     data_template:
       entity_id: '{{ sonos_entity }}'
   - service: media_player.volume_set
@@ -16,7 +16,7 @@ sonos_say:
       entity_id: '{{ sonos_entity }}'
       message: '{{ message }}'
   - delay: '{{ delay }}'
-  - service: media_player.sonos_restore
+  - service: sonos.restore
     data_template:
       entity_id: '{{ sonos_entity }}'
 sonos_get_home:
@@ -39,7 +39,7 @@ sonos_sleep:
   alias: Sonos Sleep Music
   sequence:
   - service: media_player.media_pause
-  - service: media_player.sonos_unjoin
+  - service: sonos.unjoin
     data_template:
       entity_id: media_player.master_bedroom_2
   - service: media_player.volume_set
@@ -75,7 +75,7 @@ sonos_play_matching:
 sonos_join_all:
   alias: Sonos Join All
   sequence:
-  - service: media_player.sonos_join
+  - service: sonos.join
     data_template:
       master: media_player.living_room
       entity_id:
@@ -85,7 +85,7 @@ sonos_join_all:
 sonos_ungroup_and_play:
   alias: Sonos Ungroup & Play
   sequence:
-  - service: media_player.sonos_unjoin
+  - service: sonos.unjoin
     data_template:
       entity_id: '{{ sonos_entity }}'
   - service: media_player.volume_set
