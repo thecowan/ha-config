@@ -67,7 +67,6 @@ sensor:
   - platform: season
     type: astronomical
   - platform: moon
-    sensor:
   - platform: bom
     station: !secret bom_station_id
     name: !secret bom_station_name
@@ -141,7 +140,8 @@ binary_sensor:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
 
 # Cloud
 cloud:
