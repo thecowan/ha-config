@@ -56,10 +56,6 @@ views:
     path: living
     cards:
       - type: media-control
-        entity: media_player.kitchen_2
-      - type: media-control
-        entity: media_player.kitchen_display
-      - type: media-control
         entity: media_player.living_room
       - type: media-control
         entity: media_player.living_room_tv
@@ -70,6 +66,14 @@ views:
       - type: entities
         entities:
           - binary_sensor.front_door
+  - title: Kitchen
+    icon: mdi:fridge-outline
+    path: kitchen
+    cards:
+      - type: media-control
+        entity: media_player.kitchen_2
+      - type: media-control
+        entity: media_player.kitchen_display
   - title: Bedroom
     icon: mdi:bed-empty
     path: bedroom
@@ -150,6 +154,9 @@ views:
         entities:
           - automation.bedside_button
           - automation.bedside_button_double_click
+          - automation.paul_arrive_home
+          - automation.paul_leave_home
+          - automation.paul_bathroom_button
       - type: glance
         title: Device Trackers
         entities:
