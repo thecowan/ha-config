@@ -124,15 +124,19 @@ sensor:
         unit_of_measurement: 'Wh'
         value_template: '{{ states.switch.plug_beerfridge.attributes.power_consumed|int }}'
   - platform: untappd
-    username: funkwit
-    id: 59C5BFB42E4C92B07435F894D5E637F7235F9669
-    secret: 9EEDE8A5F3DE15F4F12453178FB7BFB3DC5FAB8C
+    username: !secret untappd_username
+    id: !secret untappd_id
+    secret: !secret untappd_secret
   - platform: mqtt
     state_topic: "owntracks/paul/crosshatch"
     name: "Battery Paul"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
     device_class: battery
+  - platform: waqi
+    token: !secret waqi_token
+    locations:
+      - !secret waqi_location
 
 binary_sensor:
   - platform: linode
