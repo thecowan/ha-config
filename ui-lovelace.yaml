@@ -74,8 +74,6 @@ views:
     cards:
       - type: media-control
         entity: media_player.kitchen
-      - type: media-control
-        entity: media_player.kitchen_display
   - title: Bedroom
     icon: mdi:bed-empty
     path: bedroom
@@ -134,6 +132,8 @@ views:
     cards:
       - type: media-control
         entity: media_player.bathroom
+      - type: media-control
+        entity: media_player.bathroom_display
       - type: entity-button
         entity: script.shower_paul
   - title: Kids room
