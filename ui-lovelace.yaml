@@ -51,6 +51,8 @@ views:
         graph: line
       - type: weather-forecast
         entity: weather.dark_sky
+      - type: media-control
+        entity: media_player.home_group
   - title: Living Room
     icon: mdi:sofa
     path: living
@@ -60,9 +62,9 @@ views:
       - type: media-control
         entity: media_player.living_room_tv
       - type: media-control
-        entity: media_player.sonos_living_room
-      - type: media-control
         entity: media_player.receiver
+      - type: media-control
+        entity: media_player.living_room_sonos_cast
       - type: entities
         entities:
           - binary_sensor.front_door
@@ -71,7 +73,7 @@ views:
     path: kitchen
     cards:
       - type: media-control
-        entity: media_player.kitchen_2
+        entity: media_player.kitchen
       - type: media-control
         entity: media_player.kitchen_display
   - title: Bedroom
@@ -79,9 +81,9 @@ views:
     path: bedroom
     cards:
       - type: media-control
-        entity: media_player.master_bedroom_2
+        entity: media_player.master_bedroom
       - type: media-control
-        entity: media_player.master_bedroom_speaker
+        entity: media_player.master_bedroom_mini
       - type: horizontal-stack
         cards:
         - type: light
