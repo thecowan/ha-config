@@ -1,5 +1,5 @@
 - id: '1527922079178'
-  alias: Paul Button
+  alias: Paul Bathroom Button
   trigger:
   - event_data:
       click_type: single
