@@ -104,3 +104,13 @@ shower_paul:
       source_name: "I'm feeling lucky (Paul) \U0001F3E0\U0001F6BF"
       volume: 0.5
     service: script.sonos_ungroup_and_play
+pause_all_sonos:
+  alias: Pause All Sonos
+  sequence:
+  - service: media_player.media_pause
+    data:
+      entity_id: group.all_sonos
+pause_all_media:
+  alias: Pause All Media
+  sequence:
+  - service: media_player.media_pause
