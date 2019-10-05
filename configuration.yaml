@@ -291,7 +291,7 @@ climate:
     target_temp: 9
     min_cycle_duration:
       seconds: 60
-    initial_operation_mode: "auto"
+    initial_hvac_mode: "cool"
 
 tuya:
   username: !secret tuya_username
