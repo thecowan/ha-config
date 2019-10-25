@@ -315,6 +315,8 @@ owntracks:
 
 zoneminder:
   - host: !secret zoneminder_host
+    username: !secret zoneminder_username
+    password: !secret zoneminder_password
 
 camera:
   - platform: zoneminder
