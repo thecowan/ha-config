@@ -312,3 +312,9 @@ owntracks:
   waypoints: True
   waypoint_whitelist:
     - paul
+
+zoneminder:
+  - host: !secret zoneminder_host
+
+camera:
+  - platform: zoneminder
