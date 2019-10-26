@@ -11,6 +11,11 @@ paul_presence:
    - device_tracker.paul_crosshatch
    - device_tracker.paul_pixel3xl
 
+annette_presence:
+  name: Annette
+  entities:
+   - device_tracker.netties_iphone
+
 all_sonos:
   name: All Sonos
   entities:

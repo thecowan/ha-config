@@ -30,6 +30,7 @@ views:
         entities:
           - group.paul_presence
           - group.kids_presence
+          - group.annette_presence
         state_filter:
           - 'home'
         card:
