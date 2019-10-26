@@ -302,6 +302,16 @@ tuya:
 system_health:
 
 person:
+  - name: Paul
+    id: paul1
+    user_id: d7f6e7ea9e2447229fdda4f8f7119869
+    device_trackers:
+      - device_tracker.paul_crosshatch
+      - device_tracker.pixel3xl
+  - name: Annette
+    id: annette1
+    device_trackers:
+      - device_tracker.netties_iphone
 
 ssdp:
 

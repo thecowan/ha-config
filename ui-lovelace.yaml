@@ -28,9 +28,9 @@ views:
     cards:
       - type: entity-filter
         entities:
-          - group.paul_presence
+          - person.paul
+          - person.annette
           - group.kids_presence
-          - group.annette_presence
         state_filter:
           - 'home'
         card:
@@ -164,6 +164,7 @@ views:
         title: Device Trackers
         entities:
           - device_tracker.paul_crosshatch
+          - device_tracker.pixel3xl
           # - device_tracker.google_maps_107519494119268402848
           - device_tracker.oppof1s
           - device_tracker.galaxys7a

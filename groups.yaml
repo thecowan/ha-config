@@ -5,17 +5,6 @@ kids_presence:
    - device_tracker.galaxys7a
    - device_tracker.pixel
 
-paul_presence:
-  name: Paul
-  entities:
-   - device_tracker.paul_crosshatch
-   - device_tracker.paul_pixel3xl
-
-annette_presence:
-  name: Annette
-  entities:
-   - device_tracker.netties_iphone
-
 all_sonos:
   name: All Sonos
   entities:
