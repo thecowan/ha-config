@@ -170,7 +170,6 @@ device_tracker:
     track_new_devices: false
     new_device_defaults:
       track_new_devices: false
-      hide_if_away: false
     consider_home: 180
   - platform: google_maps
     username: !secret google_maps_username
