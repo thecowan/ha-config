@@ -144,7 +144,7 @@ views:
       - type: media-control
         entity: media_player.kids_bedroom
   - title: Configuration
-    icon: mdi:settings
+    icon: mdi:cog
     path: settings
     cards:
       - type: entities
