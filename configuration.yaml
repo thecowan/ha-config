@@ -173,10 +173,11 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
       hide_if_away: false
+    consider_home: 180
   - platform: google_maps
     username: !secret google_maps_username
-    password: !secret google_maps_password
     consider_home: 180
+    max_gps_accuracy: 200
 
 
 prometheus:
