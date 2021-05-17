@@ -300,10 +300,10 @@ person:
     device_trackers:
       - device_tracker.paul_crosshatch
       - device_tracker.pixel3xl
-  - name: Annette
-    id: annette1
+  - name: Dorothy
+    id: dorothy1
     device_trackers:
-      - device_tracker.netties_iphone
+      - device_tracker.dotties_iphone
 
 ssdp:
 
