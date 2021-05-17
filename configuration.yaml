@@ -246,8 +246,17 @@ light:
   - platform: group
     name: Bedside Lamps
     entities:
-      - light.bedside_lamp_left
-      - light.bedside_lamp_right
+      - light.bedside_left
+      - light.bedside_right
+  - platform: flux_led
+    devices:
+      10.41.16.16:
+        name: flux_party
+        mode: rgb
+      10.41.16.17:
+        name: flux_fairy
+        mode: rgb
+
 
 google_assistant:
   project_id: !secret google_assistant_project_id

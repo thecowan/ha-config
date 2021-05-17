@@ -94,9 +94,9 @@ views:
           - sun.sun
           - sensor.illumination_gateway
           - binary_sensor.motion_sensor_bedroom
-  - title: Balcony
+  - title: Outside
     icon: mdi:pine-tree
-    path: balcony
+    path: outside
     cards:
       - type: glance
         entities:
@@ -127,6 +127,12 @@ views:
               icon: mdi:flash
       - type: thermostat
         entity: climate.beer_fridge
+      - type: entities
+        title: Individual Lights
+        entities:
+          - light.outside_globes
+          - light.flux_fairy
+          - light.flux_party
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
@@ -150,8 +156,8 @@ views:
       - type: entities
         title: Individual Lights
         entities:
-          - light.bedside_lamp_left
-          - light.bedside_lamp_right
+          - light.bedside_left
+          - light.bedside_right
       - type: glance
         title: Automation Triggers
         entities:
