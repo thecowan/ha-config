@@ -163,14 +163,6 @@ xiaomi_aqara:
     - key: !secret xiaomi_aqara_key
 
 device_tracker:
-  - platform: luci
-    host: !secret openwrt_ip
-    username: !secret openwrt_username
-    password: !secret openwrt_password
-    track_new_devices: false
-    new_device_defaults:
-      track_new_devices: false
-    consider_home: 180
   - platform: google_maps
     username: !secret google_maps_username
     consider_home: 180
@@ -289,12 +281,6 @@ climate:
     min_cycle_duration:
       seconds: 60
     initial_hvac_mode: "cool"
-
-tuya:
-  username: !secret tuya_username
-  password: !secret tuya_password
-  country_code: "61"
-  platform: smart_life
 
 system_health:
 
