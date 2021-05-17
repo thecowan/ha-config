@@ -126,7 +126,7 @@ sensor:
     id: !secret untappd_id
     secret: !secret untappd_secret
   - platform: mqtt
-    state_topic: "owntracks/paul/crosshatch"
+    state_topic: "owntracks/paul/coral"
     name: "Battery Paul"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
@@ -298,8 +298,8 @@ person:
     id: paul1
     user_id: d7f6e7ea9e2447229fdda4f8f7119869
     device_trackers:
-      - device_tracker.paul_crosshatch
-      - device_tracker.pixel3xl
+      - device_tracker.paul_coral
+      - device_tracker.pixel4xl
   - name: Dorothy
     id: dorothy1
     device_trackers:
@@ -322,3 +322,5 @@ zoneminder:
 
 camera:
   - platform: zoneminder
+
+mobile_app:
