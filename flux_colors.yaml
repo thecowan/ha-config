@@ -1,0 +1,22 @@
+- rgb_color:
+  - 255
+  - 127
+  - 255
+  brightness: 220
+  transition: 1
+- hs_color:
+  - 60
+  - 30
+  icon_color: '#fff8b0' # Override icon color
+- effect: colorloop
+  icon_color: 'linear-gradient(15deg, #e66465, #9198e5, #98ee80)'
+  label: 'Loop'
+- effect: blue_fade
+  icon_color: 'linear-gradient(15deg, blue, navy)'
+  label: 'Blue Fade'
+- effect: red_fade
+  icon_color: 'linear-gradient(15deg, tomato, crimson)'
+  label: 'Red Fade'
+- effect: green_fade
+  icon_color: 'linear-gradient(15deg, springgreen, darkgreen)'
+  label: 'Green Fade'

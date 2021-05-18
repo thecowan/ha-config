@@ -38,6 +38,10 @@ views:
           title: Currently home
       - type: entities
         entities:
+          - binary_sensor.pet_tabitha
+          - binary_sensor.pet_tamara
+      - type: entities
+        entities:
           - input_boolean.guest_mode
       - type: gauge
         entity:
@@ -129,12 +133,27 @@ views:
               icon: mdi:flash
       - type: thermostat
         entity: climate.beer_fridge
-      - type: entities
-        title: Individual Lights
-        entities:
-          - light.outside_globes
-          - light.flux_fairy
-          - light.flux_party
+      - type: horizontal-stack
+        cards:
+          - type: light
+            entity: light.outside_globes
+          - type: vertical-stack
+            cards:
+            - type: light
+              entity: light.flux_fairy
+              name: Fairy Lights
+            - type: 'custom:rgb-light-card'
+              entity: light.flux_fairy
+              colors: !include flux_colors.yaml
+          - type: vertical-stack
+            cards:
+            - type: light
+              entity: light.flux_party
+              name: Party Lights
+            - type: 'custom:rgb-light-card'
+              entity: light.flux_party
+              colors: !include flux_colors.yaml
+
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
