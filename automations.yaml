@@ -113,11 +113,13 @@
     platform: event
   condition: []
   action:
-  - data:
+  - data: {}
+    service: light.toggle
+    target:
       entity_id:
       - light.bedside_left
       - light.bedside_right
-    service: light.toggle
+  mode: single
 - id: '1546762544388'
   alias: Bedside Button Double Click
   trigger:

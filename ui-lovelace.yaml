@@ -99,6 +99,10 @@ views:
           entity: light.gateway_light
         - type: light
           entity: light.bedside_lamps
+        - type: light
+          entity: light.bedside_left
+        - type: light
+          entity: light.bedside_right
       - type: entities
         entities:
           - sun.sun
