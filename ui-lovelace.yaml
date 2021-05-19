@@ -81,6 +81,10 @@ views:
     cards:
       - type: media-control
         entity: media_player.kitchen
+      - type: entities
+        entities:
+        - switch.diffuser_fan
+        - light.diffuser_light
   - title: Bedroom
     icon: mdi:bed-empty
     path: bedroom
@@ -109,6 +113,8 @@ views:
           - sun.sun
           - sensor.moon
           - sensor.season
+      - type: media-control
+        entity: media_player.outside
       - type: vertical-stack
         cards:
         - type: horizontal-stack
@@ -170,6 +176,16 @@ views:
     cards:
       - type: media-control
         entity: media_player.kids_bedroom
+  - title: Paul Office
+    icon: mdi:desk
+    path: office
+    cards:
+      - type: media-control
+        entity: media_player.office
+      - type: entities
+        entities:
+        - switch.diffuser_fan_2
+        - light.diffuser_light_2
   - title: Configuration
     icon: mdi:cog
     path: settings
