@@ -116,9 +116,7 @@
   - data: {}
     service: light.toggle
     target:
-      entity_id:
-      - light.bedside_left
-      - light.bedside_right
+      entity_id: light.bedside_lamps
   mode: single
 - id: '1546762544388'
   alias: Bedside Button Double Click
