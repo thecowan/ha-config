@@ -162,3 +162,21 @@
   action:
   - service: media_player.media_pause
   - service: light.turn_off
+- id: '1621316877856'
+  alias: 'Tasmota Discovery: Aroma Diffuser 1'
+  description: ''
+  use_blueprint:
+    path: tasmota/discovery-tuya_diffuser_fan_and_error_sensor.yaml
+    input:
+      name: diffuser1
+      topic: tasmota_1229CD
+      mac_address: 4C:11:AE:12:29:CD
+- id: '1621318073028'
+  alias: 'Tasmota Discovery: Aroma Diffuser 2'
+  description: ''
+  use_blueprint:
+    path: tasmota/discovery-tuya_diffuser_fan_and_error_sensor.yaml
+    input:
+      name: diffuser2
+      topic: tasmota_1222E9
+      mac_address: 4C:11:AE:12:22:E9
