@@ -266,6 +266,14 @@ lovelace:
   resources:
     - url: "https://cdn.jsdelivr.net/npm/rgb-light-card"
       type: module
+    - url: '/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js'
+      type: module
+    - url: '/hacsfiles/battery-state-card/battery-state-card.js'
+      type: module
+    - url: '/hacsfiles/button-card/button-card.js'
+      type: module
+    - url: '/hacsfiles/mini-graph-card-bundle/mini-graph-card.js'
+      type: module
 
 input_boolean:
   guest_mode:
