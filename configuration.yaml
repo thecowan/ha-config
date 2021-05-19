@@ -98,9 +98,9 @@ sensor:
   - platform: template
     sensors:
       bedroom_right_power:
-        friendly_name: 'Bedroom Right Power'
+        friendly_name: 'Guest Room Right Power'
         unit_of_measurement: 'W'
-        value_template: '{{ states.switch.plug_bedroom_right.attributes.load_power|int }}'
+        value_template: '{{ states.switch.plug_guestroom_right.attributes.load_power|int }}'
       bedroom_left_power:
         friendly_name: 'Bedroom Left Power'
         unit_of_measurement: 'W'
@@ -110,9 +110,9 @@ sensor:
         unit_of_measurement: 'W'
         value_template: '{{ states.switch.plug_beerfridge.attributes.load_power|int }}'
       bedroom_right_power_consumed:
-        friendly_name: 'Bedroom Right Power Consumed'
+        friendly_name: 'Guest Room Right Power Consumed'
         unit_of_measurement: 'Wh'
-        value_template: '{{ states.switch.plug_bedroom_right.attributes.power_consumed|int }}'
+        value_template: '{{ states.switch.plug_guestroom_right.attributes.power_consumed|int }}'
       bedroom_left_power_consumed:
         friendly_name: 'Bedroom Left Power Consumed'
         unit_of_measurement: 'Wh'
@@ -236,8 +236,8 @@ light:
     name: Bedside Lamp Left
     entity_id: switch.plug_bedroom_left
   - platform: switch
-    name: Bedside Lamp Right
-    entity_id: switch.plug_bedroom_right
+    name: Guest Room Lamp Right
+    entity_id: switch.plug_guestroom_right
   - platform: group
     name: Bedside Lamps
     entities:
