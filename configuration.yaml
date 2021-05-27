@@ -187,6 +187,9 @@ media_player:
       # fm unchanged
       # am unchanged
       "universal-port": 'Port'
+  - platform: androidtv
+    name: Guest Room TV
+    host: 10.41.10.53
 
 
 notify:
@@ -340,3 +343,5 @@ proximity:
     devices:
       device_tracker.paul_coral
     tolerance: 30
+
+smartir:
