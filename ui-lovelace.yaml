@@ -174,12 +174,15 @@ views:
         entity: media_player.bathroom_display
       - type: entity-button
         entity: script.shower_paul
-  - title: Kids room
-    icon: mdi:account-multiple
-    path: kids
+  - title: Guest room
+    icon: mdi:bunk-bed
+    path: guest
     cards:
       - type: media-control
-        entity: media_player.kids_bedroom
+        entity: media_player.guest_room
+      - type: entities
+        entities:
+        - light.guest_room_right
   - title: Paul Office
     icon: mdi:desk
     path: office
@@ -190,6 +193,12 @@ views:
         entities:
         - switch.diffuser_fan_2
         - light.diffuser_light_2
+  - title: Dot Office
+    icon: mdi:chair-rolling
+    path: dot
+    cards:
+      - type: media-control
+        entity: media_player.bathroom
   - title: Configuration
     icon: mdi:cog
     path: settings
