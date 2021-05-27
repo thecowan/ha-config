@@ -277,6 +277,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/mini-graph-card/mini-graph-card-bundle.js'
       type: module
+    - url: '/hacsfiles/tv-card/tv-card.js'
+      type: module
 
 input_boolean:
   guest_mode:

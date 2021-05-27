@@ -95,23 +95,55 @@ views:
         entity: media_player.master_bedroom_mini
       - type: horizontal-stack
         cards:
-        - type: light
-          entity: light.gateway_light
-        - type: light
-          entity: light.bedside_lamps
-        - type: light
-          entity: light.bedside_left
-        - type: light
-          entity: light.bedside_right
+        - type: entities
+          show_header_toggle: false
+          entities:
+          - entity: light.bedside_lamps
+          - type: 'custom:rgb-light-card'
+            entity: light.bedside_lamps
+            colors:
+              - rgb_color:
+                  - 255
+                  - 255
+                  - 255
+                brightness: 100
+                transition: 1
+              - rgb_color:
+                  - 234
+                  - 136
+                  - 140
+                brightness: 255
+                transition: 1
+              - rgb_color:
+                  - 251
+                  - 180
+                  - 139
+                brightness: 200
+                transition: 1
+              - rgb_color:
+                  - 136
+                  - 198
+                  - 237
+                brightness: 150
+                transition: 1
+              - rgb_color:
+                  - 140
+                  - 231
+                  - 185
+                brightness: 100
+                transition: 1
+
       - type: entities
         entities:
           - sun.sun
-          - sensor.illumination_gateway
           - binary_sensor.motion_sensor_bedroom
   - title: Outside
     icon: mdi:pine-tree
     path: outside
     cards:
+      - type: 'custom:sun-card'
+      - type: weather-forecast
+        entity: weather.lilyfield
       - type: glance
         entities:
           - sun.sun
@@ -180,9 +212,15 @@ views:
     cards:
       - type: media-control
         entity: media_player.guest_room
-      - type: entities
-        entities:
-        - light.guest_room_right
+      - type: horizontal-stack
+        cards:
+        - type: light
+          entity: light.guest_room_right
+        - type: light
+          entity: light.gateway_light
+      - type: sensor
+        entity: sensor.illumination_gateway
+        graph: line
   - title: Paul Office
     icon: mdi:desk
     path: office
@@ -235,3 +273,23 @@ views:
           - sensor.bedroom_right_power_consumed
           - sensor.beerfridge_power
           - sensor.beerfridge_power_consumed
+      - type: 'custom:battery-state-card'
+        title: Battery State
+        sort_by_level: asc
+        tap_action: more-info
+        filter:
+          include:
+            - name: entity_id
+              value: '*_battery_level'
+            - name: attributes.device_class
+              value: battery
+        bulk_rename:
+          - from: Battery Level
+            to: ''
+          - from: ' Battery'
+            to: ''
+        color_gradient:
+          - '#ff0000'
+          - '#0000ff'
+          - '#00ff00'
+                    
