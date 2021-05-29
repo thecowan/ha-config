@@ -210,8 +210,16 @@ views:
     icon: mdi:bunk-bed
     path: guest
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.guest_room
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: horizontal-stack
         cards:
         - type: light

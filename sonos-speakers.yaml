@@ -1,0 +1,14 @@
+- entity_id: media_player.office
+  name: Office
+- entity_id: media_player.outside
+  name: Outside
+- entity_id: media_player.master_bedroom
+  name: Master Bedroom
+- entity_id: media_player.living_room
+  name: Living Room
+- entity_id: media_player.kitchen
+  name: Kitchen
+- entity_id: media_player.guest_room
+  name: Guest Room
+- entity_id: media_player.bathroom
+  name: Bathroom
