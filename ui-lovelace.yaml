@@ -68,8 +68,16 @@ views:
     icon: mdi:sofa
     path: living
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.living_room
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: media-control
         entity: media_player.living_room_tv
       - type: media-control
@@ -93,8 +101,16 @@ views:
     icon: mdi:fridge-outline
     path: kitchen
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.kitchen
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: entities
         entities:
         - switch.diffuser_fan
@@ -103,8 +119,16 @@ views:
     icon: mdi:bed-empty
     path: bedroom
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: media-control
         entity: media_player.master_bedroom_mini
       - type: horizontal-stack
@@ -162,8 +186,16 @@ views:
         entities:
           - sensor.moon
           - sensor.season
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.outside
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: vertical-stack
         cards:
         - type: horizontal-stack
@@ -218,8 +250,16 @@ views:
     icon: mdi:shower
     path: bathroom
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.bathroom
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: media-control
         entity: media_player.bathroom_display
       - type: entity-button
@@ -251,8 +291,16 @@ views:
     icon: mdi:desk
     path: office
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.office
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: entities
         entities:
         - switch.diffuser_fan_2
@@ -261,8 +309,16 @@ views:
     icon: mdi:chair-rolling
     path: dot
     cards:
-      - type: media-control
+      - type: 'custom:mini-media-player'
         entity: media_player.bathroom
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
   - title: Configuration
     icon: mdi:cog
     path: settings
