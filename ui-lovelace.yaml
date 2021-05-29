@@ -160,7 +160,6 @@ views:
         entity: weather.lilyfield
       - type: glance
         entities:
-          - sun.sun
           - sensor.moon
           - sensor.season
       - type: media-control
@@ -187,8 +186,13 @@ views:
             - entity: sensor.beerfridge_power_consumed
               name: 
               icon: mdi:flash
-      - type: thermostat
+      - type: 'custom:simple-thermostat'
         entity: climate.beer_fridge
+        header:
+          icon: 'mdi:fridge'
+        layout:
+          step: row
+        step_size: '0.5'
       - type: horizontal-stack
         cards:
           - type: light
