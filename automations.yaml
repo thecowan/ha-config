@@ -58,20 +58,20 @@
   action:
   - data:
       value_template: '{{ states("media_player.receiver") }}'
-      variable: receiver_last_state
-    service: variable.set_variable
+      entity_id: var.receiver_last_state
+    service: var.set
   - data:
       value_template: '{% if is_state("media_player.receiver", "on") -%}{{ state_attr("media_player.receiver",
         "source") | regex_replace("_.*", "") | regex_replace("^video", "Video") }}{%-
         else -%}{{ states("variable.receiver_last_source") }}{%- endif %}'
-      variable: receiver_last_source
-    service: variable.set_variable
+      entity_id: var.receiver_last_source
+    service: var.set
   - data:
       value_template: '{% if is_state("media_player.receiver", "on") -%}{{ state_attr("media_player.receiver",
         "volume_level") }}{%- else -%}{{ states("variable.receiver_last_volume") }}{%-
         endif %}'
-      variable: receiver_last_volume
-    service: variable.set_variable
+      entity_id: receiver_last_volume
+    service: var.set
 - id: '1528780901218'
   alias: 'Sonos: Switch loungeroom back after finished'
   trigger:
@@ -83,14 +83,14 @@
   action:
   - data_template:
       entity_id: media_player.receiver
-      volume_level: '{{ states("variable.receiver_last_volume") }}'
+      volume_level: '{{ states("var.receiver_last_volume") }}'
     service: media_player.volume_set
   - data_template:
       entity_id: media_player.receiver
-      source: '{{ states("variable.receiver_last_source") }}'
+      source: '{{ states("var.receiver_last_source") }}'
     service: media_player.select_source
   - data_template:
-      entity_id: '{% if is_state("variable.receiver_last_state", "off") -%}media_player.receiver{%-
+      entity_id: '{% if is_state("var.receiver_last_state", "off") -%}media_player.receiver{%-
         else -%}dummy.dummy{%- endif -%}'
     service: media_player.turn_off
   - delay:

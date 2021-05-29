@@ -275,15 +275,18 @@ mqtt_statestream:
   publish_attributes: true
 
 
-variable:
+var:
   receiver_last_state:
-    value: off
+    friendly_name: Receiver Last State
+    initial_value: off
     restore: true
   receiver_last_volume:
-    value: 0
+    friendly_name: Receiver Last Volume
+    initial_value: 0
     restore: true
   receiver_last_source:
-    value: none
+    friendly_name: Receiver Last Source
+    initial_value: none
     restore: true
 
 light:
