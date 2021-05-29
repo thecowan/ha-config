@@ -245,7 +245,40 @@ views:
             - type: 'custom:rgb-light-card'
               entity: light.flux_party
               colors: !include flux_colors.yaml
-
+      - type: 'custom:mini-graph-card'
+        name: BBQ Cooking
+        points_per_hour: 60
+        entities:
+          - entity: sensor.temperature_bbq_probe_1
+            name: Lower (1)
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.temperature_bbq_probe_2
+            name: Upper (2)
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.temperature_bbq_probe_3
+            name: 3
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.temperature_bbq_probe_4
+            name: 4
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.temperature_bbq_probe_5
+            name: 5
+            show_state: true
+            state_adaptive_color: true
+          - entity: sensor.temperature_bbq_probe_6
+            name: 6
+            show_state: true
+            state_adaptive_color: true
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: false
+          state: true
+          legend: false
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
