@@ -121,6 +121,10 @@ sensor:
         friendly_name: 'Beer Fridge Power Consumed'
         unit_of_measurement: 'Wh'
         value_template: '{{ states.switch.plug_beerfridge.attributes.power_consumed|int }}'
+      lilyfield_temperature:
+        friendly_name: 'Lilyfield Temperature'
+        unit_of_measurement: '°C'
+        value_template: "{{ state_attr('weather.lilyfield', 'temperature') }}"
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id

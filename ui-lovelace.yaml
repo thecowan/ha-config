@@ -46,10 +46,24 @@ views:
       - type: gauge
         entity:
           - sensor.battery_paul
-      - type: weather-forecast
-        entity: weather.dark_sky
       - type: media-control
         entity: media_player.home_group
+      - type: 'custom:mini-graph-card'
+        name: Temperatures
+        points_per_hour: 10
+        entities:
+          - entity: sensor.temperature_livingroom
+            name: Living Room
+          - entity: sensor.lilyfield_temperature
+            name: Outside
+        min_bound_range: 5
+        show:
+          labels: true
+      - type: weather-forecast
+        entity: weather.dark_sky
+      - type: weather-forecast
+        entity: weather.lilyfield
+
   - title: Living Room
     icon: mdi:sofa
     path: living
