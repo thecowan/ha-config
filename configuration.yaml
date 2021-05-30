@@ -374,6 +374,13 @@ climate:
     controller_data: remote.guest_room_remote
     temperature_sensor: sensor.temperature_livingroom
     humidity_sensor: sensor.humidity_livingroom
+  - platform: smartir
+    name: "Bedroom AC"
+    unique_id: bedroom_ac
+    device_code: 1101
+    controller_data: remote.bedroom_remote
+    temperature_sensor: sensor.temperature_bedroom
+    humidity_sensor: sensor.humidity_bedroom
 
 system_health:
 
