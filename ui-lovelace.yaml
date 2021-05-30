@@ -422,6 +422,7 @@ views:
           - device_tracker.galaxys7a
           - device_tracker.pixel
           - device_tracker.dotties_iphone
+      - type: 'custom:browser-player'
       - type: glance
         title: Power
         icon: mdi:flash

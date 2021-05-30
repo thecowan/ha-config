@@ -436,3 +436,11 @@ proximity:
     tolerance: 30
 
 smartir:
+
+browser_mod:
+  prefix: "browser_"
+  devices:
+    f3e90f74-0a97b878:
+      name: cow-macbookpro2
+    d7a5ab3d_98918e52:
+      name: wallpanel-office
