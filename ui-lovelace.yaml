@@ -78,6 +78,16 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.yeelight_livingroom
+          name: Living Room Light
+        - type: entities
+          entities:
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_livingroom
+            colors: !include flux_colors.yaml
       - type: media-control
         entity: media_player.living_room_tv
       - type: media-control
@@ -182,6 +192,9 @@ views:
       - type: 'custom:sun-card'
       - type: weather-forecast
         entity: weather.lilyfield
+      - type: picture-entity
+        entity: camera.sydney_weather_radar
+        show_state: false
       - type: glance
         entities:
           - sensor.moon
@@ -334,6 +347,16 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.yeelight_office
+          name: Office Light
+        - type: entities
+          entities:
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_office
+            colors: !include flux_colors.yaml
       - type: entities
         entities:
         - switch.diffuser_fan_2
