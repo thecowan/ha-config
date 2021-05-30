@@ -418,6 +418,9 @@ camera:
   - platform: local_file
     name: "Sydney Weather Radar"
     file_path: /config/bomgrabber/IDR714.composite.gif
+  - platform: mjpeg
+    name: "Office Wall Panel"
+    mjpeg_url: "http://10.41.13.100:2971/camera/stream"
 
 mobile_app:
 
