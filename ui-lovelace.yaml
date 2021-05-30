@@ -88,6 +88,9 @@ views:
           - type: 'custom:rgb-light-card'
             entity: light.yeelight_livingroom
             colors: !include flux_colors.yaml
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_livingroom
+            toggle: true
       - type: media-control
         entity: media_player.living_room_tv
       - type: media-control
@@ -324,6 +327,24 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.yeelight_guestroom
+          name: Guest Room Light
+        - type: entities
+          entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_guestroom
+            full_row: true
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_guestroom
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_guestroom
+            colors: !include flux_colors.yaml
       - type: horizontal-stack
         cards:
         - type: light
