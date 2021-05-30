@@ -402,6 +402,9 @@ zoneminder:
 
 camera:
   - platform: zoneminder
+  - platform: local_file
+    name: "Sydney Weather Radar"
+    file_path: /config/bomgrabber/IDR714.composite.gif
 
 mobile_app:
 
