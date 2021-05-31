@@ -68,16 +68,17 @@ views:
     icon: mdi:sofa
     path: living
     cards:
-      - type: 'custom:mini-media-player'
-        entity: media_player.living_room
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
+      - type: 'custom:simple-thermostat'
+        entity: climate.living_room
+        layout:
+          mode:
+            headings: false
+            icons: true
+            names: true
+          step: row
+        sensors:
+          - entity: sensor.humidity_livingroom
+            name: Humidity
       - type: vertical-stack
         cards:
         - type: light
@@ -91,6 +92,16 @@ views:
           - type: 'custom:slider-entity-row'
             entity: light.yeelight_livingroom
             toggle: true
+      - type: 'custom:mini-media-player'
+        entity: media_player.living_room
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: media-control
         entity: media_player.living_room_tv
       - type: media-control
@@ -102,14 +113,21 @@ views:
           - binary_sensor.front_door_open
           - lock.front_door
           - sensor.front_door_operator
-      - type: sensor
-        entity: sensor.temperature_livingroom
-        detail: 2
-        graph: line
-      - type: sensor
-        entity: sensor.humidity_livingroom
-        detail: 2
-        graph: line
+      - type: 'custom:mini-graph-card'
+        name: Living Room Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_livingroom
+            name: Temperature
+          - entity: sensor.humidity_livingroom
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
+
   - title: Kitchen
     icon: mdi:fridge-outline
     path: kitchen

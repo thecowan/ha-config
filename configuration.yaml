@@ -393,6 +393,17 @@ climate:
     min_cycle_duration:
       seconds: 300
     initial_hvac_mode: "cool"
+  - platform: generic_thermostat
+    name: Living Room
+    heater: switch.livingroom_heater
+    target_sensor: sensor.temperature_livingroom
+    unique_id: livingroom_heater_thermostat_zsp001b
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    initial_hvac_mode: "off"
+    cold_tolerance: 0.5
   - platform: smartir
     name: "Living Room AC"
     unique_id: living_room_ac
