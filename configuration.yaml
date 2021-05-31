@@ -378,10 +378,6 @@ input_boolean:
     name: Guest Mode
     icon: mdi:account-multiple-plus
 
-weather:
-  - platform: darksky
-    api_key: !secret darksky_api_key
-
 climate:
   - platform: generic_thermostat
     name: Beer Fridge

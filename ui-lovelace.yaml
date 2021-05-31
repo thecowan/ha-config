@@ -43,9 +43,6 @@ views:
       - type: entities
         entities:
           - input_boolean.guest_mode
-      - type: gauge
-        entity:
-          - sensor.battery_paul
       - type: media-control
         entity: media_player.home_group
       - type: 'custom:mini-graph-card'
@@ -60,9 +57,17 @@ views:
         show:
           labels: true
       - type: weather-forecast
-        entity: weather.dark_sky
-      - type: weather-forecast
         entity: weather.lilyfield
+      - type: vertical-stack
+        cards:
+          - type: 'custom:garbage-collection-card'
+            entity: sensor.rubbish
+          - type: 'custom:garbage-collection-card'
+            entity: sensor.garden_waste
+          - type: 'custom:garbage-collection-card'
+            entity: sensor.container_recycling
+          - type: 'custom:garbage-collection-card'
+            entity: sensor.paper_recycling
 
   - title: Living Room
     icon: mdi:sofa
@@ -400,6 +405,9 @@ views:
         entities:
         - switch.diffuser_fan_2
         - light.diffuser_light_2
+      - type: gauge
+        entity:
+          - sensor.pixel_4_xl_battery_level
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
