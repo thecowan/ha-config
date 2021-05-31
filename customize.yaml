@@ -19,3 +19,8 @@ light.gateway_light_7811dc64e128:
 binary_sensor.cube_158d00010e2275:
   hide_in_default_view: true
 
+person.paul:
+  entity_picture: '/local/paul.jpg'
+
+person.dorothy:
+  entity_picture: '/local/dot.jpg'
