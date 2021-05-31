@@ -26,16 +26,20 @@ views:
   - title: Overview
     path: overview
     cards:
-      - type: entity-filter
-        entities:
-          - person.paul
-          - person.dorothy
-          - group.kids_presence
-        state_filter:
-          - 'home'
-        card:
-          type: glance
-          title: Currently home
+      - type: horizontal-stack
+        cards:
+          - type: picture-entity
+            image: /local/paul.jpg
+            entity: person.paul
+            state_filter:
+              not_home: brightness(70%) saturate(0.1)
+              away: brightness(70%) saturate(0.1)
+          - type: picture-entity
+            image: /local/dot.jpg
+            entity: person.dorothy
+            state_filter:
+              not_home: brightness(70%) saturate(0.1)
+              away: brightness(70%) saturate(0.1)
       - type: vertical-stack
         cards:
           - type: horizontal-stack
