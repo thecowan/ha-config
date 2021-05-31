@@ -101,7 +101,7 @@ shower_paul:
   sequence:
   - data:
       sonos_entity: media_player.bathroom
-      source_name: "I'm feeling lucky (Paul) \U0001F3E0\U0001F6BF"
+      source_name: I'm feeling lucky (Paul) 🏠🚿
       volume: 0.5
     service: script.sonos_ungroup_and_play
 pause_all_sonos:
@@ -114,3 +114,39 @@ pause_all_media:
   alias: Pause All Media
   sequence:
   - service: media_player.media_pause
+set_cap_flap_state:
+  alias: Set Cap Flap State
+  fields:
+    target_statex:
+      description: The aggregate state of the cat flap (all_locked, all_unlocked,
+        keep_inside, keep_outside, keep_in_bedroom, keep_in_office)
+      example: keep_in_bedroom
+  variables:
+    target_state: all_unlocked
+  sequence:
+  - service: system_log.write
+    data:
+      message: Cat flap to  {% if target_state in ["all_locked"] -%} locked_all {%-
+        elif target_state in ["all_unlocked"] -%} unlocked {%- elif target_state in
+        ["keep_outside", "keep_in_office"] -%} locked_out {%- elif target_state in
+        ["keep_inside", "keep_in_bedroom"] -%} locked_in {%- else -%} ??? {%- endif
+        %}
+  - service: surepetcarebeta.set_lock_state
+    data:
+      flap_id: 675555
+      lock_state: "{% if target_state in [\"all_locked\"] -%}\n  locked_all\n{%- elif\
+        \ target_state in [\"all_unlocked\"] -%}\n  unlocked\n{%- elif target_state\
+        \ in [\"keep_outside\", \"keep_in_office\"] -%}\n  locked_out\n{%- elif target_state\
+        \ in [\"keep_inside\", \"keep_in_bedroom\"] -%}\n  locked_in\n{%- else -%}\n\
+        \  ???\n{%- endif %}"
+  - service: surepetcarebeta.set_lock_state
+    data:
+      flap_id: 671120
+      lock_state: "{% if target_state in [\"all_locked\"] -%}\n  locked_all\n{%- elif\
+        \ target_state in [\"all_unlocked\"] -%}\n  unlocked\n{%- elif target_state\
+        \ in [\"keep_outside\", \"keep_in_bedroom\"] -%}\n  locked_out\n{%- elif target_state\
+        \ in [\"keep_inside\", \"keep_in_office\"] -%}\n  locked_in\n{%- else -%}\n\
+        \  ???\n{%- endif %}"
+  mode: single
+  icon: mdi:cat
+  description: Bulk set cat flap state

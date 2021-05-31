@@ -125,6 +125,30 @@ sensor:
         friendly_name: 'Lilyfield Temperature'
         unit_of_measurement: '°C'
         value_template: "{{ state_attr('weather.lilyfield', 'temperature') }}"
+      cat_flap_cloud_state:
+        friendly_name: 'Cat Flap State'
+        value_template: >-
+          {% if is_state("sensor.cat_flap_dots_office", "unlocked") and is_state("sensor.cat_flap_bedroom", "unlocked") -%}
+            all_unlocked
+          {% elif is_state("sensor.cat_flap_dots_office", "locked_all") and is_state("sensor.cat_flap_bedroom", "locked_all") -%}
+            all_locked
+          {% elif is_state("sensor.cat_flap_dots_office", "locked_in") and is_state("sensor.cat_flap_bedroom", "locked_out") -%}
+            keep_in_office
+          {% elif is_state("sensor.cat_flap_dots_office", "locked_out") and is_state("sensor.cat_flap_bedroom", "locked_in") -%}
+            keep_in_bedroom
+          {% elif is_state("sensor.cat_flap_dots_office", "locked_in") and is_state("sensor.cat_flap_bedroom", "locked_in") -%}
+            keep_inside
+          {% elif is_state("sensor.cat_flap_dots_office", "locked_out") and is_state("sensor.cat_flap_bedroom", "locked_out") -%}
+            keep_outside
+          {%- else -%}
+            mixed
+          {%- endif %}
+      tabitha_last_door:
+        friendly_name: 'Tabitha Last Door'
+        value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
+      tamara_last_door:
+        friendly_name: 'Tamara Last Door'
+        value_template: '{% if state_attr("binary_sensor.pet_tamara", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tamara", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id
@@ -439,3 +463,17 @@ browser_mod:
       name: cow-macbookpro2
     d7a5ab3d_98918e52:
       name: wallpanel-office
+
+input_select:
+  cat_flap_state:
+    name: 'Cat Flap Control'
+    options:
+      - 'all_unlocked'
+      - 'all_locked'
+      - 'keep_in_office'
+      - 'keep_in_bedroom'
+      - 'keep_inside'
+      - 'keep_outside'
+      - 'unknown'
+    initial: 'unknown'
+    icon: mdi:cat

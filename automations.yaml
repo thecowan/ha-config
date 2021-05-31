@@ -180,3 +180,17 @@
       name: diffuser2
       topic: tasmota_1222E9
       mac_address: 4C:11:AE:12:22:E9
+- id: '1622424964423'
+  alias: Update Cat Flap State from Cloud
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.cat_flap_cloud_state
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.cat_flap_state
+    data:
+      option: '{{ states("sensor.cat_flap_cloud_state") }}'
+  mode: single
