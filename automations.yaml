@@ -194,3 +194,50 @@
     data:
       option: '{{ states("sensor.cat_flap_cloud_state") }}'
   mode: single
+- id: '1622457098699'
+  alias: Push Cat Flap State to Cloud
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_select.cat_flap_state
+  condition:
+  - condition: template
+    value_template: '{{ states(''input_select.cat_flap_state'') != states(''sensor.cat_flap_cloud_state'')
+      }}'
+  action:
+  - service: system_log.write
+    data:
+      message: Firing due to change to {{ states('input_select.cat_flap_state') }}
+        vs cloud state {{ states('sensor.cat_flap_cloud_state') }}
+  - service: script.set_cat_flap_state
+    data:
+      target_state: '{{ states("input_select.cat_flap_state") }}'
+  mode: single
+- id: '1622457601269'
+  alias: Keep cats in Bedroom at Night
+  description: ''
+  trigger:
+  - platform: time
+    at: '21:00'
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.cat_flap_state
+    data:
+      option: keep_in_bedroom
+  mode: single
+- id: '1622457637235'
+  alias: Let cats out in morning
+  description: ''
+  trigger:
+  - platform: time
+    at: 07:00
+  condition: []
+  action:
+  - service: input_select.select_option
+    target:
+      entity_id: input_select.cat_flap_state
+    data:
+      option: all_unlocked
+  mode: single
