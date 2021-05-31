@@ -68,6 +68,12 @@ views:
             entity: sensor.container_recycling
           - type: 'custom:garbage-collection-card'
             entity: sensor.paper_recycling
+      - type: entities
+        entities:
+          - binary_sensor.front_door_open
+          - lock.front_door
+          - sensor.front_door_operator
+
 
   - title: Living Room
     icon: mdi:sofa
@@ -113,11 +119,6 @@ views:
         entity: media_player.receiver
       - type: media-control
         entity: media_player.living_room_sonos_cast
-      - type: entities
-        entities:
-          - binary_sensor.front_door_open
-          - lock.front_door
-          - sensor.front_door_operator
       - type: 'custom:mini-graph-card'
         name: Living Room Climate
         points_per_hour: 20
@@ -221,10 +222,21 @@ views:
       - type: picture-entity
         entity: camera.sydney_weather_radar
         show_state: false
-      - type: glance
-        entities:
-          - sensor.moon
-          - sensor.season
+      - type: horizontal-stack
+        cards:
+        - type: 'custom:compass-card'
+          indicator_sensors:
+            - sensor: sensor.sydney_observatory_hill_wind_direction
+              indicator:
+                type: arrow_inward
+          value_sensors:
+            - sensor: sensor.sydney_observatory_hill_wind_speed_kilometre
+          compass:
+            north:
+              show: true
+        - type: glance
+          entities:
+            - sensor.moon
       - type: 'custom:mini-media-player'
         entity: media_player.outside
         hide:
@@ -248,15 +260,6 @@ views:
             graph: line
             detail: 2
             icon: mdi:flash
-        - type: glance
-          entities:
-            - entity: sensor.pressure_beerfridge
-              name: 
-            - entity: sensor.humidity_beerfridge
-              name: 
-            - entity: sensor.beerfridge_power_consumed
-              name: 
-              icon: mdi:flash
       - type: 'custom:simple-thermostat'
         entity: climate.beer_fridge
         header:
@@ -264,6 +267,11 @@ views:
         layout:
           step: row
         step_size: '0.5'
+        sensors:
+          - entity: sensor.humidity_beerfridge
+            name: Humidity
+          - entity: sensor.beerfridge_power
+            name: Power
       - type: horizontal-stack
         cards:
           - type: light
@@ -318,6 +326,16 @@ views:
           labels: false
           state: true
           legend: false
+      - type: gauge
+        entity: sensor.waqi_rozelle_sydney_east
+        min: 0
+        max: 300
+        severity:
+          green: 0
+          yellow: 50
+          red: 100
+        name: Air Quality Rozelle
+
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
