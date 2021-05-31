@@ -424,11 +424,6 @@ camera:
 
 mobile_app:
 
-surepetcare:
-  username: !secret surepetcare_username
-  password: !secret surepetcare_password
-
-
 proximity:
   home_paul:
     devices:
