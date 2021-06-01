@@ -32,14 +32,12 @@ views:
             image: /local/paul.jpg
             entity: person.paul
             state_filter:
-              not_home: brightness(70%) saturate(0.1)
-              away: brightness(70%) saturate(0.1)
+              not_home: brightness(110%) saturate(0.0) blur(5px) contrast(50%)
           - type: picture-entity
             image: /local/dot.jpg
             entity: person.dorothy
             state_filter:
-              not_home: brightness(70%) saturate(0.1)
-              away: brightness(70%) saturate(0.1)
+              not_home: brightness(110%) saturate(0.0) blur(5px) contrast(50%)
       - type: vertical-stack
         cards:
           - type: horizontal-stack
@@ -53,6 +51,11 @@ views:
                   [[[ if (entity.state == "on") return "Home (" +
                   (states["binary_sensor.pet_tabitha"].attributes.position.device_id ==
                   "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
+                state:
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
               - type: 'custom:button-card'
                 entity: binary_sensor.pet_tamara
                 show_entity_picture: true
@@ -62,6 +65,11 @@ views:
                   [[[ if (entity.state == "on") return "Home (" +
                   (states["binary_sensor.pet_tamara"].attributes.position.device_id ==
                   "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
+                state:
+                  - value: "off"
+                    styles:
+                      icon:
+                        - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
           - type: horizontal-stack
             cards:
               - type: 'custom:button-card'
@@ -218,10 +226,13 @@ views:
             entity: sensor.rubbish
           - type: 'custom:garbage-collection-card'
             entity: sensor.garden_waste
+            hide_before: 7
           - type: 'custom:garbage-collection-card'
             entity: sensor.container_recycling
+            hide_before: 7
           - type: 'custom:garbage-collection-card'
             entity: sensor.paper_recycling
+            hide_before: 7
       - type: 'custom:button-card'
         tap_action:
           action: toggle
