@@ -51,6 +51,9 @@ views:
                   [[[ if (entity.state == "on") return "Home (" +
                   (states["binary_sensor.pet_tabitha"].attributes.position.device_id ==
                   "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
+                styles:
+                  icon:
+                    - border-radius: "50%"
                 state:
                   - value: "off"
                     styles:
@@ -65,6 +68,9 @@ views:
                   [[[ if (entity.state == "on") return "Home (" +
                   (states["binary_sensor.pet_tamara"].attributes.position.device_id ==
                   "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
+                styles:
+                  icon:
+                    - border-radius: "50%"
                 state:
                   - value: "off"
                     styles:
