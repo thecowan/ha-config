@@ -197,11 +197,6 @@ views:
                       icon:
                         - color: white
 
-      - type: entities
-        entities:
-          - input_boolean.guest_mode
-      - type: media-control
-        entity: media_player.home_group
       - type: 'custom:mini-graph-card'
         name: Temperatures
         points_per_hour: 10
