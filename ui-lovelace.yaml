@@ -208,8 +208,10 @@ views:
         entities:
           - entity: sensor.temperature_livingroom
             name: Living Room
+            show_points: false
           - entity: sensor.lilyfield_temperature
             name: Outside
+            show_points: false
         min_bound_range: 5
         show:
           labels: true
@@ -225,13 +227,33 @@ views:
             entity: sensor.container_recycling
           - type: 'custom:garbage-collection-card'
             entity: sensor.paper_recycling
-      - type: entities
-        entities:
-          - binary_sensor.front_door_open
-          - lock.front_door
+      - type: 'custom:button-card'
+        tap_action:
+          action: toggle
+        entity: lock.front_door
+        show_state: true
+        show_name: true
+        state_display: >-
+          [[[ var operator_string = "(by " + states["sensor.front_door_operator"].state + ")"; var state_string = "Unlocked"; if  (states["binary_sensor.front_door_open"].state == "on") {state_string = "Unlocked (Open)"} else if (entity.state == "locked") {state_string = "Locked"}; return "<b>" + state_string + "</b><br /><span style='font-size: 70%'>" + operator_string + "</span>"; ]]]
+        triggers_update:
           - sensor.front_door_operator
-
-
+          - binary_sensor.front_door_open
+        state:
+          - operator: template
+            value: >
+              [[[
+                return (states["binary_sensor.front_door_open"].state == "on");
+              ]]]
+            icon: mdi:door-open
+            color: blue
+          - value: "locked"
+            styles:
+              icon:
+                - color: red  
+          - value: "unlocked"
+            styles:
+              icon:
+                - color: green  
   - title: Living Room
     icon: mdi:sofa
     path: living
