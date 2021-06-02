@@ -186,6 +186,8 @@
   trigger:
   - platform: state
     entity_id: sensor.cat_flap_cloud_state
+  - platform: homeassistant
+    event: start
   condition: []
   action:
   - service: input_select.select_option
@@ -218,7 +220,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '21:00'
+    at: '22:00'
   condition: []
   action:
   - service: input_select.select_option
@@ -232,7 +234,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 07:00
+    at: 06:00
   condition: []
   action:
   - service: input_select.select_option
