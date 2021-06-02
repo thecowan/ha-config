@@ -618,6 +618,18 @@ views:
     icon: mdi:chair-rolling
     path: dot
     cards:
+      - type: 'custom:simple-thermostat'
+        entity: climate.dots_office_ac
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1'
+        sensors:
+          - entity: sensor.humidity_dots_office
+            name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.bathroom
         hide:
