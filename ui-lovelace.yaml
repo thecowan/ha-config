@@ -19,9 +19,6 @@ excluded_entities:
   - script.sonos_ungroup_and_play
   - sensor.battery_paul
   - sensor.lastfm_cowanfamily
-  - switch.plug_bedroom_left
-  - switch.plug_bedroom_right
-  - switch.plug_beerfridge
 views:
   - title: Overview
     path: overview
@@ -215,7 +212,7 @@ views:
         name: Temperatures
         points_per_hour: 10
         entities:
-          - entity: sensor.temperature_livingroom
+          - entity: sensor.living_room_temperature
             name: Living Room
             show_points: false
           - entity: sensor.lilyfield_temperature
@@ -282,7 +279,7 @@ views:
             names: true
           step: row
         sensors:
-          - entity: sensor.humidity_livingroom
+          - entity: sensor.living_room_humidity
             name: Humidity
       - type: vertical-stack
         cards:
@@ -311,9 +308,9 @@ views:
         name: Living Room Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_livingroom
+          - entity: sensor.living_room_temperature
             name: Temperature
-          - entity: sensor.humidity_livingroom
+          - entity: sensor.living_room_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
@@ -396,10 +393,6 @@ views:
                 brightness: 100
                 transition: 1
 
-      - type: entities
-        entities:
-          - sun.sun
-          - binary_sensor.motion_sensor_bedroom
   - title: Outside
     icon: mdi:pine-tree
     path: outside
@@ -440,11 +433,11 @@ views:
         - type: horizontal-stack
           cards:
           - type: sensor
-            entity: sensor.temperature_beerfridge
+            entity: sensor.beer_fridge_temperature
             detail: 2
             graph: line
           - type: sensor
-            entity: sensor.beerfridge_power
+            entity: sensor.beer_fridge_plug_power
             graph: line
             detail: 2
             icon: mdi:flash
@@ -456,9 +449,9 @@ views:
           step: row
         step_size: '0.5'
         sensors:
-          - entity: sensor.humidity_beerfridge
+          - entity: sensor.beer_fridge_humidity
             name: Humidity
-          - entity: sensor.beerfridge_power
+          - entity: sensor.beer_fridge_plug_power
             name: Power
       - type: horizontal-stack
         cards:
@@ -671,12 +664,9 @@ views:
         title: Power
         icon: mdi:flash
         entities:
-          - sensor.bedroom_left_power
-          - sensor.bedroom_left_power_consumed
-          - sensor.bedroom_right_power
-          - sensor.bedroom_right_power_consumed
-          - sensor.beerfridge_power
-          - sensor.beerfridge_power_consumed
+          - sensor.guest_room_left_plug_power
+          - sensor.guest_room_right_plug_power
+          - sensor.beer_fridge_plug_power
       - type: 'custom:battery-state-card'
         title: Battery State
         sort_by_level: asc

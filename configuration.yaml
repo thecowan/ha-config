@@ -67,30 +67,6 @@ sensor:
   - platform: moon
   - platform: template
     sensors:
-      bedroom_right_power:
-        friendly_name: 'Guest Room Right Power'
-        unit_of_measurement: 'W'
-        value_template: '{{ states.switch.plug_guestroom_right.attributes.load_power|int }}'
-      bedroom_left_power:
-        friendly_name: 'Bedroom Left Power'
-        unit_of_measurement: 'W'
-        value_template: '{{ states.switch.plug_bedroom_left.attributes.load_power|int }}'
-      beerfridge_power:
-        friendly_name: 'Beer Fridge Power'
-        unit_of_measurement: 'W'
-        value_template: '{{ states.switch.plug_beerfridge.attributes.load_power|int }}'
-      bedroom_right_power_consumed:
-        friendly_name: 'Guest Room Right Power Consumed'
-        unit_of_measurement: 'Wh'
-        value_template: '{{ states.switch.plug_guestroom_right.attributes.power_consumed|int }}'
-      bedroom_left_power_consumed:
-        friendly_name: 'Bedroom Left Power Consumed'
-        unit_of_measurement: 'Wh'
-        value_template: '{{ states.switch.plug_bedroom_left.attributes.power_consumed|int }}'
-      beerfridge_power_consumed:
-        friendly_name: 'Beer Fridge Power Consumed'
-        unit_of_measurement: 'Wh'
-        value_template: '{{ states.switch.plug_beerfridge.attributes.power_consumed|int }}'
       lilyfield_temperature:
         friendly_name: 'Lilyfield Temperature'
         unit_of_measurement: '°C'
@@ -285,11 +261,16 @@ var:
 
 light:
   - platform: switch
-    name: Bedside Lamp Left
-    entity_id: switch.plug_bedroom_left
+    name: Guest Room Lamp Left
+    entity_id: switch.guest_room_left_plug
   - platform: switch
     name: Guest Room Lamp Right
-    entity_id: switch.plug_guestroom_right
+    entity_id: switch.guest_room_right_plug
+  - platform: group
+    name: Guest Room Lamps
+    entities:
+      - light.guest_room_lamp_left
+      - light.guest_room_lamp_right
   - platform: group
     name: Bedside Lamps
     entities:
@@ -351,8 +332,9 @@ input_boolean:
 climate:
   - platform: generic_thermostat
     name: Beer Fridge
-    heater: switch.plug_beerfridge
-    target_sensor: sensor.temperature_beerfridge
+    heater: switch.beer_fridge_plug
+    target_sensor: sensor.beer_fridge_temperature
+    unique_id: beer_fridge_thermostat_lumi_plug
     min_temp: 5
     max_temp: 20
     ac_mode: true
@@ -362,7 +344,7 @@ climate:
   - platform: generic_thermostat
     name: Living Room
     heater: switch.livingroom_heater
-    target_sensor: sensor.temperature_livingroom
+    target_sensor: sensor.living_room_temperature
     unique_id: livingroom_heater_thermostat_zsp001b
     min_temp: 10
     max_temp: 30
@@ -375,7 +357,7 @@ climate:
     unique_id: living_room_ac
     device_code: 1101
     controller_data: remote.guest_room_remote
-    temperature_sensor: sensor.temperature_livingroom
+    temperature_sensor: sensor.living_room_temperature
     humidity_sensor: sensor.humidity_livingroom
   - platform: smartir
     name: "Bedroom AC"
