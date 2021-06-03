@@ -257,3 +257,31 @@
       - media_player.master_bedroom
       - media_player.guest_room
   mode: single
+- id: '1622693720246'
+  alias: Doorbell Reaction
+  description: ''
+  trigger:
+  - platform: event
+    event_type: xiaomi_aqara.click
+    event_data:
+      click_type: single
+      entity_id: binary_sensor.front_doorbell_button
+  condition: []
+  action:
+  - service: yeelight.set_color_flow_scene
+    data:
+      entity_id: light.yeelight_livingroom
+      count: 2
+      action: recover
+      transitions:
+      - HSVTransition:
+        - 180
+        - 100
+        - 100
+        - 80
+      - HSVTransition:
+        - 180
+        - 100
+        - 250
+        - 1
+  mode: single
