@@ -39,11 +39,12 @@ sonos_sleep:
   alias: Sonos Sleep Music
   sequence:
   - service: media_player.media_pause
+    entity_id: all
   - service: sonos.unjoin
-    data_template:
+    data:
       entity_id: media_player.master_bedroom
   - service: media_player.volume_set
-    data_template:
+    data:
       entity_id: media_player.master_bedroom
       volume_level: '0.05'
   - service: media_player.shuffle_set
@@ -51,9 +52,10 @@ sonos_sleep:
       entity_id: media_player.master_bedroom
       shuffle: true
   - service: script.sonos_play_matching
-    data_template:
+    data:
       entity_id: media_player.master_bedroom
       match: \U0001F4A4
+
 sonos_play_non_matching:
   alias: Sonos Play Non-Matching
   sequence:
