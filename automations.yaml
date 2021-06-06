@@ -234,7 +234,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 06:00
+    at: 05:00
   condition: []
   action:
   - service: input_select.select_option
@@ -284,4 +284,70 @@
         - 100
         - 250
         - 1
+  mode: single
+- id: '1622697978346'
+  alias: test both
+  description: ''
+  trigger:
+  - device_id: b9bb1e104f88289e6cd8a17ce2b3eeb4
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: both_buttons
+  condition: []
+  action:
+  - service: logbook.log
+    data:
+      name: aa
+      message: boo double
+  mode: single
+- id: '1622699855727'
+  alias: Bedside Button (new)
+  description: ''
+  trigger:
+  - device_id: 2543c7facf8ff8c81c60072e55aa7c67
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition: []
+  action:
+  - service: light.toggle
+    target:
+      entity_id: light.bedside_lamps
+  mode: single
+- id: '1622700041681'
+  alias: '**TEST* button'
+  description: ''
+  trigger:
+  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition: []
+  action:
+  - service: light.toggle
+    target:
+      entity_id: light.yeelight_livingroom
+    data:
+      kelvin: 3200
+      brightness_pct: 80
+  mode: single
+- id: '1622700231745'
+  alias: '**TEST* button 2'
+  description: ''
+  trigger:
+  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.yeelight_livingroom
+    data:
+      effect: LSD
   mode: single
