@@ -373,6 +373,13 @@ climate:
     controller_data: remote.dots_office_remote
     temperature_sensor: sensor.temperature_dots_office
     humidity_sensor: sensor.humidity_dots_office
+  - platform: smartir
+    name: "Office AC"
+    unique_id: office_ac
+    device_code: 1101
+    controller_data: remote.office_remote
+    temperature_sensor: sensor.temperature_office
+    humidity_sensor: sensor.humidity_office
 
 system_health:
 

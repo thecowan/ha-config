@@ -607,6 +607,18 @@ views:
       - type: gauge
         entity:
           - sensor.pixel_4_xl_battery_level
+      - type: 'custom:simple-thermostat'
+        entity: climate.office_ac
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1'
+        sensors:
+          - entity: sensor.dots_office
+            name: Humidity
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
