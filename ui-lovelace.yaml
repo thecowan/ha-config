@@ -406,6 +406,25 @@ views:
     icon: mdi:pine-tree
     path: outside
     cards:
+      - type: entities
+        entities:
+        - entity: light.outside_globes
+        - type: 'custom:slider-entity-row'
+          entity: light.flux_party
+          toggle: true
+          name: Party Lights
+        - type: 'custom:rgb-light-card'
+          entity: light.flux_party
+          justify: center
+          colors: !include flux_colors.yaml
+        - type: 'custom:slider-entity-row'
+          entity: light.flux_fairy
+          toggle: true
+          name: Hedge Fairy Lights
+        - type: 'custom:rgb-light-card'
+          entity: light.flux_fairy
+          justify: center
+          colors: !include flux_colors.yaml
       - type: 'custom:sun-card'
       - type: weather-forecast
         entity: weather.lilyfield
@@ -437,19 +456,6 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
-      - type: vertical-stack
-        cards:
-        - type: horizontal-stack
-          cards:
-          - type: sensor
-            entity: sensor.beer_fridge_temperature
-            detail: 2
-            graph: line
-          - type: sensor
-            entity: sensor.beer_fridge_plug_power
-            graph: line
-            detail: 2
-            icon: mdi:flash
       - type: 'custom:simple-thermostat'
         entity: climate.beer_fridge
         header:
@@ -462,26 +468,6 @@ views:
             name: Humidity
           - entity: sensor.beer_fridge_plug_power
             name: Power
-      - type: horizontal-stack
-        cards:
-          - type: light
-            entity: light.outside_globes
-          - type: vertical-stack
-            cards:
-            - type: light
-              entity: light.flux_fairy
-              name: Fairy Lights
-            - type: 'custom:rgb-light-card'
-              entity: light.flux_fairy
-              colors: !include flux_colors.yaml
-          - type: vertical-stack
-            cards:
-            - type: light
-              entity: light.flux_party
-              name: Party Lights
-            - type: 'custom:rgb-light-card'
-              entity: light.flux_party
-              colors: !include flux_colors.yaml
       - type: 'custom:mini-graph-card'
         name: BBQ Cooking
         points_per_hour: 60
