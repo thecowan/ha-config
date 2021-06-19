@@ -278,6 +278,12 @@ light:
     entities:
       - light.bedside_left
       - light.bedside_right
+  - platform: group
+    name: Kitchen Downlights
+    entities:
+      - light.kitchen_downlight_near
+      - light.kitchen_downlight_far
+      - light.kitchen_downlight_centre
   - platform: flux_led
     devices:
       10.41.16.16:

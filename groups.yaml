@@ -5,6 +5,11 @@ kids_presence:
    - device_tracker.galaxys7a
    - device_tracker.pixel
 
+yeelight_doorbell_lights:
+  name: Yeelight Doorbell Lights
+  entities:
+   - light.yeelight_office
+
 all_sonos:
   name: All Sonos
   entities:
