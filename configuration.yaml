@@ -293,7 +293,6 @@ google_assistant:
   exposed_domains:
     - light
     - script
-    - media_player
     - climate
 
 lovelace:
