@@ -270,6 +270,15 @@ views:
     icon: mdi:sofa
     path: living
     cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_livingroom
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_livingroom
+          justify: center
+          colors: !include colors_yeelight.yaml
       - type: 'custom:simple-thermostat'
         entity: climate.living_room
         layout:
@@ -281,24 +290,6 @@ views:
         sensors:
           - entity: sensor.living_room_humidity
             name: Humidity
-      - type: vertical-stack
-        cards:
-        - type: light
-          entity: light.yeelight_livingroom
-          name: Living Room Light
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_livingroom
-            toggle: true
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_livingroom
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_livingroom
-            colors: !include flux_colors.yaml
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
@@ -328,42 +319,22 @@ views:
     icon: mdi:fridge-outline
     path: kitchen
     cards:
-      - type: vertical-stack
-        cards:
-        - type: light
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
           entity: light.kitchen_downlights
-          name: Kitchen Downlights
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.kitchen_downlights
-            toggle: true
-          - type: 'custom:slider-entity-row'
-            entity: light.kitchen_downlights
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.kitchen_downlights
-            colors: !include flux_colors.yaml
-      - type: vertical-stack
-        cards:
-        - type: light
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.kitchen_downlights
+          justify: center
+          colors: !include colors_kogan.yaml
+        - type: 'custom:slider-entity-row'
           entity: light.yeelight_dining
-          name: Dining Room Light
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_dining
-            toggle: true
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_dining
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_dining
-            colors: !include flux_colors.yaml
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_dining
+          justify: center
+          colors: !include colors_yeelight.yaml
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
@@ -580,6 +551,15 @@ views:
     icon: mdi:bunk-bed
     path: guest
     cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_guestroom
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_guestroom
+          justify: center
+          colors: !include colors_yeelight.yaml
       - type: 'custom:mini-media-player'
         entity: media_player.guest_room
         hide:
@@ -590,24 +570,6 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
-      - type: vertical-stack
-        cards:
-        - type: light
-          entity: light.yeelight_guestroom
-          name: Guest Room Light
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_guestroom
-            full_row: true
-          - type: 'custom:slider-entity-row'
-            entity: light.yeelight_guestroom
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_guestroom
-            colors: !include flux_colors.yaml
       - type: horizontal-stack
         cards:
         - type: light
@@ -621,33 +583,15 @@ views:
     icon: mdi:desk
     path: office
     cards:
-      - type: 'custom:mini-media-player'
-        entity: media_player.office
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
-      - type: vertical-stack
-        cards:
-        - type: light
-          entity: light.yeelight_office
-          name: Office Light
-        - type: entities
-          entities:
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_office
-            colors: !include flux_colors.yaml
       - type: entities
         entities:
-        - switch.diffuser_fan_2
-        - light.diffuser_light_2
-      - type: gauge
-        entity:
-          - sensor.pixel_4_xl_battery_level
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_office
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_office
+          justify: center
+          colors: !include colors_yeelight.yaml
       - type: 'custom:simple-thermostat'
         entity: climate.office_ac
         layout:
@@ -660,46 +604,43 @@ views:
         sensors:
           - entity: sensor.dots_office
             name: Humidity
+      - type: 'custom:mini-media-player'
+        entity: media_player.office
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
+      - type: entities
+        entities:
+        - switch.diffuser_fan_2
+        - light.diffuser_light_2
+      - type: gauge
+        entity:
+          - sensor.pixel_4_xl_battery_level
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
     cards:
-      - type: vertical-stack
-        cards:
-        - type: light
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
           entity: light.dots_office
-          name: Dot's Office Light
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.dots_office
-            toggle: true
-          - type: 'custom:slider-entity-row'
-            entity: light.dots_office
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.dots_office
-            colors: !include flux_colors.yaml
-      - type: vertical-stack
-        cards:
-        - type: light
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.dots_office
+          justify: center
+          colors: !include colors_kogan.yaml
+        - type: 'custom:slider-entity-row'
           entity: light.dots_office_lamp
-          name: Dot's Office Lamp
-        - type: entities
-          entities:
-          - type: 'custom:slider-entity-row'
-            entity: light.dots_office_lamp
-            toggle: true
-          - type: 'custom:slider-entity-row'
-            entity: light.dots_office_lamp
-            attribute: color_temp
-            name: Color Temp
-            icon: none
-          - type: 'custom:rgb-light-card'
-            entity: light.dots_office_lamp
-            colors: !include flux_colors.yaml
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.dots_office_lamp
+          justify: center
+          colors: !include colors_kogan.yaml
       - type: 'custom:simple-thermostat'
         entity: climate.dots_office_ac
         layout:
@@ -731,6 +672,9 @@ views:
         entities:
           - light.bedside_left
           - light.bedside_right
+          - light.kitchen_downlight_far
+          - light.kitchen_downlight_centre
+          - light.kitchen_downlight_near
       - type: glance
         title: Automation Triggers
         entities:

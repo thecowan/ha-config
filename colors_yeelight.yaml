@@ -1,0 +1,13 @@
+- color_temp: 155
+  label: 'Cool'
+- color_temp: 280
+  label: 'Mid'
+- color_temp: 370
+  label: 'Warm'
+- rgb_color:
+  - 255
+  - 127
+  - 255
+- effect: Beautiful
+  icon_color: 'linear-gradient(15deg, #e66465, #9198e5, #98ee80)'
+  label: 'Loop'
