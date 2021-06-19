@@ -323,6 +323,19 @@ views:
     icon: mdi:fridge-outline
     path: kitchen
     cards:
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.yeelight_dining
+          name: Dining Room Light
+        - type: entities
+          entities:
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_dining
+            colors: !include flux_colors.yaml
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_dining
+            toggle: true
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
