@@ -20,6 +20,8 @@ config:
 
 http:
   cors_allowed_origins: !secret cors_allowed_origins
+  use_x_forwarded_for: true
+  trusted_proxies: !secret trusted_proxies
 
 # Checks for available updates
 # Note: This component will send some information about your system to
