@@ -339,6 +339,9 @@ google_assistant:
     light.outside_globes:
       expose: true
       room: Outside
+    light.yeelight_entry:
+      expose: true
+      room: Entry
 
 lovelace:
   mode: yaml
