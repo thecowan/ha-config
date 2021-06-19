@@ -426,6 +426,13 @@ climate:
     controller_data: remote.office_remote
     temperature_sensor: sensor.temperature_office
     humidity_sensor: sensor.humidity_office
+  - platform: smartir
+    name: "Guest Room AC"
+    unique_id: guest_room_ac
+    device_code: 1101
+    controller_data: remote.guest_room_remote
+    temperature_sensor: sensor.temperature_guestroom
+    humidity_sensor: sensor.humidity_guestroom
 
 system_health:
 
