@@ -353,6 +353,34 @@ views:
     icon: mdi:bed-empty
     path: bedroom
     cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_bedroom
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_bedroom
+          justify: center
+          colors: !include colors_yeelight.yaml
+        - type: 'custom:slider-entity-row'
+          entity: light.bedside_lamps
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.bedside_lamps
+          justify: center
+          colors: !include colors_nitebird.yaml
+      - type: 'custom:simple-thermostat'
+        entity: climate.bedroom_ac
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1'
+        sensors:
+          - entity: sensor.bedroom
+            name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
         hide:
@@ -365,46 +393,6 @@ views:
         artwork: cover
       - type: media-control
         entity: media_player.master_bedroom_mini
-      - type: horizontal-stack
-        cards:
-        - type: entities
-          show_header_toggle: false
-          entities:
-          - entity: light.bedside_lamps
-          - type: 'custom:rgb-light-card'
-            entity: light.bedside_lamps
-            colors:
-              - rgb_color:
-                  - 255
-                  - 255
-                  - 255
-                brightness: 100
-                transition: 1
-              - rgb_color:
-                  - 234
-                  - 136
-                  - 140
-                brightness: 255
-                transition: 1
-              - rgb_color:
-                  - 251
-                  - 180
-                  - 139
-                brightness: 200
-                transition: 1
-              - rgb_color:
-                  - 136
-                  - 198
-                  - 237
-                brightness: 150
-                transition: 1
-              - rgb_color:
-                  - 140
-                  - 231
-                  - 185
-                brightness: 100
-                transition: 1
-
   - title: Outside
     icon: mdi:pine-tree
     path: outside
