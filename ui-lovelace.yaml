@@ -288,12 +288,17 @@ views:
           name: Living Room Light
         - type: entities
           entities:
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_livingroom
-            colors: !include flux_colors.yaml
           - type: 'custom:slider-entity-row'
             entity: light.yeelight_livingroom
             toggle: true
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_livingroom
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_livingroom
+            colors: !include flux_colors.yaml
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
@@ -326,16 +331,39 @@ views:
       - type: vertical-stack
         cards:
         - type: light
+          entity: light.kitchen_downlights
+          name: Kitchen Downlights
+        - type: entities
+          entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.kitchen_downlights
+            toggle: true
+          - type: 'custom:slider-entity-row'
+            entity: light.kitchen_downlights
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.kitchen_downlights
+            colors: !include flux_colors.yaml
+      - type: vertical-stack
+        cards:
+        - type: light
           entity: light.yeelight_dining
           name: Dining Room Light
         - type: entities
           entities:
-          - type: 'custom:rgb-light-card'
-            entity: light.yeelight_dining
-            colors: !include flux_colors.yaml
           - type: 'custom:slider-entity-row'
             entity: light.yeelight_dining
             toggle: true
+          - type: 'custom:slider-entity-row'
+            entity: light.yeelight_dining
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.yeelight_dining
+            colors: !include flux_colors.yaml
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
@@ -636,6 +664,42 @@ views:
     icon: mdi:chair-rolling
     path: dot
     cards:
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.dots_office
+          name: Dot's Office Light
+        - type: entities
+          entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.dots_office
+            toggle: true
+          - type: 'custom:slider-entity-row'
+            entity: light.dots_office
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.dots_office
+            colors: !include flux_colors.yaml
+      - type: vertical-stack
+        cards:
+        - type: light
+          entity: light.dots_office_lamp
+          name: Dot's Office Lamp
+        - type: entities
+          entities:
+          - type: 'custom:slider-entity-row'
+            entity: light.dots_office_lamp
+            toggle: true
+          - type: 'custom:slider-entity-row'
+            entity: light.dots_office_lamp
+            attribute: color_temp
+            name: Color Temp
+            icon: none
+          - type: 'custom:rgb-light-card'
+            entity: light.dots_office_lamp
+            colors: !include flux_colors.yaml
       - type: 'custom:simple-thermostat'
         entity: climate.dots_office_ac
         layout:
