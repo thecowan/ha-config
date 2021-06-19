@@ -296,10 +296,48 @@ light:
 
 google_assistant:
   project_id: !secret google_assistant_project_id
+  service_account: !include dairy-homeassistant-5e3328b5a268.json
+  report_state: true
   exposed_domains:
-    - light
     - script
     - climate
+  entity_config:
+    light.yeelight_bedroom:
+      expose: true
+      room: Bedroom
+    light.bedside_lamps:
+      expose: true
+      room: Bedroom
+    light.yeelight_dining:
+      expose: true
+      room: Dining Room
+    light.dots_office_lamp:
+      expose: true
+      room: Dot's Office
+    light.dots_office:
+      expose: true
+      room: Dot's Office
+    light.gateway_light:
+      expose: true
+      room: Living Room
+    light.yeelight_guestroom:
+      expose: true
+      room: Guest Room
+    light.guest_room_lamps:
+      expose: true
+      room: Guest Room
+    light.kitchen_downlights:
+      expose: true
+      room: Kitchen
+    light.yeelight_livingroom:
+      expose: true
+      room: Living Room
+    light.yeelight_office:
+      expose: true
+      room: Office
+    light.outside_globes:
+      expose: true
+      room: Outside
 
 lovelace:
   mode: yaml
