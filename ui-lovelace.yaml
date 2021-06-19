@@ -388,7 +388,7 @@ views:
           step: row
         step_size: '1'
         sensors:
-          - entity: sensor.bedroom
+          - entity: sensor.humidity_bedroom
             name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
@@ -402,6 +402,20 @@ views:
         artwork: cover
       - type: media-control
         entity: media_player.master_bedroom_mini
+      - type: 'custom:mini-graph-card'
+        name: Bedroom Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_bedroom
+            name: Temperature
+          - entity: sensor.humidity_bedroom
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
   - title: Outside
     icon: mdi:pine-tree
     path: outside
@@ -511,6 +525,20 @@ views:
           yellow: 50
           red: 100
         name: Air Quality Rozelle
+      - type: 'custom:mini-graph-card'
+        name: Outside Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_outside
+            name: Temperature
+          - entity: sensor.humidity_outside
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
 
   - title: Bathroom
     icon: mdi:shower
@@ -554,6 +582,20 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
+      - type: 'custom:mini-graph-card'
+        name: Guest Room Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_guestroom
+            name: Temperature
+          - entity: sensor.humidity_guestroom
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
   - title: Paul Office
     icon: mdi:desk
     path: office
@@ -579,7 +621,7 @@ views:
           step: row
         step_size: '1'
         sensors:
-          - entity: sensor.dots_office
+          - entity: sensor.humidity_office
             name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.office
@@ -596,6 +638,20 @@ views:
         - entity: switch.diffuser_fan_2
           name: Diffuser
           icon: fas:wind
+      - type: 'custom:mini-graph-card'
+        name: Office Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_office
+            name: Temperature
+          - entity: sensor.humidity_office
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
       - type: gauge
         entity:
           - sensor.pixel_4_xl_battery_level
@@ -641,6 +697,20 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
+      - type: 'custom:mini-graph-card'
+        name: Dot's Office Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.temperature_dots_office
+            name: Temperature
+          - entity: sensor.humidity_dots_office
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
   - title: Configuration
     icon: mdi:cog
     path: settings
