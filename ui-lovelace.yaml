@@ -282,6 +282,13 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.gateway_light
           toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_entry
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_entry
+          justify: center
+          colors: !include colors_yeelight.yaml
       - type: 'custom:simple-thermostat'
         entity: climate.living_room
         layout:
