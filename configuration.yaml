@@ -223,6 +223,11 @@ notify:
     platform: pushover
     api_key: !secret pushover_api_key
     user_key: !secret pushover_user_key
+  - name: automate_assistant
+    platform: llamalab_automate
+    api_key: !secret llamalab_secret
+    to: !secret llamalab_to
+    device: !secret llamalab_device
 
 linode:
   access_token: !secret linode_access_token
