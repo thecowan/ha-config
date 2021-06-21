@@ -383,6 +383,16 @@ input_boolean:
     name: Guest Mode
     icon: mdi:account-multiple-plus
 
+input_text:
+
+input_number:
+
+input_datetime:
+
+counter:
+
+timer:
+
 climate:
   - platform: generic_thermostat
     name: Beer Fridge
