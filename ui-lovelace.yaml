@@ -1,6 +1,6 @@
 title: The Dairy
 
-background: radial-gradient(navy, skyblue)
+#background: radial-gradient(navy, skyblue)
 # Exclude entities from "Unused entities" view
 excluded_entities:
   - binary_sensor.switch_bedside
