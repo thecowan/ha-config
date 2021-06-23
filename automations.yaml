@@ -121,20 +121,18 @@
 - id: '1546762544388'
   alias: Bedside Button Double Click
   trigger:
-  - event_data:
-      click_type: double
-      entity_id: binary_sensor.switch_bedside
-    event_type: xiaomi_aqara.click
-    platform: event
-  - event_data:
-      click_type: double
-      entity_id: binary_sensor.switch_bedside_right
-    event_type: xiaomi_aqara.click
-    platform: event
+  - device_id: 2543c7facf8ff8c81c60072e55aa7c67
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
   condition: []
   action:
   - service: light.turn_off
+    target:
+      area_id: master_bedroom
   - service: script.sonos_sleep
+  mode: single
 - id: '1546980843431'
   alias: Paul Arrive Home
   trigger:
