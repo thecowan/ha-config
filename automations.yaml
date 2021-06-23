@@ -364,6 +364,21 @@
       message: 'Hi yourself, {{ trigger.event.data["from_first"] }}!'
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
+- id: '1624101614357'
+  alias: Toggle Outside Lights
+  description: ''
+  trigger:
+  - device_id: ab450a7b3d8039f7716d894b38bf16e6
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  condition: []
+  action:
+  - service: light.toggle
+    target:
+      entity_id: light.outside_globes
+  mode: single
 - id: '1624283044736'
   alias: Telegram Home
   description: ''
