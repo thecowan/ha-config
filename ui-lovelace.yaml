@@ -444,6 +444,8 @@ views:
           entity: light.flux_fairy
           justify: center
           colors: !include flux_colors.yaml
+        - entity: binary_sensor.back_door
+          secondary_info: last-changed
       - type: 'custom:sun-card'
       - type: weather-forecast
         entity: weather.lilyfield
