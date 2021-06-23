@@ -14,6 +14,8 @@ homeassistant:
   customize: !include customize.yaml
   auth_providers:
     - type: homeassistant
+  external_url: !secret external_url
+  internal_url: !secret internal_url
 
 # Enables configuration UI
 config:
@@ -525,3 +527,14 @@ input_select:
 
 frontend:
   themes: !include_dir_merge_named themes
+
+telegram_bot:
+  - platform: webhooks
+    api_key: !secret telegram_bot_api_key
+    allowed_chat_ids:
+      - !secret telegram_paul_id
+
+notify:
+  - platform: telegram
+    name: telegram_paul
+    chat_id: !secret telegram_paul_id
