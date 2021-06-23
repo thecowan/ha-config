@@ -349,3 +349,38 @@
     data:
       effect: LSD
   mode: single
+- id: '1624282422729'
+  alias: Telegram test
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /hi
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: 'Hi yourself, {{ trigger.event.data["from_first"] }}!'
+      target: '{{ trigger.event.data.chat_id }}'
+  mode: single
+- id: '1624283044736'
+  alias: Telegram Home
+  description: ''
+  trigger:
+  - platform: event
+    event_type: telegram_command
+    event_data:
+      command: /digest
+  condition: []
+  action:
+  - service: telegram_bot.send_message
+    data:
+      message: "\U0001F321️ Living Room Temp = {{ states(\"sensor.living_room_temperature\"\
+        ) }}°C \n\U0001F321 Outside Temp = {{ states(\"sensor.temperature_outside\"\
+        ) }}°C\n\U0001F324 Weather = {{ states(\"sensor.lilyfield_short_text_0\")\
+        \ }} (tomorrow {{ states(\"sensor.lilyfield_short_text_1\") }})\n\U0001F327\
+        ️ Chance of rain = {{ states(\"sensor.lilyfield_rain_chance_0\") }}% (tomorrow\
+        \ {{ states(\"sensor.lilyfield_rain_chance_1\") }}%)"
+      target: '{{ trigger.event.data.chat_id }}'
+  mode: single
