@@ -25,8 +25,24 @@ views:
     badges:
       - type: entity-filter
         entities:
-          - binary_sensor.front_door_open
-          - binary_sensor.back_door
+          - entity: binary_sensor.front_door_open
+          - entity: binary_sensor.back_door
+        state_filter:
+          - "on"
+      - type: entity-filter
+        entities:
+          - light.yeelight_office
+          - light.dots_office
+          - light.dots_office_lamp
+          - light.yeelight_entry
+          - light.yeelight_dining
+          - light.kitchen_downlights
+          - light.flux_fairy
+          - light.flux_party
+          - light.yeelight_guestroom
+          - light.yeelight_bedroom
+          - light.bedside_lamps
+          - light.outside_globes
         state_filter:
           - "on"      
     cards:
