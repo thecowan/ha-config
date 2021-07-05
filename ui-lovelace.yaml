@@ -587,7 +587,7 @@ views:
           entities: !include sonos-speakers.yaml
         artwork: cover
       - type: media-control
-        entity: media_player.bathroom_display
+        entity: media_player.bathroom_speaker
       - type: entity-button
         entity: script.shower_paul
   - title: Guest room
