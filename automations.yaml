@@ -98,34 +98,14 @@
   - data:
       entity_id: automation.receiver_update_last_state
     service: automation.turn_on
-- id: '1546759967727'
-  alias: Bedside Button
-  trigger:
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.switch_bedside
-    event_type: xiaomi_aqara.click
-    platform: event
-  - event_data:
-      click_type: single
-      entity_id: binary_sensor.switch_bedside_right
-    event_type: xiaomi_aqara.click
-    platform: event
-  condition: []
-  action:
-  - data: {}
-    service: light.toggle
-    target:
-      entity_id: light.bedside_lamps
-  mode: single
 - id: '1546762544388'
-  alias: Bedside Button Double Click
+  alias: Bedside Button Left Double Click (Paul Sleep)
   trigger:
-  - device_id: 2543c7facf8ff8c81c60072e55aa7c67
+  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
     domain: zha
     platform: device
-    type: remote_button_double_press
-    subtype: remote_button_double_press
+    type: device_offline
+    subtype: device_offline
   condition: []
   action:
   - service: light.turn_off
@@ -300,10 +280,15 @@
       message: boo double
   mode: single
 - id: '1622699855727'
-  alias: Bedside Button (new)
+  alias: Bedside Buttons click (Toggle Lamps)
   description: ''
   trigger:
   - device_id: 2543c7facf8ff8c81c60072e55aa7c67
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
     domain: zha
     platform: device
     type: remote_button_short_press
@@ -411,19 +396,25 @@
         target:
           entity_id: light.yeelight_office
       button_top_left_triple_press:
-      - service: switch.toggle
+      - service: fan.toggle
         target:
-          entity_id: switch.diffuser_fan_2
+          entity_id: fan.office_diffuser
       button_middle_left_single_press:
       - service: media_player.volume_down
         target:
           entity_id: media_player.office
-      button_middle_left_double_press: []
+      button_middle_left_double_press:
+      - service: media_player.media_previous_track
+        target:
+          entity_id: media_player.office
       button_middle_right_single_press:
       - service: media_player.volume_up
         target:
           entity_id: media_player.office
-      button_middle_right_double_press: []
+      button_middle_right_double_press:
+      - service: media_player.media_next_track
+        target:
+          entity_id: media_player.office
       button_bottom_left_single_press:
       - type: brightness_decrease
         device_id: 8a466522fced3aa1009b180e4be85ada
@@ -455,10 +446,18 @@
       - service: sonos.unjoin
         target:
           entity_id: media_player.office
+      - service: media_player.clear_playlist
+        target:
+          entity_id: media_player.office
+      - service: media_player.shuffle_set
+        data:
+          shuffle: true
+        target:
+          entity_id: media_player.office
       - service: script.sonos_play_matching
         data:
           entity_id: media_player.office
-          match: \U0001F404
+          match: \U0001F42E
       button_bottom_right_double_press:
       - service: light.turn_on
         target:
@@ -473,3 +472,20 @@
         data:
           color_temp: '{{ max(state_attr("light.yeelight_office", "color_temp")|int
             - 20, state_attr("light.yeelight_office", "min_mireds")|int) }}'
+- id: '1624503867808'
+  alias: Toggle Party Lights
+  description: ''
+  trigger:
+  - device_id: ab450a7b3d8039f7716d894b38bf16e6
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+  condition: []
+  action:
+  - service: light.toggle
+    target:
+      entity_id: light.flux_party
+    data:
+      effect: colorloop
+  mode: single
