@@ -666,7 +666,7 @@ views:
           entities: !include sonos-speakers.yaml
         artwork: cover
       - type: button
-        entity: switch.diffuser_fan_2
+        entity: fan.office_diffuser
         name: Diffuser
       - type: 'custom:mini-graph-card'
         name: Office Climate
