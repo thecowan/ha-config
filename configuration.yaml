@@ -294,10 +294,10 @@ light:
   - platform: flux_led
     devices:
       10.41.16.16:
-        name: flux_party
+        name: Flux Party
         mode: rgb
       10.41.16.17:
-        name: flux_fairy
+        name: Flux Fairy
         mode: rgb
 
 
