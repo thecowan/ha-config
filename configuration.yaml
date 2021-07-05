@@ -379,6 +379,14 @@ lovelace:
       type: module
     - url: '/hacsfiles/garbage-collection-card/garbage-collection-card.js'
       type: module
+    - url: '/hacsfiles/fan-control-entity-row/fan-control-entity-row.js'
+      type: module
+    - url: '/hacsfiles/fan-mode-button-row/fan-mode-button-row.js'
+      type: module
+    - url: '/hacsfiles/config-template-card/config-template-card.js'
+      type: module
+    - url: '/hacsfiles/decluttering-card/decluttering-card.js'
+      type: module
 
 input_boolean:
   guest_mode:
