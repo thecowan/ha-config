@@ -665,9 +665,13 @@ views:
           show_group_count: true
           entities: !include sonos-speakers.yaml
         artwork: cover
-      - type: button
-        entity: fan.office_diffuser
-        name: Diffuser
+      - type: entities
+        show_header_toggle: false
+        entities:
+        - entity: fan.office_diffuser
+          type: custom:fan-mode-button-row
+          twoModeFan: true
+          sendStateWithMode: true
       - type: 'custom:mini-graph-card'
         name: Office Climate
         points_per_hour: 20
