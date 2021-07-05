@@ -37,12 +37,14 @@ views:
           - light.yeelight_entry
           - light.yeelight_dining
           - light.kitchen_downlights
-          - light.flux_fairy
-          - light.flux_party
           - light.yeelight_guestroom
           - light.yeelight_bedroom
           - light.bedside_lamps
           - light.outside_globes
+          - entity: light.flux_fairy
+            name: "Hedge Fairy Lights"
+          - entity: light.flux_party
+            name: "Outside Party Lights"
         state_filter:
           - "on"      
     cards:
