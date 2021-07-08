@@ -309,46 +309,59 @@ google_assistant:
   exposed_domains:
     - script
     - climate
+    - fan
   entity_config:
+    light.yeelight_entry:
+      expose: true
+      room: Entry
+
     light.yeelight_bedroom:
       expose: true
       room: Bedroom
     light.bedside_lamps:
       expose: true
       room: Bedroom
-    light.yeelight_dining:
-      expose: true
-      room: Dining Room
+
     light.dots_office_lamp:
       expose: true
       room: Dot's Office
     light.dots_office:
       expose: true
       room: Dot's Office
+
     light.gateway_light:
       expose: true
       room: Living Room
+    light.yeelight_livingroom:
+      expose: true
+      room: Living Room
+
     light.yeelight_guestroom:
       expose: true
       room: Guest Room
     light.guest_room_lamps:
       expose: true
       room: Guest Room
+
+    light.yeelight_dining:
+      expose: true
+      room: Dining Room
+
     light.kitchen_downlights:
       expose: true
       room: Kitchen
-    light.yeelight_livingroom:
-      expose: true
-      room: Living Room
+
     light.yeelight_office:
       expose: true
       room: Office
+    fan.office_diffuser:
+      expose: true
+      room: Office
+
     light.outside_globes:
       expose: true
       room: Outside
-    light.yeelight_entry:
-      expose: true
-      room: Entry
+
 
 lovelace:
   mode: yaml
