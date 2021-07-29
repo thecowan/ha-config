@@ -147,7 +147,7 @@ set_cat_flap_state:
       lock_state: '{% if target_state in ["all_locked"] -%} locked_all {%- elif target_state
         in ["all_unlocked"] -%} unlocked {%- elif target_state in ["keep_outside",
         "keep_in_bedroom"] -%} locked_out {%- elif target_state in ["keep_inside",
-        "keep_in_offic"] -%} locked_in {%- else -%} ??? {%- endif %}'
+        "keep_in_office"] -%} locked_in {%- else -%} ??? {%- endif %}'
   mode: single
   icon: mdi:cat
   description: Bulk set cat flap state

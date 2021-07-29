@@ -104,8 +104,8 @@
   - device_id: 937ffa395d66f28b51bde7ff03f3e77e
     domain: zha
     platform: device
-    type: device_offline
-    subtype: device_offline
+    type: remote_button_double_press
+    subtype: remote_button_double_press
   condition: []
   action:
   - service: light.turn_off
@@ -205,7 +205,7 @@
     target:
       entity_id: input_select.cat_flap_state
     data:
-      option: keep_in_bedroom
+      option: keep_in_office
   mode: single
 - id: '1622457637235'
   alias: Let cats out in morning
@@ -298,6 +298,7 @@
   - service: light.toggle
     target:
       entity_id: light.bedside_lamps
+    data: {}
   mode: single
 - id: '1622700041681'
   alias: '**TEST* button'
