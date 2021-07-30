@@ -787,6 +787,9 @@ views:
           - sensor.guest_room_left_plug_power
           - sensor.guest_room_right_plug_power
           - sensor.beer_fridge_plug_power
+          - sensor.beer_fridge_plug_power
+          - sensor.livingroom_heater_power
+          - sensor.dishwasher_power
       - type: 'custom:battery-state-card'
         title: Battery State
         sort_by_level: asc
