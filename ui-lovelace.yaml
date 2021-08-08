@@ -86,23 +86,6 @@ views:
                     styles:
                       icon:
                         - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
-              - type: 'custom:button-card'
-                entity: binary_sensor.pet_tamara
-                show_entity_picture: true
-                show_state: true
-                name: Tamara
-                state_display: >-
-                  [[[ if (entity.state == "on") return "Home (" +
-                  (states["binary_sensor.pet_tamara"].attributes.position.device_id ==
-                  "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
-                styles:
-                  icon:
-                    - border-radius: "50%"
-                state:
-                  - value: "off"
-                    styles:
-                      icon:
-                        - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
           - type: horizontal-stack
             cards:
               - type: 'custom:button-card'

@@ -96,9 +96,6 @@ sensor:
       tabitha_last_door:
         friendly_name: 'Tabitha Last Door'
         value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
-      tamara_last_door:
-        friendly_name: 'Tamara Last Door'
-        value_template: '{% if state_attr("binary_sensor.pet_tamara", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tamara", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id
@@ -545,6 +542,24 @@ input_select:
       - 'mixed'
     initial: 'unknown'
     icon: mdi:cat
+  curfew_type:
+    name: 'Curfew Action'
+    options:
+      - 'keep_in_office'
+      - 'keep_in_bedroom'
+      - 'No Curfew'
+    icon: mdi:cat
+
+input_datetime:
+  curfew_start:
+    name: 'Curfew Start'
+    has_date: false
+    has_time: true
+  curfew_start:
+    name: 'Curfew End'
+    has_date: false
+    has_time: true
+    initial: '05:00:00'
 
 frontend:
   themes: !include_dir_merge_named themes
