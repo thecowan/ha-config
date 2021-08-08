@@ -450,13 +450,13 @@ climate:
     controller_data: remote.bedroom_remote
     temperature_sensor: sensor.temperature_bedroom
     humidity_sensor: sensor.humidity_bedroom
-  - platform: smartir
-    name: "Dot's Office AC"
-    unique_id: dots_office_ac
-    device_code: 1101
-    controller_data: remote.dots_office_remote
-    temperature_sensor: sensor.temperature_dots_office
-    humidity_sensor: sensor.humidity_dots_office
+#  - platform: smartir
+#    name: "Dot's Office AC"
+#    unique_id: dots_office_ac
+#    device_code: 1101
+#    controller_data: remote.dots_office_remote
+#    temperature_sensor: sensor.temperature_dots_office
+#    humidity_sensor: sensor.humidity_dots_office
   - platform: smartir
     name: "Office AC"
     unique_id: office_ac

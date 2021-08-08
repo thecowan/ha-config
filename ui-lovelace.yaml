@@ -48,6 +48,7 @@ views:
           - binary_sensor.office_window
           - binary_sensor.back_door
           - climate.office_ac
+          - climate.dots_office_ac
         state_filter:
           - "on"      
           - "heat"
@@ -680,6 +681,17 @@ views:
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
+    badges:
+      - type: entity-filter
+        entities:
+          - light.dots_office
+          - light.dots_office_lamp
+          - binary_sensor.dots_office_door
+          - climate.dots_office_ac
+        state_filter:
+          - "on"      
+          - "heat"
+          - "cool"
     cards:
       - type: entities
         entities:
@@ -706,19 +718,13 @@ views:
             headings: false
           step: row
         step_size: '1'
+        hide:
+          temperature: true
         sensors:
+          - entity: sensor.temperature_dots_office
+            name: Temperature
           - entity: sensor.humidity_dots_office
             name: Humidity
-      - type: 'custom:mini-media-player'
-        entity: media_player.bathroom
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
       - type: 'custom:mini-graph-card'
         name: Dot's Office Climate
         points_per_hour: 20
