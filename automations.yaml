@@ -490,3 +490,14 @@
     data:
       effect: colorloop
   mode: single
+- id: '1628031664645'
+  alias: Office Light Switch
+  description: ''
+  use_blueprint:
+    path: carlosmesquita/zha-xiaomi-mijia-round-wireless-switch-wxkg01lm-lumi-sensor-switch.yaml
+    input:
+      mijia_round_switch: 563998aaa5579f08a3dcbcac1e8a2505
+      remote_button_short_press:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
