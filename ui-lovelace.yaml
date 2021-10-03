@@ -27,10 +27,10 @@ views:
         entities:
           - light.yeelight_entry
           - light.dots_office
-          - light.dots_office_lamp
           - light.yeelight_bedroom
           - light.bedside_lamps
           - light.yeelight_livingroom
+          - light.living_room_lamp
           - light.gateway_light
           - light.yeelight_guestroom
           - light.yeelight_office
@@ -293,6 +293,13 @@ views:
           entity: light.yeelight_livingroom
           justify: center
           colors: !include colors_yeelight.yaml
+        - type: 'custom:slider-entity-row'
+          entity: light.living_room_lamp
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.living_room_lamp
+          justify: center
+          colors: !include colors_kogan.yaml
         - type: 'custom:slider-entity-row'
           entity: light.gateway_light
           toggle: true
@@ -685,7 +692,6 @@ views:
       - type: entity-filter
         entities:
           - light.dots_office
-          - light.dots_office_lamp
           - binary_sensor.dots_office_door
           - climate.dots_office_ac
         state_filter:
@@ -700,13 +706,6 @@ views:
           toggle: true
         - type: 'custom:rgb-light-card'
           entity: light.dots_office
-          justify: center
-          colors: !include colors_kogan.yaml
-        - type: 'custom:slider-entity-row'
-          entity: light.dots_office_lamp
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.dots_office_lamp
           justify: center
           colors: !include colors_kogan.yaml
       - type: 'custom:simple-thermostat'
