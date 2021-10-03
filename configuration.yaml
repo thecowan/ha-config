@@ -577,3 +577,17 @@ notify:
   - platform: telegram
     name: telegram_paul
     chat_id: !secret telegram_paul_id
+
+lock:
+  - platform: template
+    name: Back Gate
+    unique_id: lock_template_back_gate
+    value_template: "{{ is_state('switch.gate_lock', 'off') }}"
+    lock:
+      service: switch.turn_off
+      target:
+        entity_id: switch.gate_lock
+    unlock:
+      service: switch.turn_on
+      target:
+        entity_id: switch.gate_lock
