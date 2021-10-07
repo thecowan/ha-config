@@ -314,6 +314,8 @@ views:
           entity: light.yeelight_entry
           justify: center
           colors: !include colors_yeelight.yaml
+        - type: 'custom:slider-entity-row'
+          entity: cover.living_room_blind
       - type: 'custom:simple-thermostat'
         entity: climate.living_room
         layout:

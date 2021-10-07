@@ -27,3 +27,5 @@ binary_sensor.dots_office_door:
   device_class: door
 binary_sensor.guest_room_door:
   device_class: door
+cover.living_room_blind:
+  device_class: blind

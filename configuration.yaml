@@ -310,6 +310,7 @@ google_assistant:
     - script
     - climate
     - fan
+    - cover
   entity_config:
     light.yeelight_entry:
       expose: true
