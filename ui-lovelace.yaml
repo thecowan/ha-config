@@ -280,6 +280,10 @@ views:
             styles:
               icon:
                 - color: green  
+      - type: entities
+        entities:
+          - lock.back_gate
+        state_color: true
   - title: Living Room
     icon: mdi:sofa
     path: living
