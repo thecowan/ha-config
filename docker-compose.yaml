@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  home-assistant:
+    image: homeassistant/home-assistant:2021.9
+    network_mode: host
+    volumes:
+      - /home/paul/docker-data/ha-config:/config
+      - /etc/localtime:/etc/localtime:ro 
+    restart: unless-stopped
