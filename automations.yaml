@@ -537,3 +537,30 @@
     data:
       option: Finished
   mode: single
+- id: '1633580036748'
+  alias: 'Blinds: Close at Sunset'
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+  condition: []
+  action:
+  - device_id: ef916ad229bd58ca7fc4b96119cfadd4
+    domain: cover
+    entity_id: cover.living_room_blind
+    type: set_position
+  mode: single
+- id: '1633601876342'
+  alias: 'Blinds: Open in the Morning'
+  description: ''
+  trigger:
+  - platform: time
+    at: 09:00:00
+  condition: []
+  action:
+  - device_id: ef916ad229bd58ca7fc4b96119cfadd4
+    domain: cover
+    entity_id: cover.living_room_blind
+    type: set_position
+    position: 100
+  mode: single
