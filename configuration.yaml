@@ -553,17 +553,25 @@ input_select:
       - 'keep_in_bedroom'
       - 'No Curfew'
     icon: mdi:cat
+  curfew_end_state:
+    name: 'Curfew End'
+    options:
+      - 'restore'
+      - 'keep_in_bedroom'
+      - 'keep_in_office'
+      - 'all_unlocked'
+      - 'maintain_curfew'
+    icon: mdi:cat
 
 input_datetime:
   curfew_start:
     name: 'Curfew Start'
     has_date: false
     has_time: true
-  curfew_start:
+  curfew_end:
     name: 'Curfew End'
     has_date: false
     has_time: true
-    initial: '05:00:00'
 
 frontend:
   themes: !include_dir_merge_named themes
