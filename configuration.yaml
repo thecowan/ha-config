@@ -401,6 +401,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/decluttering-card/decluttering-card.js'
       type: module
+    - url: '/hacsfiles/canvas-gauge-card/canvas-gauge-card.js'
+      type: module
 
 input_boolean:
   guest_mode:
