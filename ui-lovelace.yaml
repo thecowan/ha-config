@@ -573,6 +573,28 @@ views:
         show:
           labels: true
           labels_secondary: true
+      - type: horizontal-stack
+        cards:
+          - type: gauge
+            entity: sensor.kitchen_window_bamboo_soil
+            min: 0
+            max: 100
+            needle: true
+            severity:
+              green: 70
+              yellow: 50
+              red: 0
+              blue: 95
+          - type: gauge
+            entity: sensor.jasmine_soil
+            min: 0
+            max: 100
+            needle: true
+            severity:
+              green: 70
+              yellow: 50
+              red: 0
+              blue: 95
 
   - title: Bathroom
     icon: mdi:shower
