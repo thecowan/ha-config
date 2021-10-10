@@ -602,3 +602,29 @@ lock:
       service: switch.turn_on
       target:
         entity_id: switch.gate_lock
+
+plant:
+  rosemary:
+    sensors:
+      moisture: sensor.rosemary_soil_moisture
+      battery: sensor.rosemary_battery
+      temperature: sensor.rosemary_temperature
+      conductivity: sensor.rosemary_soil_conductivity
+      brightness: sensor.rosemary_lux
+    min_moisture: 20
+  bamboo_lawn:
+    sensors:
+      moisture: sensor.bamboo_lawn_soil_moisture
+      battery: sensor.bamboo_lawn_battery
+      temperature: sensor.bamboo_lawn_temperature
+      conductivity: sensor.bamboo_lawn_soil_conductivity
+      brightness: sensor.bamboo_lawn_lux
+    min_moisture: 40
+  hosta_gold_standard:
+    sensors:
+      moisture: sensor.hosta_gold_standard_soil_moisture
+      battery: sensor.hosta_gold_standard_battery
+      temperature: sensor.hosta_gold_standard_temperature
+      conductivity: sensor.hosta_gold_standard_soil_conductivity
+      brightness: sensor.hosta_gold_standard_lux
+    min_moisture: 40
