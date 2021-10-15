@@ -31,3 +31,13 @@ cover.living_room_blind:
   device_class: shutter
 switch.guest_room_right_plug:
   device_class: outlet
+sensor.bamboo_lawn_battery_voltage:
+  device_class: voltage
+sensor.hosta_gold_standard_battery_voltage:
+  device_class: voltage
+sensor.lavender_battery_voltage:
+  device_class: voltage
+sensor.rosemary_battery_voltage:
+  device_class: voltage
+sensor.bamboo_kitchen_window_battery_voltage:
+  device_class: voltage
