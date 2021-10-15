@@ -624,6 +624,14 @@ plant:
       conductivity: sensor.bamboo_lawn_soil_conductivity
       brightness: sensor.bamboo_lawn_lux
     min_moisture: 40
+  bamboo_kitchen_window:
+    sensors:
+      moisture: sensor.bamboo_kitchen_window_soil_moisture
+      battery: sensor.bamboo_kitchen_window_battery
+      temperature: sensor.bamboo_kitchen_window_temperature
+      conductivity: sensor.bamboo_kitchen_window_soil_conductivity
+      brightness: sensor.bamboo_kitchen_window_lux
+    min_moisture: 40
   hosta_gold_standard:
     sensors:
       moisture: sensor.hosta_gold_standard_soil_moisture
@@ -632,3 +640,19 @@ plant:
       conductivity: sensor.hosta_gold_standard_soil_conductivity
       brightness: sensor.hosta_gold_standard_lux
     min_moisture: 40
+  lavender:
+    sensors:
+      moisture: sensor.lavender_soil_moisture
+      battery: sensor.lavender_battery
+      temperature: sensor.lavender_temperature
+      conductivity: sensor.lavender_soil_conductivity
+      brightness: sensor.lavender_lux
+    min_moisture: 20
+  jasmine:
+    sensors:
+      moisture: sensor.jasmine_soil_moisture
+      battery: sensor.jasmine_battery
+      temperature: sensor.jasmine_temperature
+      conductivity: sensor.jasmine_soil_conductivity
+      brightness: sensor.jasmine_lux
+    min_moisture: 20
