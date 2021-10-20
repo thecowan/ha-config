@@ -573,29 +573,36 @@ views:
         show:
           labels: true
           labels_secondary: true
-      - type: horizontal-stack
+  - title: Garden
+    icon: mdi:flower
+    path: garden
+    cards:
+      - type: vertical-stack
         cards:
-          - type: gauge
-            entity: sensor.kitchen_window_bamboo_soil
-            min: 0
-            max: 100
-            needle: true
-            severity:
-              green: 70
-              yellow: 50
-              red: 0
-              blue: 95
-          - type: gauge
-            entity: sensor.jasmine_soil
-            min: 0
-            max: 100
-            needle: true
-            severity:
-              green: 70
-              yellow: 50
-              red: 0
-              blue: 95
-
+          - type: custom:plant-picture-card
+            entity: plant.hosta_gold_standard
+            title: Hosta 'Gold Standard'
+            image: /local/plants/hosta-gold-standard-7-2.jpg
+          - type: custom:plant-picture-card
+            title: Bamboo 'Goldstripe' [Lawn]
+            image: /local/plants/bamboo-goldstripe-7-2.jpg
+            entity: plant.bamboo_lawn
+          - type: custom:plant-picture-card
+            title: Rosemary
+            image: /local/plants/rosemary-7-2.jpg
+            entity: plant.rosemary
+          - type: custom:plant-picture-card
+            title: Lavender
+            image: /local/plants/english-lavender-7-2.jpg
+            entity: plant.lavender
+          - type: custom:plant-picture-card
+            title: Jasmine
+            image: /local/plants/jasmine-7-2.jpg
+            entity: plant.jasmine
+          - type: custom:plant-picture-card
+            title: Bamboo 'Goldstripe' [Kitchen]
+            image: /local/plants/bamboo-goldstripe-7-2.jpg
+            entity: plant.bamboo_kitchen_window
   - title: Bathroom
     icon: mdi:shower
     path: bathroom
