@@ -101,7 +101,7 @@ sensor:
     id: !secret untappd_id
     secret: !secret untappd_secret
   - platform: mqtt
-    state_topic: "owntracks/paul/coral"
+    state_topic: "owntracks/paul/raven"
     name: "Battery Paul"
     unit_of_measurement: "%"
     value_template: '{{ value_json.batt }}'
@@ -489,7 +489,7 @@ person:
     id: paul1
     user_id: d7f6e7ea9e2447229fdda4f8f7119869
     device_trackers:
-      - device_tracker.paul_coral
+      - device_tracker.paul_raven
       - device_tracker.pixel4xl
   - name: Dorothy
     id: dorothy1
@@ -525,7 +525,7 @@ mobile_app:
 proximity:
   home_paul:
     devices:
-      device_tracker.paul_coral
+      device_tracker.paul_raven
     tolerance: 30
 
 smartir:
