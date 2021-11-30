@@ -455,23 +455,6 @@ views:
       - type: entities
         entities:
         - entity: light.outside_globes
-        - type: 'custom:slider-entity-row'
-          entity: light.flux_party
-          toggle: true
-          name: Party Lights
-        - type: 'custom:rgb-light-card'
-          entity: light.flux_party
-          justify: center
-          colors: !include flux_colors.yaml
-        - type: 'custom:slider-entity-row'
-          entity: light.flux_fairy
-          toggle: true
-          name: Hedge Fairy Lights
-        - type: 'custom:rgb-light-card'
-          entity: light.flux_fairy
-          justify: center
-          colors: !include flux_colors.yaml
-        - entity: binary_sensor.back_door
           secondary_info: last-changed
         - type: 'custom:slider-entity-row'
           entity: light.outside_floodlight
@@ -479,6 +462,7 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.hedge
           toggle: true
+        - entity: binary_sensor.back_door
       - type: 'custom:sun-card'
       - type: weather-forecast
         entity: weather.lilyfield
@@ -838,4 +822,25 @@ views:
           - '#ff0000'
           - '#0000ff'
           - '#00ff00'
-                    
+  - title: Junkyard
+    icon: mdi:delete-empty
+    path: junkyard
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.flux_party
+          toggle: true
+          name: Party Lights
+        - type: 'custom:rgb-light-card'
+          entity: light.flux_party
+          justify: center
+          colors: !include flux_colors.yaml
+        - type: 'custom:slider-entity-row'
+          entity: light.flux_fairy
+          toggle: true
+          name: Hedge Fairy Lights
+        - type: 'custom:rgb-light-card'
+          entity: light.flux_fairy
+          justify: center
+          colors: !include flux_colors.yaml
