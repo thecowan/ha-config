@@ -656,3 +656,11 @@ plant:
       conductivity: sensor.jasmine_soil_conductivity
       brightness: sensor.jasmine_lux
     min_moisture: 20
+
+calendar:
+  - platform: entities_calendar
+    calendars:
+      name: Entity Calendar
+      entities:
+        - entity: sensor.cert_expiry_timestamp_prometheus_cowlan_net
+        - entity: sensor.cert_expiry_timestamp_wildcard_cowlan_net
