@@ -161,6 +161,12 @@ sensor:
   - platform: seventeentrack
     username: !secret seventeentrack_email
     password: !secret seventeentrack_password
+  - platform: mqtt
+    state_topic: "adsb/tilly"
+    name: "Tilly Tracked Aircraft"
+    value_template: '{{ value_json.aircraft }}'
+    json_attributes_topic: "adsb/tilly"
+    unique_id: adsb_tracked_aircraft
 
 binary_sensor:
   - platform: linode
