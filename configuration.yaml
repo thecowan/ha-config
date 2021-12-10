@@ -96,84 +96,6 @@ sensor:
       tabitha_last_door:
         friendly_name: 'Tabitha Last Door'
         value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
-      adsb_closest_plane:
-        friendly_name: 'Closest Plane'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).r | default('None') | trim }}
-        entity_picture_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).image  }}
-        attribute_templates:
-          latitude: >-
-            {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lat  }}
-          longitude: >-
-            {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lon  }}
-      adsb_closest_plane_distance:
-        friendly_name: 'Closest Plane Distance'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).distance_km | round(3) }}
-        unit_of_measurement: 'km'
-        icon_template: fas:ruler-horizontal
-      adsb_closest_plane_bearing:
-        friendly_name: 'Closest Plane Bearing'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing | round(1) }}
-        unit_of_measurement: '°'
-        icon_template: mdi:compass-rose
-      adsb_closest_plane_heading:
-        friendly_name: 'Closest Plane Heading'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track | round(1) }}
-        unit_of_measurement: '°'
-        icon_template: mdi:compass
-      adsb_closest_plane_ground_speed:
-        friendly_name: 'Closest Plane Ground Speed'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).gs | round(1) }}
-        unit_of_measurement: 'kts'
-        icon_template: mdi:speedometer
-      adsb_closest_plane_altitude:
-        friendly_name: 'Closest Plane Altitude (Barometric)'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).alt_baro | round(1) }}
-        unit_of_measurement: 'ft'
-        icon_template: fas:ruler-vertical
-      adsb_closest_plane_flight_number:
-        friendly_name: 'Closest Plane Flight Number'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).flight | trim }}
-      adsb_closest_plane_type:
-        friendly_name: 'Closest Plane Type'
-        value_template: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).desc | trim }}
-        attribute_templates:
-          code: >-
-            {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).t  }}
-          category_code: >-
-            {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).category  }}
-          category: >-
-            {% set mappings = {
-              'A': {'name': 'Aircraft', '1': 'Light (<15,500 lbs.)', '2': 'Small (15,500 to 75,000 lbs.)', '3': 'Large (75,000 to 300,000 lbs.)', 4: 'High-Vortex Large', '5': 'Heavy (> 300,000 lbs.)', '6': 'High Performance', '7': 'Rotorcraft'},
-              'B': {'name': 'Unpowered', '1': 'Glider / Sailplane', '2': 'Lighter-than-Air', '3': 'Parachutist / Skydiver', '4': 'Ultralight / hang-glider / paraglider', '6': 'Unmanned Aerial Vehicle', '7': 'Space / Trans-atmospheric vehicle'},
-              'C': {'name': 'Ground'},
-              'D': {'name': 'Other'},
-              'X': {'name': 'Unknown'}}
-            %}
-            {% set category = (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).category | default('XX') %}
-            {{ mappings[category | first]['name'] }} - {{ mappings[category | first][category | last] | default('unknown')}}
-        # TODO: 
-        # compass bearing (from array)
-        # compass direction
-        # track_rate
-        # operator (needs API)
-        # approaching/receding
-        # altitude change
-        # CP distance
-        # CP time
-        # CP bearing(?)
-        # CP altitude estimate
-        # Noise (estimated)
-        # Noise (current)
-        # Last seen seen_pos / seen
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id
@@ -748,3 +670,91 @@ calendar:
       entities:
         - entity: sensor.cert_expiry_timestamp_prometheus_cowlan_net
         - entity: sensor.cert_expiry_timestamp_wildcard_cowlan_net
+
+template:
+  - unique_id: adsb
+    sensor:
+    - name: 'Closest Plane'
+      unique_id: closest_plane
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).r | default('None') | trim }}
+      picture: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).image  }}
+      attributes:
+        latitude: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lat  }}
+        longitude: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lon  }}
+      availability: >
+        {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
+    - name: 'Closest Plane Flight Number'
+      unique_id: closest_plane_flight_number
+      state: >
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).flight | trim }}
+      availability: >
+        {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
+    - name: 'Closest Plane Type'
+      unique_id: closest_plane_type
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).desc | trim }}
+      attributes:
+        code: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).t  }}
+        category_code: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).category  }}
+        category: >-
+          {% set mappings = {
+            'A': {'name': 'Aircraft', '1': 'Light (<15,500 lbs.)', '2': 'Small (15,500 to 75,000 lbs.)', '3': 'Large (75,000 to 300,000 lbs.)', 4: 'High-Vortex Large', '5': 'Heavy (> 300,000 lbs.)', '6': 'High Performance', '7': 'Rotorcraft'},
+            'B': {'name': 'Unpowered', '1': 'Glider / Sailplane', '2': 'Lighter-than-Air', '3': 'Parachutist / Skydiver', '4': 'Ultralight / hang-glider / paraglider', '6': 'Unmanned Aerial Vehicle', '7': 'Space / Trans-atmospheric vehicle'},
+            'C': {'name': 'Ground'},
+            'D': {'name': 'Other'},
+            'X': {'name': 'Unknown'}}
+          %}
+          {% set category = (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).category | default('XX') %}
+          {{ mappings[category | first]['name'] }} - {{ mappings[category | first][category | last] | default('unknown')}}
+      availability: >
+        {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
+    - name: 'Closest Plane Distance'
+      unique_id: closest_plane_distance
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).distance_km | round(3) }}
+      unit_of_measurement: 'km'
+      icon: fas:ruler-horizontal
+    - name: 'Closest Plane Bearing'
+      unique_id: closest_plane_bearing
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing | round(1) }}
+      unit_of_measurement: '°'
+      icon: mdi:compass-rose
+    - name: 'Closest Plane Heading'
+      unique_id: closest_plane_heading
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track | round(1) }}
+      unit_of_measurement: '°'
+      icon: mdi:compass
+    - name: 'Closest Plane Ground Speed'
+      unique_id: closest_plane_ground_speed
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).gs | round(1) }}
+      unit_of_measurement: 'kts'
+      icon: mdi:speedometer
+    - name: 'Closest Plane Altitude (Barometric)'
+      unique_id: closest_plane_altitude
+      state: >-
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).alt_baro | round(1) }}
+      unit_of_measurement: 'ft'
+      icon: fas:ruler-vertical
+    # TODO: 
+    # compass bearing (from array)
+    # compass direction
+    # track_rate
+    # operator (needs API)
+    # approaching/receding
+    # altitude change
+    # CP distance
+    # CP time
+    # CP bearing(?)
+    # CP altitude estimate
+    # Noise (estimated)
+    # Noise (current)
+    # Last seen seen_pos / seen
