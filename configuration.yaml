@@ -96,6 +96,17 @@ sensor:
       tabitha_last_door:
         friendly_name: 'Tabitha Last Door'
         value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
+      adsb_closest_plane:
+        friendly_name: 'Closest Plane'
+        value_template: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).r | default('None') | trim }}
+        entity_picture_template: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).image  }}
+      adsb_closest_plane_distance:
+        friendly_name: 'Closest Plane Distance'
+        value_template: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).distance_km | default(0.0) }}
+        unit_of_measurement: 'km'
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id
