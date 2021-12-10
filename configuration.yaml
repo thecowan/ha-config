@@ -685,8 +685,13 @@ template:
           {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lat  }}
         longitude: >-
           {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).lon  }}
+        last_message: >-
+          {{ ((state_attr('sensor.tilly_tracked_aircraft', 'timestamp') - (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).seen) | timestamp_utc | as_datetime).isoformat() + "+00:00" }}
+        last_position: >-
+          {{ ((state_attr('sensor.tilly_tracked_aircraft', 'timestamp') - (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).seen_pos) | timestamp_utc | as_datetime).isoformat() + "+00:00" }}
       availability: >
         {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
+
     - name: 'Closest Plane Flight Number'
       unique_id: closest_plane_flight_number
       state: >
@@ -723,13 +728,41 @@ template:
     - name: 'Closest Plane Bearing'
       unique_id: closest_plane_bearing
       state: >-
-        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing | round(1) }}
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing }}
+      attributes:
+        direction: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions = ['N', 'NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'] %}
+          {{ directions[(((nearest.bearing + 11.25) % 360) / 22.5) | int] }}
+        direction_fine: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions_fine = ['N','NbE','NNE','NEbN','NE','NEbE','ENE','EbN','E','EbS','ESE','SEbE','SE','SEbS','SSE','SbE','S','SbW','SSW','SWbS','SW','SWbW','WSW','WbS','W','WbN','WNW','NWbW','NW','NWbN','NNW','NbW'] %}
+          {{ directions_fine[(((nearest.bearing + 5.625) % 360) / 11.25) | int] }}
+        direction_crude: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions_crude = ['N','NE', 'E', 'SE','S','SW','W','NW'] %}
+          {{ directions_crude[(((nearest.bearing + 22.5) % 360) / 45) | int] }}
       unit_of_measurement: '°'
       icon: mdi:compass-rose
     - name: 'Closest Plane Heading'
       unique_id: closest_plane_heading
       state: >-
-        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track | round(1) }}
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track }}
+      attributes:
+        rate: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track_rate }}
+        direction: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions = ['N', 'NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'] %}
+          {{ directions[(((nearest.track + 11.25) % 360) / 22.5) | int] }}
+        direction_fine: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions_fine = ['N','NbE','NNE','NEbN','NE','NEbE','ENE','EbN','E','EbS','ESE','SEbE','SE','SEbS','SSE','SbE','S','SbW','SSW','SWbS','SW','SWbW','WSW','WbS','W','WbN','WNW','NWbW','NW','NWbN','NNW','NbW'] %}
+          {{ directions_fine[(((nearest.track + 5.625) % 360) / 11.25) | int] }}
+        direction_crude: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {% set directions_crude = ['N','NE', 'E', 'SE','S','SW','W','NW'] %}
+          {{ directions_crude[(((nearest.track + 22.5) % 360) / 45) | int] }}
       unit_of_measurement: '°'
       icon: mdi:compass
     - name: 'Closest Plane Ground Speed'
@@ -742,19 +775,25 @@ template:
       unique_id: closest_plane_altitude
       state: >-
         {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).alt_baro | round(1) }}
+      attributes:
+        rate: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).baro_rate | default((state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).geom_rate) | round(1) }}
       unit_of_measurement: 'ft'
       icon: fas:ruler-vertical
+    - name: 'Closest Plane Approach'
+      unique_id: closest_plane_approach
+      state: >-
+        {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+        {% if 90 < ((nearest.bearing - nearest.track) | int % 360) < 270 %}approaching{% else %}receding{%endif%}
+      icon: fas:map-signs
+      availability: >
+        {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
     # TODO: 
-    # compass bearing (from array)
-    # compass direction
-    # track_rate
+    # track trend - towards or away?
     # operator (needs API)
-    # approaching/receding
-    # altitude change
     # CP distance
     # CP time
     # CP bearing(?)
     # CP altitude estimate
     # Noise (estimated)
     # Noise (current)
-    # Last seen seen_pos / seen
