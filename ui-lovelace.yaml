@@ -284,6 +284,18 @@ views:
         entities:
           - lock.back_gate
         state_color: true
+  - title: Entry
+    icon: mdi:gate
+    path: Entry
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.front_floodlight
+          toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.front_leds
+          toggle: true
   - title: Living Room
     icon: mdi:sofa
     path: living
