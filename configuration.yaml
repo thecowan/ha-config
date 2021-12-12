@@ -728,7 +728,7 @@ template:
     - name: 'Closest Plane Bearing'
       unique_id: closest_plane_bearing
       state: >-
-        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing }}
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing | round(1) }}
       attributes:
         direction: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
@@ -788,12 +788,35 @@ template:
       icon: fas:map-signs
       availability: >
         {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
+    - name: 'Closest Plane CPA'
+      unique_id: closest_plane_cpa
+      state: >-
+        {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+        {% if nearest.cpa_km %}
+          {{ nearest.cpa_km | round(3) }}
+        {% endif %}
+      icon: mdi:map-marker-radius
+      unit_of_measurement: 'km'
+      attributes:
+        altitude_est: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {{ nearest.cpa_altitude_estimate | round(0) }}
+        time_est: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {{ nearest.cpa_secs | round(1) }}
+        latitude: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {{ nearest.cpa_lat }}
+        longitude: >-
+          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
+          {{ nearest.cpa_lon }}
+      availability: >
+        {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({}) %}
+        {% if nearest.cpa_km %}
+          true
+        {% endif %}
     # TODO: 
-    # track trend - towards or away?
+    # track trend - turning towards or away?
     # operator (needs API)
-    # CP distance
-    # CP time
-    # CP bearing(?)
-    # CP altitude estimate
     # Noise (estimated)
     # Noise (current)
