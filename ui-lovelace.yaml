@@ -457,7 +457,7 @@ views:
         - entity: light.outside_globes
           secondary_info: last-changed
         - type: 'custom:slider-entity-row'
-          entity: light.outside_floodlight
+          entity: light.rear_floodlight
           toggle: true
         - type: 'custom:slider-entity-row'
           entity: light.hedge
