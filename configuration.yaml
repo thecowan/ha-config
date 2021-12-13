@@ -689,6 +689,10 @@ template:
           {{ ((state_attr('sensor.tilly_tracked_aircraft', 'timestamp') - (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).seen) | timestamp_utc | as_datetime).isoformat() + "+00:00" }}
         last_position: >-
           {{ ((state_attr('sensor.tilly_tracked_aircraft', 'timestamp') - (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).seen_pos) | timestamp_utc | as_datetime).isoformat() + "+00:00" }}
+        operator: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).operator  }}
+        owner: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).owner  }}
       availability: >
         {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
 
@@ -765,6 +769,8 @@ template:
           {{ directions_crude[(((nearest.track + 22.5) % 360) / 45) | int] }}
       unit_of_measurement: '°'
       icon: mdi:compass
+      availability: >
+        {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }}
     - name: 'Closest Plane Ground Speed'
       unique_id: closest_plane_ground_speed
       state: >-
