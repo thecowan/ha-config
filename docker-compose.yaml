@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   home-assistant:
-    image: homeassistant/home-assistant:2021.11
+    image: homeassistant/home-assistant:2021.12
     network_mode: host
     volumes:
       - /home/paul/docker-data/ha-config:/config
