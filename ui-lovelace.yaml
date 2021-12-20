@@ -708,6 +708,7 @@ views:
           type: custom:fan-mode-button-row
           twoModeFan: true
           sendStateWithMode: true
+        - entity: switch.apple_iigs_monitor
       - type: 'custom:mini-graph-card'
         name: Office Climate
         points_per_hour: 20
@@ -724,7 +725,7 @@ views:
           labels_secondary: true
       - type: gauge
         entity:
-          - sensor.pixel_4_xl_battery_level
+          - sensor.pixel_6_pro_battery_level
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
