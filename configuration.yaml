@@ -831,7 +831,7 @@ template:
     - name: 'Busy Light Colour'
       unique_id: busy_light_colour
       state: >-
-        {% if is_state('binary_sensor.cow_macbookpro_in_meeting', 'off') %}
+        {% if not is_state('binary_sensor.cow_macbookpro_in_meeting', 'on') %}
           off
         {% elif is_state('binary_sensor.cow_macbookpro_muted', 'off') %}
           red
