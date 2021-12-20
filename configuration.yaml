@@ -108,49 +108,49 @@ sensor:
     device_class: battery
   - platform: mqtt
     name: "BBQ Probe 1"
-    state_topic: "inkbird/probe1"
+    state_topic: "inkbird/aced94/probe1"
     unique_id: temperature_bbq_probe1
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe 2"
-    state_topic: "inkbird/probe2"
+    state_topic: "inkbird/aced94/probe2"
     unique_id: temperature_bbq_probe2
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe 3"
-    state_topic: "inkbird/probe3"
+    state_topic: "inkbird/aced94/probe3"
     unique_id: temperature_bbq_probe3
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe 4"
-    state_topic: "inkbird/probe4"
+    state_topic: "inkbird/aced94/probe4"
     unique_id: temperature_bbq_probe4
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe 5"
-    state_topic: "inkbird/probe5"
+    state_topic: "inkbird/aced94/probe5"
     unique_id: temperature_bbq_probe5
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe 6"
-    state_topic: "inkbird/probe6"
+    state_topic: "inkbird/aced94/probe6"
     unique_id: temperature_bbq_probe6
     unit_of_measurement: "°C"
     device_class: "temperature"
     expire_after: 300
   - platform: mqtt
     name: "BBQ Probe Battery"
-    state_topic: "inkbird/batteryLevel"
+    state_topic: "inkbird/aced94/batteryLevel"
     unique_id: battery_bbq_probe
     unit_of_measurement: "%"
     device_class: "battery"
