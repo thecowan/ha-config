@@ -709,6 +709,7 @@ views:
           twoModeFan: true
           sendStateWithMode: true
         - entity: switch.apple_iigs_monitor
+        - entity: light.office_busy_light
       - type: 'custom:mini-graph-card'
         name: Office Climate
         points_per_hour: 20
