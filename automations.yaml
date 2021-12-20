@@ -628,3 +628,43 @@
         data:
           entity_id: media_player.office
           match: \U0001F42E
+- id: '1639972602920'
+  alias: Office meeting begin/change
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.busy_light_colour
+    to:
+    - red
+    - green
+    - blue
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: light.office_busy_light
+    data:
+      color_name: '{{ trigger.to_state.state }}'
+  - type: turn_on
+    device_id: 0a297a1fc333304db2d9321269236587
+    entity_id: switch.apple_iigs_monitor
+    domain: switch
+  mode: single
+- id: '1639974205992'
+  alias: Office meeting end
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.busy_light_colour
+    to: 'off'
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.office_busy_light
+    data: {}
+  - type: turn_off
+    device_id: 0a297a1fc333304db2d9321269236587
+    entity_id: switch.apple_iigs_monitor
+    domain: switch
+  mode: single

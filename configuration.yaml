@@ -826,3 +826,17 @@ template:
     # operator (needs API)
     # Noise (estimated)
     # Noise (current)
+  - unique_id: office
+    sensor:
+    - name: 'Busy Light Colour'
+      unique_id: busy_light_colour
+      state: >-
+        {% if is_state('binary_sensor.cow_macbookpro_in_meeting', 'off') %}
+          off
+        {% elif is_state('binary_sensor.cow_macbookpro_muted', 'off') %}
+          red
+        {% elif is_state('binary_sensor.cows_macbook_pro_camera_in_use', 'on') %}
+          blue
+        {% else %}
+          green
+        {% endif %}
