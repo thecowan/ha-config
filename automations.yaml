@@ -672,3 +672,58 @@
     entity_id: switch.apple_iigs_monitor
     domain: switch
   mode: single
+- id: '1640079011445'
+  alias: Populate Light Effects
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - light.hedge
+    - light.porch
+    - light.front_window_2
+    attribute: effect_list
+  - platform: state
+    entity_id:
+    - light.hedge
+    - light.porch
+    - light.front_window_2
+    attribute: effect
+  condition: []
+  action:
+  - service: input_select.set_options
+    target:
+      entity_id: '{% if trigger.entity_id == "light.hedge" %}input_select.hedge_effect{%
+        elif trigger.entity_id == "light.porch" %}input_select.porch_effect{% elif
+        trigger.entity_id == "light.front_window_2" %}input_select.front_window_effect{%
+        endif %}'
+    data:
+      options: '{{ state_attr(trigger.entity_id, "effect_list") }}'
+  - service: input_select.select_option
+    target:
+      entity_id: '{% if trigger.entity_id == "light.hedge" %}input_select.hedge_effect{%
+        elif trigger.entity_id == "light.porch" %}input_select.porch_effect{% elif
+        trigger.entity_id == "light.front_window_2" %}input_select.front_window_effect{%
+        endif %}'
+    data:
+      option: '{{ state_attr(trigger.entity_id, "effect") }}'
+  mode: single
+- id: '1640079960037'
+  alias: Publish Light Effects
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - input_select.hedge_effect
+    - input_select.porch_effect
+    - input_select.front_window_effect
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id: '{% if trigger.entity_id == "input_select.hedge_effect" %}light.hedge{%
+        elif trigger.entity_id == "input_select.porch_effect" %}light.porch{% elif
+        trigger.entity_id == "input_select.front_window_effect" %}light.front_window_2{%
+        endif %}'
+    data:
+      effect: '{{ trigger.to_state.state }}'
+  mode: single
