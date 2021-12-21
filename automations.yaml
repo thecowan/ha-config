@@ -680,21 +680,24 @@
     entity_id:
     - light.hedge
     - light.porch
-    - light.front_window_2
+    - light.porch_inside
+    - light.front_window
     attribute: effect_list
   - platform: state
     entity_id:
     - light.hedge
     - light.porch
-    - light.front_window_2
+    - light.porch_inside
+    - light.front_window
     attribute: effect
   condition: []
   action:
   - service: input_select.set_options
     target:
       entity_id: '{% if trigger.entity_id == "light.hedge" %}input_select.hedge_effect{%
-        elif trigger.entity_id == "light.porch" %}input_select.porch_effect{% elif
-        trigger.entity_id == "light.front_window_2" %}input_select.front_window_effect{%
+        elif trigger.entity_id == "light.porch" %}input_select.porch_effect% elif
+        trigger.entity_id == "light.porch_inside" %}input_select.porch_inside_effect{%
+        elif trigger.entity_id == "light.front_window" %}input_select.front_window_effect{%
         endif %}'
     data:
       options: '{{ state_attr(trigger.entity_id, "effect_list") }}'
@@ -702,7 +705,8 @@
     target:
       entity_id: '{% if trigger.entity_id == "light.hedge" %}input_select.hedge_effect{%
         elif trigger.entity_id == "light.porch" %}input_select.porch_effect{% elif
-        trigger.entity_id == "light.front_window_2" %}input_select.front_window_effect{%
+        trigger.entity_id == "light.porch_inside" %}input_select.porch_inside_effect{%
+        elif trigger.entity_id == "light.front_window" %}input_select.front_window_effect{%
         endif %}'
     data:
       option: '{{ state_attr(trigger.entity_id, "effect") }}'
@@ -715,6 +719,7 @@
     entity_id:
     - input_select.hedge_effect
     - input_select.porch_effect
+    - input_select.porch_inside_effect
     - input_select.front_window_effect
   condition: []
   action:
@@ -722,7 +727,8 @@
     target:
       entity_id: '{% if trigger.entity_id == "input_select.hedge_effect" %}light.hedge{%
         elif trigger.entity_id == "input_select.porch_effect" %}light.porch{% elif
-        trigger.entity_id == "input_select.front_window_effect" %}light.front_window_2{%
+        trigger.entity_id == "input_select.porch_inside_effect" %}light.porch_inside{%
+        elif trigger.entity_id == "input_select.front_window_effect" %}light.front_window{%
         endif %}'
     data:
       effect: '{{ trigger.to_state.state }}'
