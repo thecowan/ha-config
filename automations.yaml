@@ -733,3 +733,42 @@
     data:
       effect: '{{ trigger.to_state.state }}'
   mode: single
+- id: '1640131452644'
+  alias: Christmas Lights Turn On
+  description: ''
+  trigger:
+  - platform: sun
+    event: sunset
+    offset: '0'
+  condition: []
+  action:
+  - service: light.turn_on
+    target:
+      entity_id:
+      - light.porch
+      - light.front_window
+      - light.hedge
+  - type: turn_on
+    device_id: b7dd81ddd22fb9e355cdc312d2b57671
+    entity_id: switch.porch_sync_send
+    domain: switch
+  - type: turn_on
+    device_id: 988468d81e8fc1a0c9af30b2264c608a
+    entity_id: switch.front_window_sync_receive
+    domain: switch
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 5
+      milliseconds: 0
+  - device_id: fba657a300c488982877bea85936a7c4
+    domain: select
+    entity_id: select.hedge_playlist
+    type: select_option
+    option: Christmas Playlist
+  - device_id: b7dd81ddd22fb9e355cdc312d2b57671
+    domain: select
+    entity_id: select.porch_playlist
+    type: select_option
+    option: Christmas Mix
+  mode: single
