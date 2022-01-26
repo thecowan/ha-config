@@ -803,7 +803,7 @@ views:
       - type: glance
         title: Device Trackers
         entities:
-          - device_tracker.paul_raven
+          - device_tracker.pauls_pixel_6_pro
           # - device_tracker.google_maps_107519494119268402848
           - device_tracker.oppof1s
           - device_tracker.galaxys7a

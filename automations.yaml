@@ -116,7 +116,7 @@
 - id: '1546980843431'
   alias: Paul Arrive Home
   trigger:
-  - entity_id: device_tracker.paul_raven
+  - entity_id: device_tracker.pauls_pixel_6_pro
     from: not_home
     platform: state
     to: home
@@ -130,7 +130,7 @@
 - id: '1546984412841'
   alias: Paul Leave Home
   trigger:
-  - entity_id: device_tracker.paul_raven
+  - entity_id: device_tracker.pauls_pixel_6_pro
     platform: state
     from: home
     to: not_home
