@@ -305,6 +305,99 @@ light:
       10.41.16.17:
         name: Flux Fairy
         mode: rgb
+  - platform: template
+    lights:
+      office_ring_light_template:
+        friendly_name: "Office Ring Test"
+        unique_id: template_light_office_ring_light
+        value_template: >-
+          {% if is_state('light.office_ring_light_white', 'on') %}
+            on
+          {% elif is_state('light.office_ring_light_colour', 'on') %}
+            on
+          {% else %}
+            off
+          {% endif %}
+        turn_on:
+          service: light.turn_on
+          target:
+            entity_id: >-
+              {% if is_state('input_text.office_ring_light_last_mode', '') %}
+                light.office_ring_light_white
+              {% elif is_state('input_text.office_ring_light_last_mode', 'unknown') %}
+                light.office_ring_light_white
+              {% else %}
+                {{ states['input_text.office_ring_light_last_mode'].state }}
+              {% endif %}
+        turn_off:
+          - service: light.turn_off
+            target:
+              entity_id: light.office_ring_light_white
+          - service: light.turn_off
+            target:
+              entity_id: light.office_ring_light_colour
+        availability_template: >-
+          {% if is_state('light.office_ring_light_white', 'unavailable') %}
+            false
+          {% elif is_state('light.office_ring_light_colour', 'unavailable') %}
+            false
+          {% else %}
+            true
+          {% endif %}
+        level_template: >-
+          {{ state_attr('light.office_ring_light_master', 'brightness') }}
+        effect_template: "{{ state_attr('light.office_ring_light_colour', 'effect') }}"
+        effect_list_template: "{{ state_attr('light.office_ring_light_colour', 'effect_list') }}"
+        #temperature_template: "{{states('input_number.temperature_input') | int}}"
+        #color_template: "({{states('input_number.h_input') | int}}, {{states('input_number.s_input') | int}})"
+        color_template: >-
+          {% if is_state('light.office_ring_light_colour', 'on') %}
+            {{ state_attr('light.office_ring_light_colour', 'hs_color') }}
+          {% endif %}
+        #white_value_template
+        #set_white_value:
+        #supports_transition_template
+        #min_mireds_template
+        #max_mireds_template
+        #icon_template
+        set_level:
+          service: light.turn_on
+          target:
+            entity_id: >- 
+              light.office_ring_light_master
+          data:
+            brightness: "{{ brightness }}"
+        set_temperature:
+          service: light.turn_on
+          target:
+            entity_id: light.office_ring_light_white
+            #data:
+            #color_temp: "{{ color_temp }}"
+        set_color:
+          - service: light.turn_off
+            target:
+              entity_id: light.office_ring_light_white
+            data:
+              transition: 0
+          - service: light.turn_on
+            target:
+              entity_id: light.office_ring_light_colour
+            data:
+              effect: "solid"
+              hs_color:
+                - "{{ hs[0] }}"
+                - "{{ hs[1] }}"
+        set_effect:
+          - service: light.turn_off
+            target:
+              entity_id: light.office_ring_light_white
+            data:
+              transition: 0
+          - service: light.turn_on
+            target:
+              entity_id: light.office_ring_light_colour
+            data:
+              effect: "{{ effect }}"
 
 
 google_assistant:

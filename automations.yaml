@@ -777,7 +777,7 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: light.office_ring_light
+    entity_id: light.office_ring_light_white
     to: 'on'
   condition: []
   action:
@@ -797,5 +797,23 @@
   - service: light.turn_off
     target:
       entity_id:
-      - light.office_ring_light
+      - light.office_ring_light_white
+  mode: single
+- id: '1643532214796'
+  alias: Update last ring light state
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.office_ring_light_colour
+    to: 'on'
+  - platform: state
+    entity_id: light.office_ring_light_white
+    to: 'on'
+  condition: []
+  action:
+  - service: input_text.set_value
+    target:
+      entity_id: input_text.office_ring_light_last_mode
+    data:
+      value: '{{ trigger.entity_id }}'
   mode: single
