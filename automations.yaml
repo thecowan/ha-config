@@ -772,3 +772,30 @@
     type: select_option
     option: Christmas Mix
   mode: single
+- id: '1643507370583'
+  alias: Turn off Ring Light Colour when Ring Light White on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.office_ring_light
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id: light.office_ring_light_colour
+  mode: single
+- id: '1643507502308'
+  alias: Turn off Ring Light White when Ring Light Colour on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: light.office_ring_light_colour
+    to: 'on'
+  condition: []
+  action:
+  - service: light.turn_off
+    target:
+      entity_id:
+      - light.office_ring_light
+  mode: single
