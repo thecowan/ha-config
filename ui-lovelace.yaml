@@ -724,9 +724,6 @@ views:
         show:
           labels: true
           labels_secondary: true
-      - type: gauge
-        entity:
-          - sensor.pixel_6_pro_battery_level
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
