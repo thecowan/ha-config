@@ -679,6 +679,12 @@ views:
           colors: !include colors_yeelight.yaml
         - entity: light.diffuser_light_2
           name: Diffuser Light
+        - type: 'custom:slider-entity-row'
+          entity: light.office_ring_light
+          toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.office_ring_light_colour
+          toggle: true
       - type: 'custom:simple-thermostat'
         entity: climate.office_ac
         layout:
