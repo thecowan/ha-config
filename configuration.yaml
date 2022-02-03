@@ -349,7 +349,6 @@ light:
         effect_template: "{{ state_attr('light.office_ring_light_colour', 'effect') }}"
         effect_list_template: "{{ state_attr('light.office_ring_light_colour', 'effect_list') }}"
         #temperature_template: "{{states('input_number.temperature_input') | int}}"
-        #color_template: "({{states('input_number.h_input') | int}}, {{states('input_number.s_input') | int}})"
         color_template: >-
           {% if is_state('light.office_ring_light_colour', 'on') %}
             {{ state_attr('light.office_ring_light_colour', 'hs_color') }}
@@ -357,22 +356,84 @@ light:
         #white_value_template
         #set_white_value:
         #supports_transition_template
-        #min_mireds_template
-        #max_mireds_template
+        min_mireds_template: "100"
+        max_mireds_template: "500"
         #icon_template
         set_level:
           service: light.turn_on
           target:
-            entity_id: >- 
+            entity_id: >-
               light.office_ring_light_master
           data:
             brightness: "{{ brightness }}"
         set_temperature:
+          - service: light.turn_off
+            target:
+              entity_id: light.office_ring_light_colour
+            data:
+              transition: 0
           service: light.turn_on
           target:
             entity_id: light.office_ring_light_white
-            #data:
-            #color_temp: "{{ color_temp }}"
+          data:
+            rgbw_color:
+              - >-
+                {% set kelvin = 1000000 / color_temp %}
+                {% if kelvin > 8050 %}
+                 {% set r_comp = 225 - ((kelvin - 8080) / 86) %}
+                {% elif kelvin >= 6600 %}
+                 {% set r_comp = 254 - ((kelvin - 6600) / 50) %}
+                {% else %}
+                 {% set r_comp = 255 %}
+                {% endif %}
+                {{ r_comp }}
+              - 255
+              - >-
+                {% set kelvin = 1000000 / color_temp %}
+                {% if kelvin >= 6600 %}
+                 {% set b_comp = 255 %}
+                {% else %}
+                 {% if kelvin > 5700 %}
+                  {% set x = 5700 %}
+                  {% set y = 230 %}
+                  {% set z = 34 %}
+                 {% elif kelvin > 5100 %}
+                  {% set x = 5100 %}
+                  {% set y = 210 %}
+                  {% set z = 30 %}
+                 {% elif kelvin > 4500 %}
+                  {% set x = 4500 %}
+                  {% set y = 186 %}
+                  {% set z = 25 %}
+                 {% elif kelvin > 3906 %}
+                  {% set x = 3906 %}
+                  {% set y = 159 %}
+                  {% set z = 22 %}
+                 {% elif kelvin > 3398 %}
+                  {% set x = 3398 %}
+                  {% set y = 132 %}
+                  {% set z = 19 %}
+                 {% elif kelvin > 2900 %}
+                  {% set x = 2900 %}
+                  {% set y = 101 %}
+                  {% set z = 16 %}
+                 {% elif kelvin > 2492 %}
+                  {% set x = 2492 %}
+                  {% set y = 72 %}
+                  {% set z = 14 %}
+                 {% elif kelvin > 2100 %}
+                  {% set x = 2100 %}
+                  {% set y = 33 %}
+                  {% set z = 10 %}
+                 {% else %}
+                  {% set x = 1900 %}
+                  {% set y = 0 %}
+                  {% set z = 6 %}
+                 {% endif %}
+                 {% set b_comp = ((kelvin - x) / z) + y %}
+                {% endif %}
+                {{ b_comp }}
+              - 255
         set_color:
           - service: light.turn_off
             target:
