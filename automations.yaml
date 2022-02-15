@@ -574,11 +574,11 @@
   condition: []
   action:
   - service: light.turn_on
-    target:
-      device_id: 245c4e4fae5052b2ae415bbda80bb475
     data:
-      brightness: 255
-      color_name: white
+      color_temp: 310
+      brightness_pct: 100
+    target:
+      entity_id: light.office_ring_light
   mode: single
 - id: '1634179680814'
   alias: Turn Selfie Light off when meeting ends
