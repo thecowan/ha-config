@@ -99,7 +99,7 @@
       entity_id: automation.receiver_update_last_state
     service: automation.turn_on
 - id: '1546762544388'
-  alias: Bedside Button Left Double Click (Paul Sleep)
+  alias: 🔘  Bedside Button Left Double Click (Paul Sleep)
   trigger:
   - device_id: 937ffa395d66f28b51bde7ff03f3e77e
     domain: zha
@@ -159,7 +159,7 @@
       topic: tasmota_1222E9
       mac_address: 4C:11:AE:12:22:E9
 - id: '1622424964423'
-  alias: Update Cat Flap State from Cloud
+  alias: 🐱 Update Cat Flap State from Cloud
   description: ''
   trigger:
   - platform: state
@@ -194,11 +194,11 @@
       target_state: '{{ states("input_select.cat_flap_state") }}'
   mode: single
 - id: '1622457601269'
-  alias: Keep cats in Bedroom at Night
+  alias: 🐱  Keep cats in Bedroom at Night
   description: ''
   trigger:
   - platform: time
-    at: '22:00'
+    at: '22:00:00'
   condition: []
   action:
   - service: input_select.select_option
@@ -208,11 +208,11 @@
       option: keep_in_office
   mode: single
 - id: '1622457637235'
-  alias: Let cats out in morning
+  alias: 🐱 Let cats out in morning
   description: ''
   trigger:
   - platform: time
-    at: 05:00
+    at: 05:00:00
   condition: []
   action:
   - service: input_select.select_option
@@ -236,7 +236,7 @@
       - media_player.guest_room
   mode: single
 - id: '1622693720246'
-  alias: Doorbell Reaction
+  alias: 🛎️  Doorbell Reaction
   description: ''
   trigger:
   - platform: event
@@ -280,7 +280,7 @@
       message: boo double
   mode: single
 - id: '1622699855727'
-  alias: Bedside Buttons click (Toggle Lamps)
+  alias: 🔘  Bedside Buttons click (Toggle Lamps)
   description: ''
   trigger:
   - device_id: 2543c7facf8ff8c81c60072e55aa7c67
@@ -538,7 +538,7 @@
       option: Finished
   mode: single
 - id: '1633580036748'
-  alias: 'Blinds: Close at Sunset'
+  alias: '🪟  Blinds: Close at Sunset'
   description: ''
   trigger:
   - platform: sun
@@ -551,7 +551,7 @@
     type: set_position
   mode: single
 - id: '1633601876342'
-  alias: 'Blinds: Open in the Morning'
+  alias: '🪟  Blinds: Open in the Morning'
   description: ''
   trigger:
   - platform: time
@@ -565,7 +565,7 @@
     position: 100
   mode: single
 - id: '1634176799507'
-  alias: Turn Selfie Light on when meeting starts
+  alias: 🎥 Turn Selfie Light on when meeting starts
   description: ''
   trigger:
   - platform: state
@@ -581,7 +581,7 @@
       entity_id: light.office_ring_light
   mode: single
 - id: '1634179680814'
-  alias: Turn Selfie Light off when meeting ends
+  alias: 🎥 Turn Selfie Light off when meeting ends
   description: ''
   trigger:
   - platform: state
@@ -629,7 +629,7 @@
           entity_id: media_player.office
           match: \U0001F42E
 - id: '1639972602920'
-  alias: Office meeting begin/change
+  alias: 🎥 Office meeting begin/change
   description: ''
   trigger:
   - platform: state
@@ -651,7 +651,7 @@
     domain: switch
   mode: single
 - id: '1639974205992'
-  alias: Office meeting end
+  alias: 🎥 Office meeting end
   description: ''
   trigger:
   - platform: state
