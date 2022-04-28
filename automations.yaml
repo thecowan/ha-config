@@ -817,3 +817,39 @@
     data:
       value: '{{ trigger.entity_id }}'
   mode: single
+- id: '1647647743141'
+  alias: 4 Button Scene Switch - Backdoor
+  description: ''
+  use_blueprint:
+    path: Stringer/zigbee2mqtt-tuya-4-button-scene-switch-ts0044.yaml
+    input:
+      switch: sensor.zemismart_scene_switch_1_action
+      button_one_short_press:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
+      button_two_short_press:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
+      button_three_short_press:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
+      button_four_short_press:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
+- id: '1647660898416'
+  alias: '**TEST* 4-gang'
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.zemismart_scene_switch_1_action
+  condition: []
+  action:
+  - service: logbook.log
+    data:
+      name: fooo
+      message: button {{trigger.to_state.state}}
+  mode: single
