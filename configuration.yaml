@@ -43,6 +43,8 @@ map:
 # Track the sun
 sun:
 
+backup:
+
 # Weather prediction
 sensor:
   - platform: alpha_vantage
