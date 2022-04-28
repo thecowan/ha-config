@@ -145,6 +145,54 @@ sensor:
     unique_id: battery_bbq_probe
     unit_of_measurement: "%"
     device_class: "battery"
+  - platform: mqtt
+    name: "BBQ Backup Probe 1"
+    state_topic: "inkbird/abdd44/probe1"
+    unique_id: temperature_bbq_backup_probe1
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe 2"
+    state_topic: "inkbird/abdd44/probe2"
+    unique_id: temperature_bbq_backup_probe2
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe 3"
+    state_topic: "inkbird/abdd44/probe3"
+    unique_id: temperature_bbq_backup_probe3
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe 4"
+    state_topic: "inkbird/abdd44/probe4"
+    unique_id: temperature_bbq_backup_probe4
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe 5"
+    state_topic: "inkbird/abdd44/probe5"
+    unique_id: temperature_bbq_backup_probe5
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe 6"
+    state_topic: "inkbird/abdd44/probe6"
+    unique_id: temperature_bbq_backup_probe6
+    unit_of_measurement: "°C"
+    device_class: "temperature"
+    expire_after: 300
+  - platform: mqtt
+    name: "BBQ Backup Probe Battery"
+    state_topic: "inkbird/abdd44/batteryLevel"
+    unique_id: battery_bbq_backup_probe
+    unit_of_measurement: "%"
+    device_class: "battery"
   - platform: waqi
     token: !secret waqi_token
     locations:
