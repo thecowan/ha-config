@@ -853,3 +853,18 @@
       name: fooo
       message: button {{trigger.to_state.state}}
   mode: single
+- id: '1652232659373'
+  alias: Office Light Switch - Companion App
+  description: ''
+  trigger:
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionID: F5BB456E-1E51-4E91-A906-B94363DEB4F8
+  condition: []
+  action:
+  - service: light.toggle
+    data: {}
+    target:
+      entity_id: light.yeelight_office
+  mode: single
