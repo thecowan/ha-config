@@ -1034,3 +1034,10 @@ template:
         {% else %}
           green
         {% endif %}
+  - binary_sensor:
+    - name: 'cow-macbookpro Docked In Office'
+      state: >- 
+        {{ state_attr('sensor.cows_macbook_pro_displays', 'Display IDs') | select('eq', '1552D80D-A68A-5100-D7A7-18F5F54AE116') | list | count > 0 }}
+      delay_on: '0:00:10'
+      delay_off: '0:00:10'
+      device_class: 'connectivity'
