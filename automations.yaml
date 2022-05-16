@@ -899,3 +899,18 @@
     target:
       device_id: 4e62a9a2822e4b42b15dceb3fa53ed28
   mode: single
+- id: '1652675530780'
+  alias: Play/Pause Office - Companion App
+  description: ''
+  trigger:
+  - platform: event
+    event_type: ios.action_fired
+    event_data:
+      actionID: 755F5E0B-63A8-49BA-874F-92D5D43EF2A7
+  condition: []
+  action:
+  - service: media_player.media_play_pause
+    data: {}
+    target:
+      entity_id: media_player.office
+  mode: single
