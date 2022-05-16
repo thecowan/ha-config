@@ -1026,7 +1026,7 @@ template:
       unique_id: busy_light_colour
       state: >-
         {% if not is_state('binary_sensor.cow_macbookpro_in_meeting', 'on') %}
-          off
+          free
         {% elif is_state('binary_sensor.cow_macbookpro_muted', 'off') %}
           red
         {% elif is_state('binary_sensor.cows_macbook_pro_camera_in_use', 'on') %}
@@ -1041,3 +1041,30 @@ template:
       delay_on: '0:00:10'
       delay_off: '0:00:10'
       device_class: 'connectivity'
+    - name: 'Office Sonos Ungrouped'
+      state: >- 
+        {{ state_attr('sensor.cows_macbook_pro_displays', 'Display IDs') | select('eq', '1552D80D-A68A-5100-D7A7-18F5F54AE116') | list | count > 0 }}
+      delay_on: '0:00:10'
+      delay_off: '0:00:10'
+      device_class: 'connectivity'
+
+rest_command:
+  toggle_cow_macbookpro_mutesync:
+    url: !secret mutesync_token_cowmacbookpro
+    method: post
+    headers:
+      Authorization: !secret mutesync_token_cowmacbookpro
+
+switch:
+  - platform: template
+    switches:
+      cow_macbookpro_mutesync_mute:
+        friendly_name: "cow-macbookpro mutesync muted"
+        unique_id: "switch_template_cow_macbookpro_mutesync_muted"
+        value_template: '{{ is_state("binary_sensor.cow_macbookpro_muted", "on")}}'
+        availability_template: '{{ is_state("binary_sensor.cow_macbookpro_in_meeting", "on")}}'
+        turn_on:
+          service: rest_command.toggle_cow_macbookpro_mutesync
+        turn_off:
+          service: rest_command.toggle_cow_macbookpro_mutesync
+

@@ -635,42 +635,50 @@
   - platform: state
     entity_id: sensor.busy_light_colour
     to:
+    - blue
     - red
     - green
-    - blue
-  condition: []
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cow_macbookpro_docked_in_office
+    state: 'on'
   action:
   - service: light.turn_on
     target:
       entity_id: light.office_busy_light
     data:
       color_name: '{{ trigger.to_state.state }}'
-  - type: turn_on
-    device_id: 0a297a1fc333304db2d9321269236587
-    entity_id: switch.apple_iigs_monitor
-    domain: switch
   mode: single
 - id: '1639974205992'
   alias: 🎥 Office meeting end
   description: ''
   trigger:
   - platform: state
-    entity_id: sensor.busy_light_colour
-    to: 'off'
+    entity_id:
+    - sensor.busy_light_colour
+    to: free
     for:
       hours: 0
-      minutes: 1
-      seconds: 0
-  condition: []
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cow_macbookpro_docked_in_office
+    state: 'on'
   action:
+  - if:
+    - condition: state
+      entity_id: input_text.resume_office_music_when_meeting_ends
+      state: 'True'
+    then:
+    - service: media_player.media_play
+      data: {}
+      target:
+        entity_id: media_player.office
   - service: light.turn_off
     target:
       entity_id: light.office_busy_light
     data: {}
-  - type: turn_off
-    device_id: 0a297a1fc333304db2d9321269236587
-    entity_id: switch.apple_iigs_monitor
-    domain: switch
   mode: single
 - id: '1640079011445'
   alias: Populate Light Effects
@@ -867,4 +875,27 @@
     data: {}
     target:
       entity_id: light.yeelight_office
+  mode: single
+- id: '1652661275277'
+  alias: 🎥 Office meeting begin
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.busy_light_colour
+    from: free
+  condition:
+  - condition: state
+    entity_id: binary_sensor.cow_macbookpro_docked_in_office
+    state: 'on'
+  action:
+  - service: input_text.set_value
+    data:
+      value: '{{ is_state("media_player.office", "playing") and ((state_attr("media_player.office",
+        "group_members") | length) == 1) }}'
+    target:
+      entity_id: input_text.resume_office_music_when_meeting_ends
+  - service: media_player.media_pause
+    data: {}
+    target:
+      device_id: 4e62a9a2822e4b42b15dceb3fa53ed28
   mode: single
