@@ -891,7 +891,7 @@
   - service: input_text.set_value
     data:
       value: '{{ is_state("media_player.office", "playing") and ((state_attr("media_player.office",
-        "group_members") | length) == 1) }}'
+        "group_members") | default(''X'', true) | length) == 1) }}'
     target:
       entity_id: input_text.resume_office_music_when_meeting_ends
   - service: media_player.media_pause
