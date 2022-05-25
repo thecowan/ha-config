@@ -675,6 +675,17 @@
       data: {}
       target:
         entity_id: media_player.office
+    else:
+    - service: notify.mobile_app_pixel_6_pro
+      data:
+        message: Resume/play office music?
+        title: Meeting ended?
+        data:
+          actions:
+          - action: RESUME_OFFICE
+            title: Resume
+          - action: IGNORE
+            title: Ignore
   - service: light.turn_off
     target:
       entity_id: light.office_busy_light
@@ -910,6 +921,21 @@
   condition: []
   action:
   - service: media_player.media_play_pause
+    data: {}
+    target:
+      entity_id: media_player.office
+  mode: single
+- id: '1653435612829'
+  alias: Respond to Office Resume Notification
+  description: ''
+  trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: RESUME_OFFICE
+  condition: []
+  action:
+  - service: media_player.media_play
     data: {}
     target:
       entity_id: media_player.office
