@@ -940,3 +940,63 @@
     target:
       entity_id: media_player.office
   mode: single
+- id: '1653519007739'
+  alias: 🎵 Scrobble Office Tracks
+  description: ''
+  trigger:
+  - platform: event
+    event_type: state_changed
+    event_data:
+      entity_id: media_player.office
+  condition:
+  - condition: template
+    value_template: '{{ trigger.event.data[''new_state''][''state''] == ''playing''
+      or trigger.event.data[''old_state''][''state''] == ''playing'' }}'
+  - condition: template
+    value_template: "{{ ((state_attr(\"media_player.office\", \"group_members\") |\
+      \ default('X', true) |\n    length) == 1) }}"
+  - condition: state
+    entity_id: binary_sensor.cow_macbookpro_docked_in_office
+    state: 'on'
+  action:
+  - service: shell_command.process_mpd_data
+    data:
+      mpd_data: "'{{\n  {\n  \"old_state\": {\"media_content_type\": trigger.event.data['old_state']['attributes']['media_content_type']\
+        \ | default(\"\"),\n                \"media_content_id\": trigger.event.data['old_state']['attributes']['media_content_id']\
+        \ | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['old_state']['attributes']['media_position_updated_at'])\
+        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n  \
+        \              \"media_title\": trigger.event.data['old_state']['attributes']['media_title']\
+        \ | default(\"\") | replace(\"'\",\"\"),\n                \"media_artist\"\
+        : trigger.event.data['old_state']['attributes']['media_artist'] | default(\"\
+        \") | replace(\"'\",\"\"),\n                \"media_duration\": trigger.event.data['old_state']['attributes']['media_duration']\
+        \ | default(\"\"),\n                \"media_position\": trigger.event.data['old_state']['attributes']['media_position']\
+        \ | default(\"\"),\n                \"media_track\": trigger.event.data['old_state']['attributes']['media_track']\
+        \ | default(\"\"),\n                \"media_album_name\": trigger.event.data['old_state']['attributes']['media_album_name']\
+        \ | default(\"\"),\n                \"media_album_artist\": trigger.event.data['old_state']['attributes']['media_album_artist']\
+        \ | default(\"\"),\n                \"source\": trigger.event.data['old_state']['attributes']['source']\
+        \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['old_state']['attributes']['friendly_name']\
+        \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['old_state']['attributes']['entity_picture']\
+        \ | default(\"\"),\n                \"source_list\": trigger.event.data['old_state']['attributes']['source_list']\
+        \ | default(\"\")\n               },\n  \"new_state\": {\"media_content_type\"\
+        : trigger.event.data['new_state']['attributes']['media_content_type'] | default(\"\
+        \"),\n                \"media_content_id\": trigger.event.data['new_state']['attributes']['media_content_id']\
+        \ | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['new_state']['attributes']['media_position_updated_at'])\
+        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n  \
+        \              \"media_title\": trigger.event.data['new_state']['attributes']['media_title']\
+        \ | default(\"\") | replace(\"'\",\"\"),\n                \"media_artist\"\
+        : trigger.event.data['new_state']['attributes']['media_artist'] | default(\"\
+        \") | replace(\"'\",\"\"),\n                \"media_duration\": trigger.event.data['new_state']['attributes']['media_duration']\
+        \ | default(\"\"),\n                \"media_position\": trigger.event.data['new_state']['attributes']['media_position']\
+        \ | default(\"\"),\n                \"media_track\": trigger.event.data['new_state']['attributes']['media_track']\
+        \ | default(\"\"),\n                \"media_album_name\": trigger.event.data['new_state']['attributes']['media_album_name']\
+        \ | default(\"\"),\n                \"media_album_artist\": trigger.event.data['new_state']['attributes']['media_album_artist']\
+        \ | default(\"\"),\n                \"source\": trigger.event.data['new_state']['attributes']['source']\
+        \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['new_state']['attributes']['friendly_name']\
+        \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['new_state']['attributes']['entity_picture']\
+        \ | default(\"\"),\n                \"source_list\": trigger.event.data['new_state']['attributes']['source_list']\
+        \ | default(\"\")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])\
+        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"time_old\": as_timestamp(trigger.event.data['old_state']['last_updated'])\
+        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"state_new\": trigger.event.data['new_state']['state'],\n\
+        \   \"state_old\": trigger.event.data['old_state']['state']\n   } | to_json\n\
+        }}'\n"
+  mode: single

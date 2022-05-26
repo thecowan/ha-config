@@ -1068,3 +1068,5 @@ switch:
         turn_off:
           service: rest_command.toggle_cow_macbookpro_mutesync
 
+shell_command:
+  process_mpd_data: '/config/ha-scrobble/processmpd.sh {{ mpd_data }}'
