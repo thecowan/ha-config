@@ -208,6 +208,15 @@ sensor:
     value_template: '{{ value_json.aircraft }}'
     json_attributes_topic: "adsb/tilly"
     unique_id: adsb_tracked_aircraft
+  - platform: rest
+    name: listenbrainz_thecowan
+    resource: https://api.listenbrainz.org/1/user/thecowan/listens?count=1
+    json_attributes_path: "payload.listens[0].track_metadata"
+    json_attributes:
+      - "track_name"
+      - "artist_name"
+      - "release_name"
+    value_template: '{{ value_json.payload.listens[0].listened_at|timestamp_utc }}'
 
 binary_sensor:
   - platform: linode
