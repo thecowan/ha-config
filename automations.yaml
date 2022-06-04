@@ -976,6 +976,9 @@
         \ | default(\"\"),\n                \"source\": trigger.event.data['old_state']['attributes']['source']\
         \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['old_state']['attributes']['friendly_name']\
         \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['old_state']['attributes']['entity_picture']\
+        \ | default(\"\"),\n                \"queue_position\": trigger.event.data['old_state']['attributes']['queue_position']\
+        \ | default(\"\"),\n                \"queue_size\": trigger.event.data['old_state']['attributes']['queue_size']\
+        \ | default(\"\"),\n                \"media_channel\": trigger.event.data['old_state']['attributes']['media_channel']\
         \ | default(\"\"),\n                \"source_list\": trigger.event.data['old_state']['attributes']['source_list']\
         \ | default(\"\")\n               },\n  \"new_state\": {\"media_content_type\"\
         : trigger.event.data['new_state']['attributes']['media_content_type'] | default(\"\
@@ -993,6 +996,9 @@
         \ | default(\"\"),\n                \"source\": trigger.event.data['new_state']['attributes']['source']\
         \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['new_state']['attributes']['friendly_name']\
         \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['new_state']['attributes']['entity_picture']\
+        \ | default(\"\"),\n                \"queue_position\": trigger.event.data['new_state']['attributes']['queue_position']\
+        \ | default(\"\"),\n                \"queue_size\": trigger.event.data['new_state']['attributes']['queue_size']\
+        \ | default(\"\"),\n                \"media_channel\": trigger.event.data['new_state']['attributes']['media_channel']\
         \ | default(\"\"),\n                \"source_list\": trigger.event.data['new_state']['attributes']['source_list']\
         \ | default(\"\")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])\
         \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"time_old\": as_timestamp(trigger.event.data['old_state']['last_updated'])\
