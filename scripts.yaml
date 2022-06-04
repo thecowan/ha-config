@@ -58,21 +58,19 @@ sonos_sleep:
 sonos_play_non_matching:
   alias: Sonos Play Non-Matching
   sequence:
-  - service: media_player.select_source
+  - service: media_player.play_media
     data_template:
       entity_id: '{{ entity_id }}'
-      source: '{{ state_attr(entity_id, "source_list") | map("regex_replace", ".*"
-        + match + ".*", "") | reject("eq", "") | reject("eq", "Line-in") | list |
-        random }}'
+      media_content_type: "favorite_item_id"
+      media_content_id: '{{ state_attr("sensor.sonos_favorites", "items") | discard_values(match) | random_entry | first }}'
 sonos_play_matching:
   alias: Sonos Play Matching
   sequence:
-  - service: media_player.select_source
+  - service: media_player.play_media
     data_template:
       entity_id: '{{ entity_id }}'
-      source: '{{ state_attr(entity_id, "source_list") | map("regex_replace", "^(?!.*"
-        + match + ").*$", "") | reject("eq", "") | reject("eq", "Line-in") | list
-        | random }}'
+      media_content_type: "favorite_item_id"
+      media_content_id: '{{ state_attr("sensor.sonos_favorites", "items") | keep_values(match) | random_entry | first }}'
 sonos_join_all:
   alias: Sonos Join All
   sequence:
