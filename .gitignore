@@ -1,6 +1,3 @@
-!*.yaml
-!scenes
-!.gitignore
 secrets.yaml
 known_devices.yaml
 entity_registry.yaml
@@ -15,3 +12,7 @@ entity_registry.yaml
 dairy*.json
 .shopping_list.json
 .google_maps*
+bomgrabber
+www/community
+tts/
+themes/
