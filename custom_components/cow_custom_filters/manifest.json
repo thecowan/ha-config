@@ -1,0 +1,9 @@
+{
+  "domain": "cow_custom_filters",
+  "name": "cow's Custom filters for Jinja2 templates.",
+  "version": "0.1.0",
+  "documentation": "https://github.com/thecowan",
+  "dependencies": [],
+  "requirements": ["jinja2"],
+  "codeowners": []
+}
