@@ -389,7 +389,7 @@
   alias: Office Opple 6-button
   description: ''
   use_blueprint:
-    path: Jarne_Roussard/aqara-opple-6-buttons-for-zha.yaml
+    path: cow/aqara-opple-6-buttons-for-zha.yaml
     input:
       remote: 95b075d60c583891acfd8ad2a67d898d
       button_top_left_single_press:
