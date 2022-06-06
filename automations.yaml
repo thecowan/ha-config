@@ -979,10 +979,10 @@
         \ | default(\"\"),\n                \"queue_position\": trigger.event.data['old_state']['attributes']['queue_position']\
         \ | default(\"\"),\n                \"queue_size\": trigger.event.data['old_state']['attributes']['queue_size']\
         \ | default(\"\"),\n                \"media_channel\": trigger.event.data['old_state']['attributes']['media_channel']\
-        \ | default(\"\"),\n                \"source_list\": trigger.event.data['old_state']['attributes']['source_list']\
-        \ | default(\"\")\n               },\n  \"new_state\": {\"media_content_type\"\
-        : trigger.event.data['new_state']['attributes']['media_content_type'] | default(\"\
-        \"),\n                \"media_content_id\": trigger.event.data['new_state']['attributes']['media_content_id']\
+        \ | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\"\
+        : trigger.event.data['old_state']['attributes']['source_list'] | default(\"\
+        \")\n               },\n  \"new_state\": {\"media_content_type\": trigger.event.data['new_state']['attributes']['media_content_type']\
+        \ | default(\"\"),\n                \"media_content_id\": trigger.event.data['new_state']['attributes']['media_content_id']\
         \ | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['new_state']['attributes']['media_position_updated_at'])\
         \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n  \
         \              \"media_title\": trigger.event.data['new_state']['attributes']['media_title']\
@@ -999,8 +999,9 @@
         \ | default(\"\"),\n                \"queue_position\": trigger.event.data['new_state']['attributes']['queue_position']\
         \ | default(\"\"),\n                \"queue_size\": trigger.event.data['new_state']['attributes']['queue_size']\
         \ | default(\"\"),\n                \"media_channel\": trigger.event.data['new_state']['attributes']['media_channel']\
-        \ | default(\"\"),\n                \"source_list\": trigger.event.data['new_state']['attributes']['source_list']\
-        \ | default(\"\")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])\
+        \ | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\"\
+        : trigger.event.data['new_state']['attributes']['source_list'] | default(\"\
+        \")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])\
         \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"time_old\": as_timestamp(trigger.event.data['old_state']['last_updated'])\
         \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"state_new\": trigger.event.data['new_state']['state'],\n\
         \   \"state_old\": trigger.event.data['old_state']['state']\n   } | to_json\n\
