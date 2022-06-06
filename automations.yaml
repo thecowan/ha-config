@@ -1113,3 +1113,31 @@
       message: Leaving High Alert Mode
       title: High Alert
   mode: single
+- id: '1654521196420'
+  alias: 'Button Test: MQTT Lumi Button 3'
+  description: ''
+  use_blueprint:
+    path: Drafted/aqara-buttons-all-in-one-zigbee2mqtt.yaml
+    input:
+      action_sensor: sensor.lumi_switch_3_action
+      single_action:
+      - service: notify.mobile_app_cow_s_macbook_pro
+        data:
+          message: 'Click: single!'
+      double_action:
+      - service: notify.mobile_app_cow_s_macbook_pro
+        data:
+          message: 'Click: double!'
+      triple_action:
+      - service: notify.mobile_app_cow_s_macbook_pro
+        data:
+          message: 'Click: triple'
+      quadruple_action:
+      - service: notify.mobile_app_cow_s_macbook_pro
+        data:
+          message: 'Click: quadruple!'
+      hold_action:
+      - service: notify.mobile_app_cow_s_macbook_pro
+        data:
+          message: Hold
+      shake_action: []
