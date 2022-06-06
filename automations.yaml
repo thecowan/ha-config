@@ -351,7 +351,7 @@
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
 - id: '1624101614357'
-  alias: Toggle Outside Lights
+  alias: 🔘 Toggle Outside Lights
   description: ''
   trigger:
   - device_id: ab450a7b3d8039f7716d894b38bf16e6
@@ -364,6 +364,7 @@
   - service: light.toggle
     target:
       entity_id: light.outside_globes
+    data: {}
   mode: single
 - id: '1624283044736'
   alias: Telegram Home
@@ -386,7 +387,7 @@
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
 - id: '1624427657811'
-  alias: Office Opple 6-button
+  alias: 🔘 Office Opple 6-button
   description: ''
   use_blueprint:
     path: cow/aqara-opple-6-buttons-for-zha.yaml
@@ -396,26 +397,32 @@
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
       button_top_left_triple_press:
       - service: fan.toggle
         target:
           entity_id: fan.office_diffuser
+        data: {}
       button_middle_left_single_press:
       - service: media_player.volume_down
         target:
           entity_id: media_player.office
+        data: {}
       button_middle_left_double_press:
       - service: media_player.media_previous_track
         target:
           entity_id: media_player.office
+        data: {}
       button_middle_right_single_press:
       - service: media_player.volume_up
         target:
           entity_id: media_player.office
+        data: {}
       button_middle_right_double_press:
       - service: media_player.media_next_track
         target:
           entity_id: media_player.office
+        data: {}
       button_bottom_left_single_press:
       - type: brightness_decrease
         device_id: 8a466522fced3aa1009b180e4be85ada
@@ -431,6 +438,7 @@
       - service: light.turn_off
         target:
           entity_id: light.yeelight_office
+        data: {}
       button_bottom_right_hold_in:
       - service: light.turn_on
         data:
@@ -443,13 +451,16 @@
       - service: media_player.media_play_pause
         target:
           entity_id: media_player.office
+        data: {}
       button_middle_right_hold_in:
       - service: sonos.unjoin
         target:
           entity_id: media_player.office
+        data: {}
       - service: media_player.clear_playlist
         target:
           entity_id: media_player.office
+        data: {}
       - service: media_player.shuffle_set
         data:
           shuffle: true
@@ -474,7 +485,7 @@
           color_temp: '{{ max(state_attr("light.yeelight_office", "color_temp")|int
             - 20, state_attr("light.yeelight_office", "min_mireds")|int) }}'
 - id: '1624503867808'
-  alias: Toggle Party Lights
+  alias: 🔘 Toggle Party Lights
   description: ''
   trigger:
   - device_id: ab450a7b3d8039f7716d894b38bf16e6
@@ -491,7 +502,7 @@
       effect: colorloop
   mode: single
 - id: '1628031664645'
-  alias: Office Light Switch
+  alias: 🔘 Office Light Switch
   description: ''
   use_blueprint:
     path: carlosmesquita/zha-xiaomi-mijia-round-wireless-switch-wxkg01lm-lumi-sensor-switch.yaml
@@ -501,6 +512,7 @@
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
 - id: '1629256775832'
   alias: ⚡ Dishwasher Running
   description: ''
@@ -594,7 +606,7 @@
       entity_id: light.office_ring_light
   mode: single
 - id: '1638313007824'
-  alias: Office Magic Cube
+  alias: 🔘 Office Magic Cube
   description: ''
   use_blueprint:
     path: Mikkelmoeller/aqara-magic-cube-zha-51-actions.yaml
@@ -604,25 +616,30 @@
       - service: media_player.volume_up
         target:
           entity_id: media_player.office
+        data: {}
       rotate_left:
       - service: media_player.volume_down
         target:
           entity_id: media_player.office
+        data: {}
       knock_any_side: true
       cube_knock_any:
       - service: media_player.media_play_pause
         target:
           entity_id: media_player.office
+        data: {}
       cube_flip_180:
       - service: media_player.media_previous_track
         target:
           entity_id: media_player.office
+        data: {}
       flip_180: true
       flip_90: true
       cube_flip_90:
       - service: media_player.media_next_track
         target:
           entity_id: media_player.office
+        data: {}
       cube_shake:
       - service: script.sonos_play_matching
         data:
