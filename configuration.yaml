@@ -286,6 +286,16 @@ notify:
     api_key: !secret llamalab_secret
     to: !secret llamalab_to
     device: !secret llamalab_device
+  - platform: kodi
+    name: "Kodi cow-macbookpro"
+    host: 10.41.11.2
+    port: 8788
+    username: !secret kodi_username
+    password: !secret kodi_password
+  - platform: telegram
+    name: telegram_paul
+    chat_id: !secret telegram_paul_id
+
 
 linode:
   access_token: !secret linode_access_token
@@ -298,7 +308,9 @@ mqtt:
   port: 8883
 
 group: !include groups.yaml
+
 automation: !include automations.yaml
+
 script: !include scripts.yaml
 
 # mqtt_eventstream:
@@ -627,8 +639,6 @@ input_text:
 
 input_number:
 
-input_datetime:
-
 counter:
 
 timer:
@@ -796,11 +806,6 @@ telegram_bot:
     api_key: !secret telegram_bot_api_key
     allowed_chat_ids:
       - !secret telegram_paul_id
-
-notify:
-  - platform: telegram
-    name: telegram_paul
-    chat_id: !secret telegram_paul_id
 
 lock:
   - platform: template

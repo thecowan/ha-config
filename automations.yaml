@@ -854,7 +854,7 @@
       value: '{{ trigger.entity_id }}'
   mode: single
 - id: '1647647743141'
-  alias: 4 Button Scene Switch - Backdoor
+  alias: 🔘 4 Button Scene Switch - Backdoor
   description: ''
   use_blueprint:
     path: Stringer/zigbee2mqtt-tuya-4-button-scene-switch-ts0044.yaml
@@ -864,18 +864,22 @@
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
       button_two_short_press:
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
       button_three_short_press:
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
       button_four_short_press:
       - service: light.toggle
         target:
           entity_id: light.yeelight_office
+        data: {}
 - id: '1647660898416'
   alias: '**TEST* 4-gang'
   description: ''
@@ -1023,4 +1027,89 @@
         \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"state_new\": trigger.event.data['new_state']['state'],\n\
         \   \"state_old\": trigger.event.data['old_state']['state']\n   } | to_json\n\
         }}'\n"
+  mode: single
+- id: '1654515497943'
+  alias: 📢 Alert during High Alert Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.guest_room_door
+    - binary_sensor.dots_office_door
+    - binary_sensor.bedroom_door
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.high_alert_mode
+    state: 'on'
+  action:
+  - service: notify.mobile_app_cow_s_macbook_pro
+    data:
+      message: Alert {{ trigger.entity_id }}
+      title: Alert!
+  - service: notify.mobile_app_pixel_6_pro
+    data:
+      message: Alert {{ trigger.entity_id }}
+      title: Alert!
+  - service: notify.kodi_cow_macbookpro
+    data:
+      message: Alert {{ trigger.entity_id }}
+      title: Alert!
+  - service: media_player.media_stop
+    data: {}
+    target:
+      entity_id: media_player.kodi_cows_macbook_pro
+  - service: kodi.call_method
+    data:
+      method: Input.Home
+    target:
+      entity_id: media_player.kodi_cows_macbook_pro
+  mode: single
+- id: '1654517529638'
+  alias: 📢 Enter High Alert Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.kodi_cows_macbook_pro
+    to: playing
+  condition:
+  - condition: state
+    entity_id: input_boolean.high_alert_mode
+    state: 'off'
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.high_alert_mode
+  - service: notify.kodi_cow_macbookpro
+    data:
+      message: Entering High Alert Mode
+      title: High Alert
+  mode: single
+- id: '1654517690774'
+  alias: 📢 Exit High Alert Mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - media_player.kodi_cows_macbook_pro
+    from: playing
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: input_boolean.high_alert_mode
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.high_alert_mode
+  - service: notify.kodi_cow_macbookpro
+    data:
+      message: Leaving High Alert Mode
+      title: High Alert
   mode: single
