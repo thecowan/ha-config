@@ -16,3 +16,5 @@ bomgrabber
 www/community
 tts/
 themes/
+.DS_Store
+__pycache__
