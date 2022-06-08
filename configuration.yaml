@@ -221,6 +221,9 @@ sensor:
 binary_sensor:
   - platform: linode
     nodes: !secret linode_nodes
+  - platform: workday
+    country: AU
+    province: NSW
 
 # Text to speech
 tts:
