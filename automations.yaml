@@ -1141,3 +1141,36 @@
         data:
           message: Hold
       shake_action: []
+- id: '1654644534445'
+  alias: Start workday in office
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.cow_macbook_pro_active
+    to: 'on'
+  condition:
+  - condition: template
+    value_template: '{{ as_timestamp(state_attr(''automation.start_workday_in_office'',''last_triggered''))|timestamp_custom(''%Y.%j'')
+      != as_timestamp(now())|timestamp_custom(''%Y.%j'') }}'
+  action:
+  - if:
+    - condition: not
+      conditions:
+      - condition: state
+        entity_id: media_player.office
+        state: playing
+    then:
+    - service: notify.mobile_app_pixel_6_pro
+      data:
+        message: Resume/play office music?
+        title: Workday beginning!
+        data:
+          actions:
+          - action: RESUME_OFFICE
+            title: Resume
+          - action: SHUFFLE_OFFICE
+            title: Shuffle
+          - action: IGNORE
+            title: Ignore
+  mode: single
