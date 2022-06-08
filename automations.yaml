@@ -1174,3 +1174,22 @@
           - action: IGNORE
             title: Ignore
   mode: single
+- id: '1654648261134'
+  alias: Respond to Office Shuffle Notification
+  description: ''
+  trigger:
+  - platform: event
+    event_type: mobile_app_notification_action
+    event_data:
+      action: SHUFFLE_OFFICE
+  condition: []
+  action:
+  - service: sonos.unjoin
+    data: {}
+    target:
+      entity_id: media_player.office
+  - service: script.sonos_play_matching
+    data:
+      entity_id: media_player.office
+      match: 🏠
+  mode: single
