@@ -628,6 +628,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/uptime-card/uptime-card.js'
       type: module
+    - url: '/hacsfiles/apexcharts-card/apexcharts-card.js'
+      type: module
 
 input_boolean:
   guest_mode:
@@ -1044,6 +1046,13 @@ template:
         {% else %}
           green
         {% endif %}
+  - unique_id: hnt_wallet_master
+    sensor:
+    - name: 'Helium Master Wallet Value'
+      unique_id: hnt_wallet_master_value_usd
+      state: "{{ (states('sensor.helium_hnt_oracle_price') |float(0) * states('sensor.helium_wallet_master') | float(0)) | round(2) }}"
+      unit_of_measurement: "USD"
+      icon: "mdi:wallet"
   - binary_sensor:
     - name: 'cow-macbookpro Docked In Office'
       state: >- 
@@ -1090,12 +1099,12 @@ rest:
     scan_interval: 60
     sensor:
       - name: "Linxdot CPU Temperature"
-        value_template: "{{ value_json.cpu_temp }}"
+        value_template: "{{ value_json.cpu_temp | round(1) }}"
         unit_of_measurement: '°C'
         device_class: "temperature"
         state_class: "measurement"
       - name: "Linxdot CPU Load"
-        value_template: "{{ value_json.cpu_usage }}"
+        value_template: "{{ value_json.cpu_usage | round(1) }}"
         state_class: "measurement"
         unit_of_measurement: '%'
       - name: "Linxdot Miner Height"
@@ -1105,7 +1114,7 @@ rest:
         value_template: "{{ value_json.block_height | int }}"
         state_class: "measurement"
       - name: "Linxdot Sync %"
-        value_template: "{{ (value_json.miner_height | float) / (value_json.block_height | float) * 100 }}"
+        value_template: "{{ ((value_json.miner_height | float) / (value_json.block_height | float) * 100) | round(6) }}"
         state_class: "measurement"
       - name: "Linxdot Sync Lag"
         value_template: "{{ (value_json.block_height | int) - (value_json.miner_height | int) }}"
