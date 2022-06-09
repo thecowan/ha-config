@@ -125,6 +125,11 @@ sensor:
     route: "L1"
     destination: "Central"
     name: "Next Light Rail to Central"
+  - platform: helium
+    hotspots:
+      - !secret helium_hotspot_id
+    wallets:
+      - !secret helium_wallet_id
 
 binary_sensor:
   - platform: linode
@@ -621,6 +626,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/miflora-card/miflora-card.js'
       type: module
+    - url: '/hacsfiles/uptime-card/uptime-card.js'
+      type: module
 
 input_boolean:
   guest_mode:
@@ -1077,3 +1084,43 @@ shell_command:
 cow_custom_filters:
 
 my:
+
+rest:
+  - resource: http://10.41.2.69/info/system
+    scan_interval: 60
+    sensor:
+      - name: "Linxdot CPU Temperature"
+        value_template: "{{ value_json.cpu_temp }}"
+        unit_of_measurement: '°C'
+        device_class: "temperature"
+        state_class: "measurement"
+      - name: "Linxdot CPU Load"
+        value_template: "{{ value_json.cpu_usage }}"
+        state_class: "measurement"
+        unit_of_measurement: '%'
+      - name: "Linxdot Miner Height"
+        value_template: "{{ value_json.miner_height | int }}"
+        state_class: "measurement"
+      - name: "Linxdot Block Height"
+        value_template: "{{ value_json.block_height | int }}"
+        state_class: "measurement"
+      - name: "Linxdot Sync %"
+        value_template: "{{ (value_json.miner_height | float) / (value_json.block_height | float) * 100 }}"
+        state_class: "measurement"
+      - name: "Linxdot Sync Lag"
+        value_template: "{{ (value_json.block_height | int) - (value_json.miner_height | int) }}"
+        state_class: "measurement"
+
+
+utility_meter:
+  helium_wallet_today:
+    source: sensor.helium_wallet_master
+    cycle: daily
+
+  helium_wallet_weekly:
+    source: sensor.helium_wallet_master
+    cycle: weekly
+
+  helium_wallet_monthly:
+    source: sensor.helium_wallet_master
+    cycle: monthly
