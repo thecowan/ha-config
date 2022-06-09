@@ -109,6 +109,22 @@ sensor:
       - "artist_name"
       - "release_name"
     value_template: '{{ value_json.payload.listens[0].listened_at|timestamp_utc }}'
+  - platform: transport_nsw
+    stop_id: "2040100"
+    api_key: !secret tfnsw_api_key
+    route: "469"
+    name: "Next 469"
+  - platform: transport_nsw
+    stop_id: "204068"
+    api_key: !secret tfnsw_api_key
+    route: "470"
+    name: "Next 470"
+  - platform: transport_nsw
+    stop_id: "2040115"
+    api_key: !secret tfnsw_api_key
+    route: "L1"
+    destination: "Central"
+    name: "Next Light Rail to Central"
 
 binary_sensor:
   - platform: linode
@@ -701,13 +717,13 @@ owntracks:
   waypoint_whitelist:
     - paul
 
-zoneminder:
-  - host: !secret zoneminder_host
-    username: !secret zoneminder_username
-    password: !secret zoneminder_password
+#zoneminder:
+#  - host: !secret zoneminder_host
+#    username: !secret zoneminder_username
+#    password: !secret zoneminder_password
 
 camera:
-  - platform: zoneminder
+#  - platform: zoneminder
   - platform: local_file
     name: "Sydney Weather Radar"
     file_path: /config/bomgrabber/IDR714.composite.gif
@@ -1059,3 +1075,5 @@ shell_command:
   process_mpd_data: '/config/ha-scrobble/processmpd.sh {{ mpd_data }}'
 
 cow_custom_filters:
+
+my:
