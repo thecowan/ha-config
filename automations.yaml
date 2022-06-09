@@ -387,7 +387,7 @@
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
 - id: '1624427657811'
-  alias: 🔘 Office Opple 6-button
+  alias: 🔘 Office Opple 6-button [legacy]
   description: ''
   use_blueprint:
     path: cow/aqara-opple-6-buttons-for-zha.yaml
@@ -1193,3 +1193,152 @@
       entity_id: media_player.office
       match: 🏠
   mode: single
+- id: '1654755382943'
+  alias: Leave Home without Dogs
+  description: ''
+  trigger:
+  - platform: mqtt
+    topic: /foo/bar
+  condition: []
+  action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.office
+    data:
+      media_content_id: media-source://radio_browser/961a0451-0601-11e8-ae97-52543be04c81
+      media_content_type: audio/aac
+    metadata:
+      title: ABC Local Radio 702 Sydney (AAC)
+      thumbnail: http://www.abc.net.au/cm/rimage/7893524-1x1-large.png?v=6
+      media_class: music
+      children_media_class:
+      navigateIds:
+      - {}
+      - media_content_type: app
+        media_content_id: media-source://radio_browser
+      - media_content_type: music
+        media_content_id: media-source://radio_browser/country/AU
+  mode: single
+- id: '1654777172274'
+  alias: 🔘 Office Opple 6-button [new]
+  description: ''
+  use_blueprint:
+    path: cow/zigbee2mqtt-z2m-aqara-opple-6-button-remote-3-bands-wxcjkg13lm.yaml
+    input:
+      switch: sensor.office_opple_6_button_action
+      button_1_single:
+      - service: light.toggle
+        target:
+          entity_id: light.yeelight_office
+        data: {}
+      button_1_triple:
+      - service: fan.toggle
+        target:
+          entity_id: fan.office_diffuser
+        data: {}
+      button_3_single:
+      - service: media_player.volume_down
+        target:
+          entity_id: media_player.office
+        data: {}
+      button_3_double:
+      - service: media_player.media_previous_track
+        target:
+          entity_id: media_player.office
+        data: {}
+      button_3_hold:
+      - service: media_player.media_play_pause
+        target:
+          entity_id: media_player.office
+        data: {}
+      button_4_single:
+      - service: media_player.volume_up
+        target:
+          entity_id: media_player.office
+        data: {}
+      button_4_double:
+      - service: media_player.media_next_track
+        target:
+          entity_id: media_player.office
+        data: {}
+      button_4_hold:
+      - service: media_player.unjoin
+        target:
+          entity_id: media_player.office
+        data: {}
+      - service: media_player.clear_playlist
+        target:
+          entity_id: media_player.office
+        data: {}
+      - service: media_player.shuffle_set
+        data:
+          shuffle: true
+        target:
+          entity_id: media_player.office
+      - service: script.sonos_play_matching
+        data:
+          entity_id: media_player.office
+          match: \U0001F42E
+      button_5_single:
+      - type: brightness_decrease
+        device_id: 8a466522fced3aa1009b180e4be85ada
+        entity_id: light.yeelight_office
+        domain: light
+      button_5_double:
+      - service: light.turn_on
+        target:
+          entity_id: light.yeelight_office
+        data:
+          color_temp: '{{ max(state_attr("light.yeelight_office", "color_temp")|int
+            - 20, state_attr("light.yeelight_office", "min_mireds")|int) }}'
+      button_5_hold:
+      - service: light.turn_off
+        target:
+          entity_id: light.yeelight_office
+        data: {}
+      button_6_single:
+      - type: brightness_increase
+        device_id: 8a466522fced3aa1009b180e4be85ada
+        entity_id: light.yeelight_office
+        domain: light
+      button_6_double:
+      - service: light.turn_on
+        target:
+          entity_id: light.yeelight_office
+        data:
+          color_temp: '{{ min(state_attr("light.yeelight_office", "color_temp")|int
+            + 20, state_attr("light.yeelight_office", "max_mireds")|int) }}'
+      button_6_hold:
+      - service: light.turn_on
+        data:
+          brightness_pct: 100
+          color_temp: 299
+        target:
+          entity_id: light.yeelight_office
+- id: '1654780302456'
+  alias: Aqara Magic Cube Zigbee2MQTT - 2022-05-05
+  description: ''
+  use_blueprint:
+    path: SirGoodenough/Zigbee2MQTT - Xiaomi Cube Controller.yaml
+    input:
+      rotate_cw_face_0:
+      - service: media_player.volume_up
+        data: {}
+        target:
+          entity_id: media_player.office
+      remote: sensor.office_aqara_cube_action
+      rotate_ccw_face_0:
+      - service: media_player.volume_down
+        data: {}
+        target:
+          entity_id: media_player.office
+      rotate_cw_face_4:
+      - device_id: 8a466522fced3aa1009b180e4be85ada
+        domain: light
+        entity_id: light.yeelight_office
+        type: brightness_increase
+      rotate_ccw_face_4:
+      - device_id: 8a466522fced3aa1009b180e4be85ada
+        domain: light
+        entity_id: light.yeelight_office
+        type: brightness_decrease
