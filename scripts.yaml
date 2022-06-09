@@ -57,6 +57,24 @@ sonos_sleep:
   mode: single
 sonos_play_non_matching:
   alias: Sonos Play Non-Matching
+  description: Randomly choose and play a Sonos favourite which does NOT contain a particular character
+  fields:
+    entity_id:
+      name: "Entity ID"
+      description: "The device to target"
+      example: "media_player.office"
+      required: true
+      selector:
+        entity:
+          integration: "sonos"
+          domain: "media_player"
+    match:
+      name: "Match String"
+      description: "The string to avoid"
+      example: "Home"
+      required: true
+      selector:
+        text:
   sequence:
   - service: media_player.play_media
     data_template:
@@ -65,6 +83,24 @@ sonos_play_non_matching:
       media_content_id: '{{ state_attr("sensor.sonos_favorites", "items") | discard_values(match) | random_entry | first }}'
 sonos_play_matching:
   alias: Sonos Play Matching
+  description: Randomly choose and play a Sonos favourite containing a particular character
+  fields:
+    entity_id:
+      name: "Entity ID"
+      description: "The device to target"
+      example: "media_player.office"
+      required: true
+      selector:
+        entity:
+          integration: "sonos"
+          domain: "media_player"
+    match:
+      name: "Match String"
+      description: "The string to match"
+      example: "Home"
+      required: true
+      selector:
+        text:
   sequence:
   - service: media_player.play_media
     data_template:
