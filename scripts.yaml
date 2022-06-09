@@ -4,7 +4,7 @@ sonos_say:
   - service: sonos.snapshot
     data_template:
       entity_id: '{{ sonos_entity }}'
-  - service: sonos.unjoin
+  - service: media_player.unjoin
     data_template:
       entity_id: '{{ sonos_entity }}'
   - service: media_player.volume_set
@@ -38,7 +38,7 @@ sonos_romance:
 sonos_sleep:
   alias: Sonos Sleep Music
   sequence:
-  - service: sonos.unjoin
+  - service: media_player.unjoin
     data:
       entity_id: media_player.master_bedroom
   - service: media_player.volume_set
@@ -74,17 +74,17 @@ sonos_play_matching:
 sonos_join_all:
   alias: Sonos Join All
   sequence:
-  - service: sonos.join
+  - service: media_player.join
     data:
-      master: media_player.office
-      entity_id:
+      entity_id: media_player.office
+      group_members:
       - media_player.kitchen
       - media_player.master_bedroom
       - media_player.guest_room
 sonos_ungroup_and_play:
   alias: Sonos Ungroup & Play
   sequence:
-  - service: sonos.unjoin
+  - service: media_player.unjoin
     data_template:
       entity_id: '{{ sonos_entity }}'
   - service: media_player.volume_set

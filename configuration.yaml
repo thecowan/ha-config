@@ -93,108 +93,6 @@ sensor:
     username: !secret untappd_username
     id: !secret untappd_id
     secret: !secret untappd_secret
-  - platform: mqtt
-    state_topic: "owntracks/paul/raven"
-    name: "Battery Paul"
-    unit_of_measurement: "%"
-    value_template: '{{ value_json.batt }}'
-    device_class: battery
-  - platform: mqtt
-    name: "BBQ Probe 1"
-    state_topic: "inkbird/aced94/probe1"
-    unique_id: temperature_bbq_probe1
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe 2"
-    state_topic: "inkbird/aced94/probe2"
-    unique_id: temperature_bbq_probe2
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe 3"
-    state_topic: "inkbird/aced94/probe3"
-    unique_id: temperature_bbq_probe3
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe 4"
-    state_topic: "inkbird/aced94/probe4"
-    unique_id: temperature_bbq_probe4
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe 5"
-    state_topic: "inkbird/aced94/probe5"
-    unique_id: temperature_bbq_probe5
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe 6"
-    state_topic: "inkbird/aced94/probe6"
-    unique_id: temperature_bbq_probe6
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Probe Battery"
-    state_topic: "inkbird/aced94/batteryLevel"
-    unique_id: battery_bbq_probe
-    unit_of_measurement: "%"
-    device_class: "battery"
-  - platform: mqtt
-    name: "BBQ Backup Probe 1"
-    state_topic: "inkbird/abdd44/probe1"
-    unique_id: temperature_bbq_backup_probe1
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe 2"
-    state_topic: "inkbird/abdd44/probe2"
-    unique_id: temperature_bbq_backup_probe2
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe 3"
-    state_topic: "inkbird/abdd44/probe3"
-    unique_id: temperature_bbq_backup_probe3
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe 4"
-    state_topic: "inkbird/abdd44/probe4"
-    unique_id: temperature_bbq_backup_probe4
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe 5"
-    state_topic: "inkbird/abdd44/probe5"
-    unique_id: temperature_bbq_backup_probe5
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe 6"
-    state_topic: "inkbird/abdd44/probe6"
-    unique_id: temperature_bbq_backup_probe6
-    unit_of_measurement: "°C"
-    device_class: "temperature"
-    expire_after: 300
-  - platform: mqtt
-    name: "BBQ Backup Probe Battery"
-    state_topic: "inkbird/abdd44/batteryLevel"
-    unique_id: battery_bbq_backup_probe
-    unit_of_measurement: "%"
-    device_class: "battery"
   - platform: waqi
     token: !secret waqi_token
     locations:
@@ -202,12 +100,6 @@ sensor:
   - platform: seventeentrack
     username: !secret seventeentrack_email
     password: !secret seventeentrack_password
-  - platform: mqtt
-    state_topic: "adsb/tilly"
-    name: "Tilly Tracked Aircraft"
-    value_template: '{{ value_json.aircraft }}'
-    json_attributes_topic: "adsb/tilly"
-    unique_id: adsb_tracked_aircraft
   - platform: rest
     name: listenbrainz_thecowan
     resource: https://api.listenbrainz.org/1/user/thecowan/listens?count=1
@@ -272,10 +164,6 @@ media_player:
       # fm unchanged
       # am unchanged
       "universal-port": 'Port'
-  - platform: androidtv
-    name: Guest Room TV
-    host: 10.41.10.53
-
 
 notify:
   - platform: pushbullet
@@ -304,11 +192,104 @@ linode:
   access_token: !secret linode_access_token
 
 mqtt:
-  broker: !secret mqtt_broker
-  username: !secret mqtt_username
-  password: !secret mqtt_password
+  #broker: !secret mqtt_broker
+  #username: !secret mqtt_username
+  #password: !secret mqtt_password
   certificate: /etc/ssl/certs/ca-certificates.crt
-  port: 8883
+  #port: 8883
+  sensor:
+    - state_topic: "adsb/tilly"
+      name: "Tilly Tracked Aircraft"
+      value_template: '{{ value_json.aircraft }}'
+      json_attributes_topic: "adsb/tilly"
+      unique_id: adsb_tracked_aircraft
+    - state_topic: "owntracks/paul/raven"
+      name: "Battery Paul"
+      unit_of_measurement: "%"
+      value_template: '{{ value_json.batt }}'
+      device_class: battery
+    - name: "BBQ Probe 1"
+      state_topic: "inkbird/aced94/probe1"
+      unique_id: temperature_bbq_probe1
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe 2"
+      state_topic: "inkbird/aced94/probe2"
+      unique_id: temperature_bbq_probe2
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe 3"
+      state_topic: "inkbird/aced94/probe3"
+      unique_id: temperature_bbq_probe3
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe 4"
+      state_topic: "inkbird/aced94/probe4"
+      unique_id: temperature_bbq_probe4
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe 5"
+      state_topic: "inkbird/aced94/probe5"
+      unique_id: temperature_bbq_probe5
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe 6"
+      state_topic: "inkbird/aced94/probe6"
+      unique_id: temperature_bbq_probe6
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Probe Battery"
+      state_topic: "inkbird/aced94/batteryLevel"
+      unique_id: battery_bbq_probe
+      unit_of_measurement: "%"
+      device_class: "battery"
+    - name: "BBQ Backup Probe 1"
+      state_topic: "inkbird/abdd44/probe1"
+      unique_id: temperature_bbq_backup_probe1
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe 2"
+      state_topic: "inkbird/abdd44/probe2"
+      unique_id: temperature_bbq_backup_probe2
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe 3"
+      state_topic: "inkbird/abdd44/probe3"
+      unique_id: temperature_bbq_backup_probe3
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe 4"
+      state_topic: "inkbird/abdd44/probe4"
+      unique_id: temperature_bbq_backup_probe4
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe 5"
+      state_topic: "inkbird/abdd44/probe5"
+      unique_id: temperature_bbq_backup_probe5
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe 6"
+      state_topic: "inkbird/abdd44/probe6"
+      unique_id: temperature_bbq_backup_probe6
+      unit_of_measurement: "°C"
+      device_class: "temperature"
+      expire_after: 300
+    - name: "BBQ Backup Probe Battery"
+      state_topic: "inkbird/abdd44/batteryLevel"
+      unique_id: battery_bbq_backup_probe
+      unit_of_measurement: "%"
+      device_class: "battery"
 
 group: !include groups.yaml
 
@@ -362,14 +343,6 @@ light:
       - light.kitchen_downlight_near
       - light.kitchen_downlight_far
       - light.kitchen_downlight_centre
-  - platform: flux_led
-    devices:
-      10.41.16.16:
-        name: Flux Party
-        mode: rgb
-      10.41.16.17:
-        name: Flux Fairy
-        mode: rgb
   - platform: template
     lights:
       office_ring_light_template:
@@ -738,9 +711,6 @@ camera:
   - platform: local_file
     name: "Sydney Weather Radar"
     file_path: /config/bomgrabber/IDR714.composite.gif
-  - platform: mjpeg
-    name: "Office Wall Panel"
-    mjpeg_url: "http://10.41.13.100:2971/camera/stream"
 
 mobile_app:
 

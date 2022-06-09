@@ -453,7 +453,7 @@
           entity_id: media_player.office
         data: {}
       button_middle_right_hold_in:
-      - service: sonos.unjoin
+      - service: media_player.unjoin
         target:
           entity_id: media_player.office
         data: {}
@@ -1184,7 +1184,7 @@
       action: SHUFFLE_OFFICE
   condition: []
   action:
-  - service: sonos.unjoin
+  - service: media_player.unjoin
     data: {}
     target:
       entity_id: media_player.office
