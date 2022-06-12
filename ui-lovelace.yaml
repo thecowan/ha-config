@@ -839,6 +839,18 @@ views:
           - '#ff0000'
           - '#0000ff'
           - '#00ff00'
+      - type: custom:auto-entities
+        card:
+          type: entities
+          title: "Updates available"
+        filter:
+          include:
+            - domain: update
+          exclude:
+            - state: unavailable
+            - state: unknown
+            - state: "off"
+        show_empty: false
   - title: Junkyard
     icon: mdi:delete-empty
     path: junkyard
