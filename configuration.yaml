@@ -679,22 +679,22 @@ climate:
     unique_id: bedroom_ac
     device_code: 1101
     controller_data: remote.bedroom_remote
-    temperature_sensor: sensor.temperature_bedroom
-    humidity_sensor: sensor.humidity_bedroom
+    temperature_sensor: sensor.bedroom_temperature
+    humidity_sensor: sensor.bedroom_humidity
 #  - platform: smartir
 #    name: "Dot's Office AC"
 #    unique_id: dots_office_ac
 #    device_code: 1101
 #    controller_data: remote.dots_office_remote
-#    temperature_sensor: sensor.temperature_dots_office
-#    humidity_sensor: sensor.humidity_dots_office
+#    temperature_sensor: sensor.dots_office_temperature
+#    humidity_sensor: sensor.dots_office_humidity
   - platform: smartir
     name: "Office AC"
     unique_id: office_ac
     device_code: 1101
     controller_data: remote.office_remote
-    temperature_sensor: sensor.temperature_office
-    humidity_sensor: sensor.humidity_office
+    temperature_sensor: sensor.office_temperature
+    humidity_sensor: sensor.office_humidity
   - platform: smartir
     name: "Guest Room AC"
     unique_id: guest_room_ac

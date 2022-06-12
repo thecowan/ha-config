@@ -453,9 +453,9 @@ views:
         name: Bedroom Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_bedroom
+          - entity: sensor.bedroom_temperature
             name: Temperature
-          - entity: sensor.humidity_bedroom
+          - entity: sensor.bedroom_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
@@ -568,9 +568,9 @@ views:
         name: Outside Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_outside
+          - entity: sensor.outside_temperature
             name: Temperature
-          - entity: sensor.humidity_outside
+          - entity: sensor.outside_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
@@ -692,7 +692,7 @@ views:
           step: row
         step_size: '1'
         sensors:
-          - entity: sensor.humidity_office
+          - entity: sensor.office_humidity
             name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.office
@@ -717,9 +717,9 @@ views:
         name: Office Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_office
+          - entity: sensor.office_temperature
             name: Temperature
-          - entity: sensor.humidity_office
+          - entity: sensor.office_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
@@ -762,17 +762,17 @@ views:
         hide:
           temperature: true
         sensors:
-          - entity: sensor.temperature_dots_office
+          - entity: sensor.dots_office_temperature
             name: Temperature
-          - entity: sensor.humidity_dots_office
+          - entity: sensor.dots_office_temperature
             name: Humidity
       - type: 'custom:mini-graph-card'
         name: Dot's Office Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_dots_office
+          - entity: sensor.dots_office_temperature
             name: Temperature
-          - entity: sensor.humidity_dots_office
+          - entity: sensor.dots_office_temperature
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
