@@ -950,8 +950,16 @@
     from: playing
     for:
       hours: 0
-      minutes: 3
-      seconds: 0
+      minutes: 0
+      seconds: 30
+  - platform: state
+    entity_id:
+    - media_player.kodi_cows_macbook_pro
+    to: unavailable
+  - platform: state
+    entity_id:
+    - media_player.kodi_cows_macbook_pro
+    to: 'off'
   condition:
   - condition: state
     entity_id: input_boolean.high_alert_mode
