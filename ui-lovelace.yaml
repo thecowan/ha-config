@@ -677,6 +677,7 @@ views:
           entity: light.yeelight_office
           justify: center
           colors: !include colors_yeelight.yaml
+        - entity: switch.adaptive_lighting_office
         - entity: light.diffuser_light_2
           name: Diffuser Light
         - type: 'custom:slider-entity-row'
