@@ -440,7 +440,7 @@
   action:
   - service: light.turn_on
     data:
-      color_temp: 310
+      color_temp: 100
       brightness_pct: 100
     target:
       entity_id: light.office_ring_light
@@ -950,8 +950,8 @@
     from: playing
     for:
       hours: 0
-      minutes: 0
-      seconds: 10
+      minutes: 3
+      seconds: 0
   condition:
   - condition: state
     entity_id: input_boolean.high_alert_mode
