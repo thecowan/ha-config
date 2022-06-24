@@ -53,7 +53,7 @@ sonos_sleep:
   - service: script.sonos_play_matching
     data:
       entity_id: media_player.master_bedroom
-      match: \U0001F4A4
+      match: "💤"
   mode: single
 sonos_play_non_matching:
   alias: Sonos Play Non-Matching
