@@ -226,8 +226,8 @@ views:
         name: Temperatures
         points_per_hour: 10
         entities:
-          - entity: sensor.living_room_temperature
-            name: Living Room
+          - entity: sensor.bedroom_temperature
+            name: Inside
             show_points: false
           - entity: sensor.lilyfield_temperature
             name: Outside
