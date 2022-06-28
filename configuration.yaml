@@ -634,6 +634,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/bom-radar-card/bom-radar-card.js'
       type: module
+    - url: '/hacsfiles/lovelace-fold-entity-row/fold-entity-row.js'
+      type: module
 
 input_boolean:
   guest_mode:
@@ -671,6 +673,22 @@ climate:
       seconds: 300
     initial_hvac_mode: "off"
     cold_tolerance: 0.5
+  - platform: generic_thermostat
+    name: "Dot's Office Heating"
+    heater: switch.dots_office_heater
+    target_sensor: sensor.dots_office_temperature
+    unique_id: dots_office_header_thermostat_bwshp1
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    initial_hvac_mode: "off"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 0.5
+    sleep_temp: 13
+    #sleep_temp: '{{ states("input_number.dots_office_heater_timer_temp") }}'
+
   - platform: smartir
     name: "Living Room AC"
     unique_id: living_room_ac

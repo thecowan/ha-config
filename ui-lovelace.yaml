@@ -731,49 +731,81 @@ views:
   - title: Dot Office
     icon: mdi:chair-rolling
     path: dot
-    badges:
-      - type: entity-filter
-        entities:
-          - light.dots_office
-          - binary_sensor.dots_office_door
-          - climate.dots_office_ac
-        state_filter:
-          - "on"      
-          - "heat"
-          - "cool"
+    # badges:
+    #  - type: entity-filter
+    #    entities:
+    #      - light.dots_office
+    #      - binary_sensor.dots_office_door
+    #      # - climate.dots_office_ac
+    #      - climate.dots_office_heating
+    #    state_filter:
+    #      - "on"      
+    #      - "heat"
+    #      - "cool"
     cards:
-      - type: entities
-        entities:
-        - type: 'custom:slider-entity-row'
-          entity: light.dots_office
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.dots_office
-          justify: center
-          colors: !include colors_kogan.yaml
+      # - type: entities
+      #  entities:
+      #  - type: 'custom:slider-entity-row'
+      #    entity: light.dots_office
+      #    toggle: true
+      #  - type: 'custom:rgb-light-card'
+      #    entity: light.dots_office
+      #    justify: center
+      #    colors: !include colors_kogan.yaml
       - type: 'custom:simple-thermostat'
-        entity: climate.dots_office_ac
+        entity: climate.dots_office_heating
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '1'
+        step_size: '0.5'
         hide:
           temperature: true
         sensors:
           - entity: sensor.dots_office_temperature
             name: Temperature
-          - entity: sensor.dots_office_temperature
+            decimals: 1
+          - entity: sensor.dots_office_humidity
             name: Humidity
+            decimals: 0
+      # - type: 'custom:simple-thermostat'
+      #  entity: climate.dots_office_ac
+      #  layout:
+      #    mode:
+      #      names: true
+      #      icons: true
+      #      headings: false
+      #    step: row
+      #  step_size: '1'
+      #  hide:
+      #    temperature: true
+      #  sensors:
+      #    - entity: sensor.dots_office_temperature
+      #      name: Temperature
+      #    - entity: sensor.dots_office_temperature
+      #      name: Humidity
+      - type: entities
+        entities:
+        - type: custom:fold-entity-row
+          head:
+            entity: input_boolean.dots_office_heater_timer
+            name: "Automatic Sleep Mode"
+          entities:
+          - entity: input_datetime.dots_office_heater_on_time
+            name: "On"
+          - entity: input_datetime.dots_office_heater_off_time
+            name: "Off"
+          - entity: input_number.dots_office_heater_timer_temp
+            name: "Temperature"
       - type: 'custom:mini-graph-card'
         name: Dot's Office Climate
         points_per_hour: 20
         entities:
           - entity: sensor.dots_office_temperature
             name: Temperature
-          - entity: sensor.dots_office_temperature
+          - entity: sensor.dots_office_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
