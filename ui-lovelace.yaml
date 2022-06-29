@@ -226,7 +226,7 @@ views:
         name: Temperatures
         points_per_hour: 10
         entities:
-          - entity: sensor.bedroom_temperature
+          - entity: sensor.living_room_temperature
             name: Inside
             show_points: false
           - entity: sensor.lilyfield_temperature
@@ -426,17 +426,52 @@ views:
           justify: center
           colors: !include colors_nitebird.yaml
       - type: 'custom:simple-thermostat'
-        entity: climate.bedroom_ac
+        entity: climate.bedroom_heating
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '1'
+        step_size: '0.5'
+        hide:
+          temperature: true
         sensors:
-          - entity: sensor.humidity_bedroom
+          - entity: sensor.bedroom_temperature
+            name: Temperature
+            decimals: 1
+          - entity: sensor.bedroom_humidity
             name: Humidity
+            decimals: 0
+      # - type: 'custom:simple-thermostat'
+      #  entity: climate.bedroom_ac
+      #  layout:
+      #    mode:
+      #      names: true
+      #      icons: true
+      #      headings: false
+      #    step: row
+      #  step_size: '1'
+      #  hide:
+      #    temperature: true
+      #  sensors:
+      #    - entity: sensor.bedroom_temperature
+      #      name: Temperature
+      #    - entity: sensor.bedroom_temperature
+      #      name: Humidity
+      - type: entities
+        entities:
+        - type: custom:fold-entity-row
+          head:
+            entity: input_boolean.bedroom_heater_timer
+            name: "Automatic Sleep Mode"
+          entities:
+          - entity: input_datetime.bedroom_heater_on_time
+            name: "On"
+          - entity: input_datetime.bedroom_heater_off_time
+            name: "Off"
+          - entity: input_number.bedroom_heater_timer_temp
+            name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
         hide:
@@ -640,6 +675,39 @@ views:
           justify: center
           colors: !include colors_yeelight.yaml
         - entity: light.guest_room_right
+      - type: 'custom:simple-thermostat'
+        entity: climate.guest_room_heating
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '0.5'
+        hide:
+          temperature: true
+        sensors:
+          # TO FIX
+          - entity: sensor.living_room_temperature
+            name: Temperature
+            decimals: 1
+          # TO FIX
+          - entity: sensor.living_room_humidity
+            name: Humidity
+            decimals: 0
+      - type: entities
+        entities:
+        - type: custom:fold-entity-row
+          head:
+            entity: input_boolean.guest_room_heater_timer
+            name: "Automatic Sleep Mode"
+          entities:
+          - entity: input_datetime.guest_room_heater_on_time
+            name: "On"
+          - entity: input_datetime.guest_room_heater_off_time
+            name: "Off"
+          - entity: input_number.guest_room_heater_timer_temp
+            name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.guest_room
         hide:
@@ -654,7 +722,7 @@ views:
         name: Guest Room Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.temperature_guestroom
+          - entity: sensor.guestroom_temperature
             name: Temperature
           - entity: sensor.humidity_guestroom
             name: Humidity
@@ -683,18 +751,49 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.office_ring_light
           toggle: true
+      # - type: 'custom:simple-thermostat'
+      #  entity: climate.office_ac
+      #  layout:
+      #    mode:
+      #      names: true
+      #      icons: true
+      #      headings: false
+      #    step: row
+      #  step_size: '1'
+      #  sensors:
+      #    - entity: sensor.office_humidity
+      #      name: Humidity
       - type: 'custom:simple-thermostat'
-        entity: climate.office_ac
+        entity: climate.office_heating
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '1'
+        step_size: '0.5'
+        hide:
+          temperature: true
         sensors:
+          - entity: sensor.office_temperature
+            name: Temperature
+            decimals: 1
           - entity: sensor.office_humidity
             name: Humidity
+            decimals: 0
+      - type: entities
+        entities:
+        - type: custom:fold-entity-row
+          head:
+            entity: input_boolean.office_heater_timer
+            name: "Automatic Sleep Mode"
+          entities:
+          - entity: input_datetime.office_heater_on_time
+            name: "On"
+          - entity: input_datetime.office_heater_off_time
+            name: "Off"
+          - entity: input_number.office_heater_timer_temp
+            name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.office
         hide:

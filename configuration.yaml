@@ -687,7 +687,49 @@ climate:
     hot_tolerance: 0.4
     precision: 0.5
     sleep_temp: 13
-    #sleep_temp: '{{ states("input_number.dots_office_heater_timer_temp") }}'
+  - platform: generic_thermostat
+    name: "Office Heating"
+    heater: switch.office_heater
+    target_sensor: sensor.office_temperature
+    unique_id: office_heater_thermostat_bwshp1
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    initial_hvac_mode: "off"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 0.5
+    sleep_temp: 13
+  - platform: generic_thermostat
+    name: "Guest Room Heating"
+    heater: switch.guest_room_heater
+    # TODO fix
+    target_sensor: sensor.living_room_temperature
+    unique_id: guest_room_heater_thermostat_aqara_plug
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    initial_hvac_mode: "off"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 0.5
+    sleep_temp: 13
+  - platform: generic_thermostat
+    name: "Bedroom Heating"
+    heater: switch.bedroom_heater
+    target_sensor: sensor.bedroom_temperature
+    unique_id: bedroom_heater_thermostat_aqara_plug
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    initial_hvac_mode: "off"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 0.5
+    sleep_temp: 13
 
   - platform: smartir
     name: "Living Room AC"

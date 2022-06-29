@@ -1293,7 +1293,7 @@
         target:
           entity_id: light.yeelight_office
 - id: '1656386610707'
-  alias: Dot's Office Heater Timer - On
+  alias: 🌡️ Dot's Office Heater Timer - On
   description: ''
   trigger:
   - platform: time
@@ -1319,7 +1319,7 @@
     enabled: false
   mode: single
 - id: '1656386656506'
-  alias: Dot's Office Heater Timer - Off
+  alias: 🌡️ Dot's Office Heater Timer - Off
   description: ''
   trigger:
   - platform: time
@@ -1340,7 +1340,7 @@
       entity_id: climate.dots_office_heating
   mode: single
 - id: '1656388617944'
-  alias: Dot's Office Heater - Sleep Mode Slider
+  alias: 🌡️️ Dot's Office Heater - Sleep Mode Slider
   description: ''
   trigger:
   - platform: state
@@ -1355,4 +1355,184 @@
       entity_id: climate.dots_office_heating
     data:
       temperature: '{{ states("input_number.dots_office_heater_timer_temp") }}'
+  mode: single
+- id: '1656500026360'
+  alias: 🌡️️ Bedroom Heater - Sleep Mode Slider
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.bedroom_heating
+    attribute: preset_mode
+    to: sleep
+  condition: []
+  action:
+  - service: climate.set_temperature
+    target:
+      entity_id: climate.bedroom_heating
+    data:
+      temperature: '{{ states("input_number.bedroom_heater_timer_temp") }}'
+  mode: single
+- id: '1656500453233'
+  alias: '🌡️ Bedroom Heater Timer - Off '
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.bedroom_heater_off_time
+  condition:
+  - condition: state
+    entity_id: climate.bedroom_heating
+    state: sleep
+    attribute: preset_mode
+  - condition: state
+    entity_id: input_boolean.bedroom_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id:
+      - climate.bedroom_heating
+  mode: single
+- id: '1656500556853'
+  alias: 🌡️ Bedroom Heater Timer - On
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.bedroom_heater_on_time
+  condition:
+  - condition: state
+    entity_id: climate.bedroom_heating
+    state: heat
+  - condition: state
+    entity_id: input_boolean.bedroom_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: sleep
+    target:
+      entity_id:
+      - climate.bedroom_heating
+  mode: single
+- id: '1656501733821'
+  alias: 🌡️ Office Heater Timer - Off
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.office_heater_off_time
+  condition:
+  - condition: state
+    entity_id: climate.office_heating
+    state: sleep
+    attribute: preset_mode
+  - condition: state
+    entity_id: input_boolean.office_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id:
+      - climate.office_heating
+  mode: single
+- id: '1656501790704'
+  alias: 🌡️ Office Heater Timer - On
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.office_heater_on_time
+  condition:
+  - condition: state
+    entity_id: climate.office_heating
+    state: heat
+  - condition: state
+    entity_id: input_boolean.office_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: sleep
+    target:
+      entity_id:
+      - climate.office_heating
+  mode: single
+- id: '1656501837599'
+  alias: 🌡️️ Office Heater - Sleep Mode Slider
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.office_heating
+    attribute: preset_mode
+    to: sleep
+  condition: []
+  action:
+  - service: climate.set_temperature
+    target:
+      entity_id: climate.office_heating
+    data:
+      temperature: '{{ states("input_number.office_heater_timer_temp") }}'
+  mode: single
+- id: '1656502769828'
+  alias: '🌡️ Guest Room Heater Timer - Off '
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.guest_room_heater_off_time
+  condition:
+  - condition: state
+    entity_id: climate.guest_room_heating
+    state: sleep
+    attribute: preset_mode
+  - condition: state
+    entity_id: input_boolean.guest_room_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id:
+      - climate.guest_room_heating
+  mode: single
+- id: '1656502830840'
+  alias: 🌡️ Guest Room Heater Timer - On
+  description: ''
+  trigger:
+  - platform: time
+    at: input_datetime.guest_room_heater_on_time
+  condition:
+  - condition: state
+    entity_id: climate.guest_room_heating
+    state: heat
+  - condition: state
+    entity_id: input_boolean.guest_room_heater_timer
+    state: 'on'
+  action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: sleep
+    target:
+      entity_id:
+      - climate.guest_room_heating
+  mode: single
+- id: '1656502879082'
+  alias: 🌡️️ Guest Room Heater - Sleep Mode Slider
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - climate.guest_room_heating
+    attribute: preset_mode
+    to: sleep
+  condition: []
+  action:
+  - service: climate.set_temperature
+    target:
+      entity_id: climate.guest_room_heating
+    data:
+      temperature: '{{ states("input_number.guest_room_heater_timer_temp") }}'
   mode: single
