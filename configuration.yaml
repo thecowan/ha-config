@@ -636,6 +636,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/lovelace-fold-entity-row/fold-entity-row.js'
       type: module
+    - url: '/hacsfiles/fr24_card/fr24_card.js'
+      type: module
 
 input_boolean:
   guest_mode:
@@ -1130,6 +1132,20 @@ template:
       delay_on: '0:00:10'
       delay_off: '0:00:10'
       device_class: 'connectivity'
+  - sensor:
+    - name: 'Whole House Known Power'
+      unique_id: whole_house_known_guesstimated_power
+      state: >-
+        {{ states("sensor.dots_office_heater_power") | float(0.0)
+        + states("sensor.office_heater_power") | float(0.0)
+        + states("sensor.washer_power") | float(0.0)
+        + states("sensor.bedroom_heater_power") | float(0.0)
+        + states("sensor.guest_room_heater_power") | float(0.0)
+        + states("sensor.dishwasher_power") | float(0.0)
+        }}
+      unit_of_measurement: "W"
+      icon: "mdi:home-lightning-bolt"
+      device_class: 'power'
 
 rest_command:
   toggle_cow_macbookpro_mutesync:
@@ -1187,6 +1203,14 @@ rest:
         value_template: "{{ (value_json.block_height | int) - (value_json.miner_height | int) }}"
         state_class: "measurement"
         unit_of_measurement: "blocks"
+  - resource: http://tilly:8082/data/aircraft.json
+    scan_interval: 15
+    sensor:
+      - name: "FR24 Aircraft"
+        value_template: "{{ value_json.messages }}"
+        json_attributes:
+        - now
+        - aircraft
 
 
 utility_meter:
@@ -1201,3 +1225,6 @@ utility_meter:
   helium_wallet_monthly:
     source: sensor.helium_wallet_master
     cycle: monthly
+
+energy:
+
