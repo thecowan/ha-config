@@ -16,6 +16,7 @@ homeassistant:
     - type: homeassistant
   external_url: !secret external_url
   internal_url: !secret internal_url
+  currency: AUD
 
 # Enables configuration UI
 config:
@@ -550,7 +551,7 @@ google_assistant:
       room: Dot's Office
 
     light.gateway_light:
-      expose: true
+      expose: false
       room: Living Room
     light.yeelight_livingroom:
       expose: true
@@ -560,7 +561,7 @@ google_assistant:
       expose: true
       room: Guest Room
     light.guest_room_lamps:
-      expose: true
+      expose: false
       room: Guest Room
 
     light.yeelight_dining:
