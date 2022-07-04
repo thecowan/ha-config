@@ -641,6 +641,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/ha-sankey-chart/ha-sankey-chart.js'
       type: module
+    - url: '/hacsfiles/thermal_comfort_icons/thermal_comfort_icons.js'
+      type: module
   dashboards:
     lovelace-reporting:
       mode: yaml
