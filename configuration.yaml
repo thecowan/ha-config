@@ -639,6 +639,16 @@ lovelace:
       type: module
     - url: '/hacsfiles/fr24_card/fr24_card.js'
       type: module
+    - url: '/hacsfiles/ha-sankey-chart/ha-sankey-chart.js'
+      type: module
+  dashboards:
+    lovelace-reporting:
+      mode: yaml
+      title: Reporting
+      filename: ui-reporting.yaml
+      show_in_sidebar: true
+      require_admin: true
+      icon: mdi:chart-areaspline
 
 input_boolean:
   guest_mode:

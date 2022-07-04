@@ -1,0 +1,332 @@
+title: The Dairy
+
+views:
+  - title: Plane
+    path: plane
+    icon: mdi:airplane
+    badges: []
+    cards:
+      - type: entities
+        entities:
+          - entity: sensor.closest_plane_cpa
+      - type: map
+        entities:
+          - entity: sensor.closest_plane
+          - entity: zone.home
+          - entity: sensor.closest_plane_cpa
+      - type: vertical-stack
+        cards:
+          - type: conditional
+            conditions:
+              - entity: sensor.closest_plane
+                state: unavailable
+            card:
+              type: markdown
+              content: (None)
+          - type: conditional
+            conditions:
+              - entity: sensor.closest_plane
+                state_not: unavailable
+            card:
+              type: vertical-stack
+              cards:
+                - type: custom:button-card
+                  entity: sensor.closest_plane
+                  name: >-
+                    [[[  var owner =
+                    states["sensor.closest_plane"].attributes.owner; var
+                    operator =
+                    states["sensor.closest_plane"].attributes.operator; return
+                    states["sensor.closest_plane_flight_number"].state +
+                    ((operator || owner) ? " (" + (operator || owner) + ")" :
+                    "") + "<br /><span style='font-size:70%'>" + entity.state +
+                    ": " + states["sensor.closest_plane_type"].state  +
+                    "</small>" ]]]
+                  show_entity_picture: true
+                - show_name: true
+                  show_icon: true
+                  show_state: true
+                  type: glance
+                  entities:
+                    - entity: sensor.closest_plane_altitude_barometric
+                      name: Altitude
+                    - entity: sensor.closest_plane_ground_speed
+                      name: Ground Speed
+                    - entity: sensor.closest_plane_heading
+                      name: Heading
+                  columns: 3
+                - type: conditional
+                  conditions:
+                    - entity: sensor.closest_plane_approach
+                      state: receding
+                  card:
+                    type: custom:compass-card
+                    indicator_sensors:
+                      - sensor: sensor.closest_plane_bearing
+                        indicator:
+                          type: arrow_outward
+                    value_sensors:
+                      - sensor: sensor.closest_plane_distance
+                        decimals: 3
+                - type: conditional
+                  conditions:
+                    - entity: sensor.closest_plane_approach
+                      state: approaching
+                  card:
+                    type: custom:compass-card
+                    indicator_sensors:
+                      - sensor: sensor.closest_plane_bearing
+                        indicator:
+                          type: arrow_inward
+                    value_sensors:
+                      - sensor: sensor.closest_plane_distance
+                        decimals: 3
+                - type: conditional
+                  conditions:
+                    - entity: sensor.closest_plane_cpa
+                      state_not: unavailable
+                  card:
+                    type: gauge
+                    entity: sensor.closest_plane_cpa
+                    needle: false
+      - type: custom:fr24-card
+        entity: sensor.fr24_aircraft
+        popup: true
+        track_in_text: true
+        units_in_table: true
+        units: metric
+        zone: zone.home
+  - theme: Backend-selected
+    icon: mdi:balloon
+    title: Helium
+    path: helium
+    badges: []
+    cards:
+      - type: custom:uptime-card
+        entity: sensor.mythical_lava_sheep
+        name: Mythical Lava Sheep
+        icon: mdi:router-wireless
+        ok: online
+        ko: offline
+        ko_icon: mdi:router-wireless-off
+        hours_to_show: 24
+        status_adaptive_color: true
+        color:
+          icon: grey
+        show:
+          icon: true
+          status: false
+          timeline: true
+          average: true
+        title_adaptive_color: true
+        title_template: Mythical Lava Sheep
+      - type: custom:mini-graph-card
+        animate: true
+        entities:
+          - entity: sensor.helium_hnt_oracle_price
+            name: HNT/USD
+        graph: line
+        hour24: true
+        font_size: 75
+        hours_to_show: 24
+        points_per_hour: 12
+        name: Helium HNT/USD
+        show:
+          extrema: true
+          icon: false
+          name: true
+      - chart_type: bar
+        period: 5minute
+        days_to_show: 7
+        type: statistics-graph
+        entities:
+          - sensor.linxdot_sync_lag
+        stat_types:
+          - mean
+        title: Lag
+      - type: custom:config-template-card
+        entities:
+          - sensor.helium_wallet_today
+        card:
+          type: custom:apexcharts-card
+          header:
+            show: true
+            show_states: true
+            colorize_states: true
+            title: Helium Mined Today
+          span:
+            start: day
+          graph_span: 24h
+          all_series_config:
+            stroke_width: 4
+            type: line
+            float_precision: 2
+          color_list:
+            - lightblue
+            - grey
+          series:
+            - entity: sensor.helium_wallet_today
+              name: Today
+              type: area
+              group_by:
+                func: avg
+                duration: 20min
+            - entity: sensor.helium_wallet_today
+              name: Yesterday
+              offset: '-24h'
+              opacity: 0.2
+              group_by:
+                func: avg
+                duration: 20min
+              show:
+                in_header: true
+          apex_config:
+            yaxis:
+              - seriesName: HNT
+                decimalsInFloat: 0
+              - seriesName: Helium
+                show: false
+            tooltip:
+              x:
+                format: ddd dd MMM - HH:mm
+            xaxis:
+              tooltip:
+                enabled: false
+            legend:
+              show: false
+            grid:
+              borderColor: '#7B7B7B'
+            chart:
+              foreColor: '#7B7B7B'
+              toolbar:
+                show: false
+      - entities:
+          - entity: sensor.helium_wallet_master
+            name: Wallet HNT
+        hours_to_show: 168
+        icon: mdi:cash
+        name: Helium Wallet
+        group_by: date
+        show:
+          graph: bar
+          icon: false
+          state: true
+        type: custom:mini-graph-card
+      - entities:
+          - entity: sensor.helium_master_wallet_value
+            name: Wallet USD
+        hours_to_show: 168
+        icon: mdi:cash
+        name: Helium Wallet USD
+        group_by: date
+        show:
+          graph: bar
+          icon: false
+          state: true
+        type: custom:mini-graph-card
+      - type: glance
+        entities:
+          - entity: sensor.linxdot_sync
+            icon: mdi:sync-circle
+            name: Sync %
+          - entity: sensor.linxdot_cpu_temperature
+            name: CPU Temp
+          - entity: sensor.linxdot_cpu_load
+            icon: mdi:chip
+            name: CPU Load
+  - theme: Backend-selected
+    title: Energy
+    path: energy
+    icon: mdi:home-lightning-bolt
+    badges: []
+    cards:
+      - type: custom:apexcharts-card
+        header:
+          show: true
+          title: Energy Usage
+          show_states: true
+          colorize_states: true
+        series:
+          - entity: sensor.bedroom_heater_power
+            group_by:
+              func: avg
+              duration: 5min
+          - entity: sensor.guest_room_heater_power
+            group_by:
+              func: avg
+              duration: 5min
+          - entity: sensor.dots_office_heater_power
+            group_by:
+              func: avg
+              duration: 5min
+          - entity: sensor.office_heater_power
+            group_by:
+              func: avg
+              duration: 5min
+          - entity: sensor.washer_power
+            group_by:
+              func: avg
+              duration: 5min
+          - entity: sensor.dishwasher_power
+            group_by:
+              func: avg
+              duration: 5min
+      - type: custom:sankey-chart
+        show_names: true
+        sections:
+          - entities:
+              - entity_id: sensor.whole_house_known_power
+                name: Total Power Usage
+                children:
+                  - sensor.bedroom_heater_power
+                  - sensor.office_heater_power
+                  - sensor.dots_office_heater_power
+                  - sensor.guest_room_heater_power
+                  - sensor.washer_power
+                  - sensor.dishwasher_power
+          - entities:
+              - entity_id: sensor.bedroom_heater_power
+                name: Bedroom Heater
+              - entity_id: sensor.office_heater_power
+                name: Office Heater
+              - entity_id: sensor.dots_office_heater_power
+                name: Dot's Office Heater
+              - entity_id: sensor.guest_room_heater_power
+                name: Guest Room Heater
+              - entity_id: sensor.washer_power
+                name: Washing Machine
+              - entity_id: sensor.dishwasher_power
+                name: Dishwasher
+      - type: vertical-stack
+        cards:
+          - type: gauge
+            entity: sensor.whole_house_known_power
+            name: House Power
+            max: 5000
+          - type: grid
+            cards:
+              - type: gauge
+                entity: sensor.bedroom_heater_power
+                max: 2500
+                needle: false
+                name: Bedroom Heater
+              - type: gauge
+                entity: sensor.dots_office_heater_power
+                max: 2500
+                name: Dot's Office Heater
+              - type: gauge
+                entity: sensor.washer_power
+                name: Washing Machine
+                max: 2500
+              - type: gauge
+                entity: sensor.guest_room_heater_power
+                max: 2500
+                name: Guest Room Heater
+              - type: gauge
+                entity: sensor.office_heater_power
+                name: Office Heater
+              - type: gauge
+                entity: sensor.dishwasher_power
+                name: Dishwasher
+                max: 2500
+
