@@ -1,0 +1,297 @@
+blueprint:
+  name: Z2M - Aqara Opple switch 3 bands
+  description: 'Control anything you want with Aqara Opple switch 3 bands (WXCJKG13LM)
+
+    Inspired by the blueprint of @bouyssic (https://community.home-assistant.io/t/z2m-aqara-opple-4-boutons-blueprint-wxcjkg12lm/279950)
+
+    Each band button has single, double, triple, hold & release'
+  domain: automation
+  input:
+    switch:
+      name: Aqara switch
+      description: Aqara switch to use
+      selector:
+        entity:
+          domain: sensor
+          integration: mqtt
+          multiple: false
+    button_1_single:
+      name: Button 1 - simple click
+      description: Action to run on triple click of button 1
+      default: []
+      selector:
+        action: {}
+    button_1_double:
+      name: Button 1 - double click
+      description: Action to run on triple click of button 1
+      default: []
+      selector:
+        action: {}
+    button_1_triple:
+      name: Button 1 - triple click
+      description: Action to run on triple click of button 1
+      default: []
+      selector:
+        action: {}
+    button_1_hold:
+      name: Button 1 - hold click
+      description: Action to run on triple click of button 1
+      default: []
+      selector:
+        action: {}
+    button_1_release:
+      name: Button 1 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+    button_2_single:
+      name: Button 2 - single click
+      description: Action to run on triple click of button 2
+      default: []
+      selector:
+        action: {}
+    button_2_double:
+      name: Button 2 - double click
+      description: Action to run on triple click of button 2
+      default: []
+      selector:
+        action: {}
+    button_2_triple:
+      name: Button 2 - triple click
+      description: Action to run on triple click of button 2
+      default: []
+      selector:
+        action: {}
+    button_2_hold:
+      name: Button 2 - hold click
+      description: Action to run on triple click of button 2
+      default: []
+      selector:
+        action: {}
+    button_2_release:
+      name: Button 2 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+    button_3_single:
+      name: Button 3 - simple click
+      description: Action to run on triple click of button 3
+      default: []
+      selector:
+        action: {}
+    button_3_double:
+      name: Button 3 - double click
+      description: Action to run on triple click of button 3
+      default: []
+      selector:
+        action: {}
+    button_3_triple:
+      name: Button 3 - triple click
+      description: Action to run on triple click of button 3
+      default: []
+      selector:
+        action: {}
+    button_3_hold:
+      name: Button 3 - hold click
+      description: Action to run on triple click of button 3
+      default: []
+      selector:
+        action: {}
+    button_3_release:
+      name: Button 3 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+    button_4_single:
+      name: Button 4 - single click
+      description: Action to run on triple click of button 4
+      default: []
+      selector:
+        action: {}
+    button_4_double:
+      name: Button 4 - double click
+      description: Action to run on triple click of button 4
+      default: []
+      selector:
+        action: {}
+    button_4_triple:
+      name: Button 4 - triple click
+      description: Action to run on triple click of button 4
+      default: []
+      selector:
+        action: {}
+    button_4_hold:
+      name: Button 4 - hold click
+      description: Action to run on triple click of button 4
+      default: []
+      selector:
+        action: {}
+    button_4_release:
+      name: Button 4 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+    button_5_single:
+      name: Button 5 - single click
+      description: Action to run on triple click of button 5
+      default: []
+      selector:
+        action: {}
+    button_5_double:
+      name: Button 5 - double click
+      description: Action to run on triple click of button 5
+      default: []
+      selector:
+        action: {}
+    button_5_triple:
+      name: Button 5 - triple click
+      description: Action to run on triple click of button 5
+      default: []
+      selector:
+        action: {}
+    button_5_hold:
+      name: Button 5 - hold click
+      description: Action to run on triple click of button 5
+      default: []
+      selector:
+        action: {}
+    button_5_release:
+      name: Button 5 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+    button_6_single:
+      name: Button 6 - single click
+      description: Action to run on triple click of button 6
+      default: []
+      selector:
+        action: {}
+    button_6_double:
+      name: Button 6 - double click
+      description: Action to run on triple click of button 6
+      default: []
+      selector:
+        action: {}
+    button_6_triple:
+      name: Button 6 - triple click
+      description: Action to run on triple click of button 6
+      default: []
+      selector:
+        action: {}
+    button_6_hold:
+      name: Button 6 - hold click
+      description: Action to run on triple click of button 6
+      default: []
+      selector:
+        action: {}
+    button_6_release:
+      name: Button 6 - on release
+      description: Action to run after hold then release
+      default: []
+      selector:
+        action: {}
+  source_url: https://community.home-assistant.io/t/zigbee2mqtt-z2m-aqara-opple-6-button-remote-3-bands-wxcjkg13lm/391475
+mode: restart
+max_exceeded: silent
+trigger:
+- platform: state
+  entity_id: !input 'switch'
+action:
+- variables:
+    command: '{{ trigger.to_state.state }}'
+- choose:
+  - conditions:
+    - '{{ command == ''button_1_single'' }}'
+    sequence: !input 'button_1_single'
+  - conditions:
+    - '{{ command == ''button_2_single'' }}'
+    sequence: !input 'button_2_single'
+  - conditions:
+    - '{{ command == ''button_3_single'' }}'
+    sequence: !input 'button_3_single'
+  - conditions:
+    - '{{ command == ''button_4_single'' }}'
+    sequence: !input 'button_4_single'
+  - conditions:
+    - '{{ command == ''button_5_single'' }}'
+    sequence: !input 'button_5_single'
+  - conditions:
+    - '{{ command == ''button_6_single'' }}'
+    sequence: !input 'button_6_single'
+  - conditions:
+    - '{{ command == ''button_1_double'' }}'
+    sequence: !input 'button_1_double'
+  - conditions:
+    - '{{ command == ''button_2_double'' }}'
+    sequence: !input 'button_2_double'
+  - conditions:
+    - '{{ command == ''button_3_double'' }}'
+    sequence: !input 'button_3_double'
+  - conditions:
+    - '{{ command == ''button_4_double'' }}'
+    sequence: !input 'button_4_double'
+  - conditions:
+    - '{{ command == ''button_5_double'' }}'
+    sequence: !input 'button_5_double'
+  - conditions:
+    - '{{ command == ''button_6_double'' }}'
+    sequence: !input 'button_6_double'
+  - conditions:
+    - '{{ command == ''button_1_triple'' }}'
+    sequence: !input 'button_1_triple'
+  - conditions:
+    - '{{ command == ''button_2_triple'' }}'
+    sequence: !input 'button_2_triple'
+  - conditions:
+    - '{{ command == ''button_3_triple'' }}'
+    sequence: !input 'button_3_triple'
+  - conditions:
+    - '{{ command == ''button_4_triple'' }}'
+    sequence: !input 'button_4_triple'
+  - conditions:
+    - '{{ command == ''button_5_triple'' }}'
+    sequence: !input 'button_5_triple'
+  - conditions:
+    - '{{ command == ''button_6_triple'' }}'
+    sequence: !input 'button_6_triple'
+  - conditions:
+    - '{{ command == ''button_1_hold'' }}'
+    sequence: !input 'button_1_hold'
+  - conditions:
+    - '{{ command == ''button_2_hold'' }}'
+    sequence: !input 'button_2_hold'
+  - conditions:
+    - '{{ command == ''button_3_hold'' }}'
+    sequence: !input 'button_3_hold'
+  - conditions:
+    - '{{ command == ''button_4_hold'' }}'
+    sequence: !input 'button_4_hold'
+  - conditions:
+    - '{{ command == ''button_5_hold'' }}'
+    sequence: !input 'button_5_hold'
+  - conditions:
+    - '{{ command == ''button_6_hold'' }}'
+    sequence: !input 'button_6_hold'
+  - conditions:
+    - '{{ command == ''button_1_release'' }}'
+    sequence: !input 'button_1_release'
+  - conditions:
+    - '{{ command == ''button_2_release'' }}'
+    sequence: !input 'button_2_release'
+  - conditions:
+    - '{{ command == ''button_3_release'' }}'
+    sequence: !input 'button_3_release'
+  - conditions:
+    - '{{ command == ''button_4_release'' }}'
+    sequence: !input 'button_4_release'
+  - conditions:
+    - '{{ command == ''button_5_release'' }}'
+    sequence: !input 'button_5_release'
+  - conditions:
+    - '{{ command == ''button_6_release'' }}'
+    sequence: !input 'button_6_release'
