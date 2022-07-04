@@ -649,6 +649,13 @@ lovelace:
       show_in_sidebar: true
       require_admin: true
       icon: mdi:chart-areaspline
+    lovelace-auto:
+      mode: yaml
+      title: Auto
+      filename: ui-nonexistent.yaml
+      show_in_sidebar: true
+      require_admin: true
+      icon: mdi:robot-industrial
 
 input_boolean:
   guest_mode:
