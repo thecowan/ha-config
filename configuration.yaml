@@ -683,7 +683,7 @@ climate:
     ac_mode: true
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "cool"
+    keep_alive: "00:05:00"
   - platform: generic_thermostat
     name: Living Room
     heater: switch.livingroom_heater
@@ -693,7 +693,7 @@ climate:
     max_temp: 30
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "off"
+    keep_alive: "00:05:00"
     cold_tolerance: 0.5
   - platform: generic_thermostat
     name: "Dot's Office Heating"
@@ -704,7 +704,7 @@ climate:
     max_temp: 30
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "off"
+    keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 0.5
@@ -718,7 +718,7 @@ climate:
     max_temp: 30
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "off"
+    keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 0.5
@@ -733,7 +733,7 @@ climate:
     max_temp: 30
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "off"
+    keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 0.5
@@ -747,7 +747,7 @@ climate:
     max_temp: 30
     min_cycle_duration:
       seconds: 300
-    initial_hvac_mode: "off"
+    keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 0.5
@@ -1248,3 +1248,5 @@ utility_meter:
 
 energy:
 
+
+powercalc:
