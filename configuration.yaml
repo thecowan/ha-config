@@ -1153,6 +1153,26 @@ template:
       delay_off: '0:00:10'
       device_class: 'connectivity'
   - sensor:
+    - name: 'Heating Power'
+      unique_id: category_heating_summed_power
+      state: >-
+        {{ states("sensor.dots_office_heater_power") | float(0.0)
+        + states("sensor.office_heater_power") | float(0.0)
+        + states("sensor.bedroom_heater_power") | float(0.0)
+        + states("sensor.guest_room_heater_power") | float(0.0)
+        }}
+      unit_of_measurement: "W"
+      icon: "mdi:home-lightning-bolt"
+      device_class: 'power'
+    - name: 'Appliance Power'
+      unique_id: category_appliance_summed_power
+      state: >-
+        {{ states("sensor.washer_power") | float(0.0)
+        + states("sensor.dishwasher_power") | float(0.0)
+        }}
+      unit_of_measurement: "W"
+      icon: "mdi:home-lightning-bolt"
+      device_class: 'power'
     - name: 'Whole House Known Power'
       unique_id: whole_house_known_guesstimated_power
       state: >-

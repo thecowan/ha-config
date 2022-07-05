@@ -272,31 +272,49 @@ views:
               func: avg
               duration: 5min
       - type: custom:sankey-chart
+        title: Power Distribution
         show_names: true
         sections:
           - entities:
               - entity_id: sensor.whole_house_known_power
                 name: Total Power Usage
                 children:
+                  - sensor.heating_power
+                  - sensor.appliance_power
+          - entities:
+              - entity_id: sensor.heating_power
+                name: Heating
+                color: var(--warning-color)
+                children:
                   - sensor.bedroom_heater_power
                   - sensor.office_heater_power
                   - sensor.dots_office_heater_power
                   - sensor.guest_room_heater_power
+              - entity_id: sensor.appliance_power
+                name: Appliances
+                color: green
+                children:
                   - sensor.washer_power
                   - sensor.dishwasher_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
                 name: Bedroom Heater
+                color: var(--warning-color)
               - entity_id: sensor.office_heater_power
                 name: Office Heater
+                color: var(--warning-color)
               - entity_id: sensor.dots_office_heater_power
                 name: Dot's Office Heater
+                color: var(--warning-color)
               - entity_id: sensor.guest_room_heater_power
                 name: Guest Room Heater
+                color: var(--warning-color)
               - entity_id: sensor.washer_power
                 name: Washing Machine
+                color: green
               - entity_id: sensor.dishwasher_power
                 name: Dishwasher
+                color: green
       - type: vertical-stack
         cards:
           - type: gauge
