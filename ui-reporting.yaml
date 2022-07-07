@@ -277,14 +277,18 @@ views:
         sections:
           - entities:
               - entity_id: sensor.whole_house_known_power
+                color: grey
                 name: Total Power Usage
                 children:
                   - sensor.heating_power
                   - sensor.appliance_power
+                  - sensor.all_powercalc_lights_power
+                remaining:
+                  name: "Other"
           - entities:
               - entity_id: sensor.heating_power
                 name: Heating
-                color: var(--warning-color)
+                color: red
                 children:
                   - sensor.bedroom_heater_power
                   - sensor.office_heater_power
@@ -296,6 +300,16 @@ views:
                 children:
                   - sensor.washer_power
                   - sensor.dishwasher_power
+              - entity_id: sensor.all_powercalc_lights_power
+                name: Lighting
+                color: yellow
+                children:
+                  - sensor.kitchen_downlights_power
+                  - sensor.yeelight_office_power
+                  - sensor.yeelight_bedroom_power
+                  - sensor.yeelight_entry_power
+                  - sensor.yeelight_livingroom_power
+                  - sensor.yeelight_guestroom_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
                 name: Bedroom Heater
@@ -315,6 +329,24 @@ views:
               - entity_id: sensor.dishwasher_power
                 name: Dishwasher
                 color: green
+              - entity_id: sensor.kitchen_downlights_power
+                name: Kitchen
+                color: yellow
+              - entity_id: sensor.yeelight_office_power
+                name: Office
+                color: yellow
+              - entity_id: sensor.yeelight_bedroom_power
+                name: Bedroom
+                color: yellow
+              - entity_id: sensor.yeelight_livingroom_power
+                name: Living Room
+                color: yellow
+              - entity_id: sensor.yeelight_guestroom_power
+                name: Guest Room
+                color: yellow
+              - entity_id: sensor.yeelight_entry_power
+                name: Entry
+                color: yellow
       - type: vertical-stack
         cards:
           - type: gauge

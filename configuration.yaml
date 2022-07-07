@@ -132,6 +132,55 @@ sensor:
     wallets:
       - !secret helium_wallet_id
 
+  - platform: powercalc
+    create_group: "All Powercalc Lights"
+    entities:
+      - create_group: "Kitchen Downlights"
+        entities:
+        - entity_id: light.kitchen_downlight_near
+          mode: linear
+          linear:
+            min_power: 1
+            max_power: 5
+          ignore_unavailable_state: true
+        - entity_id: light.kitchen_downlight_far
+          mode: linear
+          linear:
+            min_power: 1
+            max_power: 5
+          ignore_unavailable_state: true
+        - entity_id: light.kitchen_downlight_centre
+          mode: linear
+          linear:
+            min_power: 1
+            max_power: 5
+          ignore_unavailable_state: true
+      - entity_id: light.yeelight_office
+        mode: lut
+        manufacturer: Yeelight
+        model: color2
+        ignore_unavailable_state: true
+      - entity_id: light.yeelight_bedroom
+        mode: lut
+        manufacturer: Yeelight
+        model: color2
+        ignore_unavailable_state: true
+      - entity_id: light.yeelight_livingroom
+        mode: lut
+        manufacturer: Yeelight
+        model: color2
+        ignore_unavailable_state: true
+      - entity_id: light.yeelight_guestroom
+        mode: lut
+        manufacturer: Yeelight
+        model: color2
+        ignore_unavailable_state: true
+      - entity_id: light.yeelight_entry
+        mode: lut
+        manufacturer: Yeelight
+        model: color2
+        ignore_unavailable_state: true
+
 binary_sensor:
   - platform: linode
     nodes: !secret linode_nodes
@@ -1176,12 +1225,9 @@ template:
     - name: 'Whole House Known Power'
       unique_id: whole_house_known_guesstimated_power
       state: >-
-        {{ states("sensor.dots_office_heater_power") | float(0.0)
-        + states("sensor.office_heater_power") | float(0.0)
-        + states("sensor.washer_power") | float(0.0)
-        + states("sensor.bedroom_heater_power") | float(0.0)
-        + states("sensor.guest_room_heater_power") | float(0.0)
-        + states("sensor.dishwasher_power") | float(0.0)
+        {{ states("sensor.all_powercalc_lights_power") | float(0.0)
+        + states("sensor.appliance_power") | float(0.0)
+        + states("sensor.heating_power") | float(0.0)
         }}
       unit_of_measurement: "W"
       icon: "mdi:home-lightning-bolt"
