@@ -180,6 +180,10 @@ sensor:
         manufacturer: Yeelight
         model: color2
         ignore_unavailable_state: true
+      - entity_id: light.tv_backlight
+        wled:
+          voltage: 5
+        ignore_unavailable_state: true
 
 binary_sensor:
   - platform: linode
