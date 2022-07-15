@@ -1,0 +1,10 @@
+- color_temp: 155
+  label: 'Cool'
+- color_temp: 280
+  label: 'Mid'
+- color_temp: 370
+  label: 'Warm'
+- rgb_color:
+  - 255
+  - 127
+  - 255

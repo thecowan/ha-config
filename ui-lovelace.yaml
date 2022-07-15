@@ -34,7 +34,7 @@ views:
           - light.gateway_light
           - light.yeelight_guestroom
           - light.yeelight_office
-          - light.yeelight_dining
+          - light.dining_room
           - light.kitchen_downlights
           - light.outside_globes
           - entity: light.flux_fairy
@@ -515,12 +515,12 @@ views:
           justify: center
           colors: !include colors_kogan.yaml
         - type: 'custom:slider-entity-row'
-          entity: light.yeelight_dining
+          entity: light.dining_room
           toggle: true
         - type: 'custom:rgb-light-card'
-          entity: light.yeelight_dining
+          entity: light.dining_room
           justify: center
-          colors: !include colors_yeelight.yaml
+          colors: !include colors_esphome.yaml
         - entity: light.diffuser_light
           name: Diffuser Light
       - type: 'custom:mini-media-player'
