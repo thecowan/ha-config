@@ -49,8 +49,12 @@ views:
           - binary_sensor.back_door
           - climate.office_ac
           - climate.dots_office_ac
+          - climate.office_heating
+          - climate.bedroom_heating
+          - climate.guest_room_heating
+          - climate.dots_office_heating
         state_filter:
-          - "on"      
+          - "on"
           - "heat"
           - "cool"
     cards:
