@@ -180,6 +180,12 @@ sensor:
         manufacturer: Yeelight
         model: color2
         ignore_unavailable_state: true
+      - entity_id: light.dining_room
+        mode: linear
+        linear:
+          min_power: 1
+          max_power: 15
+        ignore_unavailable_state: true
       - entity_id: light.tv_backlight
         wled:
           voltage: 5
@@ -805,6 +811,20 @@ climate:
     hot_tolerance: 0.4
     precision: 0.5
     sleep_temp: 13
+  - platform: generic_thermostat
+    name: "Living Room Heating"
+    heater: switch.living_room_heater
+    target_sensor: sensor.living_room_temperature
+    unique_id: living_room_heater_thermostat_athom_v2
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 0.5
+    sleep_temp: 13
 
   - platform: smartir
     name: "Living Room AC"
@@ -1214,6 +1234,7 @@ template:
         + states("sensor.office_heater_power") | float(0.0)
         + states("sensor.bedroom_heater_power") | float(0.0)
         + states("sensor.guest_room_heater_power") | float(0.0)
+        + states("sensor.living_room_heater_power") | float(0.0)
         }}
       unit_of_measurement: "W"
       icon: "mdi:home-lightning-bolt"
@@ -1223,6 +1244,7 @@ template:
       state: >-
         {{ states("sensor.washer_power") | float(0.0)
         + states("sensor.dishwasher_power") | float(0.0)
+        + states("sensor.dryer_power") | float(0.0)
         }}
       unit_of_measurement: "W"
       icon: "mdi:home-lightning-bolt"

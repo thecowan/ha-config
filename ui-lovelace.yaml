@@ -29,7 +29,7 @@ views:
           - light.dots_office
           - light.yeelight_bedroom
           - light.bedside_lamps
-          - light.yeelight_livingroom
+          - light.living_room
           - light.living_room_lamp
           - light.gateway_light
           - light.yeelight_guestroom
@@ -52,6 +52,7 @@ views:
           - climate.office_heating
           - climate.bedroom_heating
           - climate.guest_room_heating
+          - climate.living_room_heating
           - climate.dots_office_heating
         state_filter:
           - "on"
@@ -336,7 +337,7 @@ views:
         - type: 'custom:slider-entity-row'
           entity: cover.living_room_blind
       - type: 'custom:simple-thermostat'
-        entity: climate.living_room
+        entity: climate.living_room_heating
         layout:
           mode:
             headings: false
@@ -1094,16 +1095,6 @@ views:
           - device_tracker.pixel
           - device_tracker.dotties_iphone
       - type: 'custom:browser-player'
-      - type: glance
-        title: Power
-        icon: mdi:flash
-        entities:
-          - sensor.guest_room_left_plug_power
-          - sensor.guest_room_right_plug_power
-          - sensor.beer_fridge_plug_power
-          - sensor.beer_fridge_plug_power
-          - sensor.livingroom_heater_power
-          - sensor.dishwasher_power
       - type: 'custom:battery-state-card'
         title: Battery State
         sort_by_level: asc
