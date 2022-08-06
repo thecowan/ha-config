@@ -904,6 +904,10 @@ proximity:
     devices:
       device_tracker.pauls_pixel_6_pro
     tolerance: 30
+  home_dot:
+    devices:
+      device_tracker.iphone
+    tolerance: 30
 
 smartir:
 
@@ -1059,6 +1063,8 @@ template:
           {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).operator  }}
         owner: >-
           {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).owner  }}
+        route: >-
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).route  }}
       availability: >
         {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
 
