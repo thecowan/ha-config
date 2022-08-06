@@ -6,9 +6,6 @@ views:
     icon: mdi:airplane
     badges: []
     cards:
-      - type: entities
-        entities:
-          - entity: sensor.closest_plane_cpa
       - type: map
         entities:
           - entity: sensor.closest_plane
@@ -33,15 +30,15 @@ views:
                 - type: custom:button-card
                   entity: sensor.closest_plane
                   name: >-
-                    [[[  var owner =
-                    states["sensor.closest_plane"].attributes.owner; var
-                    operator =
-                    states["sensor.closest_plane"].attributes.operator; return
-                    states["sensor.closest_plane_flight_number"].state +
-                    ((operator || owner) ? " (" + (operator || owner) + ")" :
-                    "") + "<br /><span style='font-size:70%'>" + entity.state +
-                    ": " + states["sensor.closest_plane_type"].state  +
-                    "</small>" ]]]
+                    [[[  var owner = states["sensor.closest_plane"].attributes.owner;
+                    var operator = states["sensor.closest_plane"].attributes.operator;
+                    var route = states["sensor.closest_plane"].attributes.route;
+                    var r = states["sensor.closest_plane_flight_number"].state +  ((operator || owner) ? " (" + (operator || owner) + ")" : "");
+                    if (route && Object.keys(route).length > 0) {
+                      r += "<br />" + route.FromName + " <small>[" + route.FromIcao + "]</small> → " + route.ToName + " <small>[" + route.ToIcao + "]</small>"
+                    }
+                    r += "<br/><span style='font-size:70%'>" + entity.state + ": " + states["sensor.closest_plane_type"].state  + "</small>";
+                    return r; ]]]
                   show_entity_picture: true
                 - show_name: true
                   show_icon: true
