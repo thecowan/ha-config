@@ -131,6 +131,8 @@ sensor:
       - !secret helium_hotspot_id
     wallets:
       - !secret helium_wallet_id
+  - platform: openhardwaremonitor
+    host: red
 
   - platform: powercalc
     create_group: "All Powercalc Lights"
