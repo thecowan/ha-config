@@ -46,6 +46,8 @@ sun:
 
 backup:
 
+wake_on_lan:
+
 # Weather prediction
 sensor:
   - platform: alpha_vantage
@@ -1289,6 +1291,10 @@ switch:
           service: rest_command.toggle_cow_macbookpro_mutesync
         turn_off:
           service: rest_command.toggle_cow_macbookpro_mutesync
+  - platform: wake_on_lan
+    name: red
+    host: !secret red_ip_address
+    mac: !secret red_mac_address
 
 shell_command:
   process_mpd_data: '/config/ha-scrobble/processmpd.sh {{ mpd_data }}'
