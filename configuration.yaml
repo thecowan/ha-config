@@ -135,6 +135,7 @@ sensor:
       - !secret helium_wallet_id
   - platform: openhardwaremonitor
     host: red
+    port: 8093
 
   - platform: powercalc
     create_group: "All Powercalc Lights"

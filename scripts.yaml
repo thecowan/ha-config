@@ -185,3 +185,116 @@ set_cat_flap_state:
   mode: single
   icon: mdi:cat
   description: Bulk set cat flap state
+
+red_wake:
+  # To enable see https://www.home-assistant.io/components/wake_on_lan/
+  alias: "red - Wake"
+  sequence:
+    - service: wake_on_lan.send_magic_packet
+      data:
+        mac: "70:85:C2:63:9F:11"
+
+red_shutdown:
+  alias: "red - Shutdown"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/shutdown"
+        payload: ""
+
+red_suspend:
+  alias: "red - Suspend"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/suspend"
+        payload: ""
+
+red_hibernate:
+  alias: "red - Hibernate"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/hibernate"
+        payload: ""
+
+red_reboot:
+  alias: "red - Reboot"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/reboot"
+        payload: ""
+
+red_lock:
+  alias: "red - Lock"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/lock"
+        payload: ""
+
+red_logoff:
+  alias: "red - Logoff"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/logoff"
+        payload: ""
+
+red_vol_mute:
+  alias: "red - Toggle Mute"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/volume/mute"
+        payload: ""
+
+red_vol_max:
+  alias: "red - Vol Max"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/volume/set"
+        payload: "100"
+
+red_displays_on:
+  alias: "red - Displays ON"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/displays/on"
+        payload: ""
+
+red_displays_off:
+  alias: "red - Displays OFF"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/displays/off"
+        payload: ""
+
+red_refresh:
+  alias: "red - Refresh"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/refresh"
+        payload: ""
+
+red_notify:
+  alias: "red - Notify"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/notify"
+        payload: '{ "title": "My Notification Title", "message": "This is an example of notification using IOT Link", "launchParams": "toast://open/https://iotlink.gitlab.io" }'
+
+red_run_chrome:
+  alias: "red - Run Chrome"
+  sequence:
+    - service: mqtt.publish
+      data:
+        topic: "iotlink/workgroup/red/commands/run"
+        payload: '{ "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe", "args": "https://iotlink.gitlab.io", "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application", "user": "", "visible": true, "fallback": true }'
+
