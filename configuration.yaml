@@ -1317,22 +1317,6 @@ rest:
         value_template: "{{ value_json.cpu_usage | round(1) }}"
         state_class: "measurement"
         unit_of_measurement: '%'
-      - name: "Linxdot Miner Height"
-        value_template: "{{ value_json.miner_height | int }}"
-        state_class: "measurement"
-        unit_of_measurement: 'blocks'
-      - name: "Linxdot Block Height"
-        value_template: "{{ value_json.block_height | int }}"
-        state_class: "measurement"
-        unit_of_measurement: 'blocks'
-      - name: "Linxdot Sync %"
-        value_template: "{{ ((value_json.miner_height | float) / (value_json.block_height | float) * 100) | round(6) }}"
-        state_class: "measurement"
-        unit_of_measurement: '%'
-      - name: "Linxdot Sync Lag"
-        value_template: "{{ (value_json.block_height | int) - (value_json.miner_height | int) }}"
-        state_class: "measurement"
-        unit_of_measurement: "blocks"
   - resource: http://tilly:8082/data/aircraft.json
     scan_interval: 15
     sensor:

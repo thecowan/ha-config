@@ -132,15 +132,6 @@ views:
           extrema: true
           icon: false
           name: true
-      - chart_type: bar
-        period: 5minute
-        days_to_show: 7
-        type: statistics-graph
-        entities:
-          - sensor.linxdot_sync_lag
-        stat_types:
-          - mean
-        title: Lag
       - type: custom:config-template-card
         entities:
           - sensor.helium_wallet_today
@@ -223,9 +214,6 @@ views:
         type: custom:mini-graph-card
       - type: glance
         entities:
-          - entity: sensor.linxdot_sync
-            icon: mdi:sync-circle
-            name: Sync %
           - entity: sensor.linxdot_cpu_temperature
             name: CPU Temp
           - entity: sensor.linxdot_cpu_load
