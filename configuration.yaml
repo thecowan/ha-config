@@ -397,14 +397,17 @@ var:
     friendly_name: Receiver Last State
     initial_value: off
     restore: true
+    unique_id: var_receiver_last_state_1
   receiver_last_volume:
     friendly_name: Receiver Last Volume
     initial_value: 0
     restore: true
+    unique_id: var_receiver_last_volume_1
   receiver_last_source:
     friendly_name: Receiver Last Source
     initial_value: none
     restore: true
+    unique_id: var_receiver_last_source_1
 
 light:
   - platform: switch
