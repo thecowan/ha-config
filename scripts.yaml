@@ -168,14 +168,14 @@ set_cat_flap_state:
         ["keep_outside", "keep_in_office"] -%} locked_out {%- elif target_state in
         ["keep_inside", "keep_in_bedroom"] -%} locked_in {%- else -%} ??? {%- endif
         %}
-  - service: surepetcarebeta.set_lock_state
+  - service: sureha.set_lock_state
     data:
       flap_id: 675555
       lock_state: '{% if target_state in ["all_locked"] -%} locked_all {%- elif target_state
         in ["all_unlocked"] -%} unlocked {%- elif target_state in ["keep_outside",
         "keep_in_office"] -%} locked_out {%- elif target_state in ["keep_inside",
         "keep_in_bedroom"] -%} locked_in {%- else -%} ??? {%- endif %}'
-  - service: surepetcarebeta.set_lock_state
+  - service: sureha.set_lock_state
     data:
       flap_id: 671120
       lock_state: '{% if target_state in ["all_locked"] -%} locked_all {%- elif target_state
