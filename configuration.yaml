@@ -249,8 +249,8 @@ media_player:
       "universal-port": 'Port'
 
 notify:
-  - platform: pushbullet
-    api_key: !secret pushbullet_api_key
+#  - platform: pushbullet
+#  api_key: !secret pushbullet_api_key
 #  - name: pushover
 #    platform: pushover
 #    api_key: !secret pushover_api_key
