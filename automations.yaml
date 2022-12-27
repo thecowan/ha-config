@@ -144,7 +144,7 @@
       topic: tasmota_1222E9
       mac_address: 4C:11:AE:12:22:E9
 - id: '1622424964423'
-  alias: 🐱 Update Cat Flap State from Cloud
+  alias: "\U0001F431 Update Cat Flap State from Cloud"
   description: ''
   trigger:
   - platform: state
@@ -179,7 +179,7 @@
       target_state: '{{ states("input_select.cat_flap_state") }}'
   mode: single
 - id: '1622457601269'
-  alias: 🐱  Keep cats in Bedroom at Night
+  alias: "\U0001F431  Keep cats in Bedroom at Night"
   description: ''
   trigger:
   - platform: time
@@ -193,7 +193,7 @@
       option: keep_in_office
   mode: single
 - id: '1622457637235'
-  alias: 🐱 Let cats out in morning
+  alias: "\U0001F431 Let cats out in morning"
   description: ''
   trigger:
   - platform: time
@@ -221,7 +221,7 @@
       - media_player.guest_room
   mode: single
 - id: '1622693720246'
-  alias: 🛎️  Doorbell Reaction
+  alias: "\U0001F6CE️  Doorbell Reaction"
   description: ''
   trigger:
   - platform: event
@@ -315,7 +315,7 @@
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
 - id: '1624101614357'
-  alias: 🔘 Toggle Outside Lights
+  alias: "\U0001F518 Toggle Outside Lights"
   description: ''
   trigger:
   - device_id: ab450a7b3d8039f7716d894b38bf16e6
@@ -342,16 +342,16 @@
   action:
   - service: telegram_bot.send_message
     data:
-      message: "\U0001F321️ Living Room Temp = {{ states(\"sensor.living_room_temperature\"\
-        ) }}°C \n\U0001F321 Outside Temp = {{ states(\"sensor.outside_temperature\"\
-        ) }}°C\n\U0001F324 Weather = {{ states(\"sensor.lilyfield_short_text_0\")\
-        \ }} (tomorrow {{ states(\"sensor.lilyfield_short_text_1\") }})\n\U0001F327\
-        ️ Chance of rain = {{ states(\"sensor.lilyfield_rain_chance_0\") }}% (tomorrow\
-        \ {{ states(\"sensor.lilyfield_rain_chance_1\") }}%)"
+      message: "\U0001F321️ Living Room Temp = {{ states(\"sensor.living_room_temperature\")
+        }}°C \n\U0001F321 Outside Temp = {{ states(\"sensor.outside_temperature\")
+        }}°C\n\U0001F324 Weather = {{ states(\"sensor.lilyfield_short_text_0\") }}
+        (tomorrow {{ states(\"sensor.lilyfield_short_text_1\") }})\n\U0001F327️ Chance
+        of rain = {{ states(\"sensor.lilyfield_rain_chance_0\") }}% (tomorrow {{ states(\"sensor.lilyfield_rain_chance_1\")
+        }}%)"
       target: '{{ trigger.event.data.chat_id }}'
   mode: single
 - id: '1624503867808'
-  alias: 🔘 Toggle Party Lights
+  alias: "\U0001F518 Toggle Party Lights"
   description: ''
   trigger:
   - device_id: ab450a7b3d8039f7716d894b38bf16e6
@@ -404,7 +404,7 @@
       option: Finished
   mode: single
 - id: '1633580036748'
-  alias: '🪟  Blinds: Close at Sunset'
+  alias: "\U0001FA9F  Blinds: Close at Sunset"
   description: ''
   trigger:
   - platform: sun
@@ -417,7 +417,7 @@
       entity_id: cover.living_room_blind
   mode: single
 - id: '1633601876342'
-  alias: '🪟  Blinds: Open in the Morning'
+  alias: "\U0001FA9F  Blinds: Open in the Morning"
   description: ''
   trigger:
   - platform: time
@@ -430,7 +430,7 @@
       entity_id: cover.living_room_blind
   mode: single
 - id: '1634176799507'
-  alias: 🎥 Turn Selfie Light on when meeting starts
+  alias: "\U0001F3A5 Turn Selfie Light on when meeting starts"
   description: ''
   trigger:
   - platform: state
@@ -446,7 +446,7 @@
       entity_id: light.office_ring_light
   mode: single
 - id: '1634179680814'
-  alias: 🎥 Turn Selfie Light off when meeting ends
+  alias: "\U0001F3A5 Turn Selfie Light off when meeting ends"
   description: ''
   trigger:
   - platform: state
@@ -459,7 +459,7 @@
       entity_id: light.office_ring_light
   mode: single
 - id: '1638313007824'
-  alias: 🔘 Office Magic Cube
+  alias: "\U0001F518 Office Magic Cube"
   description: ''
   use_blueprint:
     path: Mikkelmoeller/aqara-magic-cube-zha-51-actions.yaml
@@ -499,7 +499,7 @@
           entity_id: media_player.office
           match: \U0001F42E
 - id: '1639972602920'
-  alias: 🎥 Office meeting begin/change
+  alias: "\U0001F3A5 Office meeting begin/change"
   description: ''
   trigger:
   - platform: state
@@ -520,7 +520,7 @@
       color_name: '{{ trigger.to_state.state }}'
   mode: single
 - id: '1639974205992'
-  alias: 🎥 Office meeting end
+  alias: "\U0001F3A5 Office meeting end"
   description: ''
   trigger:
   - platform: state
@@ -707,7 +707,7 @@
       value: '{{ trigger.entity_id }}'
   mode: single
 - id: '1647647743141'
-  alias: 🔘 4 Button Scene Switch - Backdoor
+  alias: "\U0001F518 4 Button Scene Switch - Backdoor"
   description: ''
   use_blueprint:
     path: Stringer/zigbee2mqtt-tuya-4-button-scene-switch-ts0044.yaml
@@ -762,7 +762,7 @@
       entity_id: light.yeelight_office
   mode: single
 - id: '1652661275277'
-  alias: 🎥 Office meeting begin
+  alias: "\U0001F3A5 Office meeting begin"
   description: ''
   trigger:
   - platform: state
@@ -815,7 +815,7 @@
       entity_id: media_player.office
   mode: single
 - id: '1653519007739'
-  alias: 🎵 Scrobble Office Tracks
+  alias: "\U0001F3B5 Scrobble Office Tracks"
   description: ''
   trigger:
   - platform: event
@@ -827,62 +827,60 @@
     value_template: '{{ trigger.event.data[''new_state''][''state''] == ''playing''
       or trigger.event.data[''old_state''][''state''] == ''playing'' }}'
   - condition: template
-    value_template: "{{ ((state_attr(\"media_player.office\", \"group_members\") |\
-      \ default('X', true) |\n    length) == 1) }}"
+    value_template: "{{ ((state_attr(\"media_player.office\", \"group_members\") |
+      default('X', true) |\n    length) == 1) }}"
   - condition: state
     entity_id: binary_sensor.cow_macbookpro_docked_in_office
     state: 'on'
   action:
   - service: shell_command.process_mpd_data
     data:
-      mpd_data: "'{{\n  {\n  \"old_state\": {\"media_content_type\": trigger.event.data['old_state']['attributes']['media_content_type']\
-        \ | default(\"\"),\n                \"media_content_id\": trigger.event.data['old_state']['attributes']['media_content_id']\
-        \ | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['old_state']['attributes']['media_position_updated_at'])\
-        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n  \
-        \              \"media_title\": trigger.event.data['old_state']['attributes']['media_title']\
-        \ | default(\"\") | replace(\"'\",\"\"),\n                \"media_artist\"\
-        : trigger.event.data['old_state']['attributes']['media_artist'] | default(\"\
-        \") | replace(\"'\",\"\"),\n                \"media_duration\": trigger.event.data['old_state']['attributes']['media_duration']\
-        \ | default(\"\"),\n                \"media_position\": trigger.event.data['old_state']['attributes']['media_position']\
-        \ | default(\"\"),\n                \"media_track\": trigger.event.data['old_state']['attributes']['media_track']\
-        \ | default(\"\"),\n                \"media_album_name\": trigger.event.data['old_state']['attributes']['media_album_name']\
-        \ | default(\"\"),\n                \"media_album_artist\": trigger.event.data['old_state']['attributes']['media_album_artist']\
-        \ | default(\"\"),\n                \"source\": trigger.event.data['old_state']['attributes']['source']\
-        \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['old_state']['attributes']['friendly_name']\
-        \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['old_state']['attributes']['entity_picture']\
-        \ | default(\"\"),\n                \"queue_position\": trigger.event.data['old_state']['attributes']['queue_position']\
-        \ | default(\"\"),\n                \"queue_size\": trigger.event.data['old_state']['attributes']['queue_size']\
-        \ | default(\"\"),\n                \"media_channel\": trigger.event.data['old_state']['attributes']['media_channel']\
-        \ | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\"\
-        : trigger.event.data['old_state']['attributes']['source_list'] | default(\"\
-        \")\n               },\n  \"new_state\": {\"media_content_type\": trigger.event.data['new_state']['attributes']['media_content_type']\
-        \ | default(\"\"),\n                \"media_content_id\": trigger.event.data['new_state']['attributes']['media_content_id']\
-        \ | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['new_state']['attributes']['media_position_updated_at'])\
-        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n  \
-        \              \"media_title\": trigger.event.data['new_state']['attributes']['media_title']\
-        \ | default(\"\") | replace(\"'\",\"\"),\n                \"media_artist\"\
-        : trigger.event.data['new_state']['attributes']['media_artist'] | default(\"\
-        \") | replace(\"'\",\"\"),\n                \"media_duration\": trigger.event.data['new_state']['attributes']['media_duration']\
-        \ | default(\"\"),\n                \"media_position\": trigger.event.data['new_state']['attributes']['media_position']\
-        \ | default(\"\"),\n                \"media_track\": trigger.event.data['new_state']['attributes']['media_track']\
-        \ | default(\"\"),\n                \"media_album_name\": trigger.event.data['new_state']['attributes']['media_album_name']\
-        \ | default(\"\"),\n                \"media_album_artist\": trigger.event.data['new_state']['attributes']['media_album_artist']\
-        \ | default(\"\"),\n                \"source\": trigger.event.data['new_state']['attributes']['source']\
-        \ | default(\"\"),\n                \"friendly_name\": trigger.event.data['new_state']['attributes']['friendly_name']\
-        \ | default(\"\"),\n                \"entity_picture\": trigger.event.data['new_state']['attributes']['entity_picture']\
-        \ | default(\"\"),\n                \"queue_position\": trigger.event.data['new_state']['attributes']['queue_position']\
-        \ | default(\"\"),\n                \"queue_size\": trigger.event.data['new_state']['attributes']['queue_size']\
-        \ | default(\"\"),\n                \"media_channel\": trigger.event.data['new_state']['attributes']['media_channel']\
-        \ | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\"\
-        : trigger.event.data['new_state']['attributes']['source_list'] | default(\"\
-        \")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])\
-        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"time_old\": as_timestamp(trigger.event.data['old_state']['last_updated'])\
-        \ | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"state_new\": trigger.event.data['new_state']['state'],\n\
-        \   \"state_old\": trigger.event.data['old_state']['state']\n   } | to_json\n\
-        }}'\n"
+      mpd_data: "'{{\n  {\n  \"old_state\": {\"media_content_type\": trigger.event.data['old_state']['attributes']['media_content_type']
+        | default(\"\"),\n                \"media_content_id\": trigger.event.data['old_state']['attributes']['media_content_id']
+        | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['old_state']['attributes']['media_position_updated_at'])
+        | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n                \"media_title\":
+        trigger.event.data['old_state']['attributes']['media_title'] | default(\"\")
+        | replace(\"'\",\"\"),\n                \"media_artist\": trigger.event.data['old_state']['attributes']['media_artist']
+        | default(\"\") | replace(\"'\",\"\"),\n                \"media_duration\":
+        trigger.event.data['old_state']['attributes']['media_duration'] | default(\"\"),\n
+        \               \"media_position\": trigger.event.data['old_state']['attributes']['media_position']
+        | default(\"\"),\n                \"media_track\": trigger.event.data['old_state']['attributes']['media_track']
+        | default(\"\"),\n                \"media_album_name\": trigger.event.data['old_state']['attributes']['media_album_name']
+        | default(\"\"),\n                \"media_album_artist\": trigger.event.data['old_state']['attributes']['media_album_artist']
+        | default(\"\"),\n                \"source\": trigger.event.data['old_state']['attributes']['source']
+        | default(\"\"),\n                \"friendly_name\": trigger.event.data['old_state']['attributes']['friendly_name']
+        | default(\"\"),\n                \"entity_picture\": trigger.event.data['old_state']['attributes']['entity_picture']
+        | default(\"\"),\n                \"queue_position\": trigger.event.data['old_state']['attributes']['queue_position']
+        | default(\"\"),\n                \"queue_size\": trigger.event.data['old_state']['attributes']['queue_size']
+        | default(\"\"),\n                \"media_channel\": trigger.event.data['old_state']['attributes']['media_channel']
+        | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\": trigger.event.data['old_state']['attributes']['source_list']
+        | default(\"\")\n               },\n  \"new_state\": {\"media_content_type\":
+        trigger.event.data['new_state']['attributes']['media_content_type'] | default(\"\"),\n
+        \               \"media_content_id\": trigger.event.data['new_state']['attributes']['media_content_id']
+        | default(\"\"),\n                \"media_position_updated_at\": as_timestamp(trigger.event.data['new_state']['attributes']['media_position_updated_at'])
+        | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False) | default(\"\"),\n                \"media_title\":
+        trigger.event.data['new_state']['attributes']['media_title'] | default(\"\")
+        | replace(\"'\",\"\"),\n                \"media_artist\": trigger.event.data['new_state']['attributes']['media_artist']
+        | default(\"\") | replace(\"'\",\"\"),\n                \"media_duration\":
+        trigger.event.data['new_state']['attributes']['media_duration'] | default(\"\"),\n
+        \               \"media_position\": trigger.event.data['new_state']['attributes']['media_position']
+        | default(\"\"),\n                \"media_track\": trigger.event.data['new_state']['attributes']['media_track']
+        | default(\"\"),\n                \"media_album_name\": trigger.event.data['new_state']['attributes']['media_album_name']
+        | default(\"\"),\n                \"media_album_artist\": trigger.event.data['new_state']['attributes']['media_album_artist']
+        | default(\"\"),\n                \"source\": trigger.event.data['new_state']['attributes']['source']
+        | default(\"\"),\n                \"friendly_name\": trigger.event.data['new_state']['attributes']['friendly_name']
+        | default(\"\"),\n                \"entity_picture\": trigger.event.data['new_state']['attributes']['entity_picture']
+        | default(\"\"),\n                \"queue_position\": trigger.event.data['new_state']['attributes']['queue_position']
+        | default(\"\"),\n                \"queue_size\": trigger.event.data['new_state']['attributes']['queue_size']
+        | default(\"\"),\n                \"media_channel\": trigger.event.data['new_state']['attributes']['media_channel']
+        | default(\"\") | replace(\"'\",\"\"),\n                \"source_list\": trigger.event.data['new_state']['attributes']['source_list']
+        | default(\"\")\n               },\n   \"time_new\": as_timestamp(trigger.event.data['new_state']['last_updated'])
+        | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"time_old\": as_timestamp(trigger.event.data['old_state']['last_updated'])
+        | timestamp_custom('%Y-%m-%dT%H:%M:%S.%f%z',False),\n   \"state_new\": trigger.event.data['new_state']['state'],\n
+        \  \"state_old\": trigger.event.data['old_state']['state']\n   } | to_json\n}}'\n"
   mode: single
 - id: '1654515497943'
-  alias: 📢 Alert during High Alert Mode
+  alias: "\U0001F4E2 Alert during High Alert Mode"
   description: ''
   trigger:
   - platform: state
@@ -919,7 +917,7 @@
       entity_id: media_player.kodi_cows_macbook_pro
   mode: single
 - id: '1654517529638'
-  alias: 📢 Enter High Alert Mode
+  alias: "\U0001F4E2 Enter High Alert Mode"
   description: ''
   trigger:
   - platform: state
@@ -941,7 +939,7 @@
       title: High Alert
   mode: single
 - id: '1654517690774'
-  alias: 📢 Exit High Alert Mode
+  alias: "\U0001F4E2 Exit High Alert Mode"
   description: ''
   trigger:
   - platform: state
@@ -1074,7 +1072,7 @@
   - service: script.sonos_play_matching
     data:
       entity_id: media_player.office
-      match: 🏠
+      match: "\U0001F3E0"
   mode: single
 - id: '1654755382943'
   alias: Leave Home without Dogs
@@ -1103,7 +1101,7 @@
         media_content_id: media-source://radio_browser/country/AU
   mode: single
 - id: '1654777172274'
-  alias: 🔘 Office Opple 6-button [new]
+  alias: "\U0001F518 Office Opple 6-button [new]"
   description: ''
   use_blueprint:
     path: cow/zigbee2mqtt-z2m-aqara-opple-6-button-remote-3-bands-wxcjkg13lm.yaml
@@ -1226,7 +1224,7 @@
         entity_id: light.yeelight_office
         type: brightness_decrease
 - id: '1654913530731'
-  alias: 🔘 Bedside Button Left [New]
+  alias: "\U0001F518 Bedside Button Left [New]"
   description: ''
   use_blueprint:
     path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
@@ -1246,7 +1244,7 @@
       - service: script.sonos_sleep
         data: {}
 - id: '1654914108142'
-  alias: 🔘 Bedside Button Right [New]
+  alias: "\U0001F518 Bedside Button Right [New]"
   description: ''
   use_blueprint:
     path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
@@ -1264,7 +1262,7 @@
         target:
           area_id: master_bedroom
 - id: '1654949497784'
-  alias: 🔘 Back Door Button
+  alias: "\U0001F518 Back Door Button"
   description: ''
   use_blueprint:
     path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
@@ -1281,7 +1279,7 @@
         target:
           entity_id: light.rear_floodlight
 - id: '1654949993985'
-  alias: 🔘 Office Button
+  alias: "\U0001F518 Office Button"
   description: ''
   use_blueprint:
     path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
@@ -1293,7 +1291,7 @@
         target:
           entity_id: light.yeelight_office
 - id: '1656386610707'
-  alias: 🌡️ Dot's Office Heater Timer - On
+  alias: "\U0001F321️ Dot's Office Heater Timer - On"
   description: ''
   trigger:
   - platform: time
@@ -1319,7 +1317,7 @@
     enabled: false
   mode: single
 - id: '1656386656506'
-  alias: 🌡️ Dot's Office Heater Timer - Off
+  alias: "\U0001F321️ Dot's Office Heater Timer - Off"
   description: ''
   trigger:
   - platform: time
@@ -1340,7 +1338,7 @@
       entity_id: climate.dots_office_heating
   mode: single
 - id: '1656388617944'
-  alias: 🌡️️ Dot's Office Heater - Sleep Mode Slider
+  alias: "\U0001F321️️ Dot's Office Heater - Sleep Mode Slider"
   description: ''
   trigger:
   - platform: state
@@ -1357,7 +1355,7 @@
       temperature: '{{ states("input_number.dots_office_heater_timer_temp") }}'
   mode: single
 - id: '1656500026360'
-  alias: 🌡️️ Bedroom Heater - Sleep Mode Slider
+  alias: "\U0001F321️️ Bedroom Heater - Sleep Mode Slider"
   description: ''
   trigger:
   - platform: state
@@ -1374,7 +1372,7 @@
       temperature: '{{ states("input_number.bedroom_heater_timer_temp") }}'
   mode: single
 - id: '1656500453233'
-  alias: '🌡️ Bedroom Heater Timer - Off '
+  alias: "\U0001F321️ Bedroom Heater Timer - Off "
   description: ''
   trigger:
   - platform: time
@@ -1396,7 +1394,7 @@
       - climate.bedroom_heating
   mode: single
 - id: '1656500556853'
-  alias: 🌡️ Bedroom Heater Timer - On
+  alias: "\U0001F321️ Bedroom Heater Timer - On"
   description: ''
   trigger:
   - platform: time
@@ -1417,7 +1415,7 @@
       - climate.bedroom_heating
   mode: single
 - id: '1656501733821'
-  alias: 🌡️ Office Heater Timer - Off
+  alias: "\U0001F321️ Office Heater Timer - Off"
   description: ''
   trigger:
   - platform: time
@@ -1439,7 +1437,7 @@
       - climate.office_heating
   mode: single
 - id: '1656501790704'
-  alias: 🌡️ Office Heater Timer - On
+  alias: "\U0001F321️ Office Heater Timer - On"
   description: ''
   trigger:
   - platform: time
@@ -1460,7 +1458,7 @@
       - climate.office_heating
   mode: single
 - id: '1656501837599'
-  alias: 🌡️️ Office Heater - Sleep Mode Slider
+  alias: "\U0001F321️️ Office Heater - Sleep Mode Slider"
   description: ''
   trigger:
   - platform: state
@@ -1477,7 +1475,7 @@
       temperature: '{{ states("input_number.office_heater_timer_temp") }}'
   mode: single
 - id: '1656502769828'
-  alias: '🌡️ Guest Room Heater Timer - Off '
+  alias: "\U0001F321️ Guest Room Heater Timer - Off "
   description: ''
   trigger:
   - platform: time
@@ -1499,7 +1497,7 @@
       - climate.guest_room_heating
   mode: single
 - id: '1656502830840'
-  alias: 🌡️ Guest Room Heater Timer - On
+  alias: "\U0001F321️ Guest Room Heater Timer - On"
   description: ''
   trigger:
   - platform: time
@@ -1520,7 +1518,7 @@
       - climate.guest_room_heating
   mode: single
 - id: '1656502879082'
-  alias: 🌡️️ Guest Room Heater - Sleep Mode Slider
+  alias: "\U0001F321️️ Guest Room Heater - Sleep Mode Slider"
   description: ''
   trigger:
   - platform: state
@@ -1535,4 +1533,49 @@
       entity_id: climate.guest_room_heating
     data:
       temperature: '{{ states("input_number.guest_room_heater_timer_temp") }}'
+  mode: single
+- id: '1672126071304'
+  alias: ❄️ Turn off AC when all zones off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.daikin_ac_living
+    - switch.daikin_ac_bedroom
+    - switch.daikin_ac_dot_office
+    - switch.daikin_ac_paul_office
+    - switch.daikin_ac_kitchen
+    - switch.daikin_ac_guest
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: switch.daikin_ac_living
+      state: 'off'
+    - condition: state
+      entity_id: switch.daikin_ac_bedroom
+      state: 'off'
+    - condition: state
+      entity_id: switch.daikin_ac_dot_office
+      state: 'off'
+    - condition: state
+      entity_id: switch.daikin_ac_paul_office
+      state: 'off'
+    - condition: state
+      entity_id: switch.daikin_ac_kitchen
+      state: 'off'
+    - condition: state
+      entity_id: switch.daikin_ac_guest
+      state: 'off'
+  action:
+  - device_id: b234bba5e861252c22c666fd42dc0f0b
+    domain: climate
+    entity_id: climate.daikin_ac
+    type: set_hvac_mode
+    hvac_mode: 'off'
   mode: single
