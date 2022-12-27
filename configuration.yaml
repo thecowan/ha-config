@@ -62,9 +62,6 @@ sensor:
   - platform: lastfm
     api_key: !secret lastfm_api_key
     users: !secret lastfm_users
-  - platform: season
-    type: astronomical
-  - platform: moon
   - platform: template
     sensors:
       lilyfield_temperature:
@@ -281,7 +278,7 @@ mqtt:
   #broker: !secret mqtt_broker
   #username: !secret mqtt_username
   #password: !secret mqtt_password
-  certificate: /etc/ssl/certs/ca-certificates.crt
+  #certificate: /etc/ssl/certs/ca-certificates.crt
   #port: 8883
   sensor:
     - state_topic: "adsb/tilly"
