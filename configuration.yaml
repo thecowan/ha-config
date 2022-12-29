@@ -868,6 +868,46 @@ climate:
     controller_data: remote.guest_room_remote
     temperature_sensor: sensor.temperature_guestroom
     humidity_sensor: sensor.humidity_guestroom
+  - platform: climate_template
+    name: Living Room
+    unique_id: climate_template_daikin_ducted_living_room
+    modes:
+      - "fan_only"
+      - "dry"
+      - "cool"
+      - "heat"
+      - "off"
+      # - "heat_cool"
+    fan_modes:
+      - "Auto"
+      - "Low"
+      - "Mid"
+      - "High"
+      #- "Low/Auto"
+      #- "Mid/Auto"
+      #- "High/Auto"
+    min_temp: 7
+    max_temp: 35
+    current_temperature_template: "{{ states('sensor.living_room_temperature') }}"
+    current_humidity_template: "{{ states('sensor.living_room_humidity') }}"
+    hvac_mode_template: '{% if is_state("switch.daikin_ac_living", "off") -%}off{%- else -%}{{ states("climate.daikin_ac") }}{%- endif %}'
+    fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
+    hvac_mode_template: '{% if is_state("switch.daikin_ac_living", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
+    availability_template: '{{ not (is_state("switch.daikin_ac_living", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
+
+    # target_temperature_template
+    # precision
+
+    # example action
+    #set_hvac_mode:
+    #  - service: esphome.bedroom_node_aircon_state
+    #    data:
+    #      temperature: "{{ state_attr('climate.bedroom_aircon', 'temperature') | int }}"
+    #      operation_mode: "{{ states('climate.bedroom_aircon') }}"
+    #      fan_mode: "{{ state_attr('climate.bedroom_aircon', 'fan_mode') }}"
+    #      swing_mode: "{{ is_state_attr('climate.bedroom_aircon', 'swing_mode', 'on') }}"
+    #      light: "{{ is_state('light.bedroom_aircon_light', 'on') }}"
+
 
 system_health:
 

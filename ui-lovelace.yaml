@@ -347,6 +347,17 @@ views:
         sensors:
           - entity: sensor.living_room_humidity
             name: Humidity
+      - type: 'custom:simple-thermostat'
+        entity: climate.living_room_2
+        layout:
+          mode:
+            headings: false
+            icons: true
+            names: true
+          step: row
+        sensors:
+          - entity: sensor.living_room_humidity
+            name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
