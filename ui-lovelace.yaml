@@ -888,9 +888,9 @@ views:
         name: Guest Room Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.guestroom_temperature
+          - entity: sensor.guest_room_temperature
             name: Temperature
-          - entity: sensor.humidity_guestroom
+          - entity: sensor.guest_room_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5

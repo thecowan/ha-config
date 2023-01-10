@@ -387,3 +387,67 @@ views:
                 max: 2500
                 name: Lighting
 
+  - title: Climate
+    path: climate
+    icon: mdi:thermometer
+    badges: []
+    cards:
+      - type: 'custom:mini-graph-card'
+        name: Temperatures
+        points_per_hour: 10
+        entities:
+          - entity: sensor.living_room_temperature
+            name: Living Room
+            show_points: false
+          - entity: sensor.office_temperature
+            name: Paul
+            show_points: false
+          - entity: sensor.dots_office_temperature
+            name: Dot
+            show_points: false
+          - entity: sensor.outside_temperature
+            name: Outside
+            show_points: false
+          - entity: sensor.bedroom_temperature
+            name: Bedroom
+            show_points: false
+          - entity: sensor.lilyfield_temperature
+            name: Lilyfield
+            show_points: false
+          - entity: sensor.daikin_ac_inside_temperature
+            name: Attic
+            show_points: false
+        min_bound_range: 5
+        height: 300
+        line_width: 2
+        show:
+          labels: true
+      - type: 'custom:mini-graph-card'
+        name: Humidity
+        points_per_hour: 10
+        entities:
+          - entity: sensor.living_room_humidity
+            name: Living Room
+            show_points: false
+          - entity: sensor.office_humidity
+            name: Paul
+            show_points: false
+          - entity: sensor.dots_office_humidity
+            name: Dot
+            show_points: false
+          - entity: sensor.outside_humidity
+            name: Outside
+            show_points: false
+          - entity: sensor.bedroom_humidity
+            name: Bedroom
+            show_points: false
+          - entity: sensor.sydney_observatory_hill_humidity
+            name: Sydney
+            show_points: false
+        min_bound_range: 5
+        height: 300
+        line_width: 2
+        show:
+          labels: true
+      - type: weather-forecast
+        entity: weather.lilyfield
