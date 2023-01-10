@@ -1386,3 +1386,12 @@ energy:
 
 
 powercalc:
+
+
+recorder:
+  commit_interval: 10
+  exclude:
+    entity_globs:
+      - sensor.closest_plane*
+    entities:
+      - sensor.tilly_tracked_aircraft
