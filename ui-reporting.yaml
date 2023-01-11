@@ -411,6 +411,9 @@ views:
           - entity: sensor.bedroom_temperature
             name: Bedroom
             show_points: false
+          - entity: sensor.guest_room_temperature
+            name: Guest
+            show_points: false
           - entity: sensor.lilyfield_temperature
             name: Lilyfield
             show_points: false
@@ -440,6 +443,9 @@ views:
             show_points: false
           - entity: sensor.bedroom_humidity
             name: Bedroom
+            show_points: false
+          - entity: sensor.guest_room_humidity
+            name: Guest
             show_points: false
           - entity: sensor.sydney_observatory_hill_humidity
             name: Sydney
