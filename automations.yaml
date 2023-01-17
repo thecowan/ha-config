@@ -1579,3 +1579,28 @@
     type: set_hvac_mode
     hvac_mode: 'off'
   mode: single
+- id: '1673999081128'
+  alias: ❄️ Turn on AC when any switch turns on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.daikin_ac_any_rooms_on
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  condition:
+  - condition: state
+    entity_id: climate.daikin_ac
+    attribute: hvac_action
+    state: 'off'
+  action:
+  - device_id: b234bba5e861252c22c666fd42dc0f0b
+    domain: climate
+    entity_id: climate.daikin_ac
+    type: set_hvac_mode
+    hvac_mode: cool
+  mode: single
