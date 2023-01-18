@@ -404,11 +404,13 @@
       option: Finished
   mode: single
 - id: '1633580036748'
-  alias: "\U0001FA9F  Blinds: Close at Sunset"
+  alias: "\U0001FA9F  Blinds: Close at Sunset or designated time"
   description: ''
   trigger:
   - platform: sun
     event: sunset
+  - platform: time
+    at: input_datetime.blind_close_time
   condition: []
   action:
   - service: cover.close_cover
@@ -421,7 +423,7 @@
   description: ''
   trigger:
   - platform: time
-    at: 09:00:00
+    at: input_datetime.blind_open_time
   condition: []
   action:
   - service: cover.open_cover
