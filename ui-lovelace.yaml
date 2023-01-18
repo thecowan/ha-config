@@ -582,14 +582,14 @@ views:
           justify: center
           colors: !include colors_nitebird.yaml
       - type: 'custom:simple-thermostat'
-        entity: climate.bedroom_heating
+        entity: climate.bedroom_ducted_cooling
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '0.5'
+        step_size: '1.0'
         hide:
           temperature: true
         sensors:
@@ -615,19 +615,19 @@ views:
       #      name: Temperature
       #    - entity: sensor.bedroom_temperature
       #      name: Humidity
-      - type: entities
-        entities:
-        - type: custom:fold-entity-row
-          head:
-            entity: input_boolean.bedroom_heater_timer
-            name: "Automatic Sleep Mode"
-          entities:
-          - entity: input_datetime.bedroom_heater_on_time
-            name: "On"
-          - entity: input_datetime.bedroom_heater_off_time
-            name: "Off"
-          - entity: input_number.bedroom_heater_timer_temp
-            name: "Temperature"
+      #- type: entities
+      #  entities:
+      #  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.bedroom_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.bedroom_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.bedroom_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.bedroom_heater_timer_temp
+      #      name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
         hide:

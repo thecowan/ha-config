@@ -809,6 +809,20 @@ climate:
     precision: 1.0
     sleep_temp: 13
   - platform: generic_thermostat
+    name: "Bedroom Ducted Cooling"
+    heater: switch.daikin_ac_bedroom
+    ac_mode: true
+    target_sensor: sensor.bedroom_temperature
+    unique_id: generic_thermostat_daikin_ducted_bedroom_cooling
+    min_temp: 7
+    max_temp: 35
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 1.0
+  - platform: generic_thermostat
     name: "Guest Room Ducted Cooling"
     heater: switch.daikin_ac_guest
     ac_mode: true
