@@ -64,6 +64,13 @@ sensor:
     users: !secret lastfm_users
   - platform: template
     sensors:
+      target_aircon_temp:
+        friendly_name: 'Target Ducted A/C Temperature'
+        unit_of_measurement: '°C'
+        value_template: >-
+          {% set coldest_target = (states.climate | selectattr('entity_id', 'match', '.*duct.*') | selectattr('state', 'eq', 'cool') | map(attribute='attributes.temperature') | min | default(99)) -%}
+          {%- set intake = states['sensor.daikin_ac_inside_temperature'].state | int -%}
+          {{ max(min(coldest_target, intake) - 2.0, 9) }}
       lilyfield_temperature:
         friendly_name: 'Lilyfield Temperature'
         unit_of_measurement: '°C'
