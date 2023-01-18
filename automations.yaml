@@ -1618,3 +1618,25 @@
   condition: []
   action: []
   mode: single
+- id: '1674084251043'
+  alias: Update OpenUV
+  description: Update UV indexes
+  trigger:
+  - platform: time_pattern
+    minutes: /6
+  condition:
+  - condition: sun
+    after: sunrise
+    before: sunset
+    before_offset: +00:40:00
+  - condition: template
+    value_template: "{{\n  state_attr('automation.update_openuv', 'last_triggered')
+      == None\n  or (\n    now() - state_attr('automation.update_openuv', 'last_triggered')\n
+      \ ) >= timedelta(hours = 0, minutes = 36)\n}}"
+  action:
+  - service: homeassistant.update_entity
+    target:
+      entity_id:
+      - binary_sensor.protection_window
+      - sensor.current_uv_index
+    data: {}
