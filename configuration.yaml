@@ -711,6 +711,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/custom-brand-icons/custom-brand-icons.js'
       type: js
+    - url: '/hacsfiles/mini-climate-card/mini-climate-card-bundle.js'
+      type: module
   dashboards:
     lovelace-reporting:
       mode: yaml
