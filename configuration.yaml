@@ -778,6 +778,49 @@ climate:
     precision: 0.5
     sleep_temp: 13
   - platform: generic_thermostat
+    name: "Living Room Ducted Cooling"
+    heater: switch.daikin_ac_living
+    ac_mode: true
+    target_sensor: sensor.living_room_temperature
+    unique_id: generic_thermostat_daikin_ducted_living_room_cooling
+    min_temp: 7
+    max_temp: 35
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 1.0
+  - platform: generic_thermostat
+    name: "Office Ducted Cooling"
+    heater: switch.daikin_ac_paul_office
+    ac_mode: true
+    target_sensor: sensor.office_temperature
+    unique_id: generic_thermostat_daikin_ducted_paul_office_cooling
+    min_temp: 7
+    max_temp: 35
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 1.0
+    sleep_temp: 13
+  - platform: generic_thermostat
+    name: "Guest Room Ducted Cooling"
+    heater: switch.daikin_ac_guest
+    ac_mode: true
+    target_sensor: sensor.guest_room_temperature
+    unique_id: generic_thermostat_daikin_ducted_guest_room_cooling
+    min_temp: 7
+    max_temp: 35
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 1.0
+  - platform: generic_thermostat
     name: "Office Heating"
     heater: switch.office_heater
     target_sensor: sensor.office_temperature
@@ -870,6 +913,44 @@ climate:
     controller_data: remote.guest_room_remote
     temperature_sensor: sensor.temperature_guestroom
     humidity_sensor: sensor.humidity_guestroom
+  - platform: climate_template
+    name: Paul Office
+    unique_id: climate_template_daikin_ducted_paul_office
+    modes:
+      - "fan_only"
+      - "dry"
+      - "cool"
+      - "heat"
+      - "off"
+      # - "heat_cool"
+    fan_modes:
+      - "Auto"
+      - "Low"
+      - "Mid"
+      - "High"
+      #- "Low/Auto"
+      #- "Mid/Auto"
+      #- "High/Auto"
+    min_temp: 7
+    max_temp: 35
+    current_temperature_template: "{{ states('sensor.office_temperature') }}"
+    current_humidity_template: "{{ states('sensor.office_humidity') }}"
+    fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
+    hvac_mode_template: '{% if is_state("switch.daikin_ac_paul_office", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
+    availability_template: '{{ not (is_state("switch.daikin_ac_paul_office", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
+    target_temperature_template: "{{states('input_number.paul_office_virtual_ac_target_temp')}}"
+    precision: 1.0
+
+    # example action
+    #set_hvac_mode:
+    #  - service: esphome.bedroom_node_aircon_state
+    #    data:
+    #      temperature: "{{ state_attr('climate.bedroom_aircon', 'temperature') | int }}"
+    #      operation_mode: "{{ states('climate.bedroom_aircon') }}"
+    #      fan_mode: "{{ state_attr('climate.bedroom_aircon', 'fan_mode') }}"
+    #      swing_mode: "{{ is_state_attr('climate.bedroom_aircon', 'swing_mode', 'on') }}"
+    #      light: "{{ is_state('light.bedroom_aircon_light', 'on') }}"
+
   - platform: climate_template
     name: Living Room
     unique_id: climate_template_daikin_ducted_living_room

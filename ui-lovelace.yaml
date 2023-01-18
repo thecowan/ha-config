@@ -337,27 +337,34 @@ views:
         - type: 'custom:slider-entity-row'
           entity: cover.living_room_blind
       - type: 'custom:simple-thermostat'
-        entity: climate.living_room_heating
+        entity: climate.living_room_ducted_cooling
         layout:
           mode:
-            headings: false
-            icons: true
             names: true
+            icons: true
+            headings: false
           step: row
+        step_size: '1.0'
+        hide:
+          temperature: true
         sensors:
+          - entity: sensor.living_room_temperature
+            name: Temperature
+            decimals: 1
           - entity: sensor.living_room_humidity
             name: Humidity
-      - type: 'custom:simple-thermostat'
-        entity: climate.living_room_2
-        layout:
-          mode:
-            headings: false
-            icons: true
-            names: true
-          step: row
-        sensors:
-          - entity: sensor.living_room_humidity
-            name: Humidity
+            decimals: 0
+      #- type: 'custom:simple-thermostat'
+      #  entity: climate.living_room_heating
+      #  layout:
+      #    mode:
+      #      headings: false
+      #      icons: true
+      #      names: true
+      #    step: row
+      #  sensors:
+      #    - entity: sensor.living_room_humidity
+      #      name: Humidity
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
@@ -842,38 +849,36 @@ views:
           colors: !include colors_yeelight.yaml
         - entity: light.guest_room_right
       - type: 'custom:simple-thermostat'
-        entity: climate.guest_room_heating
+        entity: climate.guest_room_ducted_cooling
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '0.5'
+        step_size: '1.0'
         hide:
           temperature: true
         sensors:
-          # TO FIX
-          - entity: sensor.living_room_temperature
+          - entity: sensor.guest_room_temperature
             name: Temperature
             decimals: 1
-          # TO FIX
-          - entity: sensor.living_room_humidity
+          - entity: sensor.guest_room_humidity
             name: Humidity
             decimals: 0
-      - type: entities
-        entities:
-        - type: custom:fold-entity-row
-          head:
-            entity: input_boolean.guest_room_heater_timer
-            name: "Automatic Sleep Mode"
-          entities:
-          - entity: input_datetime.guest_room_heater_on_time
-            name: "On"
-          - entity: input_datetime.guest_room_heater_off_time
-            name: "Off"
-          - entity: input_number.guest_room_heater_timer_temp
-            name: "Temperature"
+      #- type: entities
+      #  entities:
+      #  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.guest_room_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.guest_room_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.guest_room_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.guest_room_heater_timer_temp
+      #      name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.guest_room
         hide:
@@ -930,14 +935,14 @@ views:
       #    - entity: sensor.office_humidity
       #      name: Humidity
       - type: 'custom:simple-thermostat'
-        entity: climate.office_heating
+        entity: climate.office_ducted_cooling
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '0.5'
+        step_size: '1.0'
         hide:
           temperature: true
         sensors:
@@ -947,19 +952,37 @@ views:
           - entity: sensor.office_humidity
             name: Humidity
             decimals: 0
-      - type: entities
-        entities:
-        - type: custom:fold-entity-row
-          head:
-            entity: input_boolean.office_heater_timer
-            name: "Automatic Sleep Mode"
-          entities:
-          - entity: input_datetime.office_heater_on_time
-            name: "On"
-          - entity: input_datetime.office_heater_off_time
-            name: "Off"
-          - entity: input_number.office_heater_timer_temp
-            name: "Temperature"
+      #- type: 'custom:simple-thermostat'
+      #  entity: climate.office_heating
+      #  layout:
+      #    mode:
+      #      names: true
+      #      icons: true
+      #      headings: false
+      #    step: row
+      #  step_size: '0.5'
+      #  hide:
+      #    temperature: true
+      #  sensors:
+      #    - entity: sensor.office_temperature
+      #      name: Temperature
+      #      decimals: 1
+      #    - entity: sensor.office_humidity
+      #      name: Humidity
+      #      decimals: 0
+      #- type: entities
+      #  entities:
+      #  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.office_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.office_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.office_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.office_heater_timer_temp
+      #      name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.office
         hide:
