@@ -1041,52 +1041,36 @@ views:
       #    justify: center
       #    colors: !include colors_kogan.yaml
       - type: 'custom:simple-thermostat'
-        entity: climate.dots_office_heating
+        entity: climate.dots_office_ducted_cooling
         layout:
           mode:
             names: true
             icons: true
             headings: false
           step: row
-        step_size: '0.5'
+        step_size: '1.0'
         hide:
           temperature: true
         sensors:
-          - entity: sensor.dots_office_temperature
+          - entity: sensor.dot_office_temperature
             name: Temperature
             decimals: 1
-          - entity: sensor.dots_office_humidity
+          - entity: sensor.dot_office_humidity
             name: Humidity
             decimals: 0
-      # - type: 'custom:simple-thermostat'
-      #  entity: climate.dots_office_ac
-      #  layout:
-      #    mode:
-      #      names: true
-      #      icons: true
-      #      headings: false
-      #    step: row
-      #  step_size: '1'
-      #  hide:
-      #    temperature: true
-      #  sensors:
-      #    - entity: sensor.dots_office_temperature
-      #      name: Temperature
-      #    - entity: sensor.dots_office_temperature
-      #      name: Humidity
-      - type: entities
-        entities:
-        - type: custom:fold-entity-row
-          head:
-            entity: input_boolean.dots_office_heater_timer
-            name: "Automatic Sleep Mode"
-          entities:
-          - entity: input_datetime.dots_office_heater_on_time
-            name: "On"
-          - entity: input_datetime.dots_office_heater_off_time
-            name: "Off"
-          - entity: input_number.dots_office_heater_timer_temp
-            name: "Temperature"
+      #- type: entities
+      #  entities:
+      ##  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.dots_office_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.dots_office_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.dots_office_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.dots_office_heater_timer_temp
+      #      name: "Temperature"
       - type: 'custom:mini-graph-card'
         name: Dot's Office Climate
         points_per_hour: 20
