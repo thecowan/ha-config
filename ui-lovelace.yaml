@@ -548,6 +548,24 @@ views:
           colors: !include colors_esphome.yaml
         - entity: light.diffuser_light
           name: Diffuser Light
+      - type: 'custom:simple-thermostat'
+        entity: climate.kitchen_ducted_cooling
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        hide:
+          temperature: true
+        sensors:
+          - entity: sensor.siren_1_temperature
+            name: Temperature
+            decimals: 1
+          - entity: sensor.siren_1_humidity
+            name: Humidity
+            decimals: 0
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
@@ -561,6 +579,20 @@ views:
       - type: button
         entity: switch.diffuser_fan
         name: Diffuser
+      - type: 'custom:mini-graph-card'
+        name: Kitchen Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.siren_1_temperature
+            name: Temperature
+          - entity: sensor.siren_1_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
   - title: Bedroom
     icon: mdi:bed-empty
     path: bedroom

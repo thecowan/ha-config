@@ -852,6 +852,20 @@ climate:
     hot_tolerance: 0.4
     precision: 1.0
   - platform: generic_thermostat
+    name: "Kitchen Ducted Cooling"
+    heater: switch.daikin_ac_kitchen
+    ac_mode: true
+    target_sensor: sensor.siren_1_temperature
+    unique_id: generic_thermostat_daikin_ducted_kitchen_cooling
+    min_temp: 7
+    max_temp: 35
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.4
+    hot_tolerance: 0.4
+    precision: 1.0
+  - platform: generic_thermostat
     name: "Office Heating"
     heater: switch.office_heater
     target_sensor: sensor.office_temperature

@@ -1604,3 +1604,15 @@
     type: set_hvac_mode
     hvac_mode: cool
   mode: single
+- id: '1674028570229'
+  alias: Testing 1
+  description: ''
+  trigger:
+  - platform: event
+    event_type: state_changed
+    event_data:
+      data:
+        entity_id: switch.daikin_ac_bedroom
+  condition: []
+  action: []
+  mode: single
