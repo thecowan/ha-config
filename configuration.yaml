@@ -1392,7 +1392,7 @@ template:
           free
         {% elif is_state('binary_sensor.cow_macbookpro_muted', 'off') %}
           red
-        {% elif is_state('binary_sensor.cows_macbook_pro_camera_in_use', 'on') %}
+        {% elif is_state('binary_sensor.cow_macbook_pro_camera_in_use', 'on') %}
           blue
         {% else %}
           green
