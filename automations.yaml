@@ -1643,3 +1643,17 @@
       - binary_sensor.protection_window
       - sensor.current_uv_index
     data: {}
+- id: '1674108881656'
+  alias: "\U0001F518 Attic Light Switch"
+  description: ''
+  use_blueprint:
+    path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
+    input:
+      action_sensor: sensor.attic_light_switch_action
+      single_action:
+      - service: light.toggle
+        data: {}
+        target:
+          entity_id:
+          - light.attic_light
+      double_action: []
