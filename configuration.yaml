@@ -50,6 +50,9 @@ wake_on_lan:
 
 # Weather prediction
 sensor:
+sensor:
+  - platform: illuminance
+    entity_id: weather.openweathermap
   - platform: alpha_vantage
     api_key: !secret alpha_vantage_api_key
     symbols:
