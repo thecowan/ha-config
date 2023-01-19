@@ -436,7 +436,8 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.cow_macbookpro_in_meeting
+    entity_id:
+    - binary_sensor.cow_mabookpro_in_meeting
     to: 'on'
   condition: []
   action:
@@ -452,13 +453,15 @@
   description: ''
   trigger:
   - platform: state
-    entity_id: binary_sensor.cow_macbookpro_in_meeting
+    entity_id:
+    - binary_sensor.cow_mabookpro_in_meeting
     to: 'off'
   condition: []
   action:
   - service: light.turn_off
     target:
       entity_id: light.office_ring_light
+    data: {}
   mode: single
 - id: '1638313007824'
   alias: "\U0001F518 Office Magic Cube"
