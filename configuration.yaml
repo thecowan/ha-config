@@ -1528,3 +1528,5 @@ recorder:
       - sensor.closest_plane*
     entities:
       - sensor.tilly_tracked_aircraft
+
+bluetooth:
