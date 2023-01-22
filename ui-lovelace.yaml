@@ -317,6 +317,20 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.front_window
           toggle: true
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.porch
+            live_provider: auto
+            title: Porch
+        view:
+          default: live
+        menu:
+          style: hover
+          buttons:
+            frigate:
+              enabled: false
+            cameras:
+              enabled: false
   - title: Living Room
     icon: mdi:sofa
     path: living
