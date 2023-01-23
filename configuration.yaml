@@ -48,8 +48,6 @@ backup:
 
 wake_on_lan:
 
-# Weather prediction
-sensor:
 sensor:
   - platform: illuminance
     entity_id: weather.openweathermap
@@ -78,6 +76,26 @@ sensor:
         friendly_name: 'Lilyfield Temperature'
         unit_of_measurement: '°C'
         value_template: "{{ state_attr('weather.lilyfield', 'temperature') }}"
+      living_room_window_light_summary:
+        friendly_name: 'Living Room Window Light'
+        # https://en.wikipedia.org/wiki/Lux
+        value_template: >-
+          {%- if is_state("sensor.living_room_window_light_sensor", "unavailable") -%}
+            unavailable
+          {%- else -%}
+            {%- set lux = states['sensor.living_room_window_light_sensor'].state | int -%}
+            {%- if (lux > 30000) -%}
+              direct_sun
+            {%- elif (lux > 8000) -%}
+              indirect_sun
+            {%- elif (lux > 150) -%}
+              overcast
+            {%- elif (lux > 30) -%}
+              dim
+            {%- else -%}
+              dark
+            {%- endif -%}
+          {%- endif -%}
       cat_flap_cloud_state:
         friendly_name: 'Cat Flap State'
         value_template: >-
@@ -799,7 +817,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
@@ -813,7 +831,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
@@ -828,7 +846,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
@@ -843,7 +861,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
@@ -857,7 +875,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
@@ -871,7 +889,7 @@ climate:
     max_temp: 35
     min_cycle_duration:
       seconds: 300
-    keep_alive: "00:05:00"
+    #keep_alive: "00:05:00"
     cold_tolerance: 0.4
     hot_tolerance: 0.4
     precision: 1.0
