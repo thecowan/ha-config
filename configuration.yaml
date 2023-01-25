@@ -21,6 +21,11 @@ homeassistant:
 # Enables configuration UI
 config:
 
+logger:
+  default: warning
+  logs:
+    custom_components.virtual_ducted_thermostat: debug
+
 http:
   cors_allowed_origins: !secret cors_allowed_origins
   use_x_forwarded_for: true
@@ -782,288 +787,119 @@ climate:
     min_cycle_duration:
       seconds: 300
     keep_alive: "00:05:00"
-  - platform: generic_thermostat
-    name: Living Room
-    heater: switch.livingroom_heater
-    target_sensor: sensor.living_room_temperature
-    unique_id: livingroom_heater_thermostat_zsp001b
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.5
-  - platform: generic_thermostat
-    name: "Dot's Office Heating"
-    heater: switch.dots_office_heater
-    target_sensor: sensor.dots_office_temperature
-    unique_id: dots_office_header_thermostat_bwshp1
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 0.5
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Living Room Ducted Cooling"
-    heater: switch.daikin_ac_living
-    ac_mode: true
-    target_sensor: sensor.living_room_temperature
-    unique_id: generic_thermostat_daikin_ducted_living_room_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-  - platform: generic_thermostat
-    name: "Office Ducted Cooling"
-    heater: switch.daikin_ac_paul_office
-    ac_mode: true
-    target_sensor: sensor.office_temperature
-    unique_id: generic_thermostat_daikin_ducted_paul_office_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Dot's Office Ducted Cooling"
-    heater: switch.daikin_ac_dot_office
-    ac_mode: true
-    target_sensor: sensor.dots_office_temperature
-    unique_id: generic_thermostat_daikin_ducted_dot_office_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Bedroom Ducted Cooling"
-    heater: switch.daikin_ac_bedroom
-    ac_mode: true
-    target_sensor: sensor.bedroom_temperature
-    unique_id: generic_thermostat_daikin_ducted_bedroom_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-  - platform: generic_thermostat
-    name: "Guest Room Ducted Cooling"
-    heater: switch.daikin_ac_guest
-    ac_mode: true
-    target_sensor: sensor.guest_room_temperature
-    unique_id: generic_thermostat_daikin_ducted_guest_room_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-  - platform: generic_thermostat
-    name: "Kitchen Ducted Cooling"
-    heater: switch.daikin_ac_kitchen
-    ac_mode: true
-    target_sensor: sensor.siren_1_temperature
-    unique_id: generic_thermostat_daikin_ducted_kitchen_cooling
-    min_temp: 7
-    max_temp: 35
-    min_cycle_duration:
-      seconds: 300
-    #keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 1.0
-  - platform: generic_thermostat
-    name: "Office Heating"
-    heater: switch.office_heater
-    target_sensor: sensor.office_temperature
-    unique_id: office_heater_thermostat_bwshp1
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 0.5
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Guest Room Heating"
-    heater: switch.guest_room_heater
-    # TODO fix
-    target_sensor: sensor.living_room_temperature
-    unique_id: guest_room_heater_thermostat_aqara_plug
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 0.5
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Bedroom Heating"
-    heater: switch.bedroom_heater
-    target_sensor: sensor.bedroom_temperature
-    unique_id: bedroom_heater_thermostat_aqara_plug
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 0.5
-    sleep_temp: 13
-  - platform: generic_thermostat
-    name: "Living Room Heating"
-    heater: switch.living_room_heater
-    target_sensor: sensor.living_room_temperature
-    unique_id: living_room_heater_thermostat_athom_v2
-    min_temp: 10
-    max_temp: 30
-    min_cycle_duration:
-      seconds: 300
-    keep_alive: "00:05:00"
-    cold_tolerance: 0.4
-    hot_tolerance: 0.4
-    precision: 0.5
-    sleep_temp: 13
+  # Example of a single generic heater thermo
+  #- platform: generic_thermostat
+  #  name: Living Room
+  #  heater: switch.livingroom_heater
+  #  target_sensor: sensor.living_room_temperature
+  #  unique_id: livingroom_heater_thermostat_zsp001b
+  #  min_temp: 10
+  #  max_temp: 30
+  #  min_cycle_duration:
+  #    seconds: 300
+  #  keep_alive: "00:05:00"
+  #  cold_tolerance: 0.5
+  # Old manual daikin setup
+  #- platform: generic_thermostat
+  #  name: "Living Room Ducted Cooling"
+  #  heater: switch.daikin_ac_living
+  #  ac_mode: true
+  #  target_sensor: sensor.living_room_temperature
+  #  unique_id: generic_thermostat_daikin_ducted_living_room_cooling
+  #  min_temp: 7
+  #  max_temp: 35
+  #  min_cycle_duration:
+  #    seconds: 300
+  #  #keep_alive: "00:05:00"
+  #  cold_tolerance: 0.4
+  #  hot_tolerance: 0.4
+  #  precision: 1.0
+  # Old SmartIR
+  #- platform: smartir
+  #  name: "Living Room AC"
+  #  unique_id: living_room_ac
+  #  device_code: 1101
+  #  controller_data: remote.guest_room_remote
+  #  temperature_sensor: sensor.living_room_temperature
+  #  humidity_sensor: sensor.humidity_livingroom
+  #
+  #  Old climate_template
+  #- platform: climate_template
+  #  name: Paul Office
+  #  unique_id: climate_template_daikin_ducted_paul_office
+  #  modes:
+  #    - "fan_only"
+  #    - "dry"
+  #    - "cool"
+  #    - "heat"
+  #    - "off"
+  #    # - "heat_cool"
+  #  fan_modes:
+  #    - "Auto"
+  #    - "Low"
+  #    - "Mid"
+  #    - "High"
+  #    #- "Low/Auto"
+  #    #- "Mid/Auto"
+  #    #- "High/Auto"
+  #  min_temp: 7
+  #  max_temp: 35
+  #  current_temperature_template: "{{ states('sensor.office_temperature') }}"
+  #  current_humidity_template: "{{ states('sensor.office_humidity') }}"
+  #  fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
+  #  hvac_mode_template: '{% if is_state("switch.daikin_ac_paul_office", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
+  #  availability_template: '{{ not (is_state("switch.daikin_ac_paul_office", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
+  #  target_temperature_template: "{{states('input_number.paul_office_virtual_ac_target_temp')}}"
+  #  precision: 1.0
 
-  - platform: smartir
-    name: "Living Room AC"
-    unique_id: living_room_ac
-    device_code: 1101
-    controller_data: remote.guest_room_remote
-    temperature_sensor: sensor.living_room_temperature
-    humidity_sensor: sensor.humidity_livingroom
-  - platform: smartir
-    name: "Bedroom AC"
-    unique_id: bedroom_ac
-    device_code: 1101
-    controller_data: remote.bedroom_remote
-    temperature_sensor: sensor.bedroom_temperature
-    humidity_sensor: sensor.bedroom_humidity
-  - platform: smartir
-    name: "Dot's Office AC"
-    unique_id: dots_office_ac
-    device_code: 1101
-    controller_data: remote.dots_office_remote
-    temperature_sensor: sensor.dots_office_temperature
-    humidity_sensor: sensor.dots_office_humidity
-  - platform: smartir
-    name: "Office AC"
-    unique_id: office_ac
-    device_code: 1101
-    controller_data: remote.office_remote
-    temperature_sensor: sensor.office_temperature
-    humidity_sensor: sensor.office_humidity
-  - platform: smartir
-    name: "Guest Room AC"
-    unique_id: guest_room_ac
-    device_code: 1101
-    controller_data: remote.guest_room_remote
-    temperature_sensor: sensor.temperature_guestroom
-    humidity_sensor: sensor.humidity_guestroom
-  - platform: climate_template
-    name: Paul Office
-    unique_id: climate_template_daikin_ducted_paul_office
-    modes:
-      - "fan_only"
-      - "dry"
-      - "cool"
-      - "heat"
-      - "off"
-      # - "heat_cool"
-    fan_modes:
-      - "Auto"
-      - "Low"
-      - "Mid"
-      - "High"
-      #- "Low/Auto"
-      #- "Mid/Auto"
-      #- "High/Auto"
-    min_temp: 7
-    max_temp: 35
-    current_temperature_template: "{{ states('sensor.office_temperature') }}"
-    current_humidity_template: "{{ states('sensor.office_humidity') }}"
-    fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
-    hvac_mode_template: '{% if is_state("switch.daikin_ac_paul_office", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
-    availability_template: '{{ not (is_state("switch.daikin_ac_paul_office", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
-    target_temperature_template: "{{states('input_number.paul_office_virtual_ac_target_temp')}}"
-    precision: 1.0
+  #  # example action
+  #  #set_hvac_mode:
+  #  #  - service: esphome.bedroom_node_aircon_state
+  #  #    data:
+  #  #      temperature: "{{ state_attr('climate.bedroom_aircon', 'temperature') | int }}"
+  #  #      operation_mode: "{{ states('climate.bedroom_aircon') }}"
+  #  #      fan_mode: "{{ state_attr('climate.bedroom_aircon', 'fan_mode') }}"
+  #  #      swing_mode: "{{ is_state_attr('climate.bedroom_aircon', 'swing_mode', 'on') }}"
+  #  #      light: "{{ is_state('light.bedroom_aircon_light', 'on') }}"
 
-    # example action
-    #set_hvac_mode:
-    #  - service: esphome.bedroom_node_aircon_state
-    #    data:
-    #      temperature: "{{ state_attr('climate.bedroom_aircon', 'temperature') | int }}"
-    #      operation_mode: "{{ states('climate.bedroom_aircon') }}"
-    #      fan_mode: "{{ state_attr('climate.bedroom_aircon', 'fan_mode') }}"
-    #      swing_mode: "{{ is_state_attr('climate.bedroom_aircon', 'swing_mode', 'on') }}"
-    #      light: "{{ is_state('light.bedroom_aircon_light', 'on') }}"
-
-  - platform: climate_template
-    name: Living Room
-    unique_id: climate_template_daikin_ducted_living_room
-    modes:
-      - "fan_only"
-      - "dry"
-      - "cool"
-      - "heat"
-      - "off"
-      # - "heat_cool"
-    fan_modes:
-      - "Auto"
-      - "Low"
-      - "Mid"
-      - "High"
-      #- "Low/Auto"
-      #- "Mid/Auto"
-      #- "High/Auto"
-    min_temp: 7
-    max_temp: 35
-    current_temperature_template: "{{ states('sensor.living_room_temperature') }}"
-    current_humidity_template: "{{ states('sensor.living_room_humidity') }}"
-    hvac_mode_template: '{% if is_state("switch.daikin_ac_living", "off") -%}off{%- else -%}{{ states("climate.daikin_ac") }}{%- endif %}'
-    fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
-    hvac_mode_template: '{% if is_state("switch.daikin_ac_living", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
-    availability_template: '{{ not (is_state("switch.daikin_ac_living", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
-
-    # target_temperature_template
-    # precision
-
-    # example action
-    #set_hvac_mode:
-    #  - service: esphome.bedroom_node_aircon_state
-    #    data:
-    #      temperature: "{{ state_attr('climate.bedroom_aircon', 'temperature') | int }}"
-    #      operation_mode: "{{ states('climate.bedroom_aircon') }}"
-    #      fan_mode: "{{ state_attr('climate.bedroom_aircon', 'fan_mode') }}"
-    #      swing_mode: "{{ is_state_attr('climate.bedroom_aircon', 'swing_mode', 'on') }}"
-    #      light: "{{ is_state('light.bedroom_aircon_light', 'on') }}"
-
+  - platform: virtual_ducted_thermostat
+    name: Daikin Virtual
+    central_climate: climate.daikin_ac
+    tolerance: 0.5
+    auto_mode: all
+    min_cycle_duration:
+      seconds: 60
+    zone:
+      - name: "Daikin Paul Office"
+        vent_switch: switch.daikin_ac_paul_office
+        temp_sensor: sensor.office_temperature
+        humidity_sensor: sensor.office_humidity
+        unique_id: vdt_daikin_ac_paul_office
+      - name: "Daikin Dot Office"
+        vent_switch: switch.daikin_ac_dot_office
+        temp_sensor: sensor.dots_office_temperature
+        humidity_sensor: sensor.dots_office_humidity
+        unique_id: vdt_daikin_ac_dot_office
+      - name: "Daikin Bedroom"
+        vent_switch: switch.daikin_ac_bedroom
+        temp_sensor: sensor.bedroom_temperature
+        humidity_sensor: sensor.bedroom_humidity
+        unique_id: vdt_daikin_ac_bedroom
+      - name: "Daikin Guest Room"
+        vent_switch: switch.daikin_ac_guest
+        temp_sensor: sensor.guest_room_temperature
+        humidity_sensor: sensor.guest_room_humidity
+        unique_id: vdt_daikin_ac_guest_room
+      - name: "Daikin Kitchen"
+        vent_switch: switch.daikin_ac_kitchen
+        temp_sensor: sensor.siren_1_temperature
+        humidity_sensor: sensor.siren_1_humidity
+        unique_id: vdt_daikin_ac_kitchen
+      - name: "Daikin Living Room"
+        vent_switch: switch.daikin_ac_living
+        temp_sensor: sensor.living_room_temperature
+        humidity_sensor: sensor.living_room_humidity
+        unique_id: vdt_daikin_ac_living
 
 system_health:
 
