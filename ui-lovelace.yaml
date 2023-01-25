@@ -1017,6 +1017,12 @@ views:
           - entity: sensor.dot_office_humidity
             name: Humidity
             decimals: 0
+      - type: custom:climate-fan-button-row
+        entity: climate.daikin_ac
+        name: "Fan"
+        hideOff: true
+        reverseButtons: true
+
       #- type: entities
       #  entities:
       ##  - type: custom:fold-entity-row
