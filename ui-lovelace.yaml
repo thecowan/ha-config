@@ -376,6 +376,11 @@ views:
           - entity: sensor.living_room_humidity
             name: Humidity
             decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
@@ -572,6 +577,11 @@ views:
           - entity: sensor.siren_1_humidity
             name: Humidity
             decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
@@ -632,6 +642,11 @@ views:
           - entity: sensor.bedroom_humidity
             name: Humidity
             decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
       #- type: entities
       #  entities:
       #  - type: custom:fold-entity-row
@@ -878,6 +893,11 @@ views:
           - entity: sensor.guest_room_humidity
             name: Humidity
             decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
       #- type: entities
       #  entities:
       #  - type: custom:fold-entity-row
@@ -947,6 +967,11 @@ views:
           - entity: sensor.office_humidity
             name: Humidity
             decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
       - type: 'custom:mini-media-player'
         entity: media_player.office
         hide:
@@ -1017,11 +1042,11 @@ views:
           - entity: sensor.dot_office_humidity
             name: Humidity
             decimals: 0
-      - type: custom:climate-fan-button-row
-        entity: climate.daikin_ac
-        name: "Fan"
-        hideOff: true
-        reverseButtons: true
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
 
       #- type: entities
       #  entities:
