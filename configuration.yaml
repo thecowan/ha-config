@@ -1342,6 +1342,8 @@ my:
 rest:
   - resource: http://10.41.2.69/info/system
     scan_interval: 60
+    headers:
+      Cookie: mysession=MTY3NTA1ODkyOXxEdi1CQkFFQ180SUFBUkFCRUFBQVlfLUNBQUVHYzNSeWFXNW5EQTBBQzJOMWNuSmxiblJWYzJWeUNXMWhhVzR1VlhObGN2LURBd0VCQkZWelpYSUJfNFFBQVFRQkFrbGtBUVFBQVFoVmMyVnlibUZ0WlFFTUFBRUlVR0Z6YzNkdmNtUUJEQUFCQjBacGNuTjBTVzRCQWdBQUFCel9oQmtCX2s0aUFRVmhaRzFwYmdFTFRXOXZRMjkzWFRBeFd5RUF8cyTTTy8Ic4kD3pDziG4mPqXPvmChtmfwOLRNS8sfy1g=
     sensor:
       - name: "Linxdot CPU Temperature"
         value_template: "{{ value_json.cpu_temp | round(1) }}"
