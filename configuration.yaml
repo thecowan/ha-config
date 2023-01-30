@@ -1354,7 +1354,7 @@ rest:
         value_template: "{{ value_json.cpu_usage | round(1) }}"
         state_class: "measurement"
         unit_of_measurement: '%'
-  - resource: http://tilly:8082/data/aircraft.json
+  - resource: http://gobo:8082/data/aircraft.json
     scan_interval: 15
     sensor:
       - name: "FR24 Aircraft"
