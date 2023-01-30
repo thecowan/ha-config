@@ -1211,7 +1211,7 @@ template:
       unique_id: closest_plane_cpa
       state: >-
         {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-        {% if nearest.cpa_km %}
+        {% if nearest.cpa_km is defined %}
           {{ nearest.cpa_km | round(3) }}
         {% endif %}
       icon: mdi:map-marker-radius
@@ -1231,7 +1231,7 @@ template:
           {{ nearest.cpa_lon }}
       availability: >
         {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({}) %}
-        {% if nearest.cpa_km %}
+        {% if nearest.cpa_km is defined %}
           true
         {% endif %}
     # TODO: 
