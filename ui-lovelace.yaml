@@ -22,6 +22,7 @@ excluded_entities:
 views:
   - title: Overview
     path: overview
+    icon: mdi:home-assistant
     badges:
       - type: entity-filter
         entities:
@@ -302,35 +303,6 @@ views:
         entities:
           - lock.back_gate
         state_color: true
-  - title: Entry
-    icon: mdi:gate
-    path: Entry
-    cards:
-      - type: entities
-        entities:
-        - type: 'custom:slider-entity-row'
-          entity: light.front_floodlight
-          toggle: true
-        - type: 'custom:slider-entity-row'
-          entity: light.porch
-          toggle: true
-        - type: 'custom:slider-entity-row'
-          entity: light.front_window
-          toggle: true
-      - type: custom:frigate-card
-        cameras:
-          - camera_entity: camera.porch
-            live_provider: auto
-            title: Porch
-        view:
-          default: live
-        menu:
-          style: hover
-          buttons:
-            frigate:
-              enabled: false
-            cameras:
-              enabled: false
   - title: Living Room
     icon: mdi:sofa
     path: living
@@ -542,73 +514,6 @@ views:
         #    source: Prime Video
         #custom_icons:
         #  prime_video: "M15.93,17.09C15.75,17.25 15.5,17.26 15.3,17.15C14.41,16.41 14.25,16.07 13.76,15.36C12.29,16.86 11.25,17.31 9.34,17.31C7.09,17.31 5.33,15.92 5.33,13.14C5.33,10.96 6.5,9.5 8.19,8.76C9.65,8.12 11.68,8 13.23,7.83V7.5C13.23,6.84 13.28,6.09 12.9,5.54C12.58,5.05 11.95,4.84 11.4,4.84C10.38,4.84 9.47,5.37 9.25,6.45C9.2,6.69 9,6.93 8.78,6.94L6.18,6.66C5.96,6.61 5.72,6.44 5.78,6.1C6.38,2.95 9.23,2 11.78,2C13.08,2 14.78,2.35 15.81,3.33C17.11,4.55 17,6.18 17,7.95V12.12C17,13.37 17.5,13.93 18,14.6C18.17,14.85 18.21,15.14 18,15.31L15.94,17.09H15.93M13.23,10.56V10C11.29,10 9.24,10.39 9.24,12.67C9.24,13.83 9.85,14.62 10.87,14.62C11.63,14.62 12.3,14.15 12.73,13.4C13.25,12.47 13.23,11.6 13.23,10.56M20.16,19.54C18,21.14 14.82,22 12.1,22C8.29,22 4.85,20.59 2.25,18.24C2.05,18.06 2.23,17.81 2.5,17.95C5.28,19.58 8.75,20.56 12.33,20.56C14.74,20.56 17.4,20.06 19.84,19.03C20.21,18.87 20.5,19.27 20.16,19.54M21.07,18.5C20.79,18.14 19.22,18.33 18.5,18.42C18.31,18.44 18.28,18.26 18.47,18.12C19.71,17.24 21.76,17.5 22,17.79C22.24,18.09 21.93,20.14 20.76,21.11C20.58,21.27 20.41,21.18 20.5,21C20.76,20.33 21.35,18.86 21.07,18.5Z"
-  - title: Kitchen
-    icon: mdi:fridge-outline
-    path: kitchen
-    cards:
-      - type: entities
-        entities:
-        - type: 'custom:slider-entity-row'
-          entity: light.kitchen_downlights
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.kitchen_downlights
-          justify: center
-          colors: !include colors_kogan.yaml
-        - type: 'custom:slider-entity-row'
-          entity: light.dining_room
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.dining_room
-          justify: center
-          colors: !include colors_esphome.yaml
-        - entity: light.diffuser_light
-          name: Diffuser Light
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_kitchen
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.siren_1_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-      - type: 'custom:mini-media-player'
-        entity: media_player.kitchen
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
-      - type: button
-        entity: switch.diffuser_fan
-        name: Diffuser
-      - type: 'custom:mini-graph-card'
-        name: Kitchen Climate
-        points_per_hour: 20
-        entities:
-          - entity: sensor.siren_1_temperature
-            name: Temperature
-          - entity: sensor.siren_1_humidity
-            name: Humidity
-            y_axis: secondary
-        min_bound_range: 5
-        min_bound_range_secondary: 2
-        show:
-          labels: true
-          labels_secondary: true
   - title: Bedroom
     icon: mdi:bed-empty
     path: bedroom
@@ -686,6 +591,329 @@ views:
         show:
           labels: true
           labels_secondary: true
+  - title: Paul Office
+    icon: mdi:desk
+    path: office
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_office
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_office
+          justify: center
+          colors: !include colors_yeelight.yaml
+        - entity: switch.adaptive_lighting_office
+        - entity: light.diffuser_light_2
+          name: Diffuser Light
+        - type: 'custom:slider-entity-row'
+          entity: light.office_ring_light
+          toggle: true
+      - type: 'custom:simple-thermostat'
+        entity: climate.daikin_paul_office
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        sensors:
+          - entity: sensor.office_humidity
+            name: Humidity
+            decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
+      - type: 'custom:mini-media-player'
+        entity: media_player.office
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
+      - type: entities
+        show_header_toggle: false
+        entities:
+        - entity: fan.office_diffuser
+          type: custom:fan-mode-button-row
+          twoModeFan: true
+          sendStateWithMode: true
+        - entity: switch.apple_iigs_monitor
+        - entity: light.office_busy_light
+      - type: 'custom:mini-graph-card'
+        name: Office Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.office_temperature
+            name: Temperature
+          - entity: sensor.office_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
+  - title: Dot Office
+    icon: mdi:chair-rolling
+    path: dot
+    # badges:
+    #  - type: entity-filter
+    #    entities:
+    #      - light.dots_office
+    #      - binary_sensor.dots_office_door
+    #      # - climate.dots_office_ac
+    #      - climate.dots_office_heating
+    #    state_filter:
+    #      - "on"      
+    #      - "heat"
+    #      - "cool"
+    cards:
+      # - type: entities
+      #  entities:
+      #  - type: 'custom:slider-entity-row'
+      #    entity: light.dots_office
+      #    toggle: true
+      #  - type: 'custom:rgb-light-card'
+      #    entity: light.dots_office
+      #    justify: center
+      #    colors: !include colors_kogan.yaml
+      - type: 'custom:simple-thermostat'
+        entity: climate.daikin_dot_office
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        sensors:
+          - entity: sensor.dot_office_humidity
+            name: Humidity
+            decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
+
+      #- type: entities
+      #  entities:
+      ##  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.dots_office_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.dots_office_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.dots_office_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.dots_office_heater_timer_temp
+      #      name: "Temperature"
+      - type: 'custom:mini-graph-card'
+        name: Dot's Office Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.dots_office_temperature
+            name: Temperature
+          - entity: sensor.dots_office_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
+  - title: Kitchen
+    icon: mdi:fridge-outline
+    path: kitchen
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.kitchen_downlights
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.kitchen_downlights
+          justify: center
+          colors: !include colors_kogan.yaml
+        - type: 'custom:slider-entity-row'
+          entity: light.dining_room
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.dining_room
+          justify: center
+          colors: !include colors_esphome.yaml
+        - entity: light.diffuser_light
+          name: Diffuser Light
+      - type: 'custom:simple-thermostat'
+        entity: climate.daikin_kitchen
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        sensors:
+          - entity: sensor.siren_1_humidity
+            name: Humidity
+            decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
+      - type: 'custom:mini-media-player'
+        entity: media_player.kitchen
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
+      - type: button
+        entity: switch.diffuser_fan
+        name: Diffuser
+      - type: 'custom:mini-graph-card'
+        name: Kitchen Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.siren_1_temperature
+            name: Temperature
+          - entity: sensor.siren_1_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
+  - title: Guest room
+    icon: mdi:bunk-bed
+    path: guest
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_guestroom
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_guestroom
+          justify: center
+          colors: !include colors_yeelight.yaml
+        - entity: light.guest_room_right
+      - type: 'custom:simple-thermostat'
+        entity: climate.daikin_guest_room
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        sensors:
+          - entity: sensor.guest_room_humidity
+            name: Humidity
+            decimals: 0
+        control:
+          hvac: true
+          fan:
+            Auto: false
+          preset: true
+      #- type: entities
+      #  entities:
+      #  - type: custom:fold-entity-row
+      #    head:
+      #      entity: input_boolean.guest_room_heater_timer
+      #      name: "Automatic Sleep Mode"
+      #    entities:
+      #    - entity: input_datetime.guest_room_heater_on_time
+      #      name: "On"
+      #    - entity: input_datetime.guest_room_heater_off_time
+      #      name: "Off"
+      #    - entity: input_number.guest_room_heater_timer_temp
+      #      name: "Temperature"
+      - type: 'custom:mini-media-player'
+        entity: media_player.guest_room
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
+      - type: 'custom:mini-graph-card'
+        name: Guest Room Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.guest_room_temperature
+            name: Temperature
+          - entity: sensor.guest_room_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
+  - title: Bathroom
+    icon: mdi:shower
+    path: bathroom
+    cards:
+      - type: 'custom:mini-media-player'
+        entity: media_player.bathroom
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
+      - type: media-control
+        entity: media_player.bathroom_speaker
+      - type: entity-button
+        entity: script.shower_paul
+  - title: Entry
+    icon: mdi:gate
+    path: entry
+    cards:
+      - type: entities
+        entities:
+        - type: 'custom:slider-entity-row'
+          entity: light.front_floodlight
+          toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.porch
+          toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.front_window
+          toggle: true
+      - type: custom:frigate-card
+        cameras:
+          - camera_entity: camera.porch
+            live_provider: auto
+            title: Porch
+        view:
+          default: live
+        menu:
+          style: hover
+          buttons:
+            frigate:
+              enabled: false
+            cameras:
+              enabled: false
   - title: Outside
     icon: mdi:pine-tree
     path: outside
@@ -848,233 +1076,6 @@ views:
             title: Bamboo 'Goldstripe' [Kitchen]
             image: /local/plants/bamboo-goldstripe-7-2.jpg
             entity: plant.bamboo_kitchen_window
-  - title: Bathroom
-    icon: mdi:shower
-    path: bathroom
-    cards:
-      - type: 'custom:mini-media-player'
-        entity: media_player.bathroom
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
-      - type: media-control
-        entity: media_player.bathroom_speaker
-      - type: entity-button
-        entity: script.shower_paul
-  - title: Guest room
-    icon: mdi:bunk-bed
-    path: guest
-    cards:
-      - type: entities
-        entities:
-        - type: 'custom:slider-entity-row'
-          entity: light.yeelight_guestroom
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.yeelight_guestroom
-          justify: center
-          colors: !include colors_yeelight.yaml
-        - entity: light.guest_room_right
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_guest_room
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.guest_room_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-      #- type: entities
-      #  entities:
-      #  - type: custom:fold-entity-row
-      #    head:
-      #      entity: input_boolean.guest_room_heater_timer
-      #      name: "Automatic Sleep Mode"
-      #    entities:
-      #    - entity: input_datetime.guest_room_heater_on_time
-      #      name: "On"
-      #    - entity: input_datetime.guest_room_heater_off_time
-      #      name: "Off"
-      #    - entity: input_number.guest_room_heater_timer_temp
-      #      name: "Temperature"
-      - type: 'custom:mini-media-player'
-        entity: media_player.guest_room
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
-      - type: 'custom:mini-graph-card'
-        name: Guest Room Climate
-        points_per_hour: 20
-        entities:
-          - entity: sensor.guest_room_temperature
-            name: Temperature
-          - entity: sensor.guest_room_humidity
-            name: Humidity
-            y_axis: secondary
-        min_bound_range: 5
-        min_bound_range_secondary: 2
-        show:
-          labels: true
-          labels_secondary: true
-  - title: Paul Office
-    icon: mdi:desk
-    path: office
-    cards:
-      - type: entities
-        entities:
-        - type: 'custom:slider-entity-row'
-          entity: light.yeelight_office
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.yeelight_office
-          justify: center
-          colors: !include colors_yeelight.yaml
-        - entity: switch.adaptive_lighting_office
-        - entity: light.diffuser_light_2
-          name: Diffuser Light
-        - type: 'custom:slider-entity-row'
-          entity: light.office_ring_light
-          toggle: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_paul_office
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.office_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-      - type: 'custom:mini-media-player'
-        entity: media_player.office
-        hide:
-          icon: true
-          power: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities: !include sonos-speakers.yaml
-        artwork: cover
-      - type: entities
-        show_header_toggle: false
-        entities:
-        - entity: fan.office_diffuser
-          type: custom:fan-mode-button-row
-          twoModeFan: true
-          sendStateWithMode: true
-        - entity: switch.apple_iigs_monitor
-        - entity: light.office_busy_light
-      - type: 'custom:mini-graph-card'
-        name: Office Climate
-        points_per_hour: 20
-        entities:
-          - entity: sensor.office_temperature
-            name: Temperature
-          - entity: sensor.office_humidity
-            name: Humidity
-            y_axis: secondary
-        min_bound_range: 5
-        min_bound_range_secondary: 2
-        show:
-          labels: true
-          labels_secondary: true
-  - title: Dot Office
-    icon: mdi:chair-rolling
-    path: dot
-    # badges:
-    #  - type: entity-filter
-    #    entities:
-    #      - light.dots_office
-    #      - binary_sensor.dots_office_door
-    #      # - climate.dots_office_ac
-    #      - climate.dots_office_heating
-    #    state_filter:
-    #      - "on"      
-    #      - "heat"
-    #      - "cool"
-    cards:
-      # - type: entities
-      #  entities:
-      #  - type: 'custom:slider-entity-row'
-      #    entity: light.dots_office
-      #    toggle: true
-      #  - type: 'custom:rgb-light-card'
-      #    entity: light.dots_office
-      #    justify: center
-      #    colors: !include colors_kogan.yaml
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_dot_office
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.dot_office_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-
-      #- type: entities
-      #  entities:
-      ##  - type: custom:fold-entity-row
-      #    head:
-      #      entity: input_boolean.dots_office_heater_timer
-      #      name: "Automatic Sleep Mode"
-      #    entities:
-      #    - entity: input_datetime.dots_office_heater_on_time
-      #      name: "On"
-      #    - entity: input_datetime.dots_office_heater_off_time
-      #      name: "Off"
-      #    - entity: input_number.dots_office_heater_timer_temp
-      #      name: "Temperature"
-      - type: 'custom:mini-graph-card'
-        name: Dot's Office Climate
-        points_per_hour: 20
-        entities:
-          - entity: sensor.dots_office_temperature
-            name: Temperature
-          - entity: sensor.dots_office_humidity
-            name: Humidity
-            y_axis: secondary
-        min_bound_range: 5
-        min_bound_range_secondary: 2
-        show:
-          labels: true
-          labels_secondary: true
   - title: Configuration
     icon: mdi:cog
     path: settings
