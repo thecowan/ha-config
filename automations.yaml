@@ -1242,11 +1242,7 @@
           entity_id:
           - light.bedside_lamps
       double_action:
-      - service: light.turn_off
-        data: {}
-        target:
-          area_id: master_bedroom
-      - service: script.sonos_sleep
+      - service: script.paul_sleep
         data: {}
 - id: '1654914108142'
   alias: "\U0001F518 Bedside Button Right [New]"

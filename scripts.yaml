@@ -321,3 +321,14 @@ toggle_ac_state:
         entity_id: '{{ entity_id }}'
   mode: single
   icon: mdi:hvac
+paul_sleep:
+  alias: Paul Sleep
+  sequence:
+  - service: light.turn_off
+    data: {}
+    target:
+      area_id: master_bedroom
+  - service: script.sonos_sleep
+    data: {}
+  mode: single
+  icon: mdi:bed-clock
