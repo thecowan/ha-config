@@ -684,6 +684,18 @@ google_assistant:
 lovelace:
   mode: yaml
   resources:
+    - url: "/hacsfiles/bom-weather-card/bom-weather-card.js"
+      type: module
+    - url: "/hacsfiles/ha-card-weather-conditions/ha-card-weather-conditions.js"
+      type: module
+    - url: "/hacsfiles/simple-weather-card/simple-weather-card-bundle.js"
+      type: module
+    - url: "/hacsfiles/platinum-weather-card/platinum-weather-card.js"
+      type: module
+    - url: "/hacsfiles/clock-weather-card/clock-weather-card.js"
+      type: module
+    - url: "/hacsfiles/kiosk-mode/kiosk-mode.js"
+      type: module
     - url: "/local/climate-fan-button-row/climate-fan-button-row.js"
       type: module
     - url: "https://cdn.jsdelivr.net/npm/rgb-light-card"
