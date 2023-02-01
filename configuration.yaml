@@ -122,6 +122,9 @@ sensor:
       tabitha_last_door:
         friendly_name: 'Tabitha Last Door'
         value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
+      daikin_ac_active_mode:
+        friendly_name: 'Daikin AC Active Mode'
+        value_template: '{{ states.climate | selectattr("entity_id", "match", ".*daikin.*") | selectattr("state", "ne", "off") | map(attribute="state") | first | default("off") }}'
   - platform: untappd
     username: !secret untappd_username
     id: !secret untappd_id

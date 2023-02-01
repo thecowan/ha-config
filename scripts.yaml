@@ -292,3 +292,32 @@ red_run_chrome:
       payload: '{ "command": "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe",
         "args": "https://iotlink.gitlab.io", "path": "C:\\Program Files (x86)\\Google\\Chrome\\Application",
         "user": "", "visible": true, "fallback": true }'
+toggle_ac_state:
+  alias: Toggle AC State
+  fields:
+    entity_id:
+      name: Entity ID
+      description: The climate device to target
+      example: climate.daikin_living_room
+      required: true
+      selector:
+        entity:
+          domain: climate
+  sequence:
+  - if:
+    - condition: template
+      value_template: '{{ states(entity_id) == "off" }}'
+    then:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: '{{ states(''input_text.daikin_ac_last_active_mode'') }}'
+      target:
+        entity_id: '{{ entity_id }}'
+    else:
+    - service: climate.set_hvac_mode
+      data:
+        hvac_mode: 'off'
+      target:
+        entity_id: '{{ entity_id }}'
+  mode: single
+  icon: mdi:hvac

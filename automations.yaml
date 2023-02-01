@@ -1657,3 +1657,20 @@
           entity_id:
           - light.attic_light
       double_action: []
+- id: '1675227458252'
+  alias: ❄️ Remember Daikin AC last active mode
+  description: ''
+  trigger:
+  - entity_id:
+    - sensor.daikin_ac_active_mode
+    platform: state
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state not in ["off"]  }}'
+  action:
+  - service: input_text.set_value
+    data:
+      value: '{{trigger.to_state.state}}'
+    target:
+      entity_id: input_text.daikin_ac_last_active_mode
+  mode: single
