@@ -1662,7 +1662,7 @@
     platform: state
   condition:
   - condition: template
-    value_template: '{{ trigger.to_state.state not in ["off"]  }}'
+    value_template: '{{ trigger.to_state.state not in ["off", "", None]  }}'
   action:
   - service: input_text.set_value
     data:

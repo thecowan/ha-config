@@ -1182,7 +1182,7 @@ template:
         {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track }}
       attributes:
         rate: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track_rate }}
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).track_rate | default(0) }}
         direction: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
           {% set directions = ['N', 'NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'] %}
