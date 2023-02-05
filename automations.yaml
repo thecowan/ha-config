@@ -1699,10 +1699,16 @@
       volume: '{{ states(''input_select.mailbox_alarm_volume'') }}'
       melody_id: 7
       duration: 10
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 2
+      milliseconds: 0
   - service: light.turn_on
     data:
       color_temp: 298
       brightness_pct: 100
+      flash: long
     target:
       entity_id: light.front_floodlight
   - delay:
