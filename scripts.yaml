@@ -332,3 +332,54 @@ paul_sleep:
     data: {}
   mode: single
   icon: mdi:bed-clock
+activate_z2m_siren:
+  alias: Activate Zigbee2MQTT Siren
+  fields:
+    volume:
+      name: Volume
+      description: 'Volume to use ("low", "medium", or "high")'
+      example: low
+      required: true
+      selector:
+        state:
+          entity_id: select.siren_1_volume
+    melody_id:
+      name: Melody ID
+      description: Melody ID (1-18)
+      example: 4
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 18
+    duration:
+      name: Duration
+      description: Alarm duration in seconds
+      example: 5
+      required: true
+      selector:
+        number:
+          min: 1
+          max: 90
+  mode: single
+  icon: mdi:alarm-bell
+  sequence:
+  - service: number.set_value
+    data:
+      value: '{{ duration }}'
+    target:
+      entity_id: number.siren_1_duration
+  - service: select.select_option
+    data:
+      option: '{{ melody_id }}'
+    target:
+      entity_id: select.siren_1_melody
+  - service: select.select_option
+    data:
+      option: '{{ volume }}'
+    target:
+      entity_id: select.siren_1_volume
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.siren_1_alarm

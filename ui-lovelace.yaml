@@ -914,6 +914,17 @@ views:
               enabled: false
             cameras:
               enabled: false
+      - type: entities
+        title: "Mailbox Alarm"
+        entities:
+        - entity: input_select.mailbox_alarm_enabled
+          name: Enabled
+        - entity: input_datetime.mailbox_alarm_on
+          name: Alarm Starts
+        - entity: input_datetime.mailbox_alarm_off
+          name: Alarm Ends
+        - entity: input_select.mailbox_alarm_volume
+          name: Volume
   - title: Outside
     icon: mdi:pine-tree
     path: outside

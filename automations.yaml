@@ -1670,3 +1670,33 @@
     target:
       entity_id: input_text.daikin_ac_last_active_mode
   mode: single
+- id: '1675553894245'
+  alias: Mailbox Alarm
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.mailbox_lid_contact
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: or
+    conditions:
+    - condition: state
+      entity_id: input_select.mailbox_alarm_enabled
+      state: Primed
+    - condition: and
+      conditions:
+      - condition: state
+        entity_id: input_select.mailbox_alarm_enabled
+        state: Overnight
+      - condition: time
+        before: input_datetime.mailbox_alarm_off
+        after: input_datetime.mailbox_alarm_on
+  action:
+  - service: script.activate_z2m_siren
+    data:
+      volume: "{{ states('input_select.mailbox_alarm_volume') }}"
+      melody_id: 7
+      duration: 5
+  mode: single
