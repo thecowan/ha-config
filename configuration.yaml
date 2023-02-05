@@ -1305,9 +1305,8 @@ template:
     - name: 'Appliance Power'
       unique_id: category_appliance_summed_power
       state: >-
-        {{ states("sensor.washer_power") | float(0.0)
+        {{ states("sensor.washing_machine_power") | float(0.0)
         + states("sensor.dishwasher_power") | float(0.0)
-        + states("sensor.dryer_power") | float(0.0)
         }}
       unit_of_measurement: "W"
       icon: "mdi:home-lightning-bolt"

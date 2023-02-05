@@ -232,30 +232,19 @@ views:
           show_states: true
           colorize_states: true
         series:
-          - entity: sensor.bedroom_heater_power
+          - entity: sensor.washing_machine_power
             group_by:
               func: avg
-              duration: 5min
-          - entity: sensor.guest_room_heater_power
-            group_by:
-              func: avg
-              duration: 5min
-          - entity: sensor.dots_office_heater_power
-            group_by:
-              func: avg
-              duration: 5min
-          - entity: sensor.office_heater_power
-            group_by:
-              func: avg
-              duration: 5min
-          - entity: sensor.washer_power
-            group_by:
-              func: avg
-              duration: 5min
+              duration: 10min
           - entity: sensor.dishwasher_power
             group_by:
               func: avg
-              duration: 5min
+              duration: 10min
+          - entity: sensor.all_powercalc_lights_power
+            name: All Lights
+            group_by:
+              func: avg
+              duration: 10min
       - type: custom:sankey-chart
         title: Power Distribution
         show_names: true
@@ -284,9 +273,8 @@ views:
                 name: Appliances
                 color: green
                 children:
-                  - sensor.washer_power
+                  - sensor.washing_machine_power
                   - sensor.dishwasher_power
-                  - sensor.dryer_power
               - entity_id: sensor.all_powercalc_lights_power
                 name: Lighting
                 color: yellow
@@ -313,14 +301,11 @@ views:
               - entity_id: sensor.living_room_heater_power
                 name: Living Room Heater
                 color: var(--warning-color)
-              - entity_id: sensor.washer_power
+              - entity_id: sensor.washing_machine_power
                 name: Washing Machine
                 color: green
               - entity_id: sensor.dishwasher_power
                 name: Dishwasher
-                color: green
-              - entity_id: sensor.dryer_power
-                name: Dryer
                 color: green
               # TODO: dining
               - entity_id: sensor.kitchen_downlights_power
@@ -350,37 +335,12 @@ views:
           - type: grid
             cards:
               - type: gauge
-                entity: sensor.bedroom_heater_power
-                max: 2500
-                needle: false
-                name: Bedroom Heater
-              - type: gauge
-                entity: sensor.dots_office_heater_power
-                max: 2500
-                name: Dot's Office Heater
-              - type: gauge
-                entity: sensor.guest_room_heater_power
-                max: 2500
-                name: Guest Room Heater
-              - type: gauge
-                entity: sensor.office_heater_power
-                max: 2500
-                name: Office Heater
-              - type: gauge
-                entity: sensor.living_room_heater_power
-                max: 2500
-                name: Living Room Heater
-              - type: gauge
-                entity: sensor.washer_power
+                entity: sensor.washing_machine_power
                 name: Washing Machine
                 max: 2500
               - type: gauge
                 entity: sensor.dishwasher_power
                 name: Dishwasher
-                max: 2500
-              - type: gauge
-                entity: sensor.dryer_power
-                name: Dryer
                 max: 2500
               - type: gauge
                 entity: sensor.all_powercalc_lights_power
