@@ -1696,7 +1696,22 @@
   action:
   - service: script.activate_z2m_siren
     data:
-      volume: "{{ states('input_select.mailbox_alarm_volume') }}"
+      volume: '{{ states(''input_select.mailbox_alarm_volume'') }}'
       melody_id: 7
-      duration: 5
+      duration: 10
+  - service: light.turn_on
+    data:
+      color_temp: 298
+      brightness_pct: 100
+    target:
+      entity_id: light.front_floodlight
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 30
+      milliseconds: 0
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.front_floodlight
   mode: single

@@ -337,7 +337,7 @@ activate_z2m_siren:
   fields:
     volume:
       name: Volume
-      description: 'Volume to use ("low", "medium", or "high")'
+      description: Volume to use ("low", "medium", or "high")
       example: low
       required: true
       selector:
