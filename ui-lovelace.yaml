@@ -1164,6 +1164,20 @@ views:
             - state: unknown
             - state: "off"
         show_empty: false
+      - type: entities
+        entities:
+          - entity: input_datetime.blind_open_time
+            name: Open at
+          - entity: input_datetime.blind_close_time
+            name: Close after
+          - entity: input_number.blind_close_temperature
+            name: If sunny and
+          - entity: input_number.blind_close_sunset_offset
+            name: Close at sunset
+        title: Living Room Blind Automation
+        show_header_toggle: true
+        state_color: false
+
   - title: Junkyard
     icon: mdi:delete-empty
     path: junkyard

@@ -407,11 +407,39 @@
   alias: "\U0001FA9F  Blinds: Close at Sunset or designated time"
   description: ''
   trigger:
-  - platform: sun
-    event: sunset
-  - platform: time
-    at: input_datetime.blind_close_time
-  condition: []
+  - platform: time_pattern
+    minutes: /1
+  - platform: state
+    entity_id:
+    - input_datetime.blind_close_time
+    - input_number.blind_close_sunset_offset
+    - input_number.blind_close_temperature
+  condition:
+  - condition: state
+    entity_id: cover.living_room_blind
+    state: open
+  - condition: or
+    conditions:
+    - condition: and
+      conditions:
+      - condition: time
+        after: input_datetime.blind_close_time
+        before: 00:00:00
+      - condition: state
+        entity_id: sensor.living_room_window_light_summary
+        state: direct_sun
+      - condition: numeric_state
+        entity_id: sensor.outside_temperature
+        above: input_number.blind_close_temperature
+    - condition: and
+      conditions:
+      - condition: time
+        before: 00:00:00
+        after: '12:00:00'
+      - condition: numeric_state
+        entity_id: sun.sun
+        attribute: elevation
+        below: input_number.blind_close_sunset_offset
   action:
   - service: cover.close_cover
     data: {}
