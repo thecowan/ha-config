@@ -17,6 +17,7 @@ homeassistant:
   external_url: !secret external_url
   internal_url: !secret internal_url
   currency: AUD
+  packages: !include_dir_named packages/
 
 logger:
   default: warning
@@ -1359,5 +1360,4 @@ recorder:
       - sensor.closest_plane*
     entities:
       - sensor.tilly_tracked_aircraft
-
 

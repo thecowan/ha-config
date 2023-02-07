@@ -1769,3 +1769,18 @@
     target:
       entity_id: '{{ trigger.entity_id }}'
   mode: single
+- id: '1675737278039'
+  alias: Dishwasher monitor
+  description: ''
+  use_blueprint:
+    path: leofabri/appliance-status-monitor.yaml
+    input:
+      appliance_socket: switch.dishwasher
+      appliance_power_sensor: sensor.dishwasher_power
+      appliance_starting_power_threshold: 20
+      appliance_finishing_power_threshold: 2
+      appliance_state_machine: input_select.dishwasher_state_machine
+      appliance_job_cycle: input_boolean.dishwasher_job_cycle
+      delayed_job_completion_timer: timer.dishwasher_delayed_job_completion_timer
+      automation_self_trigger: input_boolean.dishwasher_automation_self_trigger
+      delayed_job_completion_duration: 400
