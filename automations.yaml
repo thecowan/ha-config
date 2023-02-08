@@ -465,7 +465,7 @@
   trigger:
   - platform: state
     entity_id:
-    - binary_sensor.cow_mabookpro_in_meeting
+    - binary_sensor.cow_macbookpro_in_meeting
     to: 'on'
   condition: []
   action:
@@ -482,7 +482,7 @@
   trigger:
   - platform: state
     entity_id:
-    - binary_sensor.cow_mabookpro_in_meeting
+    - binary_sensor.cow_macbookpro_in_meeting
     to: 'off'
   condition: []
   action:
