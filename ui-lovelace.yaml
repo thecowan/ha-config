@@ -646,6 +646,7 @@ views:
           twoModeFan: true
           sendStateWithMode: true
         - entity: switch.apple_iigs_monitor
+        - entity: switch.apple_iigs
         - entity: light.office_busy_light
       - type: 'custom:mini-graph-card'
         name: Office Climate
