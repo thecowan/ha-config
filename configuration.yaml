@@ -875,6 +875,7 @@ climate:
     name: Daikin Virtual
     central_climate: climate.daikin_ac
     tolerance: 0.5
+    parasitic_tolerance: 0.3
     auto_mode: all
     min_cycle_duration:
       seconds: 60
