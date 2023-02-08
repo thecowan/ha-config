@@ -233,7 +233,6 @@
   action:
   - service: yeelight.set_color_flow_scene
     data:
-      entity_id: light.yeelight_livingroom
       count: 2
       action: recover
       transitions:
@@ -247,57 +246,9 @@
         - 100
         - 250
         - 1
-  mode: single
-- id: '1622697978346'
-  alias: test both
-  description: ''
-  trigger:
-  - device_id: b9bb1e104f88289e6cd8a17ce2b3eeb4
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: both_buttons
-  condition: []
-  action:
-  - service: logbook.log
-    data:
-      name: aa
-      message: boo double
-  mode: single
-- id: '1622700041681'
-  alias: '**TEST* button'
-  description: ''
-  trigger:
-  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
-    domain: zha
-    platform: device
-    type: remote_button_short_press
-    subtype: remote_button_short_press
-  condition: []
-  action:
-  - service: light.toggle
     target:
-      entity_id: light.yeelight_livingroom
-    data:
-      kelvin: 3200
-      brightness_pct: 80
-  mode: single
-- id: '1622700231745'
-  alias: '**TEST* button 2'
-  description: ''
-  trigger:
-  - device_id: 937ffa395d66f28b51bde7ff03f3e77e
-    domain: zha
-    platform: device
-    type: remote_button_double_press
-    subtype: remote_button_double_press
-  condition: []
-  action:
-  - service: light.turn_on
-    target:
-      entity_id: light.yeelight_livingroom
-    data:
-      effect: LSD
+      entity_id:
+      - light.yeelight_office
   mode: single
 - id: '1624282422729'
   alias: Telegram test
@@ -770,19 +721,6 @@
         target:
           entity_id: light.yeelight_office
         data: {}
-- id: '1647660898416'
-  alias: '**TEST* 4-gang'
-  description: ''
-  trigger:
-  - platform: state
-    entity_id: sensor.zemismart_scene_switch_1_action
-  condition: []
-  action:
-  - service: logbook.log
-    data:
-      name: fooo
-      message: button {{trigger.to_state.state}}
-  mode: single
 - id: '1652232659373'
   alias: Office Light Switch - Companion App
   description: ''
@@ -1640,18 +1578,6 @@
     entity_id: climate.daikin_ac
     type: set_hvac_mode
     hvac_mode: cool
-  mode: single
-- id: '1674028570229'
-  alias: Testing 1
-  description: ''
-  trigger:
-  - platform: event
-    event_type: state_changed
-    event_data:
-      data:
-        entity_id: switch.daikin_ac_bedroom
-  condition: []
-  action: []
   mode: single
 - id: '1674084251043'
   alias: Update OpenUV
