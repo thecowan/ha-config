@@ -755,6 +755,27 @@ lovelace:
       show_in_sidebar: true
       require_admin: true
       icon: mdi:robot-industrial
+    clock-bedroom:
+      mode: yaml
+      title: Bedroom Clock
+      filename: ui-clock-bedroom.yaml
+      show_in_sidebar: false
+      require_admin: false
+      icon: mdi:clock-digital
+    clock-office:
+      mode: yaml
+      title: Office Clock
+      filename: ui-clock-office.yaml
+      show_in_sidebar: false
+      require_admin: false
+      icon: mdi:clock-digital
+    clock-dot-office:
+      mode: yaml
+      title: Dot Office Clock
+      filename: ui-clock-dot-office.yaml
+      show_in_sidebar: false
+      require_admin: false
+      icon: mdi:clock-digital
 
 input_boolean:
   guest_mode:

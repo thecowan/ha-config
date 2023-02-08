@@ -1,0 +1,402 @@
+kiosk_mode:
+  hide_header: true
+views:
+  - title: Home
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    icon: mdi:ceiling-light
+                    entity: light.yeelight_office
+                    show_name: false
+                    hold_action:
+                      action: more-info
+                    state:
+                      - value: unavailable
+                        color: '#303030'
+                      - value: on
+                        color: 'auto'
+                    styles:
+                      card:
+                        - height: 50px
+                  - type: custom:button-card
+                    entity: fan.office_diffuser
+                    show_name: false
+                    tap_action:
+                      action: toggle
+                    hold_action:
+                      action: more-info
+                    state:
+                      - value: unavailable
+                        color: '#303030'
+                    styles:
+                      card:
+                        - height: 50px
+              - type: custom:mini-media-player
+                entity: media_player.office
+                volume_stateless: true
+                group: true
+                source: icon
+                artwork: material
+                info: short
+                scale: '1.20'
+                speaker_group:
+                  platform: sonos
+                  show_group_count: true
+                  entities:
+                    - entity_id: media_player.living_room
+                      name: Living Room
+                    - entity_id: media_player.master_bedroom
+                      name: Master Bedroom
+                hide:
+                  name: true
+                  source: true
+                  power: true
+                  icon: true
+                  mute: true
+              - type: custom:clock-weather-card
+                entity: weather.lilyfield
+                sun_entity: sun.sun
+                weather_icon_type: line
+                animated_icon: true
+                forecast_days: 1
+                time_format: 24
+                date_pattern: P
+                hide_today_section: false
+                hide_forecast_section: true
+                hide_clock: false
+                hide_date: false
+          - type: custom:thermostat-card
+            entity: climate.daikin_paul_office
+            title: Office
+            no_card: true
+            step: 1
+      - type: custom:button-card
+        color_type: blank-card
+      - type: vertical-stack
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: custom:button-card
+                entity: climate.daikin_ac
+                triggers_update:
+                  - input_text.daikin_ac_last_active_mode
+                  - sensor.daikin_ac_active_mode
+                icon: |
+                  [[[
+                    var on = (states['sensor.daikin_ac_active_mode'] != 'off'); 
+
+                    switch(states['input_text.daikin_ac_last_active_mode'].state) {
+                      case 'heat_cool': return on ? 'mdi:autorenew': 'mdi:autorenew-off';
+                      case 'heat': return on ? 'mdi:fire': 'mdi:fire-off';
+                      case 'fan_only': return on ? 'mdi:fan': 'mdi:fan-off';
+                      case 'dry': return on ? 'mdi:water-percent': 'mdi:water-off';
+                      case 'cool': return on ? 'mdi:snowflake': 'mdi:snowflake-off';
+                      default: return 'mdi:power';
+                    }
+                  ]]]
+                show_name: false
+                styles:
+                  card:
+                    - width: 110px
+                    - height: 110px
+                  icon:
+                    - size: 100%
+                    - color: |
+                        [[[
+                          if (states['sensor.daikin_ac_active_mode'] == 'off' ) {
+                               return 'var(--paper-item-icon-color)';
+                          }
+
+                          switch(states['input_text.daikin_ac_last_active_mode'].state) {
+                            case 'fan_only': return '#D7DBDD';
+                            case 'dry': return '#efbd07';
+                            case 'heat': return '#ff8100';
+                            case 'heat_cool': return '#44739e';
+                            case 'cool': return 'rgba(0, 122, 241, 0.6)';
+                            default: return 'purple';
+                          }
+
+                          return 'var(--button-card-light-color)';
+                        ]]]
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        icon: mdi:sofa
+                        entity: climate.daikin_living_room
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+                      - type: custom:button-card
+                        icon: mdi:bed
+                        entity: climate.daikin_bedroom
+                        show_name: false
+                        label: >
+                          [[[ return states['climate.daikin_bedroom'].attributes.current_temperature; ]]]
+                        show_label: true
+                        layout: icon_label
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+                      - type: custom:button-card
+                        icon: mdi:fridge
+                        entity: climate.daikin_kitchen
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+                  - type: horizontal-stack
+                    cards:
+                      - type: custom:button-card
+                        icon: mdi:desk
+                        entity: climate.daikin_paul_office
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+                      - type: custom:button-card
+                        icon: mdi:chair-rolling
+                        entity: climate.daikin_dot_office
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+                      - type: custom:button-card
+                        icon: mdi:bunk-bed
+                        entity: climate.daikin_guest_room
+                        show_name: false
+                        styles:
+                          card:
+                            - height: 50px
+                          icon:
+                            - color: |
+                                [[[
+                                  if (entity.state == 'off' ) {
+                                       return '#444444';
+                                  } else if (entity.attributes['hvac_action'] == 'idle' || entity.attributes['hvac_action'] == 'off') {
+                                       return 'var(--paper-item-icon-color)';
+                                  }
+                                  return 'var(--button-card-light-color)';
+                                ]]]
+                        tap_action:
+                          action: call-service
+                          service: script.toggle_ac_state
+                          service_data:
+                            entity_id: entity
+                        hold_action:
+                          action: more-info
+          - type: horizontal-stack
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: custom:button-card
+                    entity: climate.daikin_ac
+                    icon: mdi:fan-minus
+                    name: Low
+                    layout: icon_name
+                    styles:
+                      card:
+                        - height: 40px
+                      icon:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'Low' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                      name:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'Low' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                    tap_action:
+                      action: call-service
+                      service: climate.set_fan_mode
+                      service_data:
+                        entity_id: entity
+                        fan_mode: Low
+                  - type: custom:button-card
+                    entity: climate.daikin_ac
+                    icon: mdi:fan
+                    name: Med
+                    layout: icon_name
+                    styles:
+                      card:
+                        - height: 40px
+                      icon:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'Mid' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                      name:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'Mid' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                    tap_action:
+                      action: call-service
+                      service: climate.set_fan_mode
+                      service_data:
+                        entity_id: entity
+                        fan_mode: Mid
+                  - type: custom:button-card
+                    entity: climate.daikin_ac
+                    icon: mdi:fan-plus
+                    name: High
+                    layout: icon_name
+                    styles:
+                      card:
+                        - height: 40px
+                      icon:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'High' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                      name:
+                        - color: |
+                            [[[
+                              if (states['climate.daikin_ac'].attributes.fan_mode == 'High' ) {
+                                  return 'var(--paper-item-icon-active-color)';
+                              }
+                              return 'var(--paper-item-icon-color)';
+                            ]]]
+                    tap_action:
+                      action: call-service
+                      service: climate.set_fan_mode
+                      service_data:
+                        entity_id: entity
+                        fan_mode: High
+      - type: conditional
+        conditions:
+          - entity: sensor.temperature_bbq_probe_1
+            state_not: unavailable
+        card:
+          type: custom:mini-graph-card
+          name: BBQ Cooking
+          points_per_hour: 60
+          hours_to_show: 3
+          entities:
+            - entity: sensor.temperature_bbq_probe_1
+              name: Upper (1)
+              show_state: true
+              state_adaptive_color: true
+            - entity: sensor.temperature_bbq_probe_5
+              name: Pork
+              show_state: true
+              state_adaptive_color: true
+            - entity: sensor.temperature_bbq_probe_6
+              name: Ribs
+              show_state: true
+              state_adaptive_color: true
+          min_bound_range: 5
+          min_bound_range_secondary: 2
+          show:
+            labels: false
+            state: true
+            legend: false
+
