@@ -664,6 +664,8 @@ google_assistant:
 lovelace:
   mode: yaml
   resources:
+    - url: "/hacsfiles/ha-floorplan/floorplan.js"
+      type: module
     - url: "/hacsfiles/bom-weather-card/bom-weather-card.js"
       type: module
     - url: "/hacsfiles/ha-card-weather-conditions/ha-card-weather-conditions.js"
