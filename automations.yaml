@@ -1,5 +1,6 @@
 - id: '1527922079178'
-  alias: Paul Bathroom Button
+  alias: "\U0001F518 Paul Bathroom Button"
+  description: ''
   trigger:
   - event_data:
       click_type: single
@@ -9,8 +10,10 @@
   condition: []
   action:
   - service: script.shower_paul
+    data: {}
 - id: '1527925880014'
-  alias: Play/Pause Ensuite
+  alias: "\U0001F518 Play/Pause Ensuite"
+  description: ''
   trigger:
   - event_data:
       click_type: both
@@ -23,7 +26,8 @@
       entity_id: media_player.bathroom
     service: media_player.media_play_pause
 - id: '1528768127918'
-  alias: 'Sonos: Switch Loungeroom amp when active'
+  alias: "\U0001F50A Sonos: Switch Loungeroom amp when active"
+  description: ''
   trigger:
   - entity_id: media_player.lounge
     from: paused
@@ -48,7 +52,8 @@
       volume_level: 0.825
     service: media_player.volume_set
 - id: '1528777053684'
-  alias: 'Receiver: update last state'
+  alias: "\U0001F50A Receiver: update last state"
+  description: ''
   trigger:
   - entity_id: media_player.receiver
     platform: state
@@ -73,7 +78,8 @@
       entity_id: receiver_last_volume
     service: var.set
 - id: '1528780901218'
-  alias: 'Sonos: Switch loungeroom back after finished'
+  alias: "\U0001F50A Sonos: Switch loungeroom back after finished"
+  description: ''
   trigger:
   - entity_id: media_player.lounge
     from: playing
@@ -99,7 +105,8 @@
       entity_id: automation.receiver_update_last_state
     service: automation.turn_on
 - id: '1546980843431'
-  alias: Paul Arrive Home
+  alias: "\U0001F3E0 Paul Arrive Home"
+  description: ''
   trigger:
   - entity_id: device_tracker.pauls_pixel_6_pro
     from: not_home
@@ -111,9 +118,12 @@
     state: not_home
   action:
   - service: light.turn_on
+    data: {}
   - service: script.sonos_get_home
+    data: {}
 - id: '1546984412841'
-  alias: Paul Leave Home
+  alias: "\U0001F3E0 Paul Leave Home"
+  description: ''
   trigger:
   - entity_id: device_tracker.pauls_pixel_6_pro
     platform: state
@@ -124,9 +134,11 @@
   condition: []
   action:
   - service: media_player.media_pause
+    data: {}
   - service: light.turn_off
+    data: {}
 - id: '1621316877856'
-  alias: 'Tasmota Discovery: Aroma Diffuser 1'
+  alias: "\U0001F6E0️ Tasmota Discovery: Aroma Diffuser 1"
   description: ''
   use_blueprint:
     path: tasmota/discovery-tuya_diffuser_fan_and_error_sensor.yaml
@@ -135,7 +147,7 @@
       topic: tasmota_1229CD
       mac_address: 4C:11:AE:12:29:CD
 - id: '1621318073028'
-  alias: 'Tasmota Discovery: Aroma Diffuser 2'
+  alias: "\U0001F6E0️ Tasmota Discovery: Aroma Diffuser 2"
   description: ''
   use_blueprint:
     path: tasmota/discovery-tuya_diffuser_fan_and_error_sensor.yaml
@@ -160,7 +172,7 @@
       option: '{{ states("sensor.cat_flap_cloud_state") }}'
   mode: single
 - id: '1622457098699'
-  alias: Push Cat Flap State to Cloud
+  alias: "\U0001F431 Push Cat Flap State to Cloud"
   description: ''
   trigger:
   - platform: state
@@ -207,11 +219,11 @@
       option: all_unlocked
   mode: single
 - id: '1622631147055'
-  alias: Pause Overnight Music
+  alias: "\U0001F552 Pause Overnight Music"
   description: ''
   trigger:
   - platform: time
-    at: 05:00
+    at: 05:00:00
   condition: []
   action:
   - service: media_player.media_pause
@@ -219,6 +231,7 @@
       entity_id:
       - media_player.master_bedroom
       - media_player.guest_room
+    data: {}
   mode: single
 - id: '1622693720246'
   alias: "\U0001F6CE️  Doorbell Reaction"
@@ -251,7 +264,7 @@
       - light.yeelight_office
   mode: single
 - id: '1624282422729'
-  alias: Telegram test
+  alias: "\U0001F4AC Telegram test"
   description: ''
   trigger:
   - platform: event
@@ -282,7 +295,7 @@
     data: {}
   mode: single
 - id: '1624283044736'
-  alias: Telegram Home
+  alias: "\U0001F4AC Telegram Home"
   description: ''
   trigger:
   - platform: event
@@ -550,7 +563,7 @@
       entity_id: switch.apple_iigs_monitor
   mode: single
 - id: '1640079011445'
-  alias: Populate Light Effects
+  alias: "\U0001F4A1 Populate Light Effects"
   description: ''
   trigger:
   - platform: state
@@ -589,7 +602,7 @@
       option: '{{ state_attr(trigger.entity_id, "effect") }}'
   mode: single
 - id: '1640079960037'
-  alias: Publish Light Effects
+  alias: "\U0001F4A1 Publish Light Effects"
   description: ''
   trigger:
   - platform: state
@@ -611,7 +624,7 @@
       effect: '{{ trigger.to_state.state }}'
   mode: single
 - id: '1640131452644'
-  alias: Christmas Lights Turn On
+  alias: "\U0001F384 Christmas Lights Turn On"
   description: ''
   trigger:
   - platform: sun
@@ -625,6 +638,7 @@
       - light.porch
       - light.front_window
       - light.hedge
+    data: {}
   - type: turn_on
     device_id: b7dd81ddd22fb9e355cdc312d2b57671
     entity_id: switch.porch_sync_send
@@ -650,7 +664,7 @@
     option: Christmas Mix
   mode: single
 - id: '1643507370583'
-  alias: Turn off Ring Light Colour when Ring Light White on
+  alias: "\U0001F4A1 Turn off Ring Light Colour when Ring Light White on"
   description: ''
   trigger:
   - platform: state
@@ -661,9 +675,10 @@
   - service: light.turn_off
     target:
       entity_id: light.office_ring_light_colour
+    data: {}
   mode: single
 - id: '1643507502308'
-  alias: Turn off Ring Light White when Ring Light Colour on
+  alias: "\U0001F4A1 Turn off Ring Light White when Ring Light Colour on"
   description: ''
   trigger:
   - platform: state
@@ -675,9 +690,10 @@
     target:
       entity_id:
       - light.office_ring_light_white
+    data: {}
   mode: single
 - id: '1643532214796'
-  alias: Update last ring light state
+  alias: "\U0001F4A1 Update last ring light state"
   description: ''
   trigger:
   - platform: state
@@ -722,7 +738,7 @@
           entity_id: light.yeelight_office
         data: {}
 - id: '1652232659373'
-  alias: Office Light Switch - Companion App
+  alias: "\U0001F4F2 Office Light Switch - Companion App"
   description: ''
   trigger:
   - platform: event
@@ -764,7 +780,7 @@
       entity_id: switch.apple_iigs_monitor
   mode: single
 - id: '1652675530780'
-  alias: Play/Pause Office - Companion App
+  alias: "\U0001F4F2 Play/Pause Office - Companion App"
   description: ''
   trigger:
   - platform: event
@@ -779,7 +795,7 @@
       entity_id: media_player.office
   mode: single
 - id: '1653435612829'
-  alias: Respond to Office Resume Notification
+  alias: "\U0001F4F2 Respond to Office Resume Notification"
   description: ''
   trigger:
   - platform: event
@@ -952,7 +968,7 @@
       title: High Alert
   mode: single
 - id: '1654521196420'
-  alias: 'Button Test: MQTT Lumi Button 3'
+  alias: "\U0001F518 Button Test: MQTT Lumi Button 3"
   description: ''
   use_blueprint:
     path: Drafted/aqara-buttons-all-in-one-zigbee2mqtt.yaml
@@ -1002,7 +1018,7 @@
           message: Hold
       shake_action: []
 - id: '1654644534445'
-  alias: Start workday in office
+  alias: "\U0001F552 Start workday in office"
   description: ''
   trigger:
   - platform: state
@@ -1035,7 +1051,7 @@
             title: Ignore
   mode: single
 - id: '1654648261134'
-  alias: Respond to Office Shuffle Notification
+  alias: "\U0001F4F2 Respond to Office Shuffle Notification"
   description: ''
   trigger:
   - platform: event
@@ -1054,7 +1070,7 @@
       match: "\U0001F3E0"
   mode: single
 - id: '1654755382943'
-  alias: Leave Home without Dogs
+  alias: "\U0001F3E0 Leave Home without Dogs"
   description: ''
   trigger:
   - platform: mqtt
@@ -1176,7 +1192,7 @@
         target:
           entity_id: light.yeelight_office
 - id: '1654780302456'
-  alias: Aqara Magic Cube Zigbee2MQTT - 2022-05-05
+  alias: "\U0001F518 Office Magic Cube"
   description: ''
   use_blueprint:
     path: SirGoodenough/Zigbee2MQTT - Xiaomi Cube Controller.yaml
@@ -1580,7 +1596,7 @@
     hvac_mode: cool
   mode: single
 - id: '1674084251043'
-  alias: Update OpenUV
+  alias: "\U0001F6E0️ Update OpenUV"
   description: Update UV indexes
   trigger:
   - platform: time_pattern
@@ -1633,7 +1649,7 @@
       entity_id: input_text.daikin_ac_last_active_mode
   mode: single
 - id: '1675553894245'
-  alias: Mailbox Alarm
+  alias: "\U0001F4EC Mailbox Alarm"
   description: ''
   trigger:
   - platform: state
@@ -1684,7 +1700,7 @@
       entity_id: light.front_floodlight
   mode: single
 - id: '1675569516468'
-  alias: Turn off floodlight when power restored
+  alias: "\U0001F4A1 Turn off floodlight when power restored"
   description: ''
   trigger:
   - platform: state
@@ -1704,7 +1720,7 @@
       entity_id: '{{ trigger.entity_id }}'
   mode: single
 - id: '1675737278039'
-  alias: Dishwasher monitor
+  alias: ⚡ Dishwasher monitor
   description: ''
   use_blueprint:
     path: leofabri/appliance-status-monitor.yaml
