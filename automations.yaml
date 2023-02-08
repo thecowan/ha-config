@@ -593,6 +593,10 @@
     target:
       entity_id: light.office_busy_light
     data: {}
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.apple_iigs_monitor
   mode: single
 - id: '1640079011445'
   alias: Populate Light Effects
@@ -816,6 +820,10 @@
     data: {}
     target:
       device_id: 4e62a9a2822e4b42b15dceb3fa53ed28
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.apple_iigs_monitor
   mode: single
 - id: '1652675530780'
   alias: Play/Pause Office - Companion App
