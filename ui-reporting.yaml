@@ -232,16 +232,33 @@ views:
           show_states: true
           colorize_states: true
         series:
-          - entity: sensor.washing_machine_power
+          - entity: sensor.whole_house_known_power
+            name: All
             group_by:
               func: avg
               duration: 10min
-          - entity: sensor.dishwasher_power
+          - entity: sensor.appliance_power
+            name: Appliances
+            group_by:
+              func: avg
+              duration: 10min
+          - entity: sensor.heating_power
+            name: Heating
             group_by:
               func: avg
               duration: 10min
           - entity: sensor.all_powercalc_lights_power
-            name: All Lights
+            name: Lighting
+            group_by:
+              func: avg
+              duration: 10min
+          - entity: sensor.gadgets_power
+            name: Gadgets
+            group_by:
+              func: avg
+              duration: 10min
+          - entity: sensor.assistants_power
+            name: Assistants
             group_by:
               func: avg
               duration: 10min
@@ -257,6 +274,8 @@ views:
                   - sensor.heating_power
                   - sensor.appliance_power
                   - sensor.all_powercalc_lights_power
+                  - sensor.gadgets_power
+                  - sensor.assistants_power
                 remaining:
                   name: "Other"
           - entities:
@@ -284,6 +303,18 @@ views:
                   - sensor.yeelight_entry_power
                   - sensor.yeelight_livingroom_power
                   - sensor.yeelight_guestroom_power
+              - entity_id: sensor.gadgets_power
+                name: Gadgets
+                color: purple
+                children:
+                  - sensor.apple_iigs_power
+                  - sensor.apple_iigs_monitor_power
+              - entity_id: sensor.assistants_power
+                name: Assistants
+                color: orange
+                children:
+                  - sensor.bathroom_speaker_power
+                  - sensor.dot_s_office_speaker_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
                 name: Bedroom Heater
@@ -322,6 +353,18 @@ views:
               - entity_id: sensor.yeelight_entry_power
                 name: Entry
                 color: yellow
+              - entity_id: sensor.apple_iigs_power
+                name: Apple IIgs
+                color: purple
+              - entity_id: sensor.apple_iigs_monitor_power
+                name: Apple IIgs monitor
+                color: purple
+              - entity_id: sensor.bathroom_speaker_power
+                name: Bathroom
+                color: orange
+              - entity_id: sensor.dot_s_office_speaker_power
+                name: Dot Office
+                color: orange
       - type: vertical-stack
         cards:
           - type: gauge
@@ -342,6 +385,14 @@ views:
                 entity: sensor.all_powercalc_lights_power
                 max: 2500
                 name: Lighting
+              - type: gauge
+                entity: sensor.gadgets_power
+                max: 2500
+                name: Gadgets
+              - type: gauge
+                entity: sensor.assistants_power
+                max: 2500
+                name: Assistants
 
   - title: Climate
     path: climate

@@ -1301,6 +1301,8 @@ template:
         {{ states("sensor.all_powercalc_lights_power") | float(0.0)
         + states("sensor.appliance_power") | float(0.0)
         + states("sensor.heating_power") | float(0.0)
+        + states("sensor.gadgets_power") | float(0.0)
+        + states("sensor.assistants_power") | float(0.0)
         }}
       unit_of_measurement: "W"
       icon: "mdi:home-lightning-bolt"
