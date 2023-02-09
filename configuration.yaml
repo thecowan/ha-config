@@ -1128,7 +1128,7 @@ template:
     - name: 'Closest Plane Ground Speed'
       unique_id: closest_plane_ground_speed
       state: >-
-        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).gs | round(1) }}
+        {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).gs | default(0) | round(1) }}
       unit_of_measurement: 'kts'
       icon: mdi:speedometer
     - name: 'Closest Plane Altitude (Barometric)'
@@ -1144,7 +1144,7 @@ template:
       unique_id: closest_plane_approach
       state: >-
         {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-        {% if 90 < ((nearest.bearing - nearest.track) | int % 360) < 270 %}approaching{% else %}receding{%endif%}
+        {% if nearest is none %}none{% elif 90 < ((nearest.bearing - nearest.track) | int % 360) < 270 %}approaching{% else %}receding{%endif%}
       icon: fas:map-signs
       availability: >
         {{ state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')|length > 0  }} 
@@ -1152,7 +1152,7 @@ template:
       unique_id: closest_plane_cpa
       state: >-
         {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-        {% if nearest.cpa_km is defined %}
+        {% if nearest.cpa_km is defined and nearest.cpa_km is not none %}
           {{ nearest.cpa_km | round(3) }}
         {% endif %}
       icon: mdi:map-marker-radius
@@ -1160,10 +1160,10 @@ template:
       attributes:
         altitude_est: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {{ nearest.cpa_altitude_estimate | round(0) }}
+          {{ nearest.cpa_altitude_estimate | default(0) |  round(0) }}
         time_est: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {{ nearest.cpa_secs | round(1) }}
+          {{ nearest.cpa_secs | default(0) |  round(1) }}
         latitude: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
           {{ nearest.cpa_lat }}
