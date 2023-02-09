@@ -541,65 +541,86 @@ light:
 
 google_assistant:
   project_id: !secret google_assistant_project_id
-  service_account: !include dairy-homeassistant-5e3328b5a268.json
+  service_account: !include dairy-homeassistant-95707-15c4e03cb81f.json
   report_state: true
   secure_devices_pin: !secret google_assistant_secure_devices_pin
   exposed_domains:
     - script
     - climate
-    - fan
     - cover
   entity_config:
-    light.yeelight_entry:
-      expose: true
-      room: Entry
+    climate.dot_s_office_ac:
+      expose: false
+    climate.dots_office_ac:
+      expose: false
+    climate.test_ac_2:
+      expose: false
+    climate.daikin_ac:
+      expose: false
 
+    fan.office_diffuser:
+      expose: true
+      room: Office
+
+    light.attic_light:
+      expose: true
+      room: Attic
     light.yeelight_bedroom:
       expose: true
       room: Bedroom
     light.bedside_lamps:
       expose: true
       room: Bedroom
-
-    light.dots_office_lamp:
+    light.dining_room:
+      expose: true
+      room: Dining Room
+    light.dot_floor_lamp:
       expose: true
       room: Dot's Office
-    light.dots_office:
+    light.dot_floor_lamp_spotlight:
       expose: true
       room: Dot's Office
-
-    light.gateway_light:
-      expose: false
-      room: Living Room
-    light.yeelight_livingroom:
+    light.dot_office_light:
       expose: true
-      room: Living Room
-
+      room: Dot's Office
+    light.front_floodlight:
+      expose: true
+      room: Entry
+    light.yeelight_entry:
+      expose: true
+      room: Entry
     light.yeelight_guestroom:
       expose: true
       room: Guest Room
-    light.guest_room_lamps:
-      expose: false
-      room: Guest Room
-
-    light.yeelight_dining:
-      expose: true
-      room: Dining Room
-
     light.kitchen_downlights:
       expose: true
       room: Kitchen
-
+    light.yeelight_livingroom:
+      expose: true
+      room: Living Room
     light.yeelight_office:
       expose: true
       room: Office
-    fan.office_diffuser:
+    light.office_ring_light:
       expose: true
       room: Office
-
     light.outside_globes:
       expose: true
       room: Outside
+    light.rear_floodlight:
+      expose: true
+      room: Outside
+
+    switch.apple_iigs_monitor:
+      expose: true
+      room: Office
+
+    camera.porch:
+      expose: true
+      room: Entry
+    camera.living_room:
+      expose: true
+      room: Living Room
 
 
 lovelace:
