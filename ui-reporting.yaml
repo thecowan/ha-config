@@ -232,22 +232,17 @@ views:
           show_states: true
           colorize_states: true
         series:
-          - entity: sensor.whole_house_known_power
+          - entity: sensor.whole_house_power
             name: All
             group_by:
               func: avg
               duration: 10min
-          - entity: sensor.appliance_power
+          - entity: sensor.appliances_power
             name: Appliances
             group_by:
               func: avg
               duration: 10min
-          - entity: sensor.heating_power
-            name: Heating
-            group_by:
-              func: avg
-              duration: 10min
-          - entity: sensor.all_powercalc_lights_power
+          - entity: sensor.lighting_power
             name: Lighting
             group_by:
               func: avg
@@ -267,42 +262,35 @@ views:
         show_names: true
         sections:
           - entities:
-              - entity_id: sensor.whole_house_known_power
+              - entity_id: sensor.whole_house_power
                 color: grey
                 name: Total Power Usage
                 children:
-                  - sensor.heating_power
-                  - sensor.appliance_power
-                  - sensor.all_powercalc_lights_power
+                  - sensor.appliances_power
+                  - sensor.lighting_power
                   - sensor.gadgets_power
                   - sensor.assistants_power
                 remaining:
                   name: "Other"
           - entities:
-              - entity_id: sensor.heating_power
-                name: Heating
-                color: red
-                children:
-                  - sensor.bedroom_heater_power
-                  - sensor.office_heater_power
-                  - sensor.guest_room_heater_power
-                  - sensor.living_room_heater_power
-              - entity_id: sensor.appliance_power
+              - entity_id: sensor.appliances_power
                 name: Appliances
                 color: green
                 children:
                   - sensor.washing_machine_power
                   - sensor.dishwasher_power
-              - entity_id: sensor.all_powercalc_lights_power
+              - entity_id: sensor.lighting_power
                 name: Lighting
                 color: yellow
                 children:
                   - sensor.kitchen_downlights_power
-                  - sensor.yeelight_office_power
-                  - sensor.yeelight_bedroom_power
-                  - sensor.yeelight_entry_power
-                  - sensor.yeelight_livingroom_power
-                  - sensor.yeelight_guestroom_power
+                  - sensor.office_light_power
+                  - sensor.bedroom_light_power
+                  - sensor.dot_office_lighting_power
+                  - sensor.living_room_light_power
+                  - sensor.dining_room_light_power
+                  - sensor.guest_room_light_power
+                  - sensor.attic_light_power
               - entity_id: sensor.gadgets_power
                 name: Gadgets
                 color: purple
@@ -315,6 +303,7 @@ views:
                 children:
                   - sensor.bathroom_speaker_power
                   - sensor.dot_s_office_speaker_power
+                  - sensor.master_bedroom_mini_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
                 name: Bedroom Heater
@@ -334,24 +323,32 @@ views:
               - entity_id: sensor.dishwasher_power
                 name: Dishwasher
                 color: green
-              # TODO: dining
               - entity_id: sensor.kitchen_downlights_power
                 name: Kitchen
                 color: yellow
-              - entity_id: sensor.yeelight_office_power
+              - entity_id: sensor.office_light_power
                 name: Office
                 color: yellow
-              - entity_id: sensor.yeelight_bedroom_power
+              - entity_id: sensor.bedroom_light_power
                 name: Bedroom
                 color: yellow
-              - entity_id: sensor.yeelight_livingroom_power
+              - entity_id: sensor.dot_office_lighting_power
+                name: Dot Office
+                color: yellow
+              - entity_id: sensor.living_room_light_power
                 name: Living Room
                 color: yellow
-              - entity_id: sensor.yeelight_guestroom_power
+              - entity_id: sensor.dining_room_light_power
+                name: Dining
+                color: yellow
+              - entity_id: sensor.guest_room_light_power
                 name: Guest Room
                 color: yellow
-              - entity_id: sensor.yeelight_entry_power
+              - entity_id: sensor.entry_light_power
                 name: Entry
+                color: yellow
+              - entity_id: sensor.attic_light_power
+                name: Attic
                 color: yellow
               - entity_id: sensor.apple_iigs_power
                 name: Apple IIgs
@@ -365,10 +362,13 @@ views:
               - entity_id: sensor.dot_s_office_speaker_power
                 name: Dot Office
                 color: orange
+              - entity_id: sensor.master_bedroom_mini_power
+                name: Bedroom
+                color: orange
       - type: vertical-stack
         cards:
           - type: gauge
-            entity: sensor.whole_house_known_power
+            entity: sensor.whole_house_power
             name: House Power
             max: 5000
           - type: grid
@@ -382,7 +382,7 @@ views:
                 name: Dishwasher
                 max: 2500
               - type: gauge
-                entity: sensor.all_powercalc_lights_power
+                entity: sensor.lighting_power
                 max: 2500
                 name: Lighting
               - type: gauge
