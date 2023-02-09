@@ -1104,7 +1104,7 @@ views:
             title: Bamboo 'Goldstripe' [Kitchen]
             image: /local/plants/bamboo-goldstripe-7-2.jpg
             entity: plant.bamboo_kitchen_window
-  - title: Configuration
+  - title: Settings
     icon: mdi:cog
     path: settings
     cards:
@@ -1129,11 +1129,7 @@ views:
         entities:
           - device_tracker.pauls_pixel_6_pro
           # - device_tracker.google_maps_107519494119268402848
-          - device_tracker.oppof1s
-          - device_tracker.galaxys7a
-          - device_tracker.pixel
           - device_tracker.dotties_iphone
-      - type: 'custom:browser-player'
       - type: 'custom:battery-state-card'
         title: Battery State
         sort_by_level: asc
