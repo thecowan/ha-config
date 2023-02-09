@@ -1278,8 +1278,7 @@ template:
     - name: 'Heating Power'
       unique_id: category_heating_summed_power
       state: >-
-        {{ states("sensor.dots_office_heater_power") | float(0.0)
-        + states("sensor.office_heater_power") | float(0.0)
+        {{ states("sensor.office_heater_power") | float(0.0)
         + states("sensor.bedroom_heater_power") | float(0.0)
         + states("sensor.guest_room_heater_power") | float(0.0)
         + states("sensor.living_room_heater_power") | float(0.0)

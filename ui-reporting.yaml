@@ -266,7 +266,6 @@ views:
                 children:
                   - sensor.bedroom_heater_power
                   - sensor.office_heater_power
-                  - sensor.dots_office_heater_power
                   - sensor.guest_room_heater_power
                   - sensor.living_room_heater_power
               - entity_id: sensor.appliance_power
@@ -291,9 +290,6 @@ views:
                 color: var(--warning-color)
               - entity_id: sensor.office_heater_power
                 name: Office Heater
-                color: var(--warning-color)
-              - entity_id: sensor.dots_office_heater_power
-                name: Dot's Office Heater
                 color: var(--warning-color)
               - entity_id: sensor.guest_room_heater_power
                 name: Guest Room Heater
