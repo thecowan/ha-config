@@ -335,6 +335,42 @@ paul_sleep:
 activate_z2m_siren:
   alias: Activate Zigbee2MQTT Siren
   fields:
+    siren_entity:
+      name: Siren Entity
+      description: Main siren entity
+      example: switch.siren_1_alarm
+      required: true
+      selector:
+        entity:
+          integration: mqtt
+          domain: switch
+    volume_entity:
+      name: Volume Entity
+      description: Entity to use to control volume
+      example: select.siren_1_volume
+      required: true
+      selector:
+        entity:
+          integration: mqtt
+          domain: select
+    melody_entity:
+      name: Melody Entity
+      description: Entity to use to control melody
+      example: select.siren_1_melody
+      required: true
+      selector:
+        entity:
+          integration: mqtt
+          domain: select
+    duration_entity:
+      name: Duration Entity
+      description: Entity to use to control duration
+      example: number.siren_1_duration
+      required: true
+      selector:
+        entity:
+          integration: mqtt
+          domain: number
     volume:
       name: Volume
       description: Volume to use ("low", "medium", or "high")
@@ -368,18 +404,18 @@ activate_z2m_siren:
     data:
       value: '{{ duration }}'
     target:
-      entity_id: number.siren_1_duration
+      entity_id: '{{ duration_entity }}'
   - service: select.select_option
     data:
       option: '{{ melody_id }}'
     target:
-      entity_id: select.siren_1_melody
+      entity_id: '{{ melody_entity }}'
   - service: select.select_option
     data:
       option: '{{ volume }}'
     target:
-      entity_id: select.siren_1_volume
+      entity_id: '{{ volume_entity }}'
   - service: switch.turn_on
     data: {}
     target:
-      entity_id: switch.siren_1_alarm
+      entity_id: '{{ siren_entity }}'

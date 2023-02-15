@@ -1490,6 +1490,10 @@
   action:
   - service: script.activate_z2m_siren
     data:
+      siren_entity: switch.siren_1_alarm
+      melody_entity: select.siren_1_melody
+      volume_entity: select.siren_1_volume
+      duration_entity: number.siren_1_duration
       volume: '{{ states(''input_select.mailbox_alarm_volume'') }}'
       melody_id: 7
       duration: 10
