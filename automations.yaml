@@ -1518,6 +1518,9 @@
     data: {}
     target:
       entity_id: light.front_floodlight
+  - service: notify.telegram_paul
+    data:
+      message: Mailbox alarm triggered!
   mode: single
 - id: '1675569516468'
   alias: "\U0001F4A1 Turn off floodlight when power restored"
