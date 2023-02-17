@@ -1224,18 +1224,86 @@ template:
       icon: "mdi:wallet"
   - binary_sensor:
     - name: 'cow-macbookpro Docked In Office'
-      state: >- 
+      state: >-
         {{ states("sensor.cow_macbookpro_primary_display_name") == "B326Hk" }}
       # {{ state_attr('sensor.cows_macbook_pro_displays', 'Display IDs') | select('eq', '1552D80D-A68A-5100-D7A7-18F5F54AE116') | list | count > 0 }}
       delay_on: '0:00:10'
       delay_off: '0:00:10'
       device_class: 'connectivity'
     - name: 'Office Sonos Ungrouped'
-      state: >- 
+      state: >-
         {{ state_attr('sensor.cows_macbook_pro_displays', 'Display IDs') | select('eq', '1552D80D-A68A-5100-D7A7-18F5F54AE116') | list | count > 0 }}
       delay_on: '0:00:10'
       delay_off: '0:00:10'
       device_class: 'connectivity'
+    - name: 'Office Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_paul_office') == states('climate.daikin_kitchen') }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Dot Office Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_office') == states('climate.daikin_living_room') }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Kitchen Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_kitchen') == states('climate.daikin_living_room') }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Guest Room Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_guest_room') == states('climate.daikin_living_room') }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Bedroom Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_bedroom') == states('climate.daikin_living_room') }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Back Door Can Be Open'
+      # TODO: remove living room once that door is monitored
+      state: >-
+        {{ states('climate.daikin_kitchen') != 'off' or states('climate.daikin_living_room') != 'off' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
+    - name: 'Office Door Left Open'
+      state: >-
+        {{ states('binary_sensor.bedroom_door_can_be_open') == 'off' and states('binary_sensor.bedroom_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
+    - name: 'Dot Office Door Left Open'
+      state: >-
+        {{ states('binary_sensor.dot_office_door_can_be_open') == 'off' and states('binary_sensor.dots_office_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
+    # TODO: - name: 'Kitchen Door Left Open'
+    - name: 'Guest Room Door Left Open'
+      state: >-
+        {{ states('binary_sensor.guest_room_door_can_be_open') == 'off' and states('binary_sensor.guest_room_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
+    - name: 'Bedroom Door Left Open'
+      state: >-
+        {{ states('binary_sensor.bedroom_door_can_be_open') == 'off' and states('binary_sensor.bedroom_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
+    - name: 'Back Door Left Open'
+      state: >-
+        {{ states('binary_sensor.back_door_can_be_open') == 'off' and states('binary_sensor.back_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
 
 rest_command:
   toggle_cow_macbookpro_mutesync:
