@@ -1277,7 +1277,7 @@ template:
       device_class: 'door'
     - name: 'Office Door Left Open'
       state: >-
-        {{ states('binary_sensor.bedroom_door_can_be_open') == 'off' and states('binary_sensor.bedroom_door') == 'on' }}
+        {{ states('binary_sensor.office_door_can_be_open') == 'off' and states('binary_sensor.office_door') == 'on' }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'problem'
