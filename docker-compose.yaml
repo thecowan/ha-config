@@ -7,4 +7,5 @@ services:
     volumes:
       - .:/config
       - /etc/localtime:/etc/localtime:ro 
+      - /run/dbus:/run/dbus:ro
     restart: unless-stopped
