@@ -331,24 +331,6 @@
     data:
       effect: colorloop
   mode: single
-- id: '1629256775832'
-  alias: ⚡ Dishwasher Running
-  description: ''
-  trigger:
-  - platform: numeric_state
-    entity_id: sensor.dishwasher_power
-    above: '50'
-  condition:
-  - condition: state
-    entity_id: input_select.dishwasher_state
-    state: Idle
-  action:
-  - service: input_select.select_option
-    target:
-      entity_id: input_select.dishwasher_state
-    data:
-      option: Running
-  mode: single
 - id: '1629257243979'
   alias: ⚡ Dishwasher Finished
   description: ''
@@ -356,16 +338,21 @@
   - platform: numeric_state
     entity_id: sensor.dishwasher_power
     below: '5'
-  condition:
-  - condition: state
-    entity_id: input_select.dishwasher_state
-    state: Running
+  - platform: state
+    entity_id:
+    - input_select.dishwasher_state_machine
+    to: job_completed
+  condition: []
   action:
-  - service: input_select.select_option
-    target:
-      entity_id: input_select.dishwasher_state
+  - service: script.activate_z2m_siren
     data:
-      option: Finished
+      siren_entity: switch.laundry_siren_alarm
+      volume_entity: select.laundry_siren_volume
+      melody_entity: select.laundry_siren_melody
+      duration_entity: number.laundry_siren_duration
+      volume: low
+      melody_id: 1
+      duration: 8
   mode: single
 - id: '1633580036748'
   alias: "\U0001FA9F  Blinds: Close at Sunset or designated time"
