@@ -1065,9 +1065,9 @@ template:
         last_position: >-
           {{ ((state_attr('sensor.tilly_tracked_aircraft', 'timestamp') - (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).seen_pos) | timestamp_utc | as_datetime).isoformat() + "+00:00" }}
         operator: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).operator  }}
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).operator | default('')  }}
         owner: >-
-          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).owner  }}
+          {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).owner  | default('') }}
         route: >-
           {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).route  }}
       availability: >
@@ -1183,10 +1183,10 @@ template:
       attributes:
         altitude_est: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {{ nearest.cpa_altitude_estimate | default(0) |  round(0) }}
+          {{ nearest.cpa_altitude_estimate | default(0) | round(0) | default(0) }}
         time_est: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {{ nearest.cpa_secs | default(0) |  round(1) }}
+          {{ nearest.cpa_secs | default(0) |  round(1) | default(0) }}
         latitude: >-
           {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
           {{ nearest.cpa_lat }}
