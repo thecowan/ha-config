@@ -1407,7 +1407,6 @@ recorder:
       - sensor.closest_plane*
     entities:
       - sensor.tilly_tracked_aircraft
-  db_url: !secret mariadb
   purge_keep_days: 30
 
 influxdb:

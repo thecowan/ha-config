@@ -10,24 +10,7 @@ services:
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
     depends_on:
-      - mariadb
       - influxdb
-
-  mariadb:
-    container_name: mariadb
-    image: mariadb
-    restart: unless-stopped
-    ports:
-      - "3306:3306/tcp"
-    environment:
-      - TZ=Australia/Sydney
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_HA_DATABASE}
-      - MYSQL_USER=${MYSQL_HA_USER}
-      - MYSQL_PASSWORD=${MYSQL_HA_PASSWORD}
-    volumes:
-      - ./mariadb/data:/var/lib/mysql
-      - ./mariadb/config/:/etc/mysql/conf.d
 
   influxdb:
     container_name: influxdb
