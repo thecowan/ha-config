@@ -168,6 +168,12 @@ tts:
     service_name: google_say
 
 panel_iframe:
+  configurator:
+    title: Configurator
+    icon: mdi:wrench
+    url: http://pokey.syd.cowlan.net:3218
+    require_admin: true
+
 
 zone:
   - name: !secret zone_work_name

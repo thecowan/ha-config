@@ -32,3 +32,15 @@ services:
       nofile:
         soft: 32768
         hard: 32768
+
+  hass-configurator:
+    container_name: hassconf
+    image: causticlab/hass-configurator-docker
+    restart: unless-stopped
+    ports:
+      - "3218:3218/tcp"
+    volumes:
+      - ./hassconf/config:/config
+      - ./:/hass-config
+    depends_on:
+      - home-assistant
