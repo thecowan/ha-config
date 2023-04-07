@@ -9,3 +9,43 @@ services:
       - /etc/localtime:/etc/localtime:ro 
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
+    depends_on:
+      - mariadb
+      - influxdb
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306/tcp"
+    environment:
+      - TZ=Australia/Sydney
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_HA_DATABASE}
+      - MYSQL_USER=${MYSQL_HA_USER}
+      - MYSQL_PASSWORD=${MYSQL_HA_PASSWORD}
+    volumes:
+      - ./mariadb/data:/var/lib/mysql
+      - ./mariadb/config/:/etc/mysql/conf.d
+
+  influxdb:
+    container_name: influxdb
+    image: influxdb
+    restart: unless-stopped
+    ports:
+      - "8086:8086/tcp"   # So we can access the WebUI
+    environment:
+      - TZ=Australia/Sydney
+      - DOCKER_INFLUXDB_INIT_MODE=setup
+      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USER}
+      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+    volumes:
+      - ./influxdb/data:/var/lib/influxdb2
+      - ./influxdb/config/:/etc/influxdb2
+    ulimits:
+      nofile:
+        soft: 32768
+        hard: 32768
