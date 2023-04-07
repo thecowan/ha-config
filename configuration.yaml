@@ -1224,6 +1224,24 @@ template:
       state: "{{ (states('sensor.helium_hnt_oracle_price') |float(0) * states('sensor.helium_wallet_master') | float(0)) | round(2) }}"
       unit_of_measurement: "USD"
       icon: "mdi:wallet"
+  - unique_id: location_friendly_sensors
+    sensor:
+    - name: 'Dot Friendly Location'
+      unique_id: dot_friendly_location
+      state: >-
+        {% if is_state('person.dorothy', 'not_home') %}
+          {{ states('sensor.iphone_geocoded_location') }}
+        {% else %}
+          {{ states('person.dorothy') }}
+        {% endif %}
+    - name: 'Paul Friendly Location'
+      unique_id: paul_friendly_location
+      state: >-
+        {% if is_state('person.paul', 'not_home') %}
+          {{ states('sensor.pixel_6_pro_geocoded_location') }}
+        {% else %}
+          {{ states('person.paul') }}
+        {% endif %}
   - binary_sensor:
     - name: 'cow-macbookpro Docked In Office'
       state: >-
