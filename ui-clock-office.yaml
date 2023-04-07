@@ -155,11 +155,13 @@ views:
                         icon: mdi:bed
                         entity: climate.daikin_bedroom
                         show_name: false
-                        label: >
-                          [[[ return states['climate.daikin_bedroom'].attributes.current_temperature; ]]]
-                        show_label: true
-                        layout: icon_label
+                        #label: >
+                        #  [[[ return states['climate.daikin_bedroom'].attributes.current_temperature; ]]]
+                        #show_label: true
+                        #layout: icon_label
                         styles:
+                          grid:
+                            - position: relative
                           card:
                             - height: 50px
                           icon:
@@ -172,6 +174,19 @@ views:
                                   }
                                   return 'var(--button-card-light-color)';
                                 ]]]
+                          custom_fields:
+                            temperature:
+                              - position: absolute
+                              - right: 10%
+                              - top: 60%
+                              - height: 14px
+                              - font-size: 10px
+                              - line-height: 14px
+                              - background-color: "#303030"
+                              - border-radius: 20%
+                        custom_fields:
+                          temperature: >
+                            [[[ return entity.attributes.current_temperature; ]]]
                         tap_action:
                           action: call-service
                           service: script.toggle_ac_state
@@ -222,6 +237,21 @@ views:
                                   }
                                   return 'var(--button-card-light-color)';
                                 ]]]
+                          custom_fields:
+                            temperature:
+                              - position: absolute
+                              - right: 10%
+                              - top: 60%
+                              - height: 14px
+                              - font-size: 10px
+                              - line-height: 14px
+                              - background-color: "#303030"
+                              - border-radius: 20%
+                              - padding-left: 5px
+                              - padding-right: 5px
+                        custom_fields:
+                          temperature: >
+                            [[[ return entity.attributes.current_temperature + (entity.state == 'off' ? "" : "/" + entity.attributes.temperature); ]]]
                         tap_action:
                           action: call-service
                           service: script.toggle_ac_state
