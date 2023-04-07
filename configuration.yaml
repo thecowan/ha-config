@@ -23,6 +23,7 @@ logger:
   default: warning
   logs:
     custom_components.virtual_ducted_thermostat: debug
+    homeassistant.components.recorder.migration: info
 
 http:
   cors_allowed_origins: !secret cors_allowed_origins
