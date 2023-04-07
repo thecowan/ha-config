@@ -156,6 +156,10 @@ binary_sensor:
   - platform: workday
     country: AU
     province: NSW
+  - platform: ping
+    host: 10.41.62.1
+    name: camera-digoo
+    scan_interval: 10
 
 # Text to speech
 tts:
