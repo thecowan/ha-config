@@ -1544,3 +1544,16 @@
       delayed_job_completion_timer: timer.dishwasher_delayed_job_completion_timer
       automation_self_trigger: input_boolean.dishwasher_automation_self_trigger
       delayed_job_completion_duration: 400
+- id: '1680916072145'
+  alias: Backup every Sunday
+  description: ''
+  trigger:
+  - platform: time
+    at: 02:00:00
+  condition:
+  - condition: template
+    value_template: '{{ now().weekday() == 6 }}'
+  action:
+  - service: backup.create
+    data: {}
+  mode: single
