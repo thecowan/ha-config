@@ -1060,6 +1060,15 @@ calendar:
 template:
   - unique_id: adsb
     sensor:
+    - name: 'gobo Closest Plane Notify'
+      unique_id: gobo_closest_plane_notify
+      state: >-
+        {%- set distance = states("sensor.gobo_closest_aircraft_distance") | float(1000000) -%}
+        {%- set alt = states("sensor.gobo_closest_aircraft_barometric_altitude") | float(1000000) -%}
+        {%- set bearing = states("sensor.gobo_closest_aircraft_bearing") | int(180) -%}
+        {%- set type = state_attr("sensor.gobo_closest_aircraft", "category_code") | default('xx')  -%}
+        {%- set noteworthy = type.startswith('A') and distance < 3 and (bearing > -60 and bearing < 60 and alt < 10000) or (distance < 2) -%}
+        {{ noteworthy }}
     - name: 'Closest Plane'
       unique_id: closest_plane
       state: >-

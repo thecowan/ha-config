@@ -1557,3 +1557,143 @@
   - service: backup.create
     data: {}
   mode: single
+- id: '1681826788402'
+  alias: ✈️ Disable flight board when out of range
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_plane_notify
+    to: 'False'
+    from: 'True'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: awtrix_d69578/power
+      payload: '0'
+      qos: '0'
+  mode: single
+- id: '1681827486232'
+  alias: ✈️ Update flight board
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_aircraft
+  condition:
+  - condition: template
+    value_template: '{{ states("sensor.gobo_closest_aircraft_distance") | float(1000000)
+      < 4.0 }}'
+  action:
+  - service: script.publish_flight_info
+    data: {}
+  - service: mqtt.publish
+    data:
+      topic: awtrix_d69578/power
+      payload: '1'
+      qos: '0'
+  mode: single
+- id: '1681976080834'
+  alias: ✈️ Enable flight board when in range
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_plane_notify
+    to: 'True'
+    from: 'False'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      topic: awtrix_d69578/power
+      payload: '1'
+      qos: '0'
+  mode: single
+- id: '1681976572236'
+  alias: ✈️ Update flight Number
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_plane_notify
+    from: 'False'
+    to: 'True'
+  condition: []
+  action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: awtrix_d69578/custom/flight
+      payload: '{%- set flight = state_attr(''sensor.gobo_closest_aircraft'', ''flight_number'')
+        | default("??????") | trim -%} {%- set airline = flight | regex_findall_index(find=''^[A-Za-z]+'')
+        -%} {%- set flnum = flight | regex_replace(find=''^[A-Za-z]+'', replace='''')
+        -%} {"text": [{"t": "{{ airline }}", "c": "#ff0000"},{"t": "{{ flnum }}"}],
+        "progress": 20}'
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: awtrix_d69578/custom/ports
+      payload: '{"text": [ {"t": "{{ state_attr(''sensor.gobo_closest_aircraft'',
+        ''route'')[''FromIata''] | default(state_attr(''sensor.gobo_closest_aircraft'',
+        ''route'')[''FromIcao'']) | default("???") | trim }}" }, {"t": ">", "c": "#101010"},  {"t":
+        "{{ state_attr(''sensor.gobo_closest_aircraft'', ''route'')[''ToIata''] |
+        default(state_attr(''sensor.gobo_closest_aircraft'',''route'')[''ToIcao''])
+        | default("???") | trim }}"} ], "progress": 40}'
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: awtrix_d69578/custom/plane
+      payload: '{"text": "{{ state_attr(''sensor.gobo_closest_aircraft'', ''type_code'')  |
+        default("???") | trim }}", "progress": 60}'
+  mode: single
+- id: '1681977269093'
+  alias: ✈️ Update flight altutide
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_aircraft_barometric_altitude
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
+  - condition: state
+    entity_id: sensor.gobo_closest_plane_notify
+    state: 'True'
+  action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: awtrix_d69578/custom/alt
+      payload: '{"text": "{{ states(''sensor.gobo_closest_aircraft_barometric_altitude'')  |
+        default(0) | float(0) | round(0)}}ft", "progress": 80, "icon": "{% if (state_attr(''sensor.gobo_closest_aircraft_barometric_altitude'',
+        ''rate'') | int(0)) > 0 %}7465{% else %}7463{% endif %}"}'
+  mode: single
+- id: '1681977615624'
+  alias: ✈️ Update flight speed
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.gobo_closest_aircraft_ground_speed
+  condition:
+  - condition: template
+    value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
+  - condition: state
+    entity_id: sensor.gobo_closest_plane_notify
+    state: 'True'
+  action:
+  - service: mqtt.publish
+    data:
+      qos: 0
+      retain: false
+      topic: awtrix_d69578/custom/speed
+      payload: "{\"text\": [\n {\"t\": \"{{ ((states('sensor.gobo_closest_aircraft_ground_speed')
+        | default(0) | float(0) ) * 1.852) | round(0)}}\"},\n {\"t\": \"kmh\", \"c\":
+        \"#101010\"}\n], \"progress\": 100}"
+  mode: single
