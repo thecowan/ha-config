@@ -831,7 +831,7 @@ climate:
   #  current_temperature_template: "{{ states('sensor.office_temperature') }}"
   #  current_humidity_template: "{{ states('sensor.office_humidity') }}"
   #  fan_mode_template: '{{ state_attr("climate.daikin_ac", "fan_mode") }}'
-  #  hvac_mode_template: '{% if is_state("switch.daikin_ac_paul_office", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
+  #  hvac_mode_template: '{%if is_state("switch.daikin_ac_paul_office", "off") -%}off{%- else -%}{{ state_attr("climate.daikin_ac", "hvac_action") }}{%- endif %}'
   #  availability_template: '{{ not (is_state("switch.daikin_ac_paul_office", "unavailable") or is_state("climate.daikin_ac", "unavailable")) }}'
   #  target_temperature_template: "{{states('input_number.paul_office_virtual_ac_target_temp')}}"
   #  precision: 1.0
@@ -1123,17 +1123,29 @@ template:
         {{ (state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] | default({})).bearing | round(1) }}
       attributes:
         direction: >-
-          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {% set directions = ['N', 'NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'] %}
-          {{ directions[(((nearest.bearing + 11.25) % 360) / 22.5) | int] }}
+          {% set nearest_list = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft') | default({}, true) %}
+          {%- if ((nearest_list | length) == 0) -%}
+            None
+          {%- else -%}
+            {% set directions = ['N', 'NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'] %}
+            {{ directions[(((nearest_list[0].bearing + 11.25) % 360) / 22.5) | int] }}
+          {%- endif -%}
         direction_fine: >-
-          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {% set directions_fine = ['N','NbE','NNE','NEbN','NE','NEbE','ENE','EbN','E','EbS','ESE','SEbE','SE','SEbS','SSE','SbE','S','SbW','SSW','SWbS','SW','SWbW','WSW','WbS','W','WbN','WNW','NWbW','NW','NWbN','NNW','NbW'] %}
-          {{ directions_fine[(((nearest.bearing + 5.625) % 360) / 11.25) | int] }}
+          {% set nearest_list = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft') | default({}, true) %}
+          {%- if ((nearest_list | length) == 0) -%}
+            None
+          {%- else -%}
+            {% set directions_fine = ['N','NbE','NNE','NEbN','NE','NEbE','ENE','EbN','E','EbS','ESE','SEbE','SE','SEbS','SSE','SbE','S','SbW','SSW','SWbS','SW','SWbW','WSW','WbS','W','WbN','WNW','NWbW','NW','NWbN','NNW','NbW'] %}
+            {{ directions_fine[(((nearest_list[0].bearing + 5.625) % 360) / 11.25) | int] }}
+          {%- endif -%}
         direction_crude: >-
-          {% set nearest = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft')[0] %}
-          {% set directions_crude = ['N','NE', 'E', 'SE','S','SW','W','NW'] %}
-          {{ directions_crude[(((nearest.bearing + 22.5) % 360) / 45) | int] }}
+          {% set nearest_list = state_attr('sensor.tilly_tracked_aircraft', 'nearest_aircraft') | default({}, true) %}
+          {%- if ((nearest_list | length) == 0) -%}
+            None
+          {%- else -%}
+            {% set directions_crude = ['N','NE', 'E', 'SE','S','SW','W','NW'] %}
+            {{ directions_crude[(((nearest_list[0].bearing + 22.5) % 360) / 45) | int] }}
+          {%- endif -%}
       unit_of_measurement: '°'
       icon: mdi:compass-rose
     - name: 'Closest Plane Heading'
