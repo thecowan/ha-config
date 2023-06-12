@@ -717,6 +717,8 @@ lovelace:
       type: js
     - url: '/hacsfiles/mini-climate-card/mini-climate-card-bundle.js'
       type: module
+    - url: '/hacsfiles/lovelace-windrose-card/windrose-card.js'
+      type: module
   dashboards:
     lovelace-reporting:
       mode: yaml
