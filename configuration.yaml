@@ -154,9 +154,6 @@ sensor:
 binary_sensor:
   - platform: linode
     nodes: !secret linode_nodes
-  - platform: workday
-    country: AU
-    province: NSW
   - platform: ping
     host: 10.41.62.1
     name: camera-digoo
