@@ -474,3 +474,26 @@ publish_flight_info:
       payload: '1'
   mode: single
   icon: far:paper-plane
+cycle_light_brightness_25_percent:
+  alias: Cycle Light Brightness - 25 Percent
+  description: Cycle light through 25/50/75/100 percent
+  fields:
+    entity_id:
+      name: Entity ID
+      description: The device to target
+      example: light.dining_room
+      required: true
+      selector:
+        entity:
+          domain: light
+  sequence:
+  - service: light.turn_on
+    data:
+      entity_id: '{{ entity_id }}'
+      brightness: '{% if is_state(entity_id, ''off'') %} 64 {% elif state_attr(entity_id,
+        ''brightness'') | int < 60 %} 64 {% elif state_attr(entity_id, ''brightness'')
+        | int < 124 %} 128 {% elif state_attr(entity_id, ''brightness'') | int < 190
+        %} 192 {% elif state_attr(entity_id, ''brightness'') | int < 253 %} 255 {%
+        else %} 64 {% endif %}'
+  mode: single
+  icon: mdi:lightbulb-multiple-outline
