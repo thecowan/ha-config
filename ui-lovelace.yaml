@@ -957,6 +957,7 @@ views:
           entity: light.hedge
           toggle: true
         - entity: binary_sensor.back_door
+        - entity: switch.outdoor_toilet_heater
       - type: 'custom:sun-card'
       - type: weather-forecast
         entity: weather.lilyfield
