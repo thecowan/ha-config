@@ -8,9 +8,9 @@ views:
     cards:
       - type: map
         entities:
-          - entity: sensor.closest_plane
+          - entity: sensor.gobo_closest_aircraft
+          - entity: sensor.gobo_closest_aircraft_cpa
           - entity: zone.home
-          - entity: sensor.closest_plane_cpa
       - type: vertical-stack
         cards:
           - type: conditional
@@ -22,18 +22,18 @@ views:
               content: (None)
           - type: conditional
             conditions:
-              - entity: sensor.closest_plane
+              - entity: sensor.gobo_closest_aircraft
                 state_not: unavailable
             card:
               type: vertical-stack
               cards:
                 - type: custom:button-card
-                  entity: sensor.closest_plane
+                  entity: sensor.gobo_closest_aircraft
                   name: >-
-                    [[[  var owner = states["sensor.closest_plane"].attributes.owner;
-                    var operator = states["sensor.closest_plane"].attributes.operator;
-                    var route = states["sensor.closest_plane"].attributes.route;
-                    var r = states["sensor.closest_plane_flight_number"].state +  ((operator || owner) ? " (" + (operator || owner) + ")" : "");
+                    [[[  var owner = states["sensor.gobo_closest_aircraft"].attributes.owner;
+                    var operator = states["sensor.gobo_closest_aircraft"].attributes.operator;
+                    var route = states["sensor.gobo_closest_aircraft"].attributes.route;
+                    var r = states["sensor.gobo_closest_aircraft"].attributes.flight_number +  ((operator || owner) ? " (" + (operator || owner) + ")" : "");
                     if (route && Object.keys(route).length > 0) {
                       r += "<br />" + route.FromName + " <small>[" + route.FromIcao + "]</small> → " + route.ToName + " <small>[" + route.ToIcao + "]</small>"
                     }
@@ -45,25 +45,25 @@ views:
                   show_state: true
                   type: glance
                   entities:
-                    - entity: sensor.closest_plane_altitude_barometric
+                    - entity: sensor.gobo_closest_aircraft_barometric_altitude
                       name: Altitude
-                    - entity: sensor.closest_plane_ground_speed
+                    - entity: sensor.gobo_closest_aircraft_ground_speed
                       name: Ground Speed
-                    - entity: sensor.closest_plane_heading
+                    - entity: sensor.gobo_closest_aircraft_heading
                       name: Heading
                   columns: 3
                 - type: conditional
                   conditions:
-                    - entity: sensor.closest_plane_approach
+                    - entity: sensor.gobo_closest_aircraft_approaching
                       state: receding
                   card:
                     type: custom:compass-card
                     indicator_sensors:
-                      - sensor: sensor.closest_plane_bearing
+                      - entity: sensor.gobo_closest_aircraft_bearing
                         indicator:
                           type: arrow_outward
                     value_sensors:
-                      - sensor: sensor.closest_plane_distance
+                      - entity: sensor.gobo_closest_aircraft_distance
                         decimals: 3
                 - type: conditional
                   conditions:
@@ -72,19 +72,19 @@ views:
                   card:
                     type: custom:compass-card
                     indicator_sensors:
-                      - sensor: sensor.closest_plane_bearing
+                      - entity: sensor.gobo_closest_aircraft_bearing
                         indicator:
                           type: arrow_inward
                     value_sensors:
-                      - sensor: sensor.closest_plane_distance
+                      - entity: sensor.gobo_closest_aircraft_distance
                         decimals: 3
                 - type: conditional
                   conditions:
-                    - entity: sensor.closest_plane_cpa
+                    - entity: sensor.gobo_closest_aircraft_cpa
                       state_not: unavailable
                   card:
                     type: gauge
-                    entity: sensor.closest_plane_cpa
+                    entity: sensor.gobo_closest_aircraft_cpa
                     needle: false
       - type: custom:fr24-card
         entity: sensor.fr24_aircraft
