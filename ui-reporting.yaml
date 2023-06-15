@@ -274,9 +274,15 @@ views:
                   - sensor.lighting_power
                   - sensor.gadgets_power
                   - sensor.assistants_power
+                  - sensor.heating_power
                 remaining:
                   name: "Other"
           - entities:
+              - entity_id: sensor.heating_power
+                name: Heating
+                color: red
+                children:
+                  - sensor.outdoor_toilet_heater_power
               - entity_id: sensor.appliances_power
                 name: Appliances
                 color: green
@@ -303,7 +309,7 @@ views:
                   - sensor.apple_iigs_monitor_power
               - entity_id: sensor.assistants_power
                 name: Assistants
-                color: orange
+                color: blue
                 children:
                   - sensor.bathroom_speaker_power
                   - sensor.dot_s_office_speaker_power
@@ -318,9 +324,9 @@ views:
               - entity_id: sensor.guest_room_heater_power
                 name: Guest Room Heater
                 color: var(--warning-color)
-              - entity_id: sensor.living_room_heater_power
-                name: Living Room Heater
-                color: var(--warning-color)
+              - entity_id: sensor.outdoor_toilet_heater_power
+                name: Outdoor Toilet Heater
+                color: red
               - entity_id: sensor.washing_machine_power
                 name: Washing Machine
                 color: green
@@ -362,13 +368,13 @@ views:
                 color: purple
               - entity_id: sensor.bathroom_speaker_power
                 name: Bathroom
-                color: orange
+                color: blue
               - entity_id: sensor.dot_s_office_speaker_power
                 name: Dot Office
-                color: orange
+                color: blue
               - entity_id: sensor.master_bedroom_mini_power
                 name: Bedroom
-                color: orange
+                color: blue
       - type: vertical-stack
         cards:
           - type: gauge
@@ -397,6 +403,10 @@ views:
                 entity: sensor.assistants_power
                 max: 2500
                 name: Assistants
+              - type: gauge
+                entity: sensor.heating_power
+                max: 2500
+                name: Heating
 
   - title: Climate
     path: climate
