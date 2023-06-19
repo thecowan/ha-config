@@ -848,6 +848,8 @@ climate:
     auto_mode: all
     min_cycle_duration:
       seconds: 60
+    preset_modes:
+      - sleep
     zone:
       - name: "Daikin Paul Office"
         vent_switch: switch.daikin_ac_paul_office
