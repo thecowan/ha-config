@@ -150,6 +150,8 @@ sensor:
   - platform: openhardwaremonitor
     host: red
     port: 8093
+  - platform: waste_collection_schedule
+    name: rubbish
 
 binary_sensor:
   - platform: linode
@@ -1290,3 +1292,11 @@ influxdb:
   #  domains:
   #    - persistent_notification
   #    - person
+
+waste_collection_schedule:
+  sources:
+    - name: Home
+      args:
+        suburb: !secret rubbish_suburb
+        street_name: !secret rubbish_street
+        street_number: !secret rubbish_number
