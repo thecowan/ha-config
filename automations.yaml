@@ -1814,3 +1814,64 @@
       payload: '1'
       qos: '0'
   mode: single
+- id: '1686907407641'
+  alias: ♨️ Start toilet heater off timer
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.outdoor_toilet_heater
+    to: 'on'
+  condition: []
+  action:
+  - service: timer.start
+    data: {}
+    target:
+      entity_id: timer.outdoor_toilet_heater_timer
+  mode: single
+- id: '1686907633320'
+  alias: ♨️ Turn off outdoor toilet when timer done
+  description: ''
+  trigger:
+  - platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.outdoor_toilet_heater_timer
+  - platform: state
+    entity_id:
+    - binary_sensor.outdoor_toilet_motion_sensor_occupancy
+    from: 'on'
+    to: 'off'
+    for:
+      hours: 0
+      minutes: 3
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: switch.outdoor_toilet_heater
+    state: 'on'
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.outdoor_toilet_heater
+  mode: single
+- id: '1686907929421'
+  alias: ♨️ Switch toilet heater to detect mode
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.outdoor_toilet_motion_sensor_occupancy
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: switch.outdoor_toilet_heater
+    state: 'on'
+  action:
+  - service: timer.cancel
+    data: {}
+    target:
+      entity_id: timer.outdoor_toilet_heater_timer
+  mode: single
