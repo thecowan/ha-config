@@ -26,6 +26,11 @@ views:
     badges:
       - type: entity-filter
         entities:
+          - binary_sensor.guest_room_door_left_open
+          - binary_sensor.back_door_left_open
+          - binary_sensor.office_door_left_open
+          - binary_sensor.bedroom_door_left_open
+          - binary_sensor.dot_office_door_left_open
           - light.yeelight_entry
           - light.dots_office
           - light.yeelight_bedroom
