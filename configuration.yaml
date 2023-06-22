@@ -1133,7 +1133,7 @@ template:
       device_class: 'door'
     - name: 'Dot Office Door Can Be Open'
       state: >-
-        {{ states('climate.daikin_office') == states('climate.daikin_living_room') }}
+        {{ states('climate.daikin_dot_office') == states('climate.daikin_living_room') }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'door'
@@ -1158,7 +1158,7 @@ template:
     - name: 'Back Door Can Be Open'
       # TODO: remove living room once that door is monitored
       state: >-
-        {{ states('climate.daikin_kitchen') != 'off' or states('climate.daikin_living_room') != 'off' }}
+        {{ states('climate.daikin_kitchen') == 'off' and states('climate.daikin_living_room') == 'off' }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'door'
