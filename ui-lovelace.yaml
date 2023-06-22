@@ -47,6 +47,7 @@ views:
             name: "Hedge Fairy Lights"
           - entity: light.flux_party
             name: "Outside Party Lights"
+          - light.outdoor_toilet
           - binary_sensor.front_door_open
           - binary_sensor.dots_office_door
           - binary_sensor.bedroom_door
@@ -961,6 +962,13 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.rear_floodlight
           toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.outdoor_toilet
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.outdoor_toilet
+          justify: center
+          colors: !include colors_kogan.yaml
         - type: 'custom:slider-entity-row'
           entity: light.hedge
           toggle: true
