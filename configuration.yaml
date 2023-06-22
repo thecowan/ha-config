@@ -1300,3 +1300,8 @@ waste_collection_schedule:
         suburb: !secret rubbish_suburb
         street_name: !secret rubbish_street
         street_number: !secret rubbish_number
+
+logbook:
+  exclude:
+    entities:
+      - sensor.fr24_aircraft
