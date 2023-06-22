@@ -82,4 +82,10 @@ template._NO_HASS_ENV.filters["random_entry"] = random_entry
 
 
 async def async_setup(hass, hass_config):
+    tpl = template.Template("", template._NO_HASS_ENV.hass)
+    tpl._env.globals = keep_keys
+    tpl._env.globals = keep_values
+    tpl._env.globals = discard_keys
+    tpl._env.globals = discard_values
+    tpl._env.globals = random_entry
     return True
