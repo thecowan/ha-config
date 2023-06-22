@@ -31,7 +31,7 @@ views:
           - light.yeelight_bedroom
           - light.bedside_lamps
           - light.living_room
-          - light.yeelight_livingroom_lamp
+          - light.living_room_lamp
           - light.gateway_light
           - light.yeelight_guestroom
           - light.yeelight_office
@@ -317,12 +317,12 @@ views:
           justify: center
           colors: !include colors_yeelight.yaml
         - type: 'custom:slider-entity-row'
-          entity: light.yeelight_livingroom_lamp
+          entity: light.living_room_lamp
           toggle: true
         - type: 'custom:rgb-light-card'
-          entity: light.yeelight_livingroom_lamp
+          entity: light.living_room_lamp
           justify: center
-          colors: !include colors_yeelight.yaml
+          colors: !include colors_esphome.yaml
         - type: 'custom:slider-entity-row'
           entity: light.gateway_light
           toggle: true
