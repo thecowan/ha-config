@@ -697,33 +697,6 @@
     data:
       value: '{{ trigger.entity_id }}'
   mode: single
-- id: '1647647743141'
-  alias: "\U0001F518 4 Button Scene Switch - Backdoor"
-  description: ''
-  use_blueprint:
-    path: Stringer/zigbee2mqtt-tuya-4-button-scene-switch-ts0044.yaml
-    input:
-      switch: sensor.zemismart_scene_switch_1_action
-      button_one_short_press:
-      - service: light.toggle
-        target:
-          entity_id: light.yeelight_office
-        data: {}
-      button_two_short_press:
-      - service: light.toggle
-        target:
-          entity_id: light.yeelight_office
-        data: {}
-      button_three_short_press:
-      - service: light.toggle
-        target:
-          entity_id: light.yeelight_office
-        data: {}
-      button_four_short_press:
-      - service: light.toggle
-        target:
-          entity_id: light.yeelight_office
-        data: {}
 - id: '1652232659373'
   alias: "\U0001F4F2 Office Light Switch - Companion App"
   description: ''
@@ -1239,95 +1212,6 @@
         data: {}
         target:
           area_id: master_bedroom
-- id: '1654949497784'
-  alias: "\U0001F518 Back Door Button"
-  description: ''
-  use_blueprint:
-    path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
-    input:
-      action_sensor: sensor.back_door_button_action
-      single_action:
-      - service: light.toggle
-        data: {}
-        target:
-          entity_id: light.outside_globes
-      double_action:
-      - service: light.toggle
-        data: {}
-        target:
-          entity_id: light.rear_floodlight
-- id: '1654949993985'
-  alias: "\U0001F518 Office Button"
-  description: ''
-  use_blueprint:
-    path: cow/aqara-buttons-all-in-one-zigbee2mqtt.yaml
-    input:
-      action_sensor: sensor.office_button_action
-      single_action:
-      - service: light.toggle
-        data: {}
-        target:
-          entity_id: light.yeelight_office
-- id: '1656502769828'
-  alias: "\U0001F321️ Guest Room Heater Timer - Off "
-  description: ''
-  trigger:
-  - platform: time
-    at: input_datetime.guest_room_heater_off_time
-  condition:
-  - condition: state
-    entity_id: climate.guest_room_heating
-    state: sleep
-    attribute: preset_mode
-  - condition: state
-    entity_id: input_boolean.guest_room_heater_timer
-    state: 'on'
-  action:
-  - service: climate.set_preset_mode
-    data:
-      preset_mode: none
-    target:
-      entity_id:
-      - climate.guest_room_heating
-  mode: single
-- id: '1656502830840'
-  alias: "\U0001F321️ Guest Room Heater Timer - On"
-  description: ''
-  trigger:
-  - platform: time
-    at: input_datetime.guest_room_heater_on_time
-  condition:
-  - condition: state
-    entity_id: climate.guest_room_heating
-    state: heat
-  - condition: state
-    entity_id: input_boolean.guest_room_heater_timer
-    state: 'on'
-  action:
-  - service: climate.set_preset_mode
-    data:
-      preset_mode: sleep
-    target:
-      entity_id:
-      - climate.guest_room_heating
-  mode: single
-- id: '1656502879082'
-  alias: "\U0001F321️️ Guest Room Heater - Sleep Mode Slider"
-  description: ''
-  trigger:
-  - platform: state
-    entity_id:
-    - climate.guest_room_heating
-    attribute: preset_mode
-    to: sleep
-  condition: []
-  action:
-  - service: climate.set_temperature
-    target:
-      entity_id: climate.guest_room_heating
-    data:
-      temperature: '{{ states("input_number.guest_room_heater_timer_temp") }}'
-  mode: single
 - id: '1672126071304'
   alias: ❄️ Turn off AC when all zones off
   description: ''
@@ -1875,3 +1759,69 @@
     target:
       entity_id: timer.outdoor_toilet_heater_timer
   mode: single
+- id: '1687497252624'
+  alias: "\U0001F321️ Sleep Mode - Guest Room"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.daikin_guest_room
+      master_switch: input_boolean.sleep_mode_enabled_guest_room
+      start_time: input_datetime.sleep_mode_start_guest_room
+      end_time: input_datetime.sleep_mode_end_guest_room
+      temperature_input: input_number.sleep_mode_temperature_guest_room
+- id: '1687498668027'
+  alias: "\U0001F321️ Sleep Mode - Dot Office"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.dots_office_ac
+      master_switch: input_boolean.sleep_mode_enabled_dot_office
+      start_time: input_datetime.sleep_mode_start_dot_office
+      end_time: input_datetime.sleep_mode_end_dot_office
+      temperature_input: input_number.sleep_mode_temperature_dot_office
+- id: '1687499494339'
+  alias: "\U0001F321️ Sleep Mode - Bedroom"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.daikin_bedroom
+      master_switch: input_boolean.sleep_mode_enabled_bedroom
+      start_time: input_datetime.sleep_mode_start_bedroom
+      end_time: input_datetime.sleep_mode_end_bedroom
+      temperature_input: input_number.sleep_mode_temperature_bedroom
+- id: '1687507473577'
+  alias: "\U0001F321️ Sleep Mode - Office"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.daikin_paul_office
+      master_switch: input_boolean.sleep_mode_enabled_office
+      start_time: input_datetime.sleep_mode_start_office
+      end_time: input_datetime.sleep_mode_end_office
+      temperature_input: input_number.sleep_mode_temperature_office
+- id: '1687507526987'
+  alias: "\U0001F321️ Sleep Mode - Living Room"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.daikin_living_room
+      master_switch: input_boolean.sleep_mode_enabled_living_room
+      start_time: input_datetime.sleep_mode_start_living_room
+      end_time: input_datetime.sleep_mode_end_living_room
+      temperature_input: input_number.sleep_mode_temperature_living_room
+- id: '1687507563361'
+  alias: "\U0001F321️ Sleep Mode - Kitchen"
+  description: ''
+  use_blueprint:
+    path: cow/climate_sleep_mode.yaml
+    input:
+      climate_entity: climate.daikin_kitchen
+      master_switch: input_boolean.sleep_mode_enabled_kitchen
+      start_time: input_datetime.sleep_mode_start_kitchen
+      end_time: input_datetime.sleep_mode_end_kitchen
+      temperature_input: input_number.sleep_mode_temperature_kitchen

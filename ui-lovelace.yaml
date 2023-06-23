@@ -341,24 +341,39 @@ views:
           colors: !include colors_yeelight.yaml
         - type: 'custom:slider-entity-row'
           entity: cover.living_room_blind
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_living_room
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.living_room_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_living_room
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.living_room_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_living_room
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_living_room
+              name: "Start"
+            - entity: input_datetime.sleep_mode_end_living_room
+              name: "End"
+            - entity: input_number.sleep_mode_temperature_living_room
+              name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.living_room
         hide:
@@ -540,37 +555,39 @@ views:
           entity: light.bedside_lamps
           justify: center
           colors: !include colors_nitebird.yaml
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_bedroom
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.bedroom_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-      #- type: entities
-      #  entities:
-      #  - type: custom:fold-entity-row
-      #    head:
-      #      entity: input_boolean.bedroom_heater_timer
-      #      name: "Automatic Sleep Mode"
-      #    entities:
-      #    - entity: input_datetime.bedroom_heater_on_time
-      #      name: "On"
-      #    - entity: input_datetime.bedroom_heater_off_time
-      #      name: "Off"
-      #    - entity: input_number.bedroom_heater_timer_temp
-      #      name: "Temperature"
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_bedroom
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.bedroom_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_bedroom
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_bedroom
+              name: "Start"
+            - entity: input_datetime.sleep_mode_end_bedroom
+              name: "End"
+            - entity: input_number.sleep_mode_temperature_bedroom
+              name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.master_bedroom
         hide:
@@ -616,24 +633,39 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.office_ring_light
           toggle: true
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_paul_office
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.office_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_paul_office
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.office_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_office
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_office
+              name: "Start"
+            - entity: input_datetime.sleep_mode_end_office
+              name: "End"
+            - entity: input_number.sleep_mode_temperature_office
+              name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.office
         hide:
@@ -708,38 +740,39 @@ views:
           entity: light.dot_floor_lamp_spotlight
           justify: center
           colors: !include colors_esphome.yaml
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_dot_office
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.dot_office_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-
-      #- type: entities
-      #  entities:
-      ##  - type: custom:fold-entity-row
-      #    head:
-      #      entity: input_boolean.dots_office_heater_timer
-      #      name: "Automatic Sleep Mode"
-      #    entities:
-      #    - entity: input_datetime.dots_office_heater_on_time
-      #      name: "On"
-      #    - entity: input_datetime.dots_office_heater_off_time
-      #      name: "Off"
-      #    - entity: input_number.dots_office_heater_timer_temp
-      #      name: "Temperature"
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_dot_office
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.dot_office_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_dot_office
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_dot_office
+              name: "Start"
+            - entity: input_datetime.sleep_mode_end_dot_office
+              name: "End"
+            - entity: input_number.sleep_mode_temperature_dot_office
+              name: "Temperature"
       - type: 'custom:mini-graph-card'
         name: Dot's Office Climate
         points_per_hour: 20
@@ -776,24 +809,39 @@ views:
           colors: !include colors_esphome.yaml
         - entity: light.diffuser_light
           name: Diffuser Light
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_kitchen
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.siren_1_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_kitchen
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.siren_1_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_kitchen
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_kitchen
+              name: "Start"
+            - entity: input_datetime.sleep_mode_end_kitchen
+              name: "End"
+            - entity: input_number.sleep_mode_temperature_kitchen
+              name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.kitchen
         hide:
@@ -835,37 +883,39 @@ views:
           justify: center
           colors: !include colors_yeelight.yaml
         - entity: light.guest_room_right
-      - type: 'custom:simple-thermostat'
-        entity: climate.daikin_guest_room
-        layout:
-          mode:
-            names: true
-            icons: true
-            headings: false
-          step: row
-        step_size: '1.0'
-        sensors:
-          - entity: sensor.guest_room_humidity
-            name: Humidity
-            decimals: 0
-        control:
-          hvac: true
-          fan:
-            Auto: false
-          preset: true
-      #- type: entities
-      #  entities:
-      #  - type: custom:fold-entity-row
-      #    head:
-      #      entity: input_boolean.guest_room_heater_timer
-      #      name: "Automatic Sleep Mode"
-      #    entities:
-      #    - entity: input_datetime.guest_room_heater_on_time
-      #      name: "On"
-      #    - entity: input_datetime.guest_room_heater_off_time
-      #      name: "Off"
-      #    - entity: input_number.guest_room_heater_timer_temp
-      #      name: "Temperature"
+      - type: vertical-stack
+        cards:
+        - type: 'custom:simple-thermostat'
+          entity: climate.daikin_guest_room
+          layout:
+            mode:
+              names: true
+              icons: true
+              headings: false
+            step: row
+          step_size: '1.0'
+          sensors:
+            - entity: sensor.guest_room_humidity
+              name: Humidity
+              decimals: 0
+          control:
+            hvac: true
+            fan:
+              Auto: false
+            preset: true
+        - type: entities
+          entities:
+          - type: custom:fold-entity-row
+            head:
+              entity: input_boolean.sleep_mode_enabled_guest_room
+              name: "Automatic Sleep Mode"
+            entities:
+            - entity: input_datetime.sleep_mode_start_guest_room
+              name: "On"
+            - entity: input_datetime.sleep_mode_end_guest_room
+              name: "Off"
+            - entity: input_number.sleep_mode_temperature_guest_room
+              name: "Temperature"
       - type: 'custom:mini-media-player'
         entity: media_player.guest_room
         hide:
