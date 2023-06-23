@@ -91,161 +91,161 @@ views:
               name: Safe time outside
               icon: mdi:sun-clock
   
-        - type: vertical-stack
-          cards:
-            - type: horizontal-stack
-              cards:
-                - type: 'custom:button-card'
-                  entity: binary_sensor.pet_tabitha
-                  show_entity_picture: true
-                  show_state: true
-                  name: Tabitha
-                  state_display: >-
-                    [[[ if (entity.state == "on") return "Home (" +
-                    (states["binary_sensor.pet_tabitha"].attributes.position.device_id ==
-                    "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
-                  styles:
-                    icon:
-                      - border-radius: "50%"
-                  state:
-                    - value: "off"
-                      styles:
-                        icon:
-                          - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
-            - type: horizontal-stack
-              cards:
-                - type: 'custom:button-card'
-                  name: All<br/>Unlocked
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:lock-open'
-                  color: green
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: all_unlocked
-                  state:
-                    - value: all_unlocked
-                      styles:
-                        card:
-                          - background-color: green
-                          - color: white
-                        icon:
-                          - color: white
-                - type: 'custom:button-card'
-                  name: All<br />Locked
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:lock'
-                  color: red
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: all_locked
-                  state:
-                    - value: all_locked
-                      styles:
-                        card:
-                          - background-color: red
-                          - color: white
-                        icon:
-                          - color: white
-                - type: 'custom:button-card'
-                  name: Keep in<br />Bedroom
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:bed'
-                  color: purple
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: keep_in_bedroom
-                  state:
-                    - value: keep_in_bedroom
-                      styles:
-                        card:
-                          - background-color: purple
-                          - color: white
-                        icon:
-                          - color: white
-                - type: 'custom:button-card'
-                  name: Keep in<br />Office
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:desk'
-                  color: pink
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: keep_in_office
-                  state:
-                    - value: keep_in_office
-                      styles:
-                        card:
-                          - background-color: pink
-                          - color: white
-                        icon:
-                          - color: white
-                - type: 'custom:button-card'
-                  name: Keep<br />Inside
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:home'
-                  color: blue
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: keep_inside
-                  state:
-                    - value: keep_inside
-                      styles:
-                        card:
-                          - background-color: blue
-                          - color: white
-                        icon:
-                          - color: white
-                - type: 'custom:button-card'
-                  name: Keep<br />Outside
-                  entity: input_select.cat_flap_state
-                  icon: 'mdi:white-balance-sunny'
-                  color: orange
-                  styles:
-                    card:
-                      - font-size: 10px
-                  tap_action:
-                    action: call-service
-                    service: input_select.select_option
-                    service_data:
-                      entity_id: input_select.cat_flap_state
-                      option: keep_outside
-                  state:
-                    - value: keep_outside
-                      styles:
-                        card:
-                          - background-color: orange
-                          - color: white
-                        icon:
-                          - color: white
+        #- type: vertical-stack
+        #  cards:
+        #    - type: horizontal-stack
+        #      cards:
+        #        - type: 'custom:button-card'
+        #          entity: binary_sensor.pet_tabitha
+        #          show_entity_picture: true
+        #          show_state: true
+        #          name: Tabitha
+        #          state_display: >-
+        #            [[[ if (entity.state == "on") return "Home (" +
+        #            (states["binary_sensor.pet_tabitha"].attributes.position.device_id ==
+        #            "675555" ? "Bedroom" : "Office") + ")"; else return "Away" ]]]
+        #          styles:
+        #            icon:
+        #              - border-radius: "50%"
+        #          state:
+        #            - value: "off"
+        #              styles:
+        #                icon:
+        #                  - filter: brightness(110%) saturate(0.0) blur(3px) contrast(50%)
+        #    - type: horizontal-stack
+        #      cards:
+        #        - type: 'custom:button-card'
+        #          name: All<br/>Unlocked
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:lock-open'
+        #          color: green
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: all_unlocked
+        #          state:
+        #            - value: all_unlocked
+        #              styles:
+        #                card:
+        #                  - background-color: green
+        #                  - color: white
+        #                icon:
+        #                  - color: white
+        #        - type: 'custom:button-card'
+        #          name: All<br />Locked
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:lock'
+        #          color: red
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: all_locked
+        #          state:
+        #            - value: all_locked
+        #              styles:
+        #                card:
+        #                  - background-color: red
+        #                  - color: white
+        #                icon:
+        #                  - color: white
+        #        - type: 'custom:button-card'
+        #          name: Keep in<br />Bedroom
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:bed'
+        #          color: purple
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: keep_in_bedroom
+        #          state:
+        #            - value: keep_in_bedroom
+        #              styles:
+        #                card:
+        #                  - background-color: purple
+        #                  - color: white
+        #                icon:
+        #                  - color: white
+        #        - type: 'custom:button-card'
+        #          name: Keep in<br />Office
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:desk'
+        #          color: pink
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: keep_in_office
+        #          state:
+        #            - value: keep_in_office
+        #              styles:
+        #                card:
+        #                  - background-color: pink
+        #                  - color: white
+        #                icon:
+        #                  - color: white
+        #        - type: 'custom:button-card'
+        #          name: Keep<br />Inside
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:home'
+        #          color: blue
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: keep_inside
+        #          state:
+        #            - value: keep_inside
+        #              styles:
+        #                card:
+        #                  - background-color: blue
+        #                  - color: white
+        #                icon:
+        #                  - color: white
+        #        - type: 'custom:button-card'
+        #          name: Keep<br />Outside
+        #          entity: input_select.cat_flap_state
+        #          icon: 'mdi:white-balance-sunny'
+        #          color: orange
+        #          styles:
+        #            card:
+        #              - font-size: 10px
+        #          tap_action:
+        #            action: call-service
+        #            service: input_select.select_option
+        #            service_data:
+        #              entity_id: input_select.cat_flap_state
+        #              option: keep_outside
+        #          state:
+        #            - value: keep_outside
+        #              styles:
+        #                card:
+        #                  - background-color: orange
+        #                  - color: white
+        #                icon:
+        #                  - color: white
 
       - type: 'custom:mini-graph-card'
         name: Temperatures
@@ -305,10 +305,10 @@ views:
             styles:
               icon:
                 - color: green  
-      - type: entities
-        entities:
-          - lock.back_gate
-        state_color: true
+      #- type: entities
+      #  entities:
+      #    - lock.back_gate
+      #  state_color: true
   - title: Living Room
     icon: mdi:sofa
     path: living
