@@ -1,0 +1,111 @@
+blueprint:
+  name: Climate Sleep Mode
+  description: Add a configurable sleep mode to a climate entity based on input helpers
+  domain: automation
+  input:
+    climate_entity:
+      name: Climate Entity
+      description: Entity to use for sleep mode
+      selector:
+        entity:
+          domain: climate
+    master_switch:
+      name: Master Switch
+      description: Input to decide if sleep mode is enabled
+      selector:
+        entity:
+          domain: input_boolean
+    start_time:
+      name: Start Time
+      description: Time that sleep mode will begin
+      selector:
+        entity:
+          domain: input_datetime
+    end_time:
+      name: End Time
+      description: Time that sleep mode will end
+      selector:
+        entity:
+          domain: input_datetime
+    temperature_input:
+      name: Sleep Mode Temperature
+      description: Input to dictate sleep mode temperature
+      selector:
+        entity:
+          domain: input_number
+      
+variables:
+  sleep_temp: !input 'temperature_input'
+
+trigger:
+  - platform: time
+    at: !input start_time
+    id: sleep_start_time
+  - platform: time
+    at: !input end_time
+    id: sleep_end_time
+  - platform: state
+    entity_id: !input climate_entity
+    attribute: preset_mode
+    to: sleep
+    id: sleep_state_change
+  - platform: state
+    entity_id: !input temperature_input
+    id: sleep_temp_change
+
+condition: []
+
+action:
+  - choose:
+      - conditions:
+          - condition: trigger
+            id: sleep_start_time
+          - condition: state
+            entity_id: !input master_switch
+            state: "on"
+        sequence:
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: sleep
+            target:
+              entity_id: !input climate_entity
+      - conditions:
+          - condition: trigger
+            id: sleep_end_time
+          - condition: state
+            entity_id: !input master_switch
+            state: "on"
+          - condition: state
+            entity_id: !input climate_entity
+            attribute: preset_mode
+            state: sleep
+        sequence:
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: none
+            target:
+              entity_id: !input climate_entity
+      - conditions:
+          - condition: trigger
+            id: sleep_state_change
+        sequence:
+          - service: climate.set_temperature
+            data:
+              temperature: "{{ states(sleep_temp) }}"
+            target:
+              entity_id: !input climate_entity
+      - conditions:
+          - condition: trigger
+            id: sleep_temp_change
+          - condition: state
+            entity_id: !input climate_entity
+            attribute: preset_mode
+            state: sleep
+        sequence:
+          - service: climate.set_temperature
+            data:
+              temperature: "{{ states(sleep_temp) }}"
+            target:
+              entity_id: !input climate_entity
+mode: queued
+
