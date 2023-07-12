@@ -46,9 +46,6 @@ sensor:
     - name: AUD_USD
       from: AUD
       to: USD
-  - platform: lastfm
-    api_key: !secret lastfm_api_key
-    users: !secret lastfm_users
   - platform: template
     sensors:
       target_aircon_temp:
