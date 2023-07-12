@@ -1825,3 +1825,18 @@
       start_time: input_datetime.sleep_mode_start_kitchen
       end_time: input_datetime.sleep_mode_end_kitchen
       temperature_input: input_number.sleep_mode_temperature_kitchen
+- id: '1689121902374'
+  alias: Dot out
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - person.dorothy
+    from: home
+    to: not_home
+  condition: []
+  action:
+  - service: notify.telegram_paul
+    data:
+      message: "\U0001F41E\U0001F6AA➡️"
+  mode: single
