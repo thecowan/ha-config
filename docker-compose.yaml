@@ -2,7 +2,7 @@ version: "3.7"
 services:
   home-assistant:
     container_name: home-assistant
-    image: homeassistant/home-assistant:2023.5
+    image: homeassistant/home-assistant:2023.7
     network_mode: host
     volumes:
       - .:/config
