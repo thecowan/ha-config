@@ -1730,6 +1730,14 @@
       hours: 0
       minutes: 3
       seconds: 0
+  - platform: state
+    entity_id:
+    - switch.outdoor_toilet_heater
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
   condition:
   - condition: state
     entity_id: switch.outdoor_toilet_heater
@@ -1833,10 +1841,30 @@
     entity_id:
     - person.dorothy
     from: home
-    to: not_home
+    to:
   condition: []
   action:
   - service: notify.telegram_paul
     data:
       message: "\U0001F41E\U0001F6AA➡️"
+  mode: single
+- id: '1689291025182'
+  alias: ♨️ Turn off bathroom heater after long time [temp]
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - switch.bathroom_heater
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 30
+      seconds: 0
+  condition: []
+  action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id:
+      - switch.bathroom_heater
   mode: single
