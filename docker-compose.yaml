@@ -6,6 +6,7 @@ services:
     network_mode: host
     volumes:
       - .:/config
+      - /data/homeassistant.backups:/config/backups
       - /etc/localtime:/etc/localtime:ro 
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
