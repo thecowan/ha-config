@@ -351,7 +351,7 @@
       melody_entity: select.laundry_siren_melody
       duration_entity: number.laundry_siren_duration
       volume: low
-      melody_id: 1
+      melody_id: 5
       duration: 8
   mode: single
 - id: '1633580036748'
