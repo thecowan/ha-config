@@ -1251,9 +1251,9 @@
       entity_id: switch.daikin_ac_guest
       state: 'off'
   action:
-  - device_id: b234bba5e861252c22c666fd42dc0f0b
+  - device_id: 76a75cc30a41bb11a3e36481c72c0406
     domain: climate
-    entity_id: climate.daikin_ac
+    entity_id: 065dfc184b92e3e38b5a0a73d701811b
     type: set_hvac_mode
     hvac_mode: 'off'
   mode: single
