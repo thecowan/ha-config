@@ -57,13 +57,12 @@ views:
           - binary_sensor.guest_room_door
           - binary_sensor.office_window
           - binary_sensor.back_door
-          - climate.office_ac
-          - climate.dots_office_ac
-          - climate.office_heating
-          - climate.bedroom_heating
-          - climate.guest_room_heating
-          - climate.living_room_heating
-          - climate.dots_office_heating
+          - climate.daikin_living_room
+          - climate.daikin_bedroom
+          - climate.daikin_paul_office
+          - climate.daikin_dot_office
+          - climate.daikin_kitchen
+          - climate.daikin_guest_room
         state_filter:
           - "on"
           - "heat"
