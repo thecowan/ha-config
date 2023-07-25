@@ -63,6 +63,8 @@ views:
           - climate.daikin_dot_office
           - climate.daikin_kitchen
           - climate.daikin_guest_room
+          - switch.bathroom_heater
+          - switch.outdoor_toilet_heater
         state_filter:
           - "on"
           - "heat"
