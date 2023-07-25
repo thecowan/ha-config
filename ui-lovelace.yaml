@@ -32,6 +32,7 @@ views:
           - binary_sensor.bedroom_door_left_open
           - binary_sensor.dot_office_door_left_open
           - light.yeelight_entry
+          - light.front_floodlight
           - light.dots_office
           - light.yeelight_bedroom
           - light.bedside_lamps
@@ -42,12 +43,14 @@ views:
           - light.yeelight_office
           - light.dining_room
           - light.kitchen_downlights
+          - light.rear_floodlight
           - light.outside_globes
           - entity: light.flux_fairy
             name: "Hedge Fairy Lights"
           - entity: light.flux_party
             name: "Outside Party Lights"
           - light.outdoor_toilet
+          - light.attic_light
           - binary_sensor.front_door_open
           - binary_sensor.dots_office_door
           - binary_sensor.bedroom_door
