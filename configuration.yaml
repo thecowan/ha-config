@@ -363,17 +363,6 @@ var:
     unique_id: var_receiver_last_source_1
 
 light:
-  - platform: switch
-    name: Guest Room Lamp Left
-    entity_id: switch.guest_room_left_plug
-  - platform: switch
-    name: Guest Room Lamp Right
-    entity_id: switch.guest_room_right_plug
-  - platform: group
-    name: Guest Room Lamps
-    entities:
-      - light.guest_room_lamp_left
-      - light.guest_room_lamp_right
   - platform: group
     name: Bedside Lamps
     entities:
@@ -612,6 +601,9 @@ google_assistant:
     light.rear_floodlight:
       expose: true
       room: Outside
+    light.front_floodlight:
+      expose: true
+      room: Entry
 
     switch.apple_iigs_monitor:
       expose: true
