@@ -18,3 +18,33 @@ all_sonos:
    - media_player.kitchen
    - media_player.living_room
    - media_player.master_bedroom
+
+badge_light_exclusions:
+  name: Badge Light Exclusions
+  entities:
+    - light.dining_room_old
+    - light.kitchen_diffuser_light_orphan
+    - light.bedside_left
+    - light.bedside_right
+    - light.apple_iigs_light
+    - light.outdoor_presence_light
+    - light.outside_globes_nightlight
+    - light.bubbles_collar
+    - light.guest_room_left
+    - light.guest_room_right
+    - light.clock_bedroom_screen
+    - light.indicator_1
+    - light.indicator_2
+    - light.indicator_3
+    - light.dots_office_clock_screen
+    - light.lenovo_office_1_screen
+    - light.cow_macbookpro_browser_screen
+    - light.office_ring_light_colour
+    - light.office_ring_light_white
+    - light.kitchen_downlight_far
+    - light.kitchen_downlight_centre
+    - light.kitchen_downlight_near
+    - light.dots_office_heater_light
+    - light.washing_machine_status_led
+    - light.outdoor_toilet_heater_status_led
+    - light.dryer_status_led
