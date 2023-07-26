@@ -702,6 +702,14 @@ lovelace:
       type: module
     - url: '/hacsfiles/lovelace-windrose-card/windrose-card.js'
       type: module
+    - url: '/hacsfiles/light-entity-card/light-entity-card.js'
+      type: module
+    - url: '/hacsfiles/lovelace-card-mod/card-mod.js'
+      type: module
+    - url: '/hacsfiles/my-cards/my-cards.js'
+      type: module
+    - url: '/hacsfiles/lovelace-layout-card/layout-card.js'
+      type: module
   dashboards:
     lovelace-reporting:
       mode: yaml
