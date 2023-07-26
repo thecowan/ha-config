@@ -31,6 +31,7 @@ views:
           - binary_sensor.office_door_left_open
           - binary_sensor.bedroom_door_left_open
           - binary_sensor.dot_office_door_left_open
+          - binary_sensor.attic_door_left_open
           - light.yeelight_entry
           - light.front_floodlight
           - light.dots_office
@@ -57,6 +58,7 @@ views:
           - binary_sensor.guest_room_door
           - binary_sensor.office_window
           - binary_sensor.back_door
+          - binary_sensor.attic_door
           - climate.daikin_living_room
           - climate.daikin_bedroom
           - climate.daikin_paul_office

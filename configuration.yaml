@@ -1151,6 +1151,12 @@ template:
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'door'
+    - name: 'Attic Door Can Be Open'
+      state: >-
+        {{ states('climate.daikin_living_room') == 'off' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'door'
     - name: 'Office Door Left Open'
       state: >-
         {{ states('binary_sensor.office_door_can_be_open') == 'off' and states('binary_sensor.office_door') == 'on' }}
@@ -1179,6 +1185,12 @@ template:
     - name: 'Back Door Left Open'
       state: >-
         {{ states('binary_sensor.back_door_can_be_open') == 'off' and states('binary_sensor.back_door') == 'on' }}
+      delay_on: '0:00:05'
+      delay_off: '0:00:05'
+      device_class: 'problem'
+    - name: 'Attic Door Left Open'
+      state: >-
+        {{ states('binary_sensor.attic_door_can_be_open') == 'off' and states('binary_sensor.attic_door') == 'on' }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'problem'
