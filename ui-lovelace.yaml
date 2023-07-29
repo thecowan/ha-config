@@ -953,16 +953,16 @@ views:
       - type: entities
         entities:
         - entity: switch.bathroom_heater
-      #- type: 'custom:mini-media-player'
-      #  entity: media_player.bathroom
-      #  hide:
-      #    icon: true
-      #    power: true
-      #  speaker_group:
-      #    platform: sonos
-      #    show_group_count: true
-      #    entities: !include sonos-speakers.yaml
-      #  artwork: cover
+      - type: 'custom:mini-media-player'
+        entity: media_player.bathroom
+        hide:
+          icon: true
+          power: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities: !include sonos-speakers.yaml
+        artwork: cover
       - type: media-control
         entity: media_player.bathroom_speaker
       #- type: entity-button
