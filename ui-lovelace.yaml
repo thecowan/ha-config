@@ -34,7 +34,7 @@ views:
           - binary_sensor.attic_door_left_open
           - light.yeelight_entry
           - light.front_floodlight
-          - light.dots_office
+          - light.dot_office_light
           - light.yeelight_bedroom
           - light.bedside_lamps
           - light.yeelight_livingroom
