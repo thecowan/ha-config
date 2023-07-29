@@ -37,7 +37,7 @@ views:
           - light.dots_office
           - light.yeelight_bedroom
           - light.bedside_lamps
-          - light.living_room
+          - light.yeelight_livingroom
           - light.living_room_lamp
           - light.gateway_light
           - light.yeelight_guestroom
@@ -976,6 +976,13 @@ views:
         - type: 'custom:slider-entity-row'
           entity: light.front_floodlight
           toggle: true
+        - type: 'custom:slider-entity-row'
+          entity: light.yeelight_entry
+          toggle: true
+        - type: 'custom:rgb-light-card'
+          entity: light.yeelight_entry
+          justify: center
+          colors: !include colors_yeelight.yaml
         - type: 'custom:slider-entity-row'
           entity: light.porch
           toggle: true
