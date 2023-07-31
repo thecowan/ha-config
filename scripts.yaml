@@ -497,3 +497,12 @@ cycle_light_brightness_25_percent:
         else %} 64 {% endif %}'
   mode: single
   icon: mdi:lightbulb-multiple-outline
+leave_home:
+  alias: Leave Home
+  sequence:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.house_leaving_lights
+  mode: single
+  icon: mdi:exit-run
