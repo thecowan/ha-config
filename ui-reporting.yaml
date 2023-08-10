@@ -439,14 +439,17 @@ views:
           - entity: sensor.guest_room_temperature
             name: Guest
             show_points: false
-          - entity: sensor.siren_1_temperature
+          - entity: sensor.bathroom_temperature
+            name: Bathroom
+            show_points: false
+          - entity: sensor.kitchen_temperature
             name: Kitchen
+            show_points: false
+          - entity: sensor.attic_temperature
+            name: Attic
             show_points: false
           - entity: sensor.lilyfield_temperature
             name: Lilyfield
-            show_points: false
-          - entity: sensor.daikin_ac_inside_temperature
-            name: Attic
             show_points: false
         min_bound_range: 5
         height: 300
@@ -475,8 +478,14 @@ views:
           - entity: sensor.guest_room_humidity
             name: Guest
             show_points: false
-          - entity: sensor.siren_1_humidity
+          - entity: sensor.bathroom_humidity
+            name: Bathroom
+            show_points: false
+          - entity: sensor.kitchen_humidity
             name: Kitchen
+            show_points: false
+          - entity: sensor.attic_humidity
+            name: Attic
             show_points: false
           - entity: sensor.sydney_observatory_hill_humidity
             name: Sydney
