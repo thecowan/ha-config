@@ -965,6 +965,20 @@ views:
         artwork: cover
       - type: media-control
         entity: media_player.bathroom_speaker
+      - type: 'custom:mini-graph-card'
+        name: Bathroom Climate
+        points_per_hour: 20
+        entities:
+          - entity: sensor.bathroom_temperature
+            name: Temperature
+          - entity: sensor.bathroom_humidity
+            name: Humidity
+            y_axis: secondary
+        min_bound_range: 5
+        min_bound_range_secondary: 2
+        show:
+          labels: true
+          labels_secondary: true
       #- type: entity-button
       #  entity: script.shower_paul
   - title: Entry
