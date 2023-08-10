@@ -79,27 +79,6 @@ sensor:
               dark
             {%- endif -%}
           {%- endif -%}
-      cat_flap_cloud_state:
-        friendly_name: 'Cat Flap State'
-        value_template: >-
-          {% if is_state("sensor.cat_flap_dots_office", "unlocked") and is_state("sensor.cat_flap_bedroom", "unlocked") -%}
-            all_unlocked
-          {% elif is_state("sensor.cat_flap_dots_office", "locked_all") and is_state("sensor.cat_flap_bedroom", "locked_all") -%}
-            all_locked
-          {% elif is_state("sensor.cat_flap_dots_office", "locked_in") and is_state("sensor.cat_flap_bedroom", "locked_out") -%}
-            keep_in_office
-          {% elif is_state("sensor.cat_flap_dots_office", "locked_out") and is_state("sensor.cat_flap_bedroom", "locked_in") -%}
-            keep_in_bedroom
-          {% elif is_state("sensor.cat_flap_dots_office", "locked_in") and is_state("sensor.cat_flap_bedroom", "locked_in") -%}
-            keep_inside
-          {% elif is_state("sensor.cat_flap_dots_office", "locked_out") and is_state("sensor.cat_flap_bedroom", "locked_out") -%}
-            keep_outside
-          {%- else -%}
-            mixed
-          {%- endif %}
-      tabitha_last_door:
-        friendly_name: 'Tabitha Last Door'
-        value_template: '{% if state_attr("binary_sensor.pet_tabitha", "status") == None -%}Unknown{%- elif state_attr("binary_sensor.pet_tabitha", "status").activity.device_id == 675555 -%}Bedroom{%- else -%}Office{%- endif %}'
       daikin_ac_active_mode:
         friendly_name: 'Daikin AC Active Mode'
         value_template: '{{ states.climate | selectattr("entity_id", "match", ".*daikin.*") | selectattr("state", "ne", "off") | map(attribute="state") | first | default("off") }}'
@@ -920,47 +899,6 @@ smartir:
 #      name: cow-macbookpro2
 #    d7a5ab3d_98918e52:
 #      name: wallpanel-office
-
-input_select:
-  cat_flap_state:
-    name: 'Cat Flap Control'
-    options:
-      - 'all_unlocked'
-      - 'all_locked'
-      - 'keep_in_office'
-      - 'keep_in_bedroom'
-      - 'keep_inside'
-      - 'keep_outside'
-      - 'unknown'
-      - 'mixed'
-    initial: 'unknown'
-    icon: mdi:cat
-  curfew_type:
-    name: 'Curfew Action'
-    options:
-      - 'keep_in_office'
-      - 'keep_in_bedroom'
-      - 'No Curfew'
-    icon: mdi:cat
-  curfew_end_state:
-    name: 'Curfew End'
-    options:
-      - 'restore'
-      - 'keep_in_bedroom'
-      - 'keep_in_office'
-      - 'all_unlocked'
-      - 'maintain_curfew'
-    icon: mdi:cat
-
-input_datetime:
-  curfew_start:
-    name: 'Curfew Start'
-    has_date: false
-    has_time: true
-  curfew_end:
-    name: 'Curfew End'
-    has_date: false
-    has_time: true
 
 frontend:
   themes: !include_dir_merge_named themes
