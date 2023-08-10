@@ -1716,16 +1716,16 @@
       end_time: input_datetime.sleep_mode_end_guest_room
       temperature_input: input_number.sleep_mode_temperature_guest_room
 - id: '1687498668027'
-  alias: "\U0001F321️ Sleep Mode - Dot Office"
+  alias: "\U0001F321️ Sleep Mode - Studio"
   description: ''
   use_blueprint:
     path: cow/climate_sleep_mode.yaml
     input:
       climate_entity: climate.dots_office_ac
-      master_switch: input_boolean.sleep_mode_enabled_dot_office
-      start_time: input_datetime.sleep_mode_start_dot_office
-      end_time: input_datetime.sleep_mode_end_dot_office
-      temperature_input: input_number.sleep_mode_temperature_dot_office
+      master_switch: input_boolean.sleep_mode_enabled_studio
+      start_time: input_datetime.sleep_mode_start_studio
+      end_time: input_datetime.sleep_mode_end_studio
+      temperature_input: input_number.sleep_mode_temperature_studio
 - id: '1687499494339'
   alias: "\U0001F321️ Sleep Mode - Bedroom"
   description: ''

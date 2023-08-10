@@ -30,11 +30,11 @@ views:
           - binary_sensor.back_door_left_open
           - binary_sensor.office_door_left_open
           - binary_sensor.bedroom_door_left_open
-          - binary_sensor.dot_office_door_left_open
+          - binary_sensor.studio_door_left_open
           - binary_sensor.attic_door_left_open
           - light.yeelight_entry
           - light.front_floodlight
-          - light.dot_office_light
+          - light.studio_light
           - light.yeelight_bedroom
           - light.bedside_lamps
           - light.yeelight_livingroom
@@ -53,7 +53,7 @@ views:
           - light.outdoor_toilet
           - light.attic_light
           - binary_sensor.front_door_open
-          - binary_sensor.dots_office_door
+          - binary_sensor.studio_door
           - binary_sensor.bedroom_door
           - binary_sensor.guest_room_door
           - binary_sensor.office_window
@@ -62,7 +62,7 @@ views:
           - climate.daikin_living_room
           - climate.daikin_bedroom
           - climate.daikin_paul_office
-          - climate.daikin_dot_office
+          - climate.daikin_studio
           - climate.daikin_kitchen
           - climate.daikin_guest_room
           - switch.bathroom_heater
@@ -536,15 +536,15 @@ views:
         show:
           labels: true
           labels_secondary: true
-  - title: Dot Office
-    icon: mdi:chair-rolling
-    path: dot
+  - title: Studio
+    icon: mdi:brush
+    path: studio
     badges:
       - type: entity-filter
         entities:
-          - light.dots_office
-          - binary_sensor.dots_office_door
-          - climate.daikin_dot_office
+          - light.studio
+          - binary_sensor.studio_door
+          - climate.daikin_studio
         state_filter:
           - "on"
           - "heat"
@@ -556,30 +556,16 @@ views:
       - type: entities
         entities:
         - type: 'custom:slider-entity-row'
-          entity: light.dot_office_light
+          entity: light.studio_light
           toggle: true
         - type: 'custom:rgb-light-card'
-          entity: light.dot_office_light
-          justify: center
-          colors: !include colors_esphome.yaml
-        - type: 'custom:slider-entity-row'
-          entity: light.dot_floor_lamp
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.dot_floor_lamp
-          justify: center
-          colors: !include colors_esphome.yaml
-        - type: 'custom:slider-entity-row'
-          entity: light.dot_floor_lamp_spotlight
-          toggle: true
-        - type: 'custom:rgb-light-card'
-          entity: light.dot_floor_lamp_spotlight
+          entity: light.studio_light
           justify: center
           colors: !include colors_esphome.yaml
       - type: vertical-stack
         cards:
         - type: 'custom:simple-thermostat'
-          entity: climate.daikin_dot_office
+          entity: climate.daikin_studio
           layout:
             mode:
               names: true
@@ -588,7 +574,7 @@ views:
             step: row
           step_size: '1.0'
           sensors:
-            - entity: sensor.dot_office_humidity
+            - entity: sensor.studio_humidity
               name: Humidity
               decimals: 0
           control:
@@ -600,22 +586,22 @@ views:
           entities:
           - type: custom:fold-entity-row
             head:
-              entity: input_boolean.sleep_mode_enabled_dot_office
+              entity: input_boolean.sleep_mode_enabled_studio
               name: "Automatic Sleep Mode"
             entities:
-            - entity: input_datetime.sleep_mode_start_dot_office
+            - entity: input_datetime.sleep_mode_start_studio
               name: "Start"
-            - entity: input_datetime.sleep_mode_end_dot_office
+            - entity: input_datetime.sleep_mode_end_studio
               name: "End"
-            - entity: input_number.sleep_mode_temperature_dot_office
+            - entity: input_number.sleep_mode_temperature_studio
               name: "Temperature"
       - type: 'custom:mini-graph-card'
-        name: Dot's Office Climate
+        name: Studio Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.dots_office_temperature
+          - entity: sensor.studio_temperature
             name: Temperature
-          - entity: sensor.dots_office_humidity
+          - entity: sensor.studio_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
@@ -1053,7 +1039,6 @@ views:
         entities:
           - device_tracker.pauls_pixel_6_pro
           # - device_tracker.google_maps_107519494119268402848
-          - device_tracker.dotties_iphone
       - type: 'custom:battery-state-card'
         title: Battery State
         sort_by_level: asc

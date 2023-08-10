@@ -550,9 +550,9 @@ google_assistant:
     light.dot_floor_lamp_spotlight:
       expose: true
       room: Dot's Office
-    light.dot_office_light:
+    light.studio_light:
       expose: true
-      room: Dot's Office
+      room: Studio
     light.front_floodlight:
       expose: true
       room: Entry
@@ -834,11 +834,11 @@ climate:
         temp_sensor: sensor.office_temperature
         humidity_sensor: sensor.office_humidity
         unique_id: vdt_daikin_ac_paul_office
-      - name: "Daikin Dot Office"
-        vent_switch: switch.daikin_ac_dot_office
-        temp_sensor: sensor.dots_office_temperature
-        humidity_sensor: sensor.dots_office_humidity
-        unique_id: vdt_daikin_ac_dot_office
+      - name: "Daikin Studio"
+        vent_switch: switch.daikin_ac_studio
+        temp_sensor: sensor.studio_temperature
+        humidity_sensor: sensor.studio_humidity
+        unique_id: vdt_daikin_ac_studio
       - name: "Daikin Bedroom"
         vent_switch: switch.daikin_ac_bedroom
         temp_sensor: sensor.bedroom_temperature
@@ -1049,9 +1049,9 @@ template:
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'door'
-    - name: 'Dot Office Door Can Be Open'
+    - name: 'Studio Door Can Be Open'
       state: >-
-        {{ states('climate.daikin_dot_office') == states('climate.daikin_living_room') }}
+        {{ states('climate.daikin_studio') == states('climate.daikin_living_room') }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'door'
@@ -1092,9 +1092,9 @@ template:
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'problem'
-    - name: 'Dot Office Door Left Open'
+    - name: 'Studio Door Left Open'
       state: >-
-        {{ states('binary_sensor.dot_office_door_can_be_open') == 'off' and states('binary_sensor.dots_office_door') == 'on' }}
+        {{ states('binary_sensor.studio_door_can_be_open') == 'off' and states('binary_sensor.studio_door') == 'on' }}
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'problem'

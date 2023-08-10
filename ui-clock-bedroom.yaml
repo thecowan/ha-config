@@ -236,7 +236,7 @@ views:
                           action: more-info
                       - type: custom:button-card
                         icon: mdi:chair-rolling
-                        entity: climate.daikin_dot_office
+                        entity: climate.daikin_studio
                         show_name: false
                         styles:
                           card:

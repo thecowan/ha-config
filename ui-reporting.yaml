@@ -297,7 +297,7 @@ views:
                   - sensor.kitchen_downlights_power
                   - sensor.office_light_power
                   - sensor.bedroom_light_power
-                  - sensor.dot_office_lighting_power
+                  - sensor.studio_lighting_power
                   - sensor.living_room_light_power
                   - sensor.dining_room_light_power
                   - sensor.guest_room_light_power
@@ -313,7 +313,7 @@ views:
                 color: blue
                 children:
                   - sensor.bathroom_speaker_power
-                  - sensor.dot_s_office_speaker_power
+                  - sensor.studio_speaker_power
                   - sensor.master_bedroom_mini_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
@@ -346,7 +346,7 @@ views:
               - entity_id: sensor.bedroom_light_power
                 name: Bedroom
                 color: yellow
-              - entity_id: sensor.dot_office_lighting_power
+              - entity_id: sensor.studio_lighting_power
                 name: Dot Office
                 color: yellow
               - entity_id: sensor.living_room_light_power
@@ -373,7 +373,7 @@ views:
               - entity_id: sensor.bathroom_speaker_power
                 name: Bathroom
                 color: blue
-              - entity_id: sensor.dot_s_office_speaker_power
+              - entity_id: sensor.studio_speaker_power
                 name: Dot Office
                 color: blue
               - entity_id: sensor.master_bedroom_mini_power
@@ -427,7 +427,7 @@ views:
           - entity: sensor.office_temperature
             name: Paul
             show_points: false
-          - entity: sensor.dots_office_temperature
+          - entity: sensor.studio_temperature
             name: Dot
             show_points: false
           - entity: sensor.outside_temperature
@@ -466,7 +466,7 @@ views:
           - entity: sensor.office_humidity
             name: Paul
             show_points: false
-          - entity: sensor.dots_office_humidity
+          - entity: sensor.studio_humidity
             name: Dot
             show_points: false
           - entity: sensor.outside_humidity
