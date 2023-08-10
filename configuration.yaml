@@ -887,11 +887,6 @@ person:
     user_id: d7f6e7ea9e2447229fdda4f8f7119869
     device_trackers:
       - device_tracker.pauls_pixel_6_pro
-  - name: Dorothy
-    id: dorothy1
-    user_id: ea472a5137eb4da3a0d72aad0dcf1f50
-    device_trackers:
-      - device_tracker.iphone
 
 owntracks:
   max_gps_accuracy: 300
@@ -914,10 +909,6 @@ proximity:
   home_paul:
     devices:
       device_tracker.pauls_pixel_6_pro
-    tolerance: 30
-  home_dot:
-    devices:
-      device_tracker.iphone
     tolerance: 30
 
 smartir:
@@ -1092,14 +1083,6 @@ template:
       icon: "mdi:wallet"
   - unique_id: location_friendly_sensors
     sensor:
-    - name: 'Dot Friendly Location'
-      unique_id: dot_friendly_location
-      state: >-
-        {% if is_state('person.dorothy', 'not_home') %}
-          {{ states('sensor.iphone_geocoded_location') }}
-        {% else %}
-          {{ states('person.dorothy') }}
-        {% endif %}
     - name: 'Paul Friendly Location'
       unique_id: paul_friendly_location
       state: >-

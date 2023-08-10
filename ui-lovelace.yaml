@@ -72,30 +72,17 @@ views:
           - "heat"
           - "cool"
     cards:
-      - type: vertical-stack
+      - type: horizontal-stack
         cards:
-        - type: horizontal-stack
-          cards:
-            - type: picture-entity
-              image: /local/paul.jpg
-              entity: person.paul
-              state_filter:
-                not_home: brightness(110%) saturate(0.0) blur(5px) contrast(50%)
-            - type: picture-entity
-              image: /local/dot.jpg
-              entity: person.dorothy
-              state_filter:
-                not_home: brightness(110%) saturate(0.0) blur(5px) contrast(50%)
-        - type: horizontal-stack
-          cards:
-            - type: entity
-              entity: sensor.skin_type_3_safe_exposure_time
-              name: Safe time outside
-              icon: mdi:sun-clock
-            - type: entity
-              entity: sensor.skin_type_2_safe_exposure_time
-              name: Safe time outside
-              icon: mdi:sun-clock
+          - type: picture-entity
+            image: /local/paul.jpg
+            entity: person.paul
+            state_filter:
+              not_home: brightness(110%) saturate(0.0) blur(5px) contrast(50%)
+          - type: entity
+            entity: sensor.skin_type_3_safe_exposure_time
+            name: Safe time outside
+            icon: mdi:sun-clock
   
         #- type: vertical-stack
         #  cards:
