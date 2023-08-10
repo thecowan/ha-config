@@ -778,7 +778,7 @@
   - platform: state
     entity_id:
     - binary_sensor.guest_room_door
-    - binary_sensor.dots_office_door
+    - binary_sensor.studio_door
     - binary_sensor.bedroom_door
     to: 'on'
   condition:
@@ -1157,7 +1157,7 @@
     entity_id:
     - switch.daikin_ac_living
     - switch.daikin_ac_bedroom
-    - switch.daikin_ac_dot_office
+    - switch.daikin_ac_studio
     - switch.daikin_ac_paul_office
     - switch.daikin_ac_kitchen
     - switch.daikin_ac_guest
@@ -1176,7 +1176,7 @@
       entity_id: switch.daikin_ac_bedroom
       state: 'off'
     - condition: state
-      entity_id: switch.daikin_ac_dot_office
+      entity_id: switch.daikin_ac_studio
       state: 'off'
     - condition: state
       entity_id: switch.daikin_ac_paul_office
@@ -1721,7 +1721,7 @@
   use_blueprint:
     path: cow/climate_sleep_mode.yaml
     input:
-      climate_entity: climate.dots_office_ac
+      climate_entity: climate.studio_ac
       master_switch: input_boolean.sleep_mode_enabled_studio
       start_time: input_datetime.sleep_mode_start_studio
       end_time: input_datetime.sleep_mode_end_studio
