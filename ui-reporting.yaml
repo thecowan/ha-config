@@ -301,7 +301,9 @@ views:
                   - sensor.living_room_light_power
                   - sensor.dining_room_light_power
                   - sensor.guest_room_light_power
+                  - sensor.entry_light_power
                   - sensor.attic_light_power
+                  - sensor.porch_power
               - entity_id: sensor.gadgets_power
                 name: Gadgets
                 color: purple
@@ -313,7 +315,6 @@ views:
                 color: blue
                 children:
                   - sensor.bathroom_speaker_power
-                  - sensor.studio_speaker_power
                   - sensor.master_bedroom_mini_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
@@ -321,9 +322,6 @@ views:
                 color: var(--warning-color)
               - entity_id: sensor.office_heater_power
                 name: Office Heater
-                color: var(--warning-color)
-              - entity_id: sensor.guest_room_heater_power
-                name: Guest Room Heater
                 color: var(--warning-color)
               - entity_id: sensor.outdoor_toilet_heater_power
                 name: Outdoor Toilet Heater
@@ -364,6 +362,9 @@ views:
               - entity_id: sensor.attic_light_power
                 name: Attic
                 color: yellow
+              - entity_id: sensor.porch_power
+                name: Porch LED
+                color: yellow
               - entity_id: sensor.apple_iigs_power
                 name: Apple IIgs
                 color: purple
@@ -372,9 +373,6 @@ views:
                 color: purple
               - entity_id: sensor.bathroom_speaker_power
                 name: Bathroom
-                color: blue
-              - entity_id: sensor.studio_speaker_power
-                name: Dot Office
                 color: blue
               - entity_id: sensor.master_bedroom_mini_power
                 name: Bedroom
