@@ -580,9 +580,6 @@ google_assistant:
     light.rear_floodlight:
       expose: true
       room: Outside
-    light.front_floodlight:
-      expose: true
-      room: Entry
 
     switch.apple_iigs_monitor:
       expose: true
@@ -718,10 +715,10 @@ lovelace:
       show_in_sidebar: false
       require_admin: false
       icon: mdi:clock-digital
-    clock-dot-office:
+    clock-studio:
       mode: yaml
-      title: Dot Office Clock
-      filename: ui-clock-dot-office.yaml
+      title: Studio Clock
+      filename: ui-clock-studio.yaml
       show_in_sidebar: false
       require_admin: false
       icon: mdi:clock-digital

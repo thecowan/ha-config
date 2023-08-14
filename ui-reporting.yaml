@@ -345,7 +345,7 @@ views:
                 name: Bedroom
                 color: yellow
               - entity_id: sensor.studio_lighting_power
-                name: Dot Office
+                name: Studio
                 color: yellow
               - entity_id: sensor.living_room_light_power
                 name: Living Room
@@ -426,7 +426,7 @@ views:
             name: Paul
             show_points: false
           - entity: sensor.studio_temperature
-            name: Dot
+            name: Studio
             show_points: false
           - entity: sensor.outside_temperature
             name: Outside
@@ -465,7 +465,7 @@ views:
             name: Paul
             show_points: false
           - entity: sensor.studio_humidity
-            name: Dot
+            name: Studio
             show_points: false
           - entity: sensor.outside_humidity
             name: Outside

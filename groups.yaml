@@ -36,7 +36,7 @@ badge_light_exclusions:
     - light.indicator_1
     - light.indicator_2
     - light.indicator_3
-    - light.dots_office_clock_screen
+    - light.clock_studio_screen
     - light.lenovo_office_1_screen
     - light.cow_macbookpro_browser_screen
     - light.office_ring_light_colour
