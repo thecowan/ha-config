@@ -23,6 +23,7 @@ logger:
   default: warning
   logs:
     custom_components.virtual_ducted_thermostat: debug
+    custom_components.sonosrandomiser: debug
     homeassistant.components.recorder.migration: info
 
 http:
@@ -1232,3 +1233,5 @@ logbook:
   exclude:
     entities:
       - sensor.fr24_aircraft
+
+sonosrandomiser:
