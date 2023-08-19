@@ -795,8 +795,11 @@ views:
         show:
           labels: true
           labels_secondary: true
-      #- type: entity-button
-      #  entity: script.shower_paul
+      - type: custom:button-card
+        entity: script.shower_paul
+        tap_action:
+          action: call-service
+          service: script.shower_paul
   - title: Entry
     icon: mdi:gate
     path: entry

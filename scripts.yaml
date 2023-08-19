@@ -23,18 +23,18 @@ sonos_get_home:
   alias: Sonos Get Home
   sequence:
   - service: script.sonos_join_all
-  - service: script.sonos_play_matching
-    data_template:
-      entity_id: media_player.office
-      match: \U0001F3E0
+  - service: sonosrandomiser.random_tagged_media
+    data:
+      entity_id: media_player.living_room
+      filter: \U0001F3E0
 sonos_romance:
   alias: Sonos Romantic Music
   sequence:
   - service: script.sonos_join_all
-  - service: script.sonos_play_matching
-    data_template:
-      entity_id: media_player.office
-      match: \U0001F49C
+  - service: sonosrandomiser.random_tagged_media
+    data:
+      entity_id: media_player.living_room
+      filter: \U0001F49C
 sonos_sleep:
   alias: Sonos Sleep Music
   sequence:
@@ -50,79 +50,22 @@ sonos_sleep:
     data:
       entity_id: media_player.master_bedroom
       shuffle: true
-  - service: script.sonos_play_matching
+  - service: sonosrandomiser.random_tagged_media
     data:
       entity_id: media_player.master_bedroom
-      match: "\U0001F4A4"
-  mode: single
-sonos_play_non_matching:
-  alias: Sonos Play Non-Matching
-  description: Randomly choose and play a Sonos favourite which does NOT contain a
-    particular character
-  fields:
-    entity_id:
-      name: Entity ID
-      description: The device to target
-      example: media_player.office
-      required: true
-      selector:
-        entity:
-          integration: sonos
-          domain: media_player
-    match:
-      name: Match String
-      description: The string to avoid
-      example: Home
-      required: true
-      selector:
-        text:
-  sequence:
-  - service: media_player.play_media
-    data:
-      entity_id: '{{ entity_id }}'
-      media_content_type: favorite_item_id
-      media_content_id: '{{ state_attr("sensor.sonos_favorites", "items") | discard_values(match)
-        | random_entry | first }}'
-  mode: single
-sonos_play_matching:
-  alias: Sonos Play Matching
-  description: Randomly choose and play a Sonos favourite containing a particular
-    character
-  fields:
-    entity_id:
-      name: Entity ID
-      description: The device to target
-      example: media_player.office
-      required: true
-      selector:
-        entity:
-          integration: sonos
-          domain: media_player
-    match:
-      name: Match String
-      description: The string to match
-      example: Home
-      required: true
-      selector:
-        text:
-  sequence:
-  - service: media_player.play_media
-    data:
-      entity_id: '{{ entity_id }}'
-      media_content_type: favorite_item_id
-      media_content_id: '{{ state_attr("sensor.sonos_favorites", "items") | keep_values(match)
-        | random_entry | first }}'
+      filter: "\U0001F4A4"
   mode: single
 sonos_join_all:
   alias: Sonos Join All
   sequence:
   - service: media_player.join
     data:
-      entity_id: media_player.office
+      entity_id: media_player.living_room
       group_members:
       - media_player.kitchen
       - media_player.master_bedroom
-      - media_player.guest_room
+      - media_player.office
+      - media_player.bathroom
 sonos_ungroup_and_play:
   alias: Sonos Ungroup & Play
   sequence:
@@ -133,16 +76,16 @@ sonos_ungroup_and_play:
     data_template:
       entity_id: '{{ sonos_entity }}'
       volume_level: '{{ volume }}'
-  - service: media_player.select_source
+  - service: sonosrandomiser.random_tagged_media
     data_template:
       entity_id: '{{ sonos_entity }}'
-      source: '{{ source_name }}'
+      filter: '{{ filter }}'
 shower_paul:
   alias: 'Shower: Paul'
   sequence:
   - data:
       sonos_entity: media_player.bathroom
-      source_name: "I'm feeling lucky (Paul) \U0001F3E0\U0001F6BF"
+      filter: "🚿"
       volume: 0.5
     service: script.sonos_ungroup_and_play
 pause_all_sonos:

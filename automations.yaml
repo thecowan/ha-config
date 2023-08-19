@@ -415,10 +415,10 @@
           entity_id: media_player.office
         data: {}
       cube_shake:
-      - service: script.sonos_play_matching
+      - service: sonosrandomiser.random_tagged_media
         data:
           entity_id: media_player.office
-          match: \U0001F42E
+          filter: \U0001F42E
 - id: '1639972602920'
   alias: "\U0001F3A5 Office meeting begin/change"
   description: ''
@@ -961,10 +961,10 @@
     data: {}
     target:
       entity_id: media_player.office
-  - service: script.sonos_play_matching
+  - service: sonosrandomiser.random_tagged_media
     data:
       entity_id: media_player.office
-      match: "\U0001F3E0"
+      filter: "\U0001F3E0"
   mode: single
 - id: '1654755382943'
   alias: "\U0001F3E0 Leave Home without Dogs"
@@ -1048,10 +1048,10 @@
           shuffle: true
         target:
           entity_id: media_player.office
-      - service: script.sonos_play_matching
+      - service: sonosrandomiser.random_tagged_media
         data:
           entity_id: media_player.office
-          match: \U0001F42E
+          filter: \U0001F42E
       button_5_single:
       - type: brightness_decrease
         device_id: 8a466522fced3aa1009b180e4be85ada
