@@ -643,7 +643,7 @@ views:
             step: row
           step_size: '1.0'
           sensors:
-            - entity: sensor.siren_1_humidity
+            - entity: sensor.kitchen_humidity
               name: Humidity
               decimals: 0
           control:
@@ -681,9 +681,9 @@ views:
         name: Kitchen Climate
         points_per_hour: 20
         entities:
-          - entity: sensor.siren_1_temperature
+          - entity: sensor.kitchen_temperature
             name: Temperature
-          - entity: sensor.siren_1_humidity
+          - entity: sensor.kitchen_humidity
             name: Humidity
             y_axis: secondary
         min_bound_range: 5
