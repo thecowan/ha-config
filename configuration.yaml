@@ -848,8 +848,8 @@ climate:
         unique_id: vdt_daikin_ac_guest_room
       - name: "Daikin Kitchen"
         vent_switch: switch.daikin_ac_kitchen
-        temp_sensor: sensor.beer_fridge_temperature
-        humidity_sensor: sensor.beer_fridge_humidity
+        temp_sensor: sensor.kitchen_temperature
+        humidity_sensor: sensor.kitchen_humidity
         unique_id: vdt_daikin_ac_kitchen
       - name: "Daikin Living Room"
         vent_switch: switch.daikin_ac_living
