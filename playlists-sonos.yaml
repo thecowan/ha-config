@@ -1,0 +1,130 @@
+# Sonos favourite
+- title: ABC Radio Sydney 702
+  media_content_id: FV:2/27
+  media_content_type: favorite_item_id
+  tags:
+    - 🐶
+  shuffle: false
+  loop: false
+  extend: true
+- title: BBC World Service
+  media_content_id: FV:2/28
+  media_content_type: favorite_item_id
+  tags:
+    - 🐶
+- title: "SomaFM: Covers"
+  media_content_id: FV:2/17
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+    - 🚿
+    - 🐮
+- title: "SomaFM: Illinois Street Lounge"
+  media_content_id: FV:2/18
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+- title: "SomaFM: Indie Pop Rocks!"
+  media_content_id: FV:2/5
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+    - 💤
+- title: "SomaFM: Secret Agent"
+  media_content_id: FV:2/20
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+    - 💤
+- title: "SomaFM: Lush"
+  media_content_id: FV:2/19
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+    - 💤
+    - 💜
+- title: "NonStop90's Radio"
+  media_content_id: FV:2/42
+  media_content_type: favorite_item_id
+  tags:
+    - 🏠
+    - 🐮
+    - 🐶
+
+
+
+# Sonos album
+- title: ...Art
+  media_content_id: A:ALBUM/...Art
+  media_content_type: album
+  tags:
+    - unused
+
+
+
+# Spotify playlist
+- title: Netty oldies
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:4anvWOJbt7lzfO4TJfu5hr
+  media_content_type: spotify://playlist
+  tags:
+    - unused
+- title: "Spotify: Indie Arrivals"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:37i9dQZF1DWXuD9SwnM4ac
+  media_content_type: spotify://playlist
+  tags:
+    - 🏠
+    - 🐮
+- title: "Spotify: Pub Classics"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:37i9dQZF1DWX9PZqNqjR6L
+  media_content_type: spotify://playlist
+  tags:
+    - 🏠
+    - 🐮
+- title: "Spotify: Release Radar"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:37i9dQZEVXbsZTA30f1yTl
+  media_content_type: spotify://playlist
+  tags:
+    - 🏠
+    - 🐮
+- title: "Spotify: Daily Mix 1"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:37i9dQZF1E3aa71cj1fNRi
+  media_content_type: spotify://playlist
+  tags:
+    - 🏠
+    - 🐮
+- title: "Spotify: Discover Weekly"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:playlist:37i9dQZEVXcXlZXU9u74FZ
+  media_content_type: spotify://playlist
+  tags:
+    - 🏠
+    - 🐮
+
+
+
+# Spotify album
+- title: "Rumors"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:album:1bt6q2SruMsBtcerNVtpZB
+  media_content_type: spotify://album
+  tags:
+    - 💤
+- title: "Dirty Computer"
+  media_content_id: spotify://677e3e7c7aa4e97cdf445fdb906269ba/spotify:album:2PjlaxlMunGOUvcRzlTbtE
+  media_content_type: spotify://album
+  tags:
+    - 💤
+
+
+# 80s Flash
+# SomaFM: Lush
+# Sunset Fuzz
+# ? Cigarettes After Sex - Artist Shuffle
+# ? Dottie's Mixtape
+# ? Paul's Supermix
+# ? Paul Chill
+# ? Paul's Likes
+# ? Retro Cocktail Party
+# Sensual Ambience
+# Spotify:
+#
+#
+# TODO: Spotify Podcasts?
