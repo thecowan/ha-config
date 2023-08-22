@@ -272,9 +272,6 @@
   alias: ⚡ Dishwasher Finished
   description: ''
   trigger:
-  - platform: numeric_state
-    entity_id: sensor.dishwasher_power
-    below: '5'
   - platform: state
     entity_id:
     - input_select.dishwasher_state_machine
