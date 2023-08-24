@@ -1174,7 +1174,12 @@ rest:
         json_attributes:
         - now
         - aircraft
-
+  - resource: "http://pokey.syd.cowlan.net:9089/api/v1/query?query=count%20%28unpoller_client_roam_count_total%7Bessid%3D%22cowguest%22%7D%29%20OR%20on%28%29%20vector%280%29"
+    scan_interval: 60
+    sensor:
+      - name: "penfold connected guests"
+        value_template: "{{ value_json.data.result[0].value[1] | int }}"
+        unit_of_measurement: "clients"
 
 utility_meter:
   helium_wallet_today:
