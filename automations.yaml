@@ -108,18 +108,18 @@
   alias: "\U0001F3E0 Paul Arrive Home"
   description: ''
   trigger:
-  - entity_id: device_tracker.pauls_pixel_6_pro
+  - entity_id:
+    - person.paul
     from: not_home
     platform: state
     to: home
-  condition:
-  - condition: state
-    entity_id: group.kids_presence
-    state: not_home
+  condition: []
   action:
   - service: light.turn_on
     data: {}
-  - service: script.sonos_get_home
+    target:
+      entity_id: light.living_room_lamp
+  - service: script.paul_arrive_home
     data: {}
 - id: '1546984412841'
   alias: "\U0001F3E0 Paul Leave Home"
@@ -1786,4 +1786,34 @@
     target:
       entity_id:
       - switch.bathroom_heater
+  mode: single
+- id: '1692739330103'
+  alias: ❄️ Turn off AC failsafe
+  description: ''
+  trigger:
+  - platform: time_pattern
+    minutes: /5
+  condition:
+  - condition: state
+    entity_id: switch.daikin_ac_any_rooms_on
+    state: 'off'
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: climate.daikin_ac
+      state: 'off'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 0
+  action:
+  - service: climate.set_hvac_mode
+    data:
+      hvac_mode: 'off'
+    target:
+      entity_id: climate.daikin_ac
   mode: single

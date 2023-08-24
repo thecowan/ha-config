@@ -23,10 +23,11 @@ sonos_get_home:
   alias: Sonos Get Home
   sequence:
   - service: script.sonos_join_all
+    data: {}
   - service: sonosrandomiser.random_tagged_media
     data:
       entity_id: media_player.living_room
-      filter: \U0001F3E0
+      filter: "\U0001F3E0"
 sonos_romance:
   alias: Sonos Romantic Music
   sequence:
@@ -85,7 +86,7 @@ shower_paul:
   sequence:
   - data:
       sonos_entity: media_player.bathroom
-      filter: "🚿"
+      filter: "\U0001F6BF"
       volume: 0.5
     service: script.sonos_ungroup_and_play
 pause_all_sonos:
@@ -413,5 +414,51 @@ leave_home:
     data: {}
     target:
       entity_id: light.house_leaving_lights
+  - service: script.sonos_dog_music
+    data: {}
   mode: single
   icon: mdi:exit-run
+paul_arrive_home:
+  alias: Paul Arrive Home
+  sequence:
+  - service: script.sonos_get_home
+    data: {}
+  mode: single
+  icon: mdi:home-account
+leave_home_with_dogs:
+  alias: Leave Home with Dogs
+  sequence:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.house_leaving_lights
+  mode: single
+  icon: mdi:exit-run
+sonos_dog_music:
+  alias: Sonos Dog Music
+  sequence:
+  - service: media_player.unjoin
+    data: {}
+    target:
+      entity_id:
+      - media_player.living_room
+  - service: media_player.join
+    data:
+      group_members:
+      - media_player.bathroom
+      - media_player.kitchen
+    target:
+      entity_id: media_player.living_room
+  - service: media_player.volume_set
+    data:
+      volume_level: 0.3
+    target:
+      entity_id:
+      - media_player.living_room
+      - media_player.kitchen
+      - media_player.bathroom
+  - service: sonosrandomiser.random_tagged_media
+    data:
+      entity_id: media_player.living_room
+      filter: "\U0001F436"
+  mode: single
