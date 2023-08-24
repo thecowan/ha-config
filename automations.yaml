@@ -113,6 +113,21 @@
     from: not_home
     platform: state
     to: home
+  - platform: state
+    entity_id:
+    - person.paul
+    from: War Memorial Park
+    to: home
+  - platform: state
+    entity_id:
+    - person.paul
+    from: Pioneers Memorial Park
+    to: home
+  - platform: state
+    entity_id:
+    - person.paul
+    from: 36th Batallion Park
+    to: Home
   condition: []
   action:
   - service: light.turn_on
