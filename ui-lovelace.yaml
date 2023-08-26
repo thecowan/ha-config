@@ -145,6 +145,25 @@ views:
       #  entities:
       #    - lock.back_gate
       #  state_color: true
+      - type: horizontal-stack
+        cards:
+        - type: custom:button-card
+          entity: script.sonos_get_home
+          name: Whole house music
+          tap_action:
+            action: call-service
+            service: script.sonos_get_home
+        - type: custom:button-card
+          entity: script.sonos_get_home
+          name: New tunes
+          icon: mdi:shuffle
+          tap_action:
+            action: call-service
+            service: sonosrandomiser.random_tagged_media
+            service_data:
+              entity_id: media_player.living_room
+              filter: 🐮
+
   - title: Living Room
     icon: mdi:sofa
     path: living
