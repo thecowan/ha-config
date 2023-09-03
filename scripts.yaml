@@ -64,6 +64,7 @@ sonos_join_all:
       entity_id: media_player.living_room
       group_members:
       - media_player.kitchen
+      - media_player.guest_room
       - media_player.master_bedroom
       - media_player.office
       - media_player.bathroom
@@ -87,7 +88,7 @@ shower_paul:
   - data:
       sonos_entity: media_player.bathroom
       filter: "\U0001F6BF"
-      volume: 0.5
+      volume: 0.35
     service: script.sonos_ungroup_and_play
 pause_all_sonos:
   alias: Pause All Sonos
@@ -237,7 +238,12 @@ paul_sleep:
   - service: light.turn_off
     data: {}
     target:
-      area_id: master_bedroom
+      area_id:
+      - master_bedroom
+      - living_room
+      - dining_room
+      - office
+      entity_id: light.bedside_lamps
   - service: script.sonos_sleep
     data: {}
   mode: single
