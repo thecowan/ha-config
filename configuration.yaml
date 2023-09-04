@@ -1121,6 +1121,17 @@ template:
       delay_on: '0:00:05'
       delay_off: '0:00:05'
       device_class: 'problem'
+    - name: 'Just Paul'
+      unique_id: just_paul
+      state: >-
+        {% if is_state('input_boolean.guest_mode', 'on') %}
+          False
+        {% elif now().weekday() == 0 and (now().hour >= 8 and now().hour <= 10) %}
+          {# Natalia #}
+          False
+        {% else %}
+          True
+        {% endif %}
 
 rest_command:
   toggle_cow_macbookpro_mutesync:

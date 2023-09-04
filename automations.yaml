@@ -105,7 +105,7 @@
       entity_id: automation.receiver_update_last_state
     service: automation.turn_on
 - id: '1546980843431'
-  alias: "\U0001F3E0 Paul Arrive Home"
+  alias: "\U0001F3E0 Paul Arrive Home (Alone)"
   description: ''
   trigger:
   - entity_id:
@@ -128,7 +128,10 @@
     - person.paul
     from: 36th Batallion Park
     to: Home
-  condition: []
+  condition:
+  - condition: state
+    entity_id: binary_sensor.just_paul
+    state: 'on'
   action:
   - service: light.turn_on
     data: {}
@@ -1831,4 +1834,15 @@
       hvac_mode: 'off'
     target:
       entity_id: climate.daikin_ac
+  mode: single
+- id: '1692918730552'
+  alias: TEMP - office fan
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - fan.office_diffuser
+    to:
+  condition: []
+  action: []
   mode: single
