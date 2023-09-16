@@ -741,18 +741,18 @@ climate:
     min_cycle_duration:
       seconds: 300
     keep_alive: "00:05:00"
-  # Example of a single generic heater thermo
-  #- platform: generic_thermostat
-  #  name: Living Room
-  #  heater: switch.livingroom_heater
-  #  target_sensor: sensor.living_room_temperature
-  #  unique_id: livingroom_heater_thermostat_zsp001b
-  #  min_temp: 10
-  #  max_temp: 30
-  #  min_cycle_duration:
-  #    seconds: 300
-  #  keep_alive: "00:05:00"
-  #  cold_tolerance: 0.5
+  - platform: generic_thermostat
+    name: Bathroom
+    heater: switch.bathroom_heater
+    target_sensor: sensor.bathroom_temperature
+    unique_id: bathroom_heater_thermostat_zsp001b
+    min_temp: 10
+    max_temp: 30
+    min_cycle_duration:
+      seconds: 300
+    keep_alive: "00:05:00"
+    cold_tolerance: 0.5
+    precision: 1.0
   # Old manual daikin setup
   #- platform: generic_thermostat
   #  name: "Living Room Ducted Cooling"

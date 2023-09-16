@@ -1794,19 +1794,19 @@
   trigger:
   - platform: state
     entity_id:
-    - switch.bathroom_heater
-    to: 'on'
+    - climate.bathroom
+    to: heat
     for:
       hours: 0
       minutes: 30
       seconds: 0
   condition: []
   action:
-  - service: switch.turn_off
-    data: {}
+  - service: climate.set_hvac_mode
+    data:
+      hvac_mode: 'off'
     target:
-      entity_id:
-      - switch.bathroom_heater
+      entity_id: climate.bathroom
   mode: single
 - id: '1692739330103'
   alias: ❄️ Turn off AC failsafe

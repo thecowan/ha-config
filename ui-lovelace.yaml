@@ -65,7 +65,7 @@ views:
           - climate.daikin_studio
           - climate.daikin_kitchen
           - climate.daikin_guest_room
-          - switch.bathroom_heater
+          - climate.bathroom
           - switch.outdoor_toilet_heater
         state_filter:
           - "on"
@@ -785,9 +785,21 @@ views:
     icon: mdi:shower
     path: bathroom
     cards:
-      - type: entities
-        entities:
-        - entity: switch.bathroom_heater
+      - type: 'custom:simple-thermostat'
+        entity: climate.bathroom
+        layout:
+          mode:
+            names: true
+            icons: true
+            headings: false
+          step: row
+        step_size: '1.0'
+        sensors:
+          - entity: sensor.bathroom_humidity
+            name: Humidity
+            decimals: 0
+        control:
+          hvac: true
       - type: 'custom:mini-media-player'
         entity: media_player.bathroom
         hide:
