@@ -434,6 +434,7 @@
         data:
           entity_id: media_player.office
           filter: \U0001F42E
+          status_entity_id: status
 - id: '1639972602920'
   alias: "\U0001F3A5 Office meeting begin/change"
   description: ''
@@ -980,6 +981,7 @@
     data:
       entity_id: media_player.office
       filter: "\U0001F3E0"
+      status_entity_id: status
   mode: single
 - id: '1654755382943'
   alias: "\U0001F3E0 Leave Home without Dogs"
@@ -1067,6 +1069,7 @@
         data:
           entity_id: media_player.office
           filter: \U0001F42E
+          status_entity_id: status
       button_5_single:
       - type: brightness_decrease
         device_id: 8a466522fced3aa1009b180e4be85ada

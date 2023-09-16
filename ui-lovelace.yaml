@@ -163,7 +163,7 @@ views:
             service_data:
               entity_id: media_player.living_room
               filter: 🐮
-
+              status_entity_id: status
   - title: Living Room
     icon: mdi:sofa
     path: living

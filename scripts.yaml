@@ -28,6 +28,7 @@ sonos_get_home:
     data:
       entity_id: media_player.living_room
       filter: "\U0001F3E0"
+      status_entity_id: status
 sonos_romance:
   alias: Sonos Romantic Music
   sequence:
@@ -36,6 +37,7 @@ sonos_romance:
     data:
       entity_id: media_player.living_room
       filter: \U0001F49C
+      status_entity_id: status
 sonos_sleep:
   alias: Sonos Sleep Music
   sequence:
@@ -55,6 +57,7 @@ sonos_sleep:
     data:
       entity_id: media_player.master_bedroom
       filter: "\U0001F4A4"
+      status_entity_id: status
   mode: single
 sonos_join_all:
   alias: Sonos Join All
@@ -82,6 +85,7 @@ sonos_ungroup_and_play:
     data_template:
       entity_id: '{{ sonos_entity }}'
       filter: '{{ filter }}'
+      status_entity_id: status
 shower_paul:
   alias: 'Shower: Paul'
   sequence:
@@ -467,4 +471,5 @@ sonos_dog_music:
     data:
       entity_id: media_player.living_room
       filter: "\U0001F436"
+      status_entity_id: status
   mode: single
