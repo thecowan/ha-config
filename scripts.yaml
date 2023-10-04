@@ -247,6 +247,8 @@ paul_sleep:
       - living_room
       - dining_room
       - office
+      - kitchen
+      - entry
       entity_id: light.bedside_lamps
   - service: script.sonos_sleep
     data: {}
