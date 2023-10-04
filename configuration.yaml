@@ -687,6 +687,10 @@ lovelace:
       type: module
     - url: '/hacsfiles/lovelace-layout-card/layout-card.js'
       type: module
+    - url: '/hacsfiles/lovelace-mushroom/mushroom.js'
+      type: module
+    - url: '/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js'
+      type: module
   dashboards:
     lovelace-reporting:
       mode: yaml
