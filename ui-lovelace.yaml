@@ -1018,6 +1018,30 @@ views:
         show:
           labels: true
           labels_secondary: true
+      - type: custom:windrose-card
+        title: Wind direction
+        hours_to_show: 4
+        max_width: 400
+        refresh_interval: 300
+        windspeed_bar_location: bottom
+        windspeed_bar_full: true
+        wind_direction_entity:
+          entity: sensor.openweathermap_wind_bearing
+          direction_unit: degrees
+          use_statistics: true
+          direction_compensation: 0
+        windspeed_entities:
+          - entity: sensor.openweathermap_wind_speed
+            name: Wind speed
+            speed_unit: auto
+            use_statistics: true
+        output_speed_unit: kph
+        speed_range_beaufort: true
+        windrose_draw_north_offset: 0
+        cardinal_direction_letters: NESW
+        matching_strategy: direction-first
+        center_calm_percentage: true
+
   - title: Garden
     icon: mdi:flower
     path: garden
@@ -1117,6 +1141,22 @@ views:
         title: Living Room Blind Automation
         show_header_toggle: true
         state_color: false
+      - type: entities
+        title: Mailbox Alarm
+        entities:
+          - entity: input_select.mailbox_alarm_enabled
+            name: Enabled
+          - entity: input_datetime.mailbox_alarm_on
+            name: Alarm Starts
+          - entity: input_datetime.mailbox_alarm_on
+            name: Alarm Ends
+          - entity: input_select.mailbox_alarm_volume
+            name: Volume
+      - type: entities
+        title: General Settings
+        entities:
+          - input_boolean.guest_mode
+
 
   - title: Junkyard
     icon: mdi:delete-empty
