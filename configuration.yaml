@@ -691,6 +691,12 @@ lovelace:
       type: module
     - url: '/hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js'
       type: module
+    - url: '/hacsfiles/custom-sonos-card/custom-sonos-card.js'
+      type: module
+    - url: 'https://fonts.googleapis.com/css?family=Comfortaa&display=swap'
+      type: css
+    - url: '/local/custom.css'
+      type: css
   dashboards:
     lovelace-reporting:
       mode: yaml
