@@ -613,8 +613,6 @@ lovelace:
       type: module
     - url: "/hacsfiles/kiosk-mode/kiosk-mode.js"
       type: module
-    - url: "/local/climate-fan-button-row/climate-fan-button-row.js"
-      type: module
     - url: "https://cdn.jsdelivr.net/npm/rgb-light-card"
       type: module
     - url: '/hacsfiles/home-assistant-sun-card/home-assistant-sun-card.js'
