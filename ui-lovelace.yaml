@@ -611,7 +611,7 @@ views:
           labels: true
           labels_secondary: true
   - title: Kitchen
-    icon: mdi:fridge-outline
+    icon: mdi:fridge
     path: kitchen
     cards:
       - type: entities
