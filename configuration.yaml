@@ -87,10 +87,6 @@ sensor:
     username: !secret untappd_username
     id: !secret untappd_id
     secret: !secret untappd_secret
-  - platform: waqi
-    token: !secret waqi_token
-    locations:
-      - !secret waqi_location
   - platform: seventeentrack
     username: !secret seventeentrack_email
     password: !secret seventeentrack_password
