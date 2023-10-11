@@ -59,11 +59,11 @@ views:
                   card:
                     type: custom:compass-card
                     indicator_sensors:
-                      - entity: sensor.gobo_closest_aircraft_bearing
+                      - sensor: sensor.gobo_closest_aircraft_bearing
                         indicator:
                           type: arrow_outward
                     value_sensors:
-                      - entity: sensor.gobo_closest_aircraft_distance
+                      - sensor: sensor.gobo_closest_aircraft_distance
                         decimals: 3
                 - type: conditional
                   conditions:
@@ -72,11 +72,11 @@ views:
                   card:
                     type: custom:compass-card
                     indicator_sensors:
-                      - entity: sensor.gobo_closest_aircraft_bearing
+                      - sensor: sensor.gobo_closest_aircraft_bearing
                         indicator:
                           type: arrow_inward
                     value_sensors:
-                      - entity: sensor.gobo_closest_aircraft_distance
+                      - sensor: sensor.gobo_closest_aircraft_distance
                         decimals: 3
                 - type: conditional
                   conditions:
