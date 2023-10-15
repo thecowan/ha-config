@@ -165,7 +165,7 @@ prometheus:
 
 media_player:
   - platform: onkyo
-    host: 10.2.2.29
+    host: integra.syd.cowlan.net
     name: receiver
     sources:
       # video1_vcr_dvr_stb_dvr
@@ -688,6 +688,8 @@ lovelace:
     - url: '/hacsfiles/custom-sonos-card/custom-sonos-card.js'
       type: module
     - url: 'https://fonts.googleapis.com/css?family=Comfortaa&display=swap'
+      type: css
+    - url: 'https://fonts.googleapis.com/css2?family=Oxygen&family=Ubuntu:wght@300&display=swap'
       type: css
     - url: '/local/custom.css'
       type: css
@@ -1243,7 +1245,7 @@ influxdb:
 
 waste_collection_schedule:
   sources:
-    - name: Home
+    - name: innerwest_nsw_gov_au
       args:
         suburb: !secret rubbish_suburb
         street_name: !secret rubbish_street
