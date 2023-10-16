@@ -559,6 +559,9 @@ google_assistant:
     light.yeelight_guestroom:
       expose: true
       room: Guest Room
+    light.guest_room_lamps:
+      expose: true
+      room: Guest Room
     light.kitchen_downlights:
       expose: true
       room: Kitchen
