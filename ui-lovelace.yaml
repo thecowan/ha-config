@@ -885,7 +885,7 @@ views:
           toggle: true
         - entity: binary_sensor.back_door
         - entity: switch.outdoor_toilet_heater
-      - type: 'custom:sun-card'
+      - type: 'custom:horizon-card'
       - type: weather-forecast
         entity: weather.lilyfield
       - type: custom:bom-radar-card
