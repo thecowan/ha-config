@@ -1440,12 +1440,20 @@
           payload: "{%- set flight = state_attr('sensor.gobo_closest_aircraft', 'flight_number')
             | default(\"??????\") | trim -%} {%- set airline = flight | regex_findall_index(find='^[A-Za-z]+')
             -%} {%- set flnum = flight | regex_replace(find='^[A-Za-z]+', replace='')
-            -%} {%- set airline_col_map = {\"QFA\": [\"#ff0000\", \"#ffffff\"], \"QLK\":
-            [\"#ff0000\", \"#ffffff\"], \"JST\": [\"#ff8000\", \"#bbbbbb\"], \"VOZ\":
+            -%} {%- set airline_col_map = {\"QFA\": [\"#d30404\", \"#ffffff\"], \"QLK\":
+            [\"#d30404\", \"#ffffff\"], \"NWK\": [\"#d30404\", \"#ffffff\"], \"QJE\":
+            [\"#d30404\", \"#ffffff\"], \"JST\": [\"#ff8000\", \"#bbbbbb\"], \"VOZ\":
             [\"#ff00ff\", \"#ffffff\"], \"RXA\": [\"#004a86\", \"#f37c1b\"], \"CES\":
-            [\"#d70819\", \"#0b3393\"], \"QTR\": [\"#5c0632\", \"#747f8a\"]} -%} {%-
-            set airline_col = \"#ffffff\" -%} {%- set flight_col = \"#ccffcc\" -%}
-            {%- if airline in airline_col_map -%}\n  {%- set airline_col = airline_col_map[airline][0]
+            [\"#d70819\", \"#0b3393\"], \"QTR\": [\"#5c0632\", \"#747f8a\"], \"CSN\":
+            [\"#0494d4\", \"#ec1d2d\"], \"JAL\": [\"#cc0404\", \"#ffffff\"], \"ANA\":
+            [\"#0c338c\", \"#04abeb\"], \"CXA\": [\"#048cc4\", \"#dddddd\", \"Xiamen\"],
+            \"UAE\": [\"#d71a21\", \"#ffffff\", \"Emirates\"], \"ACA\": [\"#ffffff\",
+            \"#f4142c\", \"Air Canada/AC\"], \"DAL\": [\"#9c1c34\", \"#e41c34\", \"Delta/DL\"],
+            \"AAL\": [\"#14acdc\", \"#b61f23\", \"American/AA\"], \"UAL\": [\"#dddddd\",
+            \"#1414d4\", \"United/UA\"], \"PAL\": [\"#faca04\", \"#fc0404\", \"Philippine\"],
+            \"SIA\": [\"#fca404\", \"#1d4886\", \"Singapore\"]} -%} {%- set airline_col
+            = \"#ffffff\" -%} {%- set flight_col = \"#ccffcc\" -%} {%- if airline
+            in airline_col_map -%}\n  {%- set airline_col = airline_col_map[airline][0]
             -%}\n  {%- set flight_col = airline_col_map[airline][1] -%}\n{%- endif
             -%} {%- set typecode = state_attr('sensor.gobo_closest_aircraft', 'type_code')
             | default(\"???\") | trim -%} {%- set from = state_attr('sensor.gobo_closest_aircraft',
