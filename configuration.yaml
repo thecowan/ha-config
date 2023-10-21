@@ -125,6 +125,24 @@ sensor:
     port: 8093
   - platform: waste_collection_schedule
     name: rubbish
+  - platform: waste_collection_schedule
+    name: waste_collection
+    details_format: 'generic'
+    value_template: '{{ value.daysTo }}'
+    types:
+      - waste
+  - platform: waste_collection_schedule
+    name: organics_collection
+    details_format: 'generic'
+    value_template: '{{ value.daysTo }}'
+    types:
+      - organic
+  - platform: waste_collection_schedule
+    name: recycling_collection
+    details_format: 'generic'
+    value_template: '{{ value.daysTo }}'
+    types:
+      - recycle
 
 binary_sensor:
   - platform: linode
