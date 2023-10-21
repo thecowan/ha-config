@@ -1451,12 +1451,15 @@
             \"#f4142c\", \"Air Canada/AC\"], \"DAL\": [\"#9c1c34\", \"#e41c34\", \"Delta/DL\"],
             \"AAL\": [\"#14acdc\", \"#b61f23\", \"American/AA\"], \"UAL\": [\"#dddddd\",
             \"#1414d4\", \"United/UA\"], \"PAL\": [\"#faca04\", \"#fc0404\", \"Philippine\"],
-            \"SIA\": [\"#fca404\", \"#1d4886\", \"Singapore\"]} -%} {%- set airline_col
-            = \"#ffffff\" -%} {%- set flight_col = \"#ccffcc\" -%} {%- if airline
-            in airline_col_map -%}\n  {%- set airline_col = airline_col_map[airline][0]
-            -%}\n  {%- set flight_col = airline_col_map[airline][1] -%}\n{%- endif
-            -%} {%- set typecode = state_attr('sensor.gobo_closest_aircraft', 'type_code')
-            | default(\"???\") | trim -%} {%- set from = state_attr('sensor.gobo_closest_aircraft',
+            \"SIA\": [\"#fca404\", \"#1d4886\", \"Singapore\"], \"TWB\": [\"#7ca44c\",
+            \"#d43434\"], \"CEB\": [\"#04a4e4\", \"#049484\", \"Cebu /5J\"], \"XAX\":
+            [\"#ffffff\", \"#ec4434\", \"Air Asia X/D7\"], \"CPA\": [\"#046464\",
+            \"#ffffff\", \"Cathay Pacific/CX\"], \"CCA\": [\"#ffffff\", \"#ec1c24\",
+            \"Air China/CA\"]} -%} {%- set airline_col = \"#ffffff\" -%} {%- set flight_col
+            = \"#ccffcc\" -%} {%- if airline in airline_col_map -%}\n  {%- set airline_col
+            = airline_col_map[airline][0] -%}\n  {%- set flight_col = airline_col_map[airline][1]
+            -%}\n{%- endif -%} {%- set typecode = state_attr('sensor.gobo_closest_aircraft',
+            'type_code') | default(\"???\") | trim -%} {%- set from = state_attr('sensor.gobo_closest_aircraft',
             'route')['FromIata'] | default(state_attr('sensor.gobo_closest_aircraft',
             'route')['FromIcao']) | default(\"???\") | trim  -%} {%- set to = state_attr('sensor.gobo_closest_aircraft',
             'route')['ToIata'] | default(state_attr('sensor.gobo_closest_aircraft',
