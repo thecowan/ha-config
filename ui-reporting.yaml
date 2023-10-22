@@ -301,6 +301,7 @@ views:
                   - sensor.living_room_light_power
                   - sensor.dining_room_light_power
                   - sensor.guest_room_light_power
+                  - sensor.guest_room_lamps_power
                   - sensor.entry_light_power
                   - sensor.attic_light_power
                   - sensor.porch_power
@@ -315,7 +316,7 @@ views:
                 color: blue
                 children:
                   - sensor.bathroom_speaker_power
-                  - sensor.master_bedroom_mini_power
+                  # - sensor.master_bedroom_mini_power
           - entities:
               - entity_id: sensor.bedroom_heater_power
                 name: Bedroom Heater
@@ -356,6 +357,9 @@ views:
               - entity_id: sensor.guest_room_light_power
                 name: Guest Room
                 color: yellow
+              - entity_id: sensor.guest_room_lamps_power
+                name: Guest Room Lamps
+                color: yellow
               - entity_id: sensor.entry_light_power
                 name: Entry
                 color: yellow
@@ -374,9 +378,9 @@ views:
               - entity_id: sensor.bathroom_speaker_power
                 name: Bathroom
                 color: blue
-              - entity_id: sensor.master_bedroom_mini_power
-                name: Bedroom
-                color: blue
+              #- entity_id: sensor.master_bedroom_mini_power
+              #  name: Bedroom
+              #color: blue
       - type: vertical-stack
         cards:
           - type: gauge
