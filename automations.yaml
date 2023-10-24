@@ -1397,7 +1397,7 @@
     data: {}
   mode: single
 - id: '1685229006241'
-  alias: ✈️ Enable flight board when in range [new]
+  alias: ✈️ Flight board
   description: ''
   trigger:
   - platform: state
@@ -1416,15 +1416,27 @@
     entity_id:
     - sensor.gobo_closest_aircraft_barometric_altitude
     id: altitude_change
-    to: '9998'
   - platform: state
     entity_id:
     - sensor.gobo_closest_aircraft_ground_speed
     id: speed_change
-    to: '9997'
   condition:
   - condition: template
     value_template: '{{ trigger.to_state.state != trigger.from_state.state }}'
+  - condition: or
+    conditions:
+    - condition: trigger
+      id:
+      - notifiable_enter
+      - notifiable_leave
+    - condition: and
+      conditions:
+      - condition: template
+        value_template: '{{ (true) or (now() - state_attr(''automation.flight_board'',
+          ''last_triggered'') > timedelta(seconds=1)) }}'
+      - condition: template
+        value_template: '{{ states(''sensor.gobo_notifiable_aircraft'') != ''unknown''
+          }} '
   action:
   - choose:
     - conditions:
