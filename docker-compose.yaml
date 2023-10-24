@@ -10,29 +10,29 @@ services:
       - /etc/localtime:/etc/localtime:ro 
       - /run/dbus:/run/dbus:ro
     restart: unless-stopped
-    depends_on:
-      - influxdb
+    #depends_on:
+    #  - influxdb
 
-  influxdb:
-    container_name: influxdb
-    image: influxdb
-    restart: unless-stopped
-    ports:
-      - "8086:8086/tcp"   # So we can access the WebUI
-    environment:
-      - TZ=Australia/Sydney
-      - DOCKER_INFLUXDB_INIT_MODE=setup
-      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USER}
-      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
-      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
-      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
-    volumes:
-      - ./influxdb/data:/var/lib/influxdb2
-      - ./influxdb/config/:/etc/influxdb2
-    ulimits:
-      nofile:
-        soft: 32768
-        hard: 32768
+#  influxdb:
+#    container_name: influxdb
+#    image: influxdb
+#    restart: unless-stopped
+#    ports:
+#      - "8086:8086/tcp"   # So we can access the WebUI
+#    environment:
+#      - TZ=Australia/Sydney
+#      - DOCKER_INFLUXDB_INIT_MODE=setup
+#      - DOCKER_INFLUXDB_INIT_USERNAME=${INFLUXDB_USER}
+#      - DOCKER_INFLUXDB_INIT_PASSWORD=${INFLUXDB_PASSWORD}
+#      - DOCKER_INFLUXDB_INIT_ORG=${INFLUXDB_ORG}
+#      - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
+#    volumes:
+#      - ./influxdb/data:/var/lib/influxdb2
+#      - ./influxdb/config/:/etc/influxdb2
+#    ulimits:
+#      nofile:
+#        soft: 32768
+#        hard: 32768
 
   hass-configurator:
     container_name: hassconf

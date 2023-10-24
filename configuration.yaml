@@ -708,6 +708,10 @@ lovelace:
       type: module
     - url: '/hacsfiles/custom-sonos-card/custom-sonos-card.js'
       type: module
+    - url: '/hacsfiles/lovelace-state-switch/state-switch.js'
+      type: module
+    - url: '/hacsfiles/lovelace-blank-card/blank-card.js'
+      type: module
     - url: 'https://fonts.googleapis.com/css?family=Comfortaa&display=swap'
       type: css
     - url: 'https://fonts.googleapis.com/css2?family=Oxygen&family=Ubuntu:wght@300&display=swap'
@@ -1242,27 +1246,27 @@ recorder:
       - sensor.closest_plane*
   purge_keep_days: 30
 
-influxdb:
-  api_version: 2
-  ssl: false
-  host: !secret influxdb_host
-  port: 8086
-  token: !secret influxdb_token
-  organization: !secret influx_org
-  bucket: homeassistant
-  tags:
-    source: HomeAssistant
-  tags_attributes:
-    - friendly_name
-  default_measurement: units
-  ignore_attributes:
-    - icon
-  #exclude:    # Customise to fit your needs
-  #  entities:
-  #    - zone.home
-  #  domains:
-  #    - persistent_notification
-  #    - person
+# influxdb:
+#   api_version: 2
+#   ssl: false
+#   host: !secret influxdb_host
+#   port: 8086
+#   token: !secret influxdb_token
+#   organization: !secret influx_org
+#   bucket: homeassistant
+#   tags:
+#     source: HomeAssistant
+#   tags_attributes:
+#     - friendly_name
+#   default_measurement: units
+#   ignore_attributes:
+#     - icon
+#   #exclude:    # Customise to fit your needs
+#   #  entities:
+#   #    - zone.home
+#   #  domains:
+#   #    - persistent_notification
+#   #    - person
 
 waste_collection_schedule:
   sources:
