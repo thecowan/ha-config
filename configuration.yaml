@@ -712,6 +712,8 @@ lovelace:
       type: module
     - url: '/hacsfiles/lovelace-blank-card/blank-card.js'
       type: module
+    - url: '/hacsfiles/lovelace-hourly-weather/hourly-weather.js'
+      type: module
     - url: 'https://fonts.googleapis.com/css?family=Comfortaa&display=swap'
       type: css
     - url: 'https://fonts.googleapis.com/css2?family=Oxygen&family=Ubuntu:wght@300&display=swap'
