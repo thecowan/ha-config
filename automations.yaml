@@ -1452,28 +1452,45 @@
           payload: "{%- set flight = state_attr('sensor.gobo_closest_aircraft', 'flight_number')
             | default(\"??????\") | trim -%} {%- set airline = flight | regex_findall_index(find='^[A-Za-z]+')
             -%} {%- set flnum = flight | regex_replace(find='^[A-Za-z]+', replace='')
-            -%} {%- set airline_col_map = {\"QFA\": [\"#d30404\", \"#ffffff\"], \"QLK\":
-            [\"#d30404\", \"#ffffff\"], \"NWK\": [\"#d30404\", \"#ffffff\"], \"QJE\":
-            [\"#d30404\", \"#ffffff\"], \"JST\": [\"#ff8000\", \"#bbbbbb\"], \"VOZ\":
-            [\"#ff00ff\", \"#ffffff\"], \"RXA\": [\"#004a86\", \"#f37c1b\"], \"CES\":
-            [\"#d70819\", \"#0b3393\"], \"QTR\": [\"#5c0632\", \"#747f8a\"], \"CSN\":
-            [\"#0494d4\", \"#ec1d2d\"], \"JAL\": [\"#cc0404\", \"#ffffff\"], \"ANA\":
-            [\"#0c338c\", \"#04abeb\"], \"CXA\": [\"#048cc4\", \"#dddddd\", \"Xiamen\"],
-            \"UAE\": [\"#d71a21\", \"#ffffff\", \"Emirates\"], \"ACA\": [\"#ffffff\",
-            \"#f4142c\", \"Air Canada/AC\"], \"DAL\": [\"#9c1c34\", \"#e41c34\", \"Delta/DL\"],
-            \"AAL\": [\"#14acdc\", \"#b61f23\", \"American/AA\"], \"UAL\": [\"#dddddd\",
-            \"#1414d4\", \"United/UA\"], \"PAL\": [\"#faca04\", \"#fc0404\", \"Philippine\"],
-            \"SIA\": [\"#fca404\", \"#1d4886\", \"Singapore\"], \"TWB\": [\"#7ca44c\",
-            \"#d43434\"], \"CEB\": [\"#04a4e4\", \"#049484\", \"Cebu /5J\"], \"XAX\":
-            [\"#ffffff\", \"#ec4434\", \"Air Asia X/D7\"], \"CPA\": [\"#046464\",
-            \"#ffffff\", \"Cathay Pacific/CX\"], \"CCA\": [\"#ffffff\", \"#ec1c24\",
-            \"Air China/CA\"]} -%} {%- set airline_col = \"#ffffff\" -%} {%- set flight_col
-            = \"#ccffcc\" -%} {%- if airline in airline_col_map -%}\n  {%- set airline_col
-            = airline_col_map[airline][0] -%}\n  {%- set flight_col = airline_col_map[airline][1]
-            -%}\n{%- endif -%} {%- set typecode = state_attr('sensor.gobo_closest_aircraft',
-            'type_code') | default(\"???\") | trim -%} {%- set from = state_attr('sensor.gobo_closest_aircraft',
-            'route')['FromIata'] | default(state_attr('sensor.gobo_closest_aircraft',
-            'route')['FromIcao']) | default(\"???\") | trim  -%} {%- set to = state_attr('sensor.gobo_closest_aircraft',
+            -%} {%- set airline_col_map = {\"QFA\": [\"#d30404\", \"#ffffff\", \"Qantas\",
+            \"QF\"], \"QLK\": [\"#d30404\", \"#ffffff\", \"QantasLink\", \"QF\"],
+            \"NWK\": [\"#d30404\", \"#ffffff\"], \"QJE\": [\"#d30404\", \"#ffffff\",
+            \"QantasLink (Q-Jet)\", \"QF\"], \"JST\": [\"#ff8000\", \"#bbbbbb\", \"Jetstar\",
+            \"JQ\"], \"VOZ\": [\"#ff00ff\", \"#ffffff\", \"Virgin Australia\", \"VA\"],
+            \"RXA\": [\"#004a86\", \"#f37c1b\", \"Rex\", \"ZL\"], \"CES\": [\"#d70819\",
+            \"#0b3393\", \"China Eastern\", \"MU\"], \"QTR\": [\"#5c0632\", \"#747f8a\",
+            \"Qatar\", \"QR\"], \"CSN\": [\"#0494d4\", \"#ec1d2d\", \"China Southern\",
+            \"CZ\"], \"JAL\": [\"#cc0404\", \"#ffffff\", \"Japan\", \"JL\"], \"ANA\":
+            [\"#0c338c\", \"#04abeb\", \"ANA\", \"NH\"], \"CXA\": [\"#048cc4\", \"#dddddd\",
+            \"Xiamen\", \"MF\"], \"UAE\": [\"#d71a21\", \"#ffffff\", \"Emirates\",
+            \"EK\"], \"ACA\": [\"#ffffff\", \"#f4142c\", \"Air Canada\", \"AC\"],
+            \"DAL\": [\"#9c1c34\", \"#e41c34\", \"Delta\", \"DL\"], \"AAL\": [\"#14acdc\",
+            \"#b61f23\", \"American\", \"AA\"], \"UAL\": [\"#dddddd\", \"#1414d4\",
+            \"United\", \"UA\"], \"PAL\": [\"#faca04\", \"#fc0404\", \"Philippine\",
+            \"PR\"], \"SIA\": [\"#fca404\", \"#1d4886\", \"Singapore\", \"SQ\"], \"TWB\":
+            [\"#7ca44c\", \"#d43434\", \"T'Way\", \"TW\"], \"CEB\": [\"#04a4e4\",
+            \"#049484\", \"Cebu\", \"5J\"], \"XAX\": [\"#ffffff\", \"#ec4434\", \"Air
+            Asia X\", \"D7\"], \"CPA\": [\"#046464\", \"#ffffff\", \"Cathay Pacific\",
+            \"CX\"], \"CCA\": [\"#ffffff\", \"#ec1c24\", \"Air China\", \"CA\"], \"HVN\":
+            [\"#046c84\", \"#dba314\", \"Vietnam\", \"VN\"], \"FJI\": [\"#ffffff\",
+            \"#2c1c14\", \"Fiji\", \"FJ\"], \"GIA\": [\"#047c94\", \"#04144c\", \"Garuda\",
+            \"GA\"], \"CAL\": [\"#d56878\", \"#e9afb8\", \"China\", \"CI\"], \"MAS\":
+            [\"#ed1c23\", \"#002b5c\", \"Malaysia\", \"MH\"], \"ACI\": [\"#f44c24\",
+            \"#fbbb14\", \"AirCalin\", \"SB\"], \"ANZ\": [\"#241c24\", \"#bbbbbb\",
+            \"Air New Zealand\", \"NZ\"], \"AVN\": [\"#5b8527\", \"#cc1424\", \"Air
+            Vanuatu\", \"NF\"], \"ETD\": [\"#d3831c\", \"#5d3e30\", \"Etihad\", \"EY\"],
+            \"HAL\": [\"#b9158c\", \"#86278b\", \"Hawaiian\", \"HA\"], \"TGW\": [\"#fcec04\",
+            \"#ffffff\", \"Scoot\", \"TR\"], \"THA\": [\"#f3c304\", \"#340c63\", \"Thai\",
+            \"TG\"], \"LAN\": [\"#eb1453\", \"#340c63\", \"#2c048c\", \"LA\"], \"FRE\":
+            [\"#2c9ce1\", \"#04245c\", \"FlyPelican\", \"FP\"], \"VJC\": [\"#e41c24\",
+            \"#fbdf4f\", \"VietJet\", \"VJ\"]} -%} {%- set airline_col = \"#ffffff\"
+            -%} {%- set flight_col = \"#ccffcc\" -%} {%- if airline in airline_col_map
+            -%}\n  {%- set airline_col = airline_col_map[airline][0] -%}\n  {%- set
+            flight_col = airline_col_map[airline][1] -%}\n{%- endif -%} {%- set typecode
+            = state_attr('sensor.gobo_closest_aircraft', 'type_code') | default(\"???\")
+            | trim -%} {%- set from = state_attr('sensor.gobo_closest_aircraft', 'route')['FromIata']
+            | default(state_attr('sensor.gobo_closest_aircraft', 'route')['FromIcao'])
+            | default(\"???\") | trim  -%} {%- set to = state_attr('sensor.gobo_closest_aircraft',
             'route')['ToIata'] | default(state_attr('sensor.gobo_closest_aircraft',
             'route')['ToIcao']) | default(\"???\") | trim  -%}{%- set alt = ((states('sensor.gobo_closest_aircraft_barometric_altitude')
             \ | default(0) | float(0)) * 3.28084) | round(0)  -%} {%- set alt_icon
@@ -1482,12 +1499,15 @@
             set speed = ((states('sensor.gobo_closest_aircraft_ground_speed') | default(0)
             | float(0) ) * 1.852) | round(0) -%} [ {\"text\": [{\"t\": \"{{ airline
             }}\", \"c\": \"{{ airline_col }}\"},{\"t\": \"{{ flnum }}\", \"c\": \"{{
-            flight_col }}\"}], \"progress\": 0}, {\"text\": \"{{ typecode }}\", \"progress\":
-            25}, {\"text\": [{\"t\": \"{{ from }}\" }, {\"t\": \">\", \"c\": \"#303030\"},
-            \ {\"t\": \"{{ to }}\"} ], \"progress\": 50}, {\"text\": [ {\"t\": \"{{
-            alt }}\"}, {\"t\": \"ft\", \"c\": \"#402020\"} ], \"progress\": 75}, {\"text\":
-            [ {\"t\": \"{{ speed }}\"}, {\"t\": \"kmh\", \"c\": \"#202040\"}  ], \"progress\":
-            100}]"
+            flight_col }}\"}], \"progress\": 0, \"progressC\": \"#00005c\", \"progressBC\":
+            \"#444444\"}, {\"text\": \"{{ typecode }}\", \"progress\": 25, \"progressC\":
+            \"#00005c\", \"progressBC\": \"#444444\"}, {\"text\": [{\"t\": \"{{ from
+            }}\" }, {\"t\": \">\", \"c\": \"#303030\"},  {\"t\": \"{{ to }}\"} ],
+            \"progress\": 50, \"progressC\": \"#00005c\", \"progressBC\": \"#444444\"},
+            {\"text\": [ {\"t\": \"{{ alt }}\"}, {\"t\": \"ft\", \"c\": \"#503030\"}
+            ], \"progress\": 75, \"progressC\": \"#00005c\", \"progressBC\": \"#444444\"},
+            {\"text\": [ {\"t\": \"{{ speed }}\"}, {\"t\": \"kmh\", \"c\": \"#303050\"}
+            \ ], \"progress\": 100, \"progressC\": \"#00005c\", \"progressBC\": \"#444444\"}]"
       - delay:
           hours: 0
           minutes: 0
@@ -1523,11 +1543,6 @@
       - condition: trigger
         id:
         - altitude_change
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: sensor.gobo_notifiable_aircraft
-          state: unknown
       sequence:
       - service: mqtt.publish
         data:
@@ -1540,16 +1555,12 @@
             ''rate'') |int(0)) > 0 -%} {%- set alt_icon = "7465" -%} {%- endif -%}{%-
             set speed = ((states(''sensor.gobo_closest_aircraft_ground_speed'') |
             default(0) | float(0) ) * 1.852) | round(0) -%} {"text": [ {"t": "{{ alt
-            }}"}, {"t": "ft", "c": "#402020"} ], "progress": 75}'
+            }}"}, {"t": "ft", "c": "#503030"} ], "progress": 75, "progressC": "#00005c",
+            "progressBC": "#444444"}'
     - conditions:
       - condition: trigger
         id:
         - speed_change
-      - condition: not
-        conditions:
-        - condition: state
-          entity_id: sensor.gobo_notifiable_aircraft
-          state: unknown
       sequence:
       - service: mqtt.publish
         data:
@@ -1558,7 +1569,8 @@
           topic: awtrix_d69578/custom/flightinfo4
           payload: '{%- set speed = ((states(''sensor.gobo_closest_aircraft_ground_speed'')
             | default(0) | float(0) ) * 1.852) | round(0) -%} {"text": [ {"t": "{{
-            speed }}"}, {"t": "kmh", "c": "#202040"}  ], "progress": 100}'
+            speed }}"}, {"t": "kmh", "c": "#303050"}  ], "progress": 100, "progressC":
+            "#00005c", "progressBC": "#444444"}'
   mode: queued
   max: 50
 - id: '1686907407641'
