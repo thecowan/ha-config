@@ -93,6 +93,19 @@ views:
         units_in_table: true
         units: metric
         zone: zone.home
+        columns:
+          - icon
+          - flag
+          - flight
+          - aircraft_type
+          - altitude
+          # - speed
+          - distance
+        sort: distance
+        popup: true
+        hide:
+          empty:
+            - altitude
       - type: entities
         entities:
           - input_boolean.plane_visible_from_desk
