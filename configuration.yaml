@@ -586,6 +586,9 @@ google_assistant:
     light.yeelight_livingroom:
       expose: true
       room: Living Room
+    light.living_room_lamp:
+      expose: true
+      room: Living Room
     light.yeelight_office:
       expose: true
       room: Office
