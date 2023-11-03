@@ -130,7 +130,7 @@
     to: Home
   condition:
   - condition: state
-    entity_id: binary_sensor.just_paul
+    entity_id: binary_sensor.just_residents
     state: 'on'
   action:
   - service: light.turn_on
@@ -1476,7 +1476,7 @@
             \"#2c1c14\", \"Fiji\", \"FJ\"], \"GIA\": [\"#047c94\", \"#04144c\", \"Garuda\",
             \"GA\"], \"CAL\": [\"#d56878\", \"#e9afb8\", \"China\", \"CI\"], \"MAS\":
             [\"#ed1c23\", \"#002b5c\", \"Malaysia\", \"MH\"], \"ACI\": [\"#f44c24\",
-            \"#fbbb14\", \"AirCalin\", \"SB\"], \"ANZ\": [\"#241c24\", \"#bbbbbb\",
+            \"#fbbb14\", \"AirCalin\", \"SB\"], \"ANZ\": [\"#303030\", \"#bbbbbb\",
             \"Air New Zealand\", \"NZ\"], \"AVN\": [\"#5b8527\", \"#cc1424\", \"Air
             Vanuatu\", \"NF\"], \"ETD\": [\"#d3831c\", \"#5d3e30\", \"Etihad\", \"EY\"],
             \"HAL\": [\"#b9158c\", \"#86278b\", \"Hawaiian\", \"HA\"], \"TGW\": [\"#fcec04\",
